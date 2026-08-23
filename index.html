@@ -378,45 +378,105 @@
     </section>
 
     <!-- =======================================================================
-         VIEW C: COMPARADOR DE VERSIONES (V1.0 vs V1.1)
+         VIEW C: COMPARADOR DE VERSIONES (SELECCIÓN DINÁMICA)
          ======================================================================= -->
     <section id="view-compare" class="py-4 py-lg-5" style="display: none;">
       <div class="container-xxl px-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <!-- Cabecera con controles de selección -->
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
           <div>
-            <h4 class="fw-bold mb-0 text-dark">⚖️ Comparador de Versiones</h4>
-            <div class="text-muted small">Contrasta directamente la versión base (V1.0) frente a la Ley Orgánica reformada (V1.1).</div>
+            <h4 class="fw-bold mb-1 text-dark">⚖️ Comparador de Versiones</h4>
+            <div class="text-muted small">Selecciona las dos versiones que quieres contrastar. Los cambios en rojo son reformas de V1.1; en azul, integraciones FISMA de V1.2.</div>
           </div>
           <button class="btn btn-outline-primary btn-sm" onclick="UlpianoDash.switchView('dashboard')">
             <span class="material-symbols-outlined me-1">arrow_back</span> Volver al Dashboard
           </button>
         </div>
 
-        <div class="compare-grid">
-          <!-- Col 1: V1.0 -->
-          <div class="compare-pane">
-            <div class="compare-pane-header">
-              <div>
-                <strong class="d-block"><span class="material-symbols-outlined me-1" style="font-size: 1.1rem; vertical-align: -2px;">article</span> Versión 1.0 (Base Original)</strong>
-                <small class="text-white-50">Ley Especial de Ciberseguridad Procesal</small>
-              </div>
-              <span class="badge bg-secondary">V-1.0</span>
-            </div>
-            <div class="compare-pane-body markdown-body" id="compare-v10-content"></div>
+        <!-- Selectores de versión -->
+        <div class="row g-3 mb-4 align-items-end" id="compare-version-picker">
+          <!-- Selector Panel Izquierdo -->
+          <div class="col-12 col-md-5">
+            <label for="compare-select-left" class="form-label fw-semibold text-dark small text-uppercase mb-1">
+              <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:-2px;">left_panel_open</span>
+              Panel Izquierdo (base)
+            </label>
+            <select id="compare-select-left" class="form-select border-secondary fw-semibold bg-light text-dark version-select-auto" title="Seleccionar versión para el panel izquierdo">
+              <!-- Poblado dinámicamente -->
+            </select>
           </div>
 
-          <!-- Col 2: V1.1 -->
-          <div class="compare-pane">
-            <div class="compare-pane-header" style="background-color: var(--dc3-navy-darkest); border-bottom-color: var(--theme-color-primary-dark);">
-              <div>
-                <strong class="d-block"><span class="material-symbols-outlined me-1" style="font-size: 1.1rem; vertical-align: -2px;">article</span> Versión 1.1 (Ley Orgánica Mejorada)</strong>
-                <small class="text-white-50">Reformas señaladas en rojo</small>
-              </div>
-              <span class="badge bg-primary">V-1.1 Orgánica</span>
-            </div>
-            <div class="compare-pane-body markdown-body" id="compare-v11-content"></div>
+          <!-- Botón intercambiar -->
+          <div class="col-12 col-md-2 text-center">
+            <button id="btn-compare-swap" class="btn btn-outline-secondary w-100" title="Intercambiar paneles" onclick="UlpianoDash.swapComparePanels()">
+              <span class="material-symbols-outlined">swap_horiz</span>
+            </button>
+          </div>
+
+          <!-- Selector Panel Derecho -->
+          <div class="col-12 col-md-5">
+            <label for="compare-select-right" class="form-label fw-semibold text-dark small text-uppercase mb-1">
+              <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:-2px;">right_panel_open</span>
+              Panel Derecho (comparar con)
+            </label>
+            <select id="compare-select-right" class="form-select border-secondary fw-semibold bg-light text-dark version-select-auto" title="Seleccionar versión para el panel derecho">
+              <!-- Poblado dinámicamente -->
+            </select>
           </div>
         </div>
+
+        <!-- Botón de ejecución de comparación -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <button id="btn-run-compare" class="btn btn-primary fw-semibold px-4" onclick="UlpianoDash.runCompare()">
+            <span class="material-symbols-outlined me-1">compare_arrows</span> Comparar versiones
+          </button>
+          <div id="compare-status-msg" class="text-muted small"></div>
+        </div>
+
+        <!-- Paneles de comparación -->
+        <div class="compare-grid">
+          <!-- Panel Izquierdo -->
+          <div class="compare-pane">
+            <div class="compare-pane-header" id="compare-header-left">
+              <div>
+                <strong class="d-block" id="compare-title-left">
+                  <span class="material-symbols-outlined me-1" style="font-size:1.1rem;vertical-align:-2px;">article</span>
+                  Versión base
+                </strong>
+                <small class="text-white-50" id="compare-sub-left">Selecciona una versión arriba</small>
+              </div>
+              <span class="badge bg-secondary" id="compare-badge-left">—</span>
+            </div>
+            <div class="compare-pane-body markdown-body" id="compare-left-content">
+              <div class="text-center text-muted py-5">
+                <span class="material-symbols-outlined d-block mb-2" style="font-size:2.5rem;opacity:.4;">article</span>
+                Selecciona las versiones y haz clic en <strong>Comparar versiones</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel Derecho -->
+          <div class="compare-pane">
+            <div class="compare-pane-header" id="compare-header-right" style="background-color: var(--dc3-navy-darkest); border-bottom-color: var(--theme-color-primary-dark);">
+              <div>
+                <strong class="d-block" id="compare-title-right">
+                  <span class="material-symbols-outlined me-1" style="font-size:1.1rem;vertical-align:-2px;">article</span>
+                  Versión a comparar
+                </strong>
+                <small class="text-white-50" id="compare-sub-right">Selecciona una versión arriba</small>
+              </div>
+              <span class="badge bg-primary" id="compare-badge-right">—</span>
+            </div>
+            <div class="compare-pane-body markdown-body" id="compare-right-content">
+              <div class="text-center text-muted py-5">
+                <span class="material-symbols-outlined d-block mb-2" style="font-size:2.5rem;opacity:.4;">article</span>
+                Selecciona las versiones y haz clic en <strong>Comparar versiones</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 

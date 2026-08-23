@@ -1,378 +1,426 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================
+     ULPIANO CCO — Arquitectura de Integración: Ciberseguridad Procesal
+     Design System: USWDS 3.x — MODO LIGHT EXCLUSIVO
+     Tokens: design-system/tokens.css
+     Regla: .agents/rules/design-system-light-only.md
+     ============================================================ -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 1060" width="100%" height="100%">
   <defs>
-    <!-- ====================================================================
-         USWDS 3.x DESIGN TOKENS EMBEDDED STYLESHEET
-         Architecture based on https://github.com/uswds/uswds
-         ==================================================================== -->
+    <!-- ================================================================
+         USWDS 3.x DESIGN TOKENS — LIGHT MODE ONLY
+         Fuente: design-system/tokens.css
+         ================================================================ -->
     <style><![CDATA[
-      :root {
-        /* USWDS System Colors */
-        --usa-blue-90: #0b1b3d;
-        --usa-blue-80: #162e51;
-        --usa-blue-70: #004987;
-        --usa-blue-60: #1a5b8c;
-        --usa-blue-50: #0076d6;
-        --usa-blue-40: #28a0e0;
-        --usa-blue-30: #73b3e7;
-        --usa-blue-20: #aacdec;
-        --usa-blue-10: #d9e8f6;
-        --usa-blue-5:  #eff6fb;
+      /* --- usa-color-blue-* tokens --- */
+      /* --usa-color-blue-5:  #eff6fb */
+      /* --usa-color-blue-10: #d9e8f6 */
+      /* --usa-color-blue-20: #aacdec */
+      /* --usa-color-blue-30: #73b3e7 */
+      /* --usa-color-blue-40: #28a0e0 */
+      /* --usa-color-blue-50: #0076d6 */
+      /* --usa-color-blue-60: #1a5b8c */
+      /* --usa-color-blue-70: #004987 */
+      /* --usa-color-blue-80: #162e51 */
+      /* --usa-color-blue-90: #0b1b3d */
 
-        --usa-gray-90: #13171b;
-        --usa-gray-80: #21272d;
-        --usa-gray-70: #323a45;
-        --usa-gray-60: #45505f;
-        --usa-gray-50: #5c6b7e;
-        --usa-gray-40: #71767a;
-        --usa-gray-30: #a9b4c4;
-        --usa-gray-20: #dfe1e2;
-        --usa-gray-10: #f0f0f0;
-        --usa-gray-5:  #f5f6f8;
+      /* --- usa-color-gray-cool-* tokens --- */
+      /* --usa-color-gray-cool-1:  #fbfcfd */
+      /* --usa-color-gray-cool-5:  #f5f6f8 */
+      /* --usa-color-gray-cool-10: #e7e9ed */
+      /* --usa-color-gray-cool-20: #cfd4dc */
+      /* --usa-color-gray-cool-30: #a9b4c4 */
+      /* --usa-color-gray-cool-50: #5c6b7e */
+      /* --usa-color-gray-cool-70: #323a45 */
+      /* --usa-color-gray-cool-90: #13171b */
 
-        --usa-gold-60: #8c3b00;
-        --usa-gold-50: #df7e00;
-        --usa-gold-40: #f3a534;
-        --usa-gold-30: #fac76f;
-        --usa-gold-20: #fde4b6;
-        --usa-gold-5:  #fffaf2;
+      /* --- usa-color-gold-* tokens --- */
+      /* --usa-color-gold-5:  #fef6e7 */
+      /* --usa-color-gold-20: #fac76f */
+      /* --usa-color-gold-40: #df7e00 */
+      /* --usa-color-gold-60: #8c3b00 */
 
-        --usa-green-60: #0d2b14;
-        --usa-green-50: #2e8540;
-        --usa-green-40: #4aa564;
-        --usa-green-30: #98cca3;
-        --usa-green-20: #cde5d2;
-        --usa-green-5:  #eaf4ec;
+      /* --- usa-color-green-* tokens --- */
+      /* --usa-color-green-5:  #eaf4ec */
+      /* --usa-color-green-20: #98cca3 */
+      /* --usa-color-green-40: #2e8540 */
+      /* --usa-color-green-60: #154721 */
 
-        --usa-red-60: #8b0a03;
-        --usa-red-50: #b50909;
-        --usa-red-40: #cd3a3a;
-        --usa-red-20: #e79c9c;
-        --usa-red-5:  #f9eded;
+      /* --- usa-color-red-* tokens --- */
+      /* --usa-color-red-5:  #f9eded */
+      /* --usa-color-red-20: #e79c9c */
+      /* --usa-color-red-50: #b50909 */
 
-        /* USWDS Typography */
-        --font-sans: 'Public Sans Web', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        --font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace;
-      }
+      /* --font-sans */
+      .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+      /* --font-mono */
+      .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
 
-      .svg-bg { fill: #0d131f; }
-      
-      /* Typographic Hierarchy (WCAG AAA and Section 508 Compliant) */
-      .text-title { font-family: var(--font-sans); font-weight: 700; font-size: 17.5px; fill: #fbfcfd; letter-spacing: 0.01em; }
-      .text-subtitle { font-family: var(--font-sans); font-weight: 400; font-size: 12.5px; fill: #a9b4c4; }
-      .text-header-box { font-family: var(--font-sans); font-weight: 700; font-size: 14px; fill: #fbfcfd; }
-      .text-tag { font-family: var(--font-sans); font-weight: 600; font-size: 11px; }
-      
-      .text-item-title { font-family: var(--font-sans); font-weight: 700; font-size: 12px; }
-      .text-item-desc { font-family: var(--font-sans); font-weight: 400; font-size: 11.5px; fill: #e7e9ed; }
-      .text-item-sub { font-family: var(--font-sans); font-weight: 400; font-size: 11px; fill: #a9b4c4; }
-      
-      .text-card-title { font-family: var(--font-sans); font-weight: 700; font-size: 13px; fill: #fbfcfd; }
-      .text-card-sub { font-family: var(--font-sans); font-weight: 600; font-size: 11px; }
-      .text-card-body { font-family: var(--font-sans); font-weight: 400; font-size: 11.5px; fill: #cfd4dc; }
-      
-      .text-pill { font-family: var(--font-sans); font-weight: 700; font-size: 10.5px; }
-      .text-mono { font-family: var(--font-mono); }
+      /* --theme-color-ink: gray-cool-90 */
+      .text-ink     { fill: #13171b; }
+      /* --theme-color-primary: blue-60 */
+      .text-primary { fill: #1a5b8c; }
+      /* --theme-color-primary-dark: blue-70 */
+      .text-primary-dark { fill: #004987; }
+      /* --theme-color-base: gray-cool-50 */
+      .text-base    { fill: #5c6b7e; }
+      /* --theme-color-base-dark: gray-cool-70 */
+      .text-base-dark { fill: #323a45; }
+
+      .text-title    { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 17px; fill: #13171b; letter-spacing: 0.01em; }
+      .text-subtitle { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 12.5px; fill: #5c6b7e; }
+      .text-header-box { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 14px; fill: #162e51; }
+      .text-tag  { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 600; font-size: 11px; }
+
+      .text-item-title { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 12px; fill: #162e51; }
+      .text-item-desc  { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 11.5px; fill: #323a45; }
+      .text-item-sub   { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 11px; fill: #5c6b7e; }
+
+      .text-card-title { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 13px; fill: #162e51; }
+      .text-card-sub   { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 600; font-size: 11px; }
+      .text-card-body  { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 11.5px; fill: #323a45; }
+
+      .text-pill { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 10.5px; }
+      .text-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
     ]]></style>
 
-    <!-- UI Shadows based on USWDS Elevation -->
+    <!-- Sombras light — --shadow-1 y --shadow-2 del design system -->
     <filter id="shadow-1" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.5"/>
+      <!-- --shadow-1: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24) -->
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.12"/>
     </filter>
     <filter id="shadow-2" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
-    </filter>
-    <filter id="gold-glow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#f3a534" flood-opacity="0.4"/>
+      <!-- --shadow-2: 0 3px 6px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.12) -->
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.15"/>
     </filter>
 
-    <!-- Gradients adhering to USWDS System Palette -->
-    <linearGradient id="euBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#162e51"/>
-      <stop offset="100%" stop-color="#0b1b3d"/>
+    <!-- Gradiente sutil de cabecera — blue-5 a blue-10 (modo light) -->
+    <!-- usa-color-blue-5: #eff6fb / usa-color-blue-10: #d9e8f6 -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#eff6fb"/>
+      <stop offset="100%" stop-color="#d9e8f6"/>
     </linearGradient>
 
-    <linearGradient id="jtcBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#154721"/>
-      <stop offset="100%" stop-color="#0d2b14"/>
+    <!-- Gradiente tarjeta EU — blue-5 a white -->
+    <!-- usa-color-blue-5: #eff6fb / theme-color-base-lightest: #ffffff -->
+    <linearGradient id="euCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eff6fb"/>
+      <stop offset="100%" stop-color="#ffffff"/>
     </linearGradient>
 
-    <linearGradient id="ulpianoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#21272d"/>
-      <stop offset="50%" stop-color="#192027"/>
-      <stop offset="100%" stop-color="#13171b"/>
+    <!-- Gradiente tarjeta JTC — green-5 a white -->
+    <!-- usa-color-green-5: #eaf4ec / theme-color-base-lightest: #ffffff -->
+    <linearGradient id="jtcCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eaf4ec"/>
+      <stop offset="100%" stop-color="#ffffff"/>
     </linearGradient>
 
-    <linearGradient id="uswdsGoldBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- Gradiente sección inferior — gray-cool-1 a gray-cool-5 -->
+    <!-- usa-color-gray-cool-1: #fbfcfd / usa-color-gray-cool-5: #f5f6f8 -->
+    <linearGradient id="innovGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fbfcfd"/>
+      <stop offset="100%" stop-color="#f5f6f8"/>
+    </linearGradient>
+
+    <!-- Gradiente borde gold: gold-20 a gold-40 -->
+    <!-- usa-color-gold-20: #fac76f / usa-color-gold-40: #df7e00 -->
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#fac76f"/>
       <stop offset="50%" stop-color="#df7e00"/>
       <stop offset="100%" stop-color="#fac76f"/>
     </linearGradient>
   </defs>
 
-  <!-- ================= CANVAS BACKGROUND ================= -->
-  <rect width="1360" height="1060" class="svg-bg"/>
-  
-  <!-- USWDS Grid Pattern (8px base) -->
-  <g opacity="0.03" stroke="#ffffff" stroke-width="1">
-    <pattern id="uswds-grid" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M 32 0 L 0 0 0 32"/>
-    </pattern>
-    <rect width="1360" height="1060" fill="url(#uswds-grid)"/>
-  </g>
+  <!-- =============== CANVAS BACKGROUND — theme-color-base-lightest: #ffffff =============== -->
+  <rect width="1360" height="1060" fill="#ffffff"/>
 
-  <!-- ================= HEADER COMPONENT ================= -->
+  <!-- Líneas de grid USWDS 8px — gray-cool-10 con opacidad baja -->
+  <!-- usa-color-gray-cool-10: #e7e9ed -->
+  <pattern id="uswds-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+    <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#e7e9ed" stroke-width="1"/>
+  </pattern>
+  <rect width="1360" height="1060" fill="url(#uswds-grid)" opacity="0.6"/>
+
+  <!-- =============== HEADER COMPONENT =============== -->
+  <!-- Card base: theme-color-base-lightest #ffffff con borde gray-cool-10 -->
   <g transform="translate(50, 25)">
-    <!-- USWDS Card Base (Gray-80 with Gray-70 border) -->
-    <rect x="0" y="0" width="1260" height="92" rx="8" fill="#21272d" stroke="#323a45" stroke-width="1.5" filter="url(#shadow-1)"/>
-    
-    <!-- Left Accent Bar (USWDS Blue-50) -->
-    <rect x="0" y="0" width="6" height="92" rx="3" fill="#0076d6"/>
+    <!-- --shadow-1 | fondo: #ffffff | borde: gray-cool-20 #cfd4dc -->
+    <rect x="0" y="0" width="1260" height="92" rx="8" fill="url(#headerGrad)" stroke="#cfd4dc" stroke-width="1.5" filter="url(#shadow-1)"/>
 
-    <!-- Title & Subtitle with Controlled Hierarchy -->
+    <!-- Acento izquierdo: --theme-color-primary blue-60 #1a5b8c -->
+    <rect x="0" y="0" width="6" height="92" rx="3" fill="#1a5b8c"/>
+
+    <!-- Título: --theme-color-ink gray-cool-90 #13171b -->
     <text x="28" y="36" class="text-title">⚖️ ARQUITECTURA DE INTEGRACIÓN: CIBERSEGURIDAD PROCESAL E INTEGRIDAD JUDICIAL</text>
     <text x="28" y="65" class="text-subtitle">
-      Tokens de diseño <tspan class="text-mono" fill="#73b3e7">USWDS 3.0</tspan> aplicados al mapeo de fuentes comparadas (UE &amp; JTC) y al <tspan fill="#fac76f" font-weight="700">Aporte Propio Original (Título VII)</tspan>
+      Tokens de diseño <tspan class="text-mono" fill="#1a5b8c">USWDS 3.0</tspan> aplicados al mapeo de fuentes comparadas (UE &amp; JTC) y al <tspan fill="#8c3b00" font-weight="700">Aporte Propio Original (Título VII)</tspan>
     </text>
-    
-    <!-- Section 508 / WCAG AAA Compliance Badge -->
-    <rect x="1080" y="28" width="155" height="36" rx="4" fill="#13171b" stroke="#45505f" stroke-width="1"/>
+
+    <!-- Badge WCAG: gray-cool-5 con borde gray-cool-20 -->
+    <!-- usa-color-gray-cool-5: #f5f6f8 | usa-color-gray-cool-20: #cfd4dc -->
+    <rect x="1080" y="28" width="155" height="36" rx="4" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1"/>
+    <!-- success circle: green-40 #2e8540 -->
     <circle cx="1098" cy="46" r="5" fill="#2e8540"/>
-    <text x="1112" y="50" class="text-tag" fill="#98cca3">WCAG 2.1 AAA</text>
+    <!-- green-60 #154721 -->
+    <text x="1112" y="50" class="text-tag" fill="#154721">WCAG 2.1 AAA</text>
   </g>
 
-  <!-- ================= TOP SECTION: COMPARATIVE SOURCES ================= -->
-
-  <!-- SOURCE 1: REGULATION (EU) 2023/2841 -->
+  <!-- =============== FUENTE 1: REGULATION (EU) 2023/2841 =============== -->
   <g transform="translate(50, 138)">
-    <!-- Card Frame (USWDS Blue Palette) -->
-    <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#euBgGrad)" stroke="#004987" stroke-width="1.5" filter="url(#shadow-1)"/>
-    
-    <!-- Header Banner -->
-    <rect x="0" y="0" width="615" height="46" rx="8" fill="#1a5b8c" opacity="0.6"/>
-    
-    <!-- EU Flag / Badge -->
-    <rect x="16" y="12" width="28" height="22" rx="3" fill="#0076d6"/>
-    <text x="22" y="27" fill="#ffffff" class="text-tag" font-weight="800">EU</text>
-    <text x="54" y="29" class="text-header-box">Reglamento (UE, Euratom) 2023/2841</text>
-    <text x="500" y="29" class="text-tag" fill="#aacdec" text-anchor="end">Marco Europeo</text>
+    <!-- Tarjeta: gradiente blue-5→white | borde blue-20 #aacdec -->
+    <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#euCardGrad)" stroke="#aacdec" stroke-width="1.5" filter="url(#shadow-1)"/>
 
-    <!-- Body items (USWDS list pattern) -->
+    <!-- Banner cabecera: blue-10 #d9e8f6 -->
+    <rect x="0" y="0" width="615" height="46" rx="8" fill="#d9e8f6"/>
+    <rect x="0" y="30" width="615" height="16" fill="#d9e8f6"/>
+
+    <!-- Badge EU: blue-60 #1a5b8c | texto ink-inverse #ffffff -->
+    <rect x="16" y="12" width="28" height="22" rx="3" fill="#1a5b8c"/>
+    <text x="22" y="27" fill="#ffffff" class="text-tag" font-weight="800">EU</text>
+
+    <!-- Título cabecera: blue-80 #162e51 -->
+    <text x="54" y="29" class="text-header-box">Reglamento (UE, Euratom) 2023/2841</text>
+    <!-- Subtítulo: blue-60 #1a5b8c -->
+    <text x="500" y="29" class="text-tag" fill="#1a5b8c" text-anchor="end">Marco Europeo</text>
+
+    <!-- Items -->
     <g transform="translate(16, 56)">
-      <!-- Item 1 -->
-      <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
+      <!-- Item 1 — fondo gray-cool-1 #fbfcfd | borde blue-10 #d9e8f6 | acento blue-40 #28a0e0 -->
+      <rect x="0" y="0" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
       <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
+      <!-- dot: blue-30 #73b3e7 -->
       <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
-      <text x="30" y="23" class="text-item-title" fill="#73b3e7">CERT-EU ➔ CSIRT-Ulpiano (Arts. 8 y 9)</text>
+      <!-- título item: blue-70 #004987 | desc/sub: ink grey -->
+      <text x="30" y="23" class="text-item-title" fill="#004987">CERT-EU ➔ CSIRT-Ulpiano (Arts. 8 y 9)</text>
       <text x="30" y="43" class="text-item-desc">Equipo de respuesta a incidentes cibernéticos especializado para salvaguardar</text>
       <text x="30" y="61" class="text-item-sub">la infraestructura técnica, expedientes y plataformas del sistema judicial.</text>
 
       <!-- Item 2 -->
-      <rect x="0" y="82" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0" transform="translate(0, 82)"/>
+      <rect x="0" y="82" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
+      <rect x="0" y="82" width="4" height="74" rx="2" fill="#28a0e0"/>
       <circle cx="18" cy="104" r="4" fill="#73b3e7"/>
-      <text x="30" y="105" class="text-item-title" fill="#73b3e7">Junta Interinstitucional (IICB) ➔ Junta de Integridad (Art. 10)</text>
+      <text x="30" y="105" class="text-item-title" fill="#004987">Junta Interinstitucional (IICB) ➔ Junta de Integridad (Art. 10)</text>
       <text x="30" y="125" class="text-item-desc">Órgano de coordinación y gobernanza colegiada entre poderes del Estado</text>
       <text x="30" y="143" class="text-item-sub">(Tribunal Supremo de Justicia, Ministerio Público, Defensa Pública y Contraloría).</text>
 
       <!-- Item 3 -->
-      <rect x="0" y="164" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0" transform="translate(0, 164)"/>
+      <rect x="0" y="164" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
+      <rect x="0" y="164" width="4" height="74" rx="2" fill="#28a0e0"/>
       <circle cx="18" cy="186" r="4" fill="#73b3e7"/>
-      <text x="30" y="187" class="text-item-title" fill="#73b3e7">Taxonomía Común y Gestión de Crisis (Arts. 18 y 208)</text>
+      <text x="30" y="187" class="text-item-title" fill="#004987">Taxonomía Común y Gestión de Crisis (Arts. 18 y 23)</text>
       <text x="30" y="207" class="text-item-desc">Escala unificada de severidad para clasificar incidentes tecnológicos y</text>
       <text x="30" y="225" class="text-item-sub">protocolos operativos estándar (SOPs) de contención y recuperación.</text>
 
       <!-- Item 4 -->
-      <rect x="0" y="246" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0" transform="translate(0, 246)"/>
+      <rect x="0" y="246" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
+      <rect x="0" y="246" width="4" height="74" rx="2" fill="#28a0e0"/>
       <circle cx="18" cy="268" r="4" fill="#73b3e7"/>
-      <text x="30" y="269" class="text-item-title" fill="#73b3e7">Capacidades Técnicas &amp; Revisión (Arts. 9, 25-26 y 39)</text>
+      <text x="30" y="269" class="text-item-title" fill="#004987">Capacidades Técnicas &amp; Revisión (Arts. 9, 25-26)</text>
       <text x="30" y="289" class="text-item-desc">Inventario de capacidades y expertos forenses, simulacros bianuales y</text>
       <text x="30" y="307" class="text-item-sub">evaluación periódica de la implementación de la ley ante la Asamblea Nacional.</text>
     </g>
   </g>
 
-  <!-- SOURCE 2: JTC (COSCA / NACM / NCSC 2025) -->
+  <!-- =============== FUENTE 2: JTC (COSCA / NACM / NCSC 2025) =============== -->
   <g transform="translate(695, 138)">
-    <!-- Card Frame (USWDS Green/Emerald Palette) -->
-    <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#jtcBgGrad)" stroke="#154721" stroke-width="1.5" filter="url(#shadow-1)"/>
-    
-    <!-- Header Banner -->
-    <rect x="0" y="0" width="615" height="46" rx="8" fill="#1b622b" opacity="0.6"/>
-    
-    <!-- JTC Flag / Badge -->
+    <!-- Tarjeta: gradiente green-5→white | borde green-20 #98cca3 -->
+    <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#jtcCardGrad)" stroke="#98cca3" stroke-width="1.5" filter="url(#shadow-1)"/>
+
+    <!-- Banner cabecera: green-5 #eaf4ec claro -->
+    <rect x="0" y="0" width="615" height="46" rx="8" fill="#cde5d2"/>
+    <rect x="0" y="30" width="615" height="16" fill="#cde5d2"/>
+
+    <!-- Badge JTC: green-40 #2e8540 | texto #ffffff -->
     <rect x="16" y="12" width="34" height="22" rx="3" fill="#2e8540"/>
     <text x="21" y="27" fill="#ffffff" class="text-tag" font-weight="800">JTC</text>
-    <text x="58" y="29" class="text-header-box">Cybersecurity Basics for Courts (2025)</text>
-    <text x="599" y="29" class="text-tag" fill="#98cca3" text-anchor="end">EE.UU. Courts</text>
 
-    <!-- Body items (USWDS list pattern) -->
+    <!-- Título cabecera: green-60 #154721 -->
+    <text x="58" y="29" class="text-header-box" fill="#154721">Cybersecurity Basics for Courts (2025)</text>
+    <text x="599" y="29" class="text-tag" fill="#154721" text-anchor="end">EE.UU. Courts</text>
+
+    <!-- Items -->
     <g transform="translate(16, 56)">
-      <!-- Item 1 -->
-      <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="74" rx="2" fill="#53b069"/>
+      <!-- Item 1 — acento green-40 #2e8540 -->
+      <rect x="0" y="0" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="74" rx="2" fill="#2e8540"/>
       <circle cx="18" cy="22" r="4" fill="#98cca3"/>
-      <text x="30" y="23" class="text-item-title" fill="#98cca3">Resiliencia frente a Ransomware Judicial (Exposición &amp; Art. 8)</text>
+      <text x="30" y="23" class="text-item-title" fill="#154721">Resiliencia frente a Ransomware Judicial (Exposición &amp; Art. 8)</text>
       <text x="30" y="43" class="text-item-desc">Defensa ante ciberataques reales documentados en cortes norteamericanas</text>
       <text x="30" y="61" class="text-item-sub">(Tribunales de Los Ángeles 2024, Cleveland 2025 y Cortes Federales AOUSC).</text>
 
       <!-- Item 2 -->
-      <rect x="0" y="82" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="74" rx="2" fill="#53b069" transform="translate(0, 82)"/>
+      <rect x="0" y="82" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+      <rect x="0" y="82" width="4" height="74" rx="2" fill="#2e8540"/>
       <circle cx="18" cy="104" r="4" fill="#98cca3"/>
-      <text x="30" y="105" class="text-item-title" fill="#98cca3">Zero Trust, Mínimo Privilegio &amp; MFA (Art. 12)</text>
+      <text x="30" y="105" class="text-item-title" fill="#154721">Zero Trust, Mínimo Privilegio &amp; MFA (Art. 12)</text>
       <text x="30" y="125" class="text-item-desc">Autenticación multifactor estricta para jueces, fiscales y personal de juzgados,</text>
       <text x="30" y="143" class="text-item-sub">con segmentación física/lógica de redes procesales frente a las administrativas.</text>
 
       <!-- Item 3 -->
-      <rect x="0" y="164" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="74" rx="2" fill="#53b069" transform="translate(0, 164)"/>
+      <rect x="0" y="164" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+      <rect x="0" y="164" width="4" height="74" rx="2" fill="#2e8540"/>
       <circle cx="18" cy="186" r="4" fill="#98cca3"/>
-      <text x="30" y="187" class="text-item-title" fill="#98cca3">Continuidad de Operaciones - COOP (Art. 13)</text>
+      <text x="30" y="187" class="text-item-title" fill="#154721">Continuidad de Operaciones - COOP (Art. 13)</text>
       <text x="30" y="207" class="text-item-desc">Planes de contingencia que aseguran la tramitación de causas urgentes</text>
       <text x="30" y="225" class="text-item-sub">(flagrancias, amparos, medidas cautelares) sin depender de sistemas caídos.</text>
 
       <!-- Item 4 -->
-      <rect x="0" y="246" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="74" rx="2" fill="#53b069" transform="translate(0, 246)"/>
+      <rect x="0" y="246" width="583" height="74" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+      <rect x="0" y="246" width="4" height="74" rx="2" fill="#2e8540"/>
       <circle cx="18" cy="268" r="4" fill="#98cca3"/>
-      <text x="30" y="269" class="text-item-title" fill="#98cca3">Capacitación Continua del Personal (Art. 37)</text>
+      <text x="30" y="269" class="text-item-title" fill="#154721">Capacitación Continua del Personal (Art. 37)</text>
       <text x="30" y="289" class="text-item-desc">Programa de entrenamiento anual obligatorio en ciberdefensa, protección de</text>
       <text x="30" y="307" class="text-item-sub">datos y ética del uso de sistemas automatizados e inteligencia artificial.</text>
     </g>
   </g>
 
-  <!-- ================= CONNECTOR STREAM ================= -->
-  <g stroke="#0076d6" stroke-width="2" stroke-dasharray="6,4" fill="none" opacity="0.8">
+  <!-- =============== CONECTOR =============== -->
+  <!-- blue-50 #0076d6 — conector dashed -->
+  <g stroke="#0076d6" stroke-width="2" stroke-dasharray="6,4" fill="none" opacity="0.7">
     <path d="M 357 533 L 357 550 L 630 550 L 630 562"/>
     <path d="M 1002 533 L 1002 550 L 730 550 L 730 562"/>
   </g>
+  <!-- flecha: gold-40 #df7e00 -->
   <polygon points="680,568 673,556 687,556" fill="#df7e00"/>
 
-  <!-- ================= BOTTOM SECTION: AUTHOR'S INNOVATION (VALUE PROPOSITION) ================= -->
+  <!-- =============== SECCIÓN INFERIOR: APORTE ORIGINAL (TÍTULO VII) =============== -->
   <g transform="translate(50, 568)">
-    <!-- USWDS High-Impact Feature Box -->
-    <rect x="0" y="0" width="1260" height="460" rx="8" fill="url(#ulpianoBgGrad)" stroke="url(#uswdsGoldBorder)" stroke-width="2" filter="url(#shadow-2)"/>
-    
-    <!-- Title Bar (USWDS Gray-80 with Gold Accent) -->
-    <rect x="0" y="0" width="1260" height="54" rx="8" fill="#21272d"/>
-    <line x1="0" y1="54" x2="1260" y2="54" stroke="#45505f" stroke-width="1"/>
-    
-    <!-- Pill Badge: APORTE ORIGINAL -->
-    <rect x="22" y="14" width="160" height="26" rx="13" fill="#df7e00" filter="url(#gold-glow)"/>
+    <!-- Caja principal: gradiente gray-cool-1→gray-cool-5 | borde gold gradient -->
+    <!-- --shadow-2 -->
+    <rect x="0" y="0" width="1260" height="460" rx="8" fill="url(#innovGrad)" stroke="url(#goldBorder)" stroke-width="2" filter="url(#shadow-2)"/>
+
+    <!-- Barra de título: gray-cool-5 #f5f6f8 | borde inferior gray-cool-20 #cfd4dc -->
+    <rect x="0" y="0" width="1260" height="54" rx="8" fill="#f5f6f8"/>
+    <line x1="0" y1="54" x2="1260" y2="54" stroke="#cfd4dc" stroke-width="1"/>
+
+    <!-- Pill badge: gold-40 #df7e00 | texto: gray-cool-90 #13171b -->
+    <rect x="22" y="14" width="160" height="26" rx="13" fill="#df7e00"/>
     <text x="102" y="31" class="text-pill" fill="#13171b" text-anchor="middle" letter-spacing="0.5">⭐ APORTE ORIGINAL</text>
-    
-    <!-- Unified Title String Preventing Any Text Overlapping -->
+
+    <!-- Título: ink #13171b | acento gold-60 #8c3b00 -->
     <text x="196" y="34" class="text-title" font-size="15">
-      IDEA DE VALOR CREADA POR EL AUTOR (JULL ORTIZ): <tspan fill="#fac76f">RÉGIMEN DE INTEGRIDAD PROCESAL (TÍTULO VII)</tspan>
+      IDEA DE VALOR CREADA POR EL AUTOR (JULL ORTIZ): <tspan fill="#8c3b00">RÉGIMEN DE INTEGRIDAD PROCESAL (TÍTULO VII)</tspan>
     </text>
 
-    <!-- Subtitle Banner (USWDS Alert Info Pattern) -->
+    <!-- Banner de tesis: gold-5 #fef6e7 | borde izq gold-40 #df7e00 | borde gray-cool-20 -->
     <g transform="translate(22, 68)">
-      <rect x="0" y="0" width="1216" height="54" rx="4" fill="#13171b" stroke="#323a45" stroke-width="1"/>
-      <rect x="0" y="0" width="4" height="54" rx="2" fill="#f3a534"/>
-      <text x="18" y="22" class="text-item-desc" fill="#fef6e7">
-        💡 <tspan font-weight="700" fill="#fde4b6">Tesis Central:</tspan> Los marcos internacionales conciben la ciberseguridad judicial solo como defensa perimetral frente a hackers externos.
+      <rect x="0" y="0" width="1216" height="54" rx="4" fill="#fef6e7" stroke="#cfd4dc" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="54" rx="2" fill="#df7e00"/>
+      <!-- Texto: gold-60 #8c3b00 para énfasis, ink #13171b para cuerpo -->
+      <text x="18" y="22" class="text-item-desc" fill="#13171b">
+        💡 <tspan font-weight="700" fill="#8c3b00">Tesis Central:</tspan> Los marcos internacionales conciben la ciberseguridad judicial solo como defensa perimetral frente a hackers externos.
       </text>
-      <text x="18" y="42" class="text-item-desc" fill="#fef6e7">
-        La innovación consiste en usar la <tspan fill="#73b3e7" font-weight="700">ciberseguridad, criptografía e IA</tspan> como escudo <tspan fill="#fac76f" font-weight="700">activo frente a la corrupción interna, manipulación de causas y retardo procesal</tspan>.
+      <text x="18" y="42" class="text-item-desc" fill="#13171b">
+        La innovación consiste en usar la <tspan fill="#004987" font-weight="700">ciberseguridad, criptografía e IA</tspan> como escudo <tspan fill="#8c3b00" font-weight="700">activo frente a la corrupción interna, manipulación de causas y retardo procesal</tspan>.
       </text>
     </g>
 
-    <!-- 4 Cards Grid of Value Proposition (USWDS Card Components) -->
+    <!-- 4 tarjetas de valor -->
     <g transform="translate(22, 136)">
-      
-      <!-- Card 1: Doble Frente -->
+
+      <!-- Tarjeta 1: Doble Frente — acento error: red-50 #b50909 -->
       <g transform="translate(0, 0)">
-        <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
-        <rect x="0" y="0" width="292" height="4" rx="2" fill="#cd3a3a"/>
-        
-        <rect x="14" y="16" width="34" height="34" rx="4" fill="#5c1111"/>
+        <!-- fondo: #ffffff | borde: gray-cool-20 #cfd4dc -->
+        <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
+        <!-- top accent: red-50 #b50909 -->
+        <rect x="0" y="0" width="292" height="4" rx="2" fill="#b50909"/>
+
+        <!-- ícono bg: red-5 #f9eded -->
+        <rect x="14" y="16" width="34" height="34" rx="4" fill="#f9eded"/>
         <text x="22" y="39" font-size="18">🛡️</text>
-        <text x="56" y="28" class="text-card-title">Doble Frente</text>
-        <text x="56" y="44" class="text-card-sub" fill="#e79c9c">de Riesgo</text>
-        <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-        
-        <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Defensa Externa + Interna</text>
+        <!-- title: red-50 #b50909 | sub: gray-cool-50 -->
+        <text x="56" y="28" class="text-card-title" fill="#b50909">Doble Frente</text>
+        <text x="56" y="44" class="text-card-sub" fill="#5c6b7e">de Riesgo</text>
+        <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+        <text x="14" y="78" class="text-item-title">Defensa Externa + Interna</text>
         <text x="14" y="98" class="text-card-body">No basta protegerse de hackers;</text>
         <text x="14" y="116" class="text-card-body">el mismo aparato técnico audita</text>
         <text x="14" y="134" class="text-card-body">a operadores internos que alteran</text>
         <text x="14" y="152" class="text-card-body">expedientes, extravían evidencias</text>
         <text x="14" y="170" class="text-card-body">o inducen retardo procesal.</text>
 
-        <!-- USWDS Tag Pill (Centered Text) -->
-        <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#5c1111" stroke-width="1"/>
-        <text x="146" y="278" class="text-pill" fill="#f3d1d1" text-anchor="middle">Principio: Honeste Vivere</text>
+        <!-- pill: red-5 bg | red-50 borde | ink texto -->
+        <rect x="14" y="258" width="264" height="32" rx="16" fill="#f9eded" stroke="#b50909" stroke-width="1"/>
+        <text x="146" y="278" class="text-pill" fill="#b50909" text-anchor="middle">Principio: Honeste Vivere</text>
       </g>
 
-      <!-- Card 2: Distribución Aleatoria -->
+      <!-- Tarjeta 2: Distribución Aleatoria — acento blue-50 #0076d6 -->
       <g transform="translate(308, 0)">
-        <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+        <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
+        <!-- top accent: blue-50 #0076d6 -->
         <rect x="0" y="0" width="292" height="4" rx="2" fill="#0076d6"/>
-        
-        <rect x="14" y="16" width="34" height="34" rx="4" fill="#004987"/>
+
+        <!-- ícono bg: blue-5 #eff6fb -->
+        <rect x="14" y="16" width="34" height="34" rx="4" fill="#eff6fb"/>
         <text x="22" y="39" font-size="18">🎲</text>
-        <text x="56" y="28" class="text-card-title">Distribución Aleatoria</text>
-        <text x="56" y="44" class="text-card-sub" fill="#73b3e7">Certificada (Art. 26)</text>
-        <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-        
-        <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Algoritmo Público &amp; Auditable</text>
+        <!-- title: blue-70 #004987 -->
+        <text x="56" y="28" class="text-card-title" fill="#004987">Distribución Aleatoria</text>
+        <text x="56" y="44" class="text-card-sub" fill="#1a5b8c">Certificada (Art. 26)</text>
+        <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+        <text x="14" y="78" class="text-item-title">Algoritmo Público &amp; Auditable</text>
         <text x="14" y="98" class="text-card-body">Eliminación de la discrecionalidad</text>
         <text x="14" y="116" class="text-card-body">humana en asignación de causas.</text>
         <text x="14" y="134" class="text-card-body">Genera registro inmutable de cada</text>
         <text x="14" y="152" class="text-card-body">sorteo judicial, blindándolo de</text>
         <text x="14" y="170" class="text-card-body">manipulaciones manuales.</text>
 
-        <!-- USWDS Tag Pill (Centered Text) -->
-        <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#004987" stroke-width="1"/>
-        <text x="146" y="278" class="text-pill" fill="#aacdec" text-anchor="middle">Principio: Suum Cuique Tribuere</text>
+        <!-- pill: blue-5 bg | blue-70 borde | blue-70 texto -->
+        <rect x="14" y="258" width="264" height="32" rx="16" fill="#eff6fb" stroke="#004987" stroke-width="1"/>
+        <text x="146" y="278" class="text-pill" fill="#004987" text-anchor="middle">Principio: Suum Cuique Tribuere</text>
       </g>
 
-      <!-- Card 3: Segregación "4 Ojos" -->
+      <!-- Tarjeta 3: Segregación 4 Ojos — acento gold-40 #df7e00 -->
       <g transform="translate(616, 0)">
-        <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+        <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
+        <!-- top accent: gold-40 #df7e00 -->
         <rect x="0" y="0" width="292" height="4" rx="2" fill="#df7e00"/>
-        
-        <rect x="14" y="16" width="34" height="34" rx="4" fill="#5d2700"/>
+
+        <!-- ícono bg: gold-5 #fef6e7 -->
+        <rect x="14" y="16" width="34" height="34" rx="4" fill="#fef6e7"/>
         <text x="22" y="39" font-size="18">🔐</text>
-        <text x="56" y="28" class="text-card-title">Segregación "4 Ojos"</text>
-        <text x="56" y="44" class="text-card-sub" fill="#fac76f">&amp; Hashes (Arts. 27-28)</text>
-        <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-        
-        <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Registro Criptográfico Inmutable</text>
+        <!-- title: gold-60 #8c3b00 -->
+        <text x="56" y="28" class="text-card-title" fill="#8c3b00">Segregación "4 Ojos"</text>
+        <text x="56" y="44" class="text-card-sub" fill="#8c3b00">&amp; Hashes (Arts. 27-28)</text>
+        <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+        <text x="14" y="78" class="text-item-title">Registro Criptográfico Inmutable</text>
         <text x="14" y="98" class="text-card-body">Ningún funcionario puede ejecutar</text>
         <text x="14" y="116" class="text-card-body">solo operaciones críticas.</text>
         <text x="14" y="134" class="text-card-body">Bitácora electrónica inalterable</text>
         <text x="14" y="152" class="text-card-body">incluso por los administradores</text>
         <text x="14" y="170" class="text-card-body">técnicos de bases de datos.</text>
 
-        <!-- USWDS Tag Pill (Centered Text) -->
-        <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#8c3b00" stroke-width="1"/>
-        <text x="146" y="278" class="text-pill" fill="#fde4b6" text-anchor="middle">Principio: Alterum Non Laedere</text>
+        <!-- pill: gold-5 bg | gold-60 borde | gold-60 texto -->
+        <rect x="14" y="258" width="264" height="32" rx="16" fill="#fef6e7" stroke="#8c3b00" stroke-width="1"/>
+        <text x="146" y="278" class="text-pill" fill="#8c3b00" text-anchor="middle">Principio: Alterum Non Laedere</text>
       </g>
 
-      <!-- Card 4: IA Ética y Compliance -->
+      <!-- Tarjeta 4: IA Anticorrupción — acento green-40 #2e8540 -->
       <g transform="translate(924, 0)">
-        <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+        <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
+        <!-- top accent: green-40 #2e8540 -->
         <rect x="0" y="0" width="292" height="4" rx="2" fill="#2e8540"/>
-        
-        <rect x="14" y="16" width="34" height="34" rx="4" fill="#0d2b14"/>
+
+        <!-- ícono bg: green-5 #eaf4ec -->
+        <rect x="14" y="16" width="34" height="34" rx="4" fill="#eaf4ec"/>
         <text x="22" y="39" font-size="18">🤖</text>
-        <text x="56" y="28" class="text-card-title">IA Anticorrupción</text>
-        <text x="56" y="44" class="text-card-sub" fill="#98cca3">&amp; Auditoría (Arts. 25, 29-31)</text>
-        <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-        
-        <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Detección + Control Humano</text>
+        <!-- title: green-60 #154721 -->
+        <text x="56" y="28" class="text-card-title" fill="#154721">IA Anticorrupción</text>
+        <text x="56" y="44" class="text-card-sub" fill="#154721">&amp; Auditoría (Arts. 25, 29-31)</text>
+        <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+        <text x="14" y="78" class="text-item-title">Detección + Control Humano</text>
         <text x="14" y="98" class="text-card-body">Oficina de Cumplimiento Digital</text>
         <text x="14" y="116" class="text-card-body">con alertas en tiempo real vía API</text>
         <text x="14" y="134" class="text-card-body">para Contraloría. Prohíbe fallos</text>
         <text x="14" y="152" class="text-card-body">automáticos sin juez humano</text>
         <text x="14" y="170" class="text-card-body">responsable del acto.</text>
 
-        <!-- USWDS Tag Pill (Centered Text) -->
-        <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#1b622b" stroke-width="1"/>
-        <text x="146" y="278" class="text-pill" fill="#cde5d2" text-anchor="middle">Compliance ISO 37001 / 42001</text>
+        <!-- pill: green-5 bg | green-60 borde | green-60 texto -->
+        <rect x="14" y="258" width="264" height="32" rx="16" fill="#eaf4ec" stroke="#154721" stroke-width="1"/>
+        <text x="146" y="278" class="text-pill" fill="#154721" text-anchor="middle">Compliance ISO 37001 / 42001</text>
       </g>
 
     </g>

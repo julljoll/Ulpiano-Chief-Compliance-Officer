@@ -287,15 +287,27 @@
 
   // --- Dynamic Version Selectors Builder ---
   function buildVersionSelectors() {
-    const selects = document.querySelectorAll('.version-select-auto, #reader-version-select');
     const docs = DocRegistry.getAll();
+    const allSelects = document.querySelectorAll('.version-select-auto, #reader-version-select, #compare-select-left, #compare-select-right');
 
-    selects.forEach(select => {
-      const currentVal = select.value || state.currentDocKey;
-      select.innerHTML = docs.map(doc => 
+    allSelects.forEach(select => {
+      const currentVal = select.value;
+      select.innerHTML = docs.map(doc =>
         `<option value="${doc.id}">${escapeHtml(doc.badgeText || doc.label)}</option>`
       ).join('');
-      select.value = currentVal;
+
+      if (currentVal && docs.find(d => d.id === currentVal)) {
+        select.value = currentVal;
+      } else if (select.id === 'compare-select-left') {
+        // Default: panel izquierdo = versión más antigua (la última del array)
+        const oldest = docs[docs.length - 1];
+        select.value = oldest ? oldest.id : (docs[0] ? docs[0].id : '');
+      } else if (select.id === 'compare-select-right') {
+        // Default: panel derecho = versión más reciente (la primera del array)
+        select.value = docs[0] ? docs[0].id : '';
+      } else {
+        select.value = state.currentDocKey;
+      }
     });
   }
 
@@ -499,20 +511,72 @@
     });
   }
 
-  // --- Render Compare View ---
-  async function renderCompareView() {
-    const left = document.getElementById('compare-v10-content');
-    const right = document.getElementById('compare-v11-content');
-    if (!left || !right) return;
+  // --- Render Compare View (init only — carga con botón) ---
+  function renderCompareView() {
+    // Asegura que los selectores estén poblados con las versiones disponibles
+    buildVersionSelectors();
+    const statusMsg = document.getElementById('compare-status-msg');
+    if (statusMsg) statusMsg.textContent = 'Selecciona las versiones en los menús y haz clic en «Comparar versiones».';
+  }
 
-    left.innerHTML = '<div class="text-center py-4 text-muted">Cargando Versión 1.0 Base...</div>';
-    right.innerHTML = '<div class="text-center py-4 text-muted">Cargando Versión 1.1 Orgánica...</div>';
+  // --- Run Compare: carga los documentos seleccionados en los paneles ---
+  async function runCompare() {
+    const selectLeft  = document.getElementById('compare-select-left');
+    const selectRight = document.getElementById('compare-select-right');
+    const leftKey  = selectLeft  ? selectLeft.value  : 'v1.0';
+    const rightKey = selectRight ? selectRight.value : 'v1.1';
 
-    const v10 = await getDocContent('v1.0');
-    const v11 = await getDocContent('v1.1');
+    const leftMeta  = DocRegistry.get(leftKey);
+    const rightMeta = DocRegistry.get(rightKey);
 
-    left.innerHTML = v10;
-    right.innerHTML = v11;
+    const leftContent  = document.getElementById('compare-left-content');
+    const rightContent = document.getElementById('compare-right-content');
+    const statusMsg    = document.getElementById('compare-status-msg');
+
+    // Actualizar títulos y badges de cabecera
+    const titleLeft  = document.getElementById('compare-title-left');
+    const subLeft    = document.getElementById('compare-sub-left');
+    const badgeLeft  = document.getElementById('compare-badge-left');
+    const titleRight = document.getElementById('compare-title-right');
+    const subRight   = document.getElementById('compare-sub-right');
+    const badgeRight = document.getElementById('compare-badge-right');
+
+    if (titleLeft)  titleLeft.innerHTML  = `<span class="material-symbols-outlined me-1" style="font-size:1.1rem;vertical-align:-2px;">article</span> ${escapeHtml(leftMeta.label)}`;
+    if (subLeft)    subLeft.textContent  = leftMeta.type || '';
+    if (badgeLeft)  badgeLeft.textContent = leftMeta.shortLabel || leftMeta.id;
+
+    if (titleRight) titleRight.innerHTML = `<span class="material-symbols-outlined me-1" style="font-size:1.1rem;vertical-align:-2px;">article</span> ${escapeHtml(rightMeta.label)}`;
+    if (subRight)   subRight.textContent = rightMeta.type || '';
+    if (badgeRight) badgeRight.textContent = rightMeta.shortLabel || rightMeta.id;
+
+    // Mostrar spinners de carga
+    const loadingHtml = key => `<div class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-primary mb-3"></div><p class="small">Cargando ${escapeHtml(key)}...</p></div>`;
+    if (leftContent)  leftContent.innerHTML  = loadingHtml(leftKey);
+    if (rightContent) rightContent.innerHTML = loadingHtml(rightKey);
+    if (statusMsg) statusMsg.textContent = 'Cargando documentos…';
+
+    // Cargar ambos documentos en paralelo
+    try {
+      const [leftHtml, rightHtml] = await Promise.all([
+        getDocContent(leftKey),
+        getDocContent(rightKey)
+      ]);
+      if (leftContent)  leftContent.innerHTML  = leftHtml;
+      if (rightContent) rightContent.innerHTML = rightHtml;
+      if (statusMsg) statusMsg.innerHTML = `<span class="text-success"><span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:-3px;">check_circle</span>Mostrando: <strong>${escapeHtml(leftMeta.shortLabel)}</strong> vs <strong>${escapeHtml(rightMeta.shortLabel)}</strong></span>`;
+    } catch (err) {
+      if (statusMsg) statusMsg.innerHTML = `<span class="text-danger"><span class="material-symbols-outlined me-1">error</span>Error al cargar los documentos. Verifica Live Server.</span>`;
+    }
+  }
+
+  // --- Swap Compare Panels: intercambia los valores de los selectores ---
+  function swapComparePanels() {
+    const selectLeft  = document.getElementById('compare-select-left');
+    const selectRight = document.getElementById('compare-select-right');
+    if (!selectLeft || !selectRight) return;
+    const tmp = selectLeft.value;
+    selectLeft.value  = selectRight.value;
+    selectRight.value = tmp;
   }
 
   // --- Red Highlights Navigation ---
@@ -759,6 +823,8 @@
       state.currentDocKey = latest ? latest.id : 'v1.1';
       switchView('reader');
     },
+    runCompare,
+    swapComparePanels,
     jumpToNextRedHighlight,
     DocRegistry
   };
