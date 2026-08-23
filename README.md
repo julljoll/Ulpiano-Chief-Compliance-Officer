@@ -22,7 +22,7 @@ Traduce los preceptos clásicos del jurista romano Ulpiano (*honeste vivere*, *a
 A continuación se ilustra la integración de los marcos comparados internacionales y el **aporte original de integridad procesal (Título VII)**:
 
 <p align="center">
-  <img src="./ciberseguridad_integracion.svg" alt="Arquitectura de Integración - Ulpiano Chief Compliance Officer" width="100%">
+  <img src="./svg/ciberseguridad_integracion.svg" alt="Arquitectura de Integración - Ulpiano Chief Compliance Officer" width="100%">
 </p>
 
 ### 🔍 Desglose de la Arquitectura:
@@ -80,8 +80,10 @@ A continuación se ilustra la integración de los marcos comparados internaciona
 
 ## 📂 Estructura del Repositorio
 
-- [`ciberseguridad_integracion.svg`](./ciberseguridad_integracion.svg) — Diagrama visual de la arquitectura del sistema y aporte original.
-- [`ciberseguridadprocesal.md`](./ciberseguridadprocesal.md) — Documento técnico-jurídico base (anteproyecto y modelo de articulado).
+- [`svg/ciberseguridad_integracion.svg`](./svg/ciberseguridad_integracion.svg) — Diagrama visual de la arquitectura del sistema y aporte original.
+- [`docs/ciberseguridadprocesal_v1.1.md`](./docs/ciberseguridadprocesal_v1.1.md) — Documento técnico-jurídico (Ley Orgánica V-1.1 con reformas).
+- [`docs/ciberseguridadprocesal_V1.0.md`](./docs/ciberseguridadprocesal_V1.0.md) — Documento base original (Ley Especial V-1.0).
+- [`components/`](./components/) — Componentes HTML compilados para el portal web.
 - [`design-system/`](./design-system/) — Tokens de diseño JSON/CSS bajo el estándar USWDS 3.0.
 - `RAG/` — Base de conocimiento normativo y de ciberseguridad para pipelines de IA.
 - `LICENSE` — Licencia de código abierto del proyecto.

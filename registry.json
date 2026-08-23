@@ -1,0 +1,67 @@
+[
+  {
+    "id": "v1.1",
+    "label": "Ley Orgánica V-1.1 (Con Reformas)",
+    "shortLabel": "V-1.1 Orgánica",
+    "file": "components/docs/v1.1.html",
+    "sourceFile": "docs/ciberseguridadprocesal_v1.1.md",
+    "type": "Ley Orgánica",
+    "hierarchy": "Orgánica",
+    "hierarchySub": "Art. 203 CRBV",
+    "articlesCount": 42,
+    "titlesCount": "11 Títulos + Anexo",
+    "coverage": "100% Pleno",
+    "coverageSub": "Judicial + Administrativo",
+    "badge": "reform",
+    "badgeClass": "dc3-tag",
+    "badgeText": "Versión 1.1 Orgánica",
+    "date": "2025-08-23",
+    "changes": 28,
+    "changesLabel": "Cláusulas Mejoradas (v1.1)",
+    "changesTag": "Marcadas en Rojo",
+    "description": "Evolución técnico-legislativa del anteproyecto de ciberseguridad procesal: rango de Ley Orgánica (CRBV art. 203), cobertura integral de la Administración Pública y régimen sancionatorio escalonado con plenas garantías de debido proceso.",
+    "highlights": [
+      "Ámbito Administrativo",
+      "Rango Orgánico Art. 203 CRBV",
+      "Sanciones Escalonadas",
+      "Disposiciones Finales"
+    ],
+    "icon": "article",
+    "reformsDistribution": {
+      "labels": ["Título I (Gral)", "Título II (Institucional)", "Título III (Técnico)", "Título IV (Garantías)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Título XI (Supremacía)"],
+      "data": [6, 4, 3, 2, 4, 8, 5]
+    }
+  },
+  {
+    "id": "v1.0",
+    "label": "Ley Especial V-1.0 (Base Original)",
+    "shortLabel": "V-1.0 Base",
+    "file": "components/docs/v1.0.html",
+    "sourceFile": "docs/ciberseguridadprocesal_V1.0.md",
+    "type": "Ley Especial",
+    "hierarchy": "Especial",
+    "hierarchySub": "Ámbito Sectorial",
+    "articlesCount": 42,
+    "titlesCount": "11 Títulos",
+    "coverage": "Sector Judicial",
+    "coverageSub": "Tribunales y Cortes",
+    "badge": "base",
+    "badgeClass": "dc3-tag",
+    "badgeText": "Versión 1.0 Base",
+    "date": "2025-01-01",
+    "changes": 0,
+    "changesLabel": "Cláusulas Base (v1.0)",
+    "changesTag": "Texto Original",
+    "description": "Versión base de investigación técnica preliminar orientada al sistema de justicia y tribunales.",
+    "highlights": [
+      "CSIRT-Ulpiano",
+      "ISO 27037 Forense",
+      "Zero Trust en Cortes"
+    ],
+    "icon": "article",
+    "reformsDistribution": {
+      "labels": ["Título I (Gral)", "Título II (Institucional)", "Título III (Técnico)", "Título IV (Garantías)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Título XI (Supremacía)"],
+      "data": [0, 0, 0, 0, 0, 0, 0]
+    }
+  }
+]

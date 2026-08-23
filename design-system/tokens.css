@@ -187,21 +187,3 @@
   --breakpoint-widescreen: 1400px;
 }
 
-/* Dark Mode Overrides (Optional High-Contrast Theme for Judicial Night Auditing) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --theme-color-base-lightest: var(--usa-color-gray-cool-90);
-    --theme-color-base-lighter: var(--usa-color-gray-cool-80);
-    --theme-color-base-light: var(--usa-color-gray-cool-70);
-    --theme-color-base: var(--usa-color-gray-cool-30);
-    --theme-color-base-dark: var(--usa-color-gray-cool-10);
-    --theme-color-base-darkest: var(--usa-color-gray-cool-5);
-
-    --theme-color-ink: var(--usa-color-gray-cool-5);
-    --theme-color-ink-inverse: var(--usa-color-gray-cool-90);
-
-    --theme-color-primary: var(--usa-color-blue-40);
-    --theme-color-primary-light: var(--usa-color-blue-30);
-    --theme-color-primary-dark: var(--usa-color-blue-50);
-  }
-}

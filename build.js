@@ -1,0 +1,97 @@
+/**
+ * ULPIANO CCO — Build Script (Node.js)
+ * Convierte los archivos .md a componentes HTML autónomos en components/docs/
+ * Uso: node build.js
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+console.log('\x1b[36m====================================================\x1b[0m');
+console.log('\x1b[37m ⚖️ ULPIANO CCO — Compilador de Componentes HTML \x1b[0m');
+console.log('\x1b[36m====================================================\x1b[0m');
+
+const registryPath = path.join(__dirname, 'registry.json');
+if (!fs.existsSync(registryPath)) {
+  console.error('\x1b[31mError: registry.json no encontrado.\x1b[0m');
+  process.exit(1);
+}
+
+const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+const outDir = path.join(__dirname, 'components', 'docs');
+if (!fs.existsSync(outDir)) {
+  fs.mkdirSync(outDir, { recursive: true });
+}
+
+function convertMdToHtml(md) {
+  let text = md.replace(/\r\n/g, '\n');
+
+  // Convert inline color:red spans to .reforma-rojo
+  text = text.replace(/<span style="color:\s*red">([\s\S]*?)<\/span>/g, '<span class="reforma-rojo">$1</span>');
+  text = text.replace(/<span style="color:red">([\s\S]*?)<\/span>/g, '<span class="reforma-rojo">$1</span>');
+
+  // Headings
+  text = text.replace(/^###### (.*)$/gm, '<h6>$1</h6>');
+  text = text.replace(/^##### (.*)$/gm, '<h5>$1</h5>');
+  text = text.replace(/^#### (.*)$/gm, '<h4>$1</h4>');
+  text = text.replace(/^### (.*)$/gm, '<h3>$1</h3>');
+  text = text.replace(/^## (.*)$/gm, '<h2>$1</h2>');
+  text = text.replace(/^# (.*)$/gm, '<h1>$1</h1>');
+
+  // Bold & Italic
+  text = text.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/(?<!\*)\*([^\*\n]+?)\*(?!\*)/g, '<em>$1</em>');
+
+  // Horizontal rules
+  text = text.replace(/^---+$/gm, '<hr class="my-4">');
+
+  // Bullet items
+  text = text.replace(/^\s*-\s+(.*)$/gm, '<li>$1</li>');
+  text = text.replace(/(<li>[\s\S]*?<\/li>(\s*<li>[\s\S]*?<\/li>)*)/g, '<ul>$1</ul>');
+
+  // Paragraphs
+  const blocks = text.split(/\n\s*\n/);
+  const processed = blocks.map(block => {
+    const b = block.trim();
+    if (!b) return '';
+    if (/^<(h[1-6]|ul|ol|hr|div|table|blockquote|article|section|pre|p|figure|img)/.test(b)) {
+      return b;
+    }
+    return `<p>${b.replace(/\n/g, '<br>\n')}</p>`;
+  }).filter(Boolean);
+
+  return processed.join('\n\n');
+}
+
+registry.forEach(doc => {
+  if (!doc.sourceFile) return;
+  const sourcePath = path.join(__dirname, doc.sourceFile);
+  if (!fs.existsSync(sourcePath)) {
+    console.warn(`\x1b[33mArchivo fuente no encontrado: ${doc.sourceFile}\x1b[0m`);
+    return;
+  }
+
+  const rawMd = fs.readFileSync(sourcePath, 'utf8');
+  const htmlBody = convertMdToHtml(rawMd);
+
+  const componentHtml = `<!-- =========================================================================
+     COMPONENTE DE DOCUMENTO: ${doc.id}
+     Título: ${doc.label}
+     Generado automáticamente desde: ${doc.sourceFile}
+     ========================================================================= -->
+<article class="doc-component" data-doc-id="${doc.id}">
+${htmlBody}
+</article>`;
+
+  const outPath = path.join(__dirname, doc.file);
+  const parentDir = path.dirname(outPath);
+  if (!fs.existsSync(parentDir)) {
+    fs.mkdirSync(parentDir, { recursive: true });
+  }
+
+  fs.writeFileSync(outPath, componentHtml, 'utf8');
+  console.log(`\x1b[32m✅ Componente generado: ${doc.file} <- ${doc.sourceFile}\x1b[0m`);
+});
+
+console.log('\n\x1b[36m🎉 Compilación finalizada con éxito.\x1b[0m');

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚖️ Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital</title>
+  <meta name="description" content="Portal oficial de ciberseguridad procesal, informática forense e integridad digital del sistema de justicia y de la administración pública.">
+
+  <!-- Bootstrap 5.3 CSS & Google Material Symbols -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <!-- Design System Tokens & DC3 Institutional CSS -->
+  <link rel="stylesheet" href="./design-system/tokens.css">
+  <link rel="stylesheet" href="./viewer.css">
+
+  <!-- Chart.js & Marked.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. TOP OFFICIAL GOVERNMENT BANNER (USWDS / DC3.mil Standard)
+       ========================================================================= -->
+  <div class="usa-gov-banner">
+    <div class="container-xxl d-flex align-items-center justify-content-between px-3">
+      <div>
+        <span class="fw-semibold">🏛️ República Bolivariana de Venezuela</span>
+        <span class="mx-2">|</span>
+        <span>Iniciativa de Ciberseguridad Procesal, Informática Forense y Cumplimiento Digital</span>
+      </div>
+      <div class="d-none d-md-block text-muted">
+        <span class="material-symbols-outlined text-success me-1">lock</span> Entorno de Auditoría Segura (ISO/IEC 27001 &amp; CRBV 203)
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. PRIMARY INSTITUTIONAL HEADER (DC3.mil Style)
+       ========================================================================= -->
+  <header class="dc3-header">
+    <div class="container-xxl d-flex flex-wrap align-items-center justify-content-between gap-3 px-3">
+      <!-- Emblem & Title -->
+      <div class="d-flex align-items-center gap-3">
+        <div class="dc3-emblem-badge">
+          ⚖️
+        </div>
+        <div>
+          <div class="dc3-header-title">Ulpiano — Chief Compliance Officer</div>
+          <div class="dc3-header-subtitle">Dirección Nacional de Ciberseguridad Procesal e Integridad Digital</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       3. SINGLE TOP WEBSITE NAVIGATION BAR
+       ========================================================================= -->
+  <nav class="dc3-navbar">
+    <div class="container-xxl d-flex flex-wrap gap-2 px-3">
+      <button class="dc3-nav-tab active" data-view="dashboard">
+        <span class="material-symbols-outlined me-1">dashboard</span> Dashboard de Mejoras
+      </button>
+      <button class="dc3-nav-tab" data-view="reader">
+        <span class="material-symbols-outlined me-1">article</span> Lector de versiones
+      </button>
+      <button class="dc3-nav-tab" data-view="compare">
+        <span class="material-symbols-outlined me-1">compare_arrows</span> Comparador de versiones
+      </button>
+      <button class="dc3-nav-tab" data-view="matrix">
+        <span class="material-symbols-outlined me-1">account_tree</span> Matriz de Trazabilidad Normativa
+      </button>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       4. MAIN CONTENT CONTAINER (FULL WIDTH WEBSITE LAYOUT)
+       ========================================================================= -->
+  <main class="w-100">
+
+    <!-- =======================================================================
+         VIEW A: DASHBOARD DE CONTROL Y MEJORAS
+         ======================================================================= -->
+    <section id="view-dashboard" class="py-4 py-lg-5">
+      <div class="container-xxl px-3">
+
+        <!-- DC3 Hero / Mission Statement Banner -->
+        <div class="dc3-hero-banner">
+          <div class="dc3-breadcrumb">
+            <a href="#" onclick="UlpianoDash.switchView('dashboard')">Inicio</a> / 
+            <span>Ecosistema Normativo</span> / 
+            <span class="text-white" id="kpi-hero-breadcrumb">Ley Orgánica de Ciberseguridad Procesal</span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <h1 class="dc3-hero-title" id="kpi-hero-title">Auditoría de Integridad y Control de Versión 1.1</h1>
+              <p class="dc3-hero-desc mb-0" id="kpi-hero-desc">
+                Evolución técnico-legislativa del anteproyecto de ciberseguridad procesal: rango de Ley Orgánica (CRBV art. 203), cobertura integral de la Administración Pública y régimen sancionatorio escalonado con plenas garantías de debido proceso.
+              </p>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-warning text-dark fw-bold px-3" id="kpi-hero-btn-reader" onclick="UlpianoDash.openLatestDoc()">
+                <span class="material-symbols-outlined me-1">menu_book</span> <span id="kpi-hero-btn-label">Abrir Texto V-1.1</span>
+              </button>
+              <button class="btn btn-outline-light px-3" onclick="UlpianoDash.switchView('compare')">
+                <span class="material-symbols-outlined me-1">compare_arrows</span> Comparador de versiones
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 KPI Stat Tiles (Dynamically populated from registry.json) -->
+        <div class="row g-3 mb-5">
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="dc3-card dc3-card-accent-top">
+              <div class="dc3-stat-label">Artículos del Anteproyecto</div>
+              <div class="dc3-stat-num mt-2" id="kpi-articles-num">42</div>
+              <div class="mt-2"><span class="dc3-tag" id="kpi-articles-tag">11 Títulos + Anexo</span></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="dc3-card dc3-card-accent-red" id="kpi-card-reforms">
+              <div class="dc3-stat-label" id="kpi-reforms-label">Cláusulas Mejoradas (v1.1)</div>
+              <div class="dc3-stat-num text-danger mt-2" id="kpi-reforms-num">28</div>
+              <div class="mt-2"><span class="dc3-tag dc3-tag-red" id="kpi-reforms-tag">Marcadas en Rojo</span></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="dc3-card dc3-card-accent-gold">
+              <div class="dc3-stat-label">Jerarquía Normativa</div>
+              <div class="dc3-stat-num text-primary mt-2" style="font-size: 1.75rem;" id="kpi-hierarchy-num">Orgánica</div>
+              <div class="mt-2"><span class="dc3-tag dc3-tag-gold" id="kpi-hierarchy-tag">Art. 203 CRBV</span></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="dc3-card dc3-card-accent-green">
+              <div class="dc3-stat-label">Cobertura de la Vida Jurídica</div>
+              <div class="dc3-stat-num text-success mt-2" style="font-size: 1.75rem;" id="kpi-coverage-num">100% Pleno</div>
+              <div class="mt-2"><span class="dc3-tag dc3-tag-green" id="kpi-coverage-tag">Judicial + Administrativo</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DYNAMIC VERSION CARDS GRID (Populated from registry.json) -->
+        <div class="mb-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold mb-0 text-dark d-flex align-items-center gap-2">
+              <span class="material-symbols-outlined text-primary">collections_bookmark</span> Catálogo y Control de Versiones
+            </h4>
+            <span class="text-muted small">Autodescubrimiento modular vía <code>registry.json</code></span>
+          </div>
+          <div class="row g-4" id="version-cards-grid">
+            <!-- Populated dynamically by viewer.js -->
+          </div>
+        </div>
+
+        <!-- The 3 Core Reforms (DC3 Mission Cards) -->
+        <h4 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
+          <span class="material-symbols-outlined text-primary">shield</span> Desglose de las 3 Grandes Reformas Estructurales
+        </h4>
+
+        <div class="row g-4 mb-5">
+          <!-- Card 1 -->
+          <div class="col-12 col-lg-4">
+            <div class="dc3-card dc3-card-accent-green">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="dc3-tag dc3-tag-green">Ámbito Material</span>
+                <span class="text-muted small">Art. 2°, 5°</span>
+              </div>
+              <h5 class="fw-bold text-dark">Ampliación a la Administración Pública</h5>
+              <p class="text-muted small mb-3">
+                Se superó la limitación exclusivamente judicial. La ley ahora abarca expedientes electrónicos, procedimientos sancionatorios y actuaciones administrativas vinculantes.
+              </p>
+              <div class="p-3 bg-light border rounded mb-3">
+                <div class="small mb-1"><strong class="text-danger">❌ Antes (v1.0):</strong> Exclusión expresa de procesos administrativos.</div>
+                <div class="small"><strong class="text-success">✅ Ahora (v1.1):</strong> Cobertura plena de actos administrativos con efectos jurídicos.</div>
+              </div>
+              <div class="small text-success fw-bold">
+                <span class="material-symbols-outlined me-1">check_circle</span> Garantiza debido proceso digital en trámites del Estado.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-12 col-lg-4">
+            <div class="dc3-card dc3-card-accent-top">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="dc3-tag">Técnica Legislativa</span>
+                <span class="text-muted small">Art. 1°, 3°, Título XI</span>
+              </div>
+              <h5 class="fw-bold text-dark">Rango de Ley Orgánica &amp; Supremacía</h5>
+              <p class="text-muted small mb-3">
+                Fundamentada en el Art. 203 CRBV. Sobre esta ley solo rige la Constitución. Las cláusulas de supremacía y derogatoria se reubicaron en el Título XI al final del texto.
+              </p>
+              <div class="p-3 bg-light border rounded mb-3">
+                <div class="small mb-1"><strong class="text-danger">❌ Antes (v1.0):</strong> Cláusula de supremacía desubicada en el Art. 3°.</div>
+                <div class="small"><strong class="text-success">✅ Ahora (v1.1):</strong> Reubicada en Disposición Final Primera y Segunda.</div>
+              </div>
+              <div class="small text-primary fw-bold">
+                <span class="material-symbols-outlined me-1">account_balance</span> Rango prevalente sobre cualquier ley ordinaria o especial.
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-12 col-lg-4">
+            <div class="dc3-card dc3-card-accent-red">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="dc3-tag dc3-tag-red">Régimen Sancionatorio</span>
+                <span class="text-muted small">Título VIII (Arts. 33°-37°)</span>
+              </div>
+              <h5 class="fw-bold text-dark">Sanciones Escalonadas y Garantistas</h5>
+              <p class="text-muted small mb-3">
+                Catálogo de sanciones principales clasificadas por gravedad (*Leves, Graves y Muy Graves*), tipificando conductas e integrando atenuantes y doble instancia (*Art. 49 CRBV*).
+              </p>
+              <div class="p-3 bg-light border rounded mb-3">
+                <div class="small mb-1"><strong class="text-danger">❌ Antes (v1.0):</strong> Iniciaba directamente con agravantes sin detallar sanciones.</div>
+                <div class="small"><strong class="text-success">✅ Ahora (v1.1):</strong> Catálogo completo, atenuantes y doble instancia.</div>
+              </div>
+              <div class="small text-danger fw-bold">
+                <span class="material-symbols-outlined me-1">gavel</span> Plena proporcionalidad y tipicidad sancionatoria.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             ARCHITECTURE SVG DIAGRAM CARD (Always Visible in Dashboard)
+             =================================================================== -->
+        <div class="dc3-card mb-5 p-4">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3 pb-2 border-bottom">
+            <div>
+              <h5 class="fw-bold mb-1 text-dark">🏛️ Arquitectura de Integración: Ciberseguridad Procesal e Integridad Judicial</h5>
+              <div class="text-muted small">Diagrama vectorial oficial basado en tokens <strong>USWDS 3.0</strong> (Mapeo UE &amp; JTC vs. Aporte Original Título VII).</div>
+            </div>
+            <div class="d-flex gap-2">
+              <a href="./svg/ciberseguridad_integracion_V1.0.svg" target="_blank" class="btn btn-sm btn-outline-primary fw-semibold">
+                <span class="material-symbols-outlined me-1">open_in_new</span> Abrir SVG Independiente ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- SVG Interactive Viewport -->
+          <div class="p-2 bg-dark rounded overflow-auto text-center shadow-inner" style="border: 1px solid var(--dc3-border-color); max-height: 850px;" id="dashboard-svg-container">
+            <!-- Populated with inline SVG by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row g-4 mb-5">
+          <div class="col-12 col-lg-6">
+            <div class="dc3-card dc3-card-accent-top">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="fw-bold mb-0 text-uppercase">Distribución de Reformas por Título</h6>
+                <span class="dc3-tag" id="chart-reforms-version-tag">Versión 1.1</span>
+              </div>
+              <div style="height: 270px;">
+                <canvas id="chartReformsDistribution"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="dc3-card dc3-card-accent-green">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="fw-bold mb-0 text-uppercase">Composición del Ámbito de Aplicación</h6>
+                <span class="dc3-tag dc3-tag-green">Cobertura 100%</span>
+              </div>
+              <div style="height: 270px;">
+                <canvas id="chartScope"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delta Inspector Table -->
+        <div class="dc3-card mb-5">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3 pb-3 border-bottom">
+            <div>
+              <h5 class="fw-bold mb-1 text-dark">🔍 Explorador Detallado de Modificaciones (Delta Inspector)</h5>
+              <div class="text-muted small">Inspección de cada artículo modificado entre la Versión 1.0 (Base) y la Versión 1.1 (Orgánica).</div>
+            </div>
+            <div style="max-width: 320px; width: 100%;">
+              <input type="text" id="delta-search-input" class="form-control form-control-sm" placeholder="Buscar por artículo o término clave...">
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+              <thead>
+                <tr>
+                  <th style="width: 18%;">Artículo / Sección</th>
+                  <th style="width: 28%;">Resumen Técnico</th>
+                  <th style="width: 44%;">Comparativa (V1.0 vs V1.1)</th>
+                  <th style="width: 10%;" class="text-end">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="delta-explorer-tbody">
+                <!-- Populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         VIEW B: LECTOR DE VERSIONES (HTML COMPONENT RENDERER)
+         ======================================================================= -->
+    <section id="view-reader" class="reader-canvas" style="display: none;">
+      <div class="container-xxl px-3">
+        
+        <!-- Reader Action Toolbar -->
+        <div class="reader-toolbar-top no-print">
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <span id="reader-doc-badge" class="dc3-tag"><span class="material-symbols-outlined me-1" style="font-size: 1rem;">article</span> Versión 1.1 Orgánica</span>
+            <strong class="text-dark" id="reader-doc-title">Ley Orgánica de Ciberseguridad Procesal</strong>
+          </div>
+
+          <!-- Version Switcher & Toolbar Actions -->
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <div style="min-width: 230px;">
+              <select id="reader-version-select" class="form-select form-select-sm border-secondary fw-semibold bg-light text-dark version-select-auto" title="Seleccionar versión para leer">
+                <!-- Populated dynamically by JavaScript -->
+              </select>
+            </div>
+
+            <button class="btn btn-sm btn-outline-primary fw-semibold" id="btn-toggle-floating-toc" title="Mostrar u ocultar índice flotante">
+              <span class="material-symbols-outlined me-1">vertical_split</span> <span id="btn-toc-label">Índice Flotante</span>
+            </button>
+
+            <button class="btn btn-sm btn-danger px-3 fw-bold" id="btn-jump-red-highlight" title="Saltar a la siguiente modificación en rojo">
+              <span class="material-symbols-outlined me-1">arrow_circle_down</span> <span id="red-badge-counter">Reformas en Rojo</span> ⏩
+            </button>
+
+            <button class="btn btn-sm btn-outline-secondary px-3" onclick="UlpianoDash.switchView('dashboard')">
+              <span class="material-symbols-outlined me-1">dashboard</span> Dashboard
+            </button>
+          </div>
+        </div>
+
+        <!-- Reader Main Grid: Floating TOC Left + Document Paper Center/Right -->
+        <div class="row g-4 position-relative">
+          
+          <!-- Floating Index Component (Left Column) -->
+          <div class="col-12 col-lg-4 col-xl-3" id="floating-toc-col">
+            <div class="floating-toc-card">
+              <div class="floating-toc-header">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <div class="fw-bold text-dark small text-uppercase">
+                    <span class="material-symbols-outlined text-primary me-1">format_list_bulleted</span> Índice del Documento
+                  </div>
+                  <span class="badge bg-primary rounded-pill" id="toc-count-badge">0</span>
+                </div>
+                <input type="text" id="floating-toc-filter" class="form-control form-control-sm" placeholder="🔍 Filtrar sección...">
+              </div>
+              <div class="floating-toc-body" id="floating-toc-list">
+                <!-- Populated dynamically by JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Paper Sheet Column -->
+          <div class="col-12 col-lg-8 col-xl-9" id="reader-paper-col">
+            <article class="reader-paper markdown-body" id="paper-sheet">
+              <!-- Populated by JavaScript -->
+            </article>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         VIEW C: COMPARADOR DE VERSIONES (V1.0 vs V1.1)
+         ======================================================================= -->
+    <section id="view-compare" class="py-4 py-lg-5" style="display: none;">
+      <div class="container-xxl px-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h4 class="fw-bold mb-0 text-dark">⚖️ Comparador de Versiones</h4>
+            <div class="text-muted small">Contrasta directamente la versión base (V1.0) frente a la Ley Orgánica reformada (V1.1).</div>
+          </div>
+          <button class="btn btn-outline-primary btn-sm" onclick="UlpianoDash.switchView('dashboard')">
+            <span class="material-symbols-outlined me-1">arrow_back</span> Volver al Dashboard
+          </button>
+        </div>
+
+        <div class="compare-grid">
+          <!-- Col 1: V1.0 -->
+          <div class="compare-pane">
+            <div class="compare-pane-header">
+              <div>
+                <strong class="d-block"><span class="material-symbols-outlined me-1" style="font-size: 1.1rem; vertical-align: -2px;">article</span> Versión 1.0 (Base Original)</strong>
+                <small class="text-white-50">Ley Especial de Ciberseguridad Procesal</small>
+              </div>
+              <span class="badge bg-secondary">V-1.0</span>
+            </div>
+            <div class="compare-pane-body markdown-body" id="compare-v10-content"></div>
+          </div>
+
+          <!-- Col 2: V1.1 -->
+          <div class="compare-pane">
+            <div class="compare-pane-header" style="background-color: var(--dc3-navy-darkest); border-bottom-color: var(--theme-color-primary-dark);">
+              <div>
+                <strong class="d-block"><span class="material-symbols-outlined me-1" style="font-size: 1.1rem; vertical-align: -2px;">article</span> Versión 1.1 (Ley Orgánica Mejorada)</strong>
+                <small class="text-white-50">Reformas señaladas en rojo</small>
+              </div>
+              <span class="badge bg-primary">V-1.1 Orgánica</span>
+            </div>
+            <div class="compare-pane-body markdown-body" id="compare-v11-content"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         VIEW D: MATRIZ DE TRAZABILIDAD NORMATIVA
+         ======================================================================= -->
+    <section id="view-matrix" class="py-4 py-lg-5" style="display: none;">
+      <div class="container-xxl px-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <h4 class="fw-bold mb-1 text-dark">📋 Matriz de Trazabilidad Normativa y Estándares Forenses</h4>
+            <div class="text-muted small">Mapeo sistemático entre las fuentes de derecho comparado internacional y el bloque constitucional venezolano.</div>
+          </div>
+          <button class="btn btn-outline-primary btn-sm" onclick="UlpianoDash.switchView('dashboard')">
+            <span class="material-symbols-outlined me-1">arrow_back</span> Volver al Dashboard
+          </button>
+        </div>
+
+        <div class="dc3-card p-4">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+              <thead>
+                <tr>
+                  <th style="width: 25%;">Sección / Título</th>
+                  <th style="width: 35%;">Fuente Internacional / Estándar Técnico</th>
+                  <th style="width: 40%;">Norma Nacional Concordante / Bloque Constitucional</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>I. Disposiciones Generales</strong></td>
+                  <td>Reglamento (UE, Euratom) 2023/2841, arts. 1-4; ISO/IEC 27000.</td>
+                  <td><span class="dc3-tag dc3-tag-red me-1">Reforma</span> <strong>CRBV arts. 26, 28, 49, 110, 141 y 203 (Carácter Orgánico)</strong>; LOPA; Ley de Infogobierno.</td>
+                </tr>
+                <tr>
+                  <td><strong>II. Institucionalidad Sectorial</strong></td>
+                  <td>Reglamento (UE) 2023/2841 (CERT-EU y Junta Interinstitucional).</td>
+                  <td>CRBV arts. 253, 254 y 284 (Autonomía funcional del Poder Judicial y Ministerio Público).</td>
+                </tr>
+                <tr>
+                  <td><strong>III. Estándares Técnicos</strong></td>
+                  <td>ISO/IEC 27001, 27035, 22301; JTC COSCA/NACM/NCSC (2025).</td>
+                  <td>Normativas SUSCERTE y Estándares Nacionales de Interoperabilidad del Estado.</td>
+                </tr>
+                <tr>
+                  <td><strong>IV. Debido Proceso Digital</strong></td>
+                  <td>Directiva (UE) 2016/680; Principios de IA Confiable de la OCDE.</td>
+                  <td>CRBV arts. 28, 49 y 257 (El proceso como instrumento fundamental de justicia).</td>
+                </tr>
+                <tr>
+                  <td><strong>VI. Régimen Probatorio Forense</strong></td>
+                  <td>ISO/IEC 27037, 27041, 27042, 27043; RFC 3227; NIST SP 800-86.</td>
+                  <td>Manual Único de Cadena de Custodia de Evidencias (Venezuela, 2017).</td>
+                </tr>
+                <tr>
+                  <td><strong>VII. Integridad Anticorrupción</strong></td>
+                  <td>ISO 37001 (Antisoborno), ISO 37301 (Compliance), ISO/IEC 42001 (IA Ética).</td>
+                  <td>CRBV art. 141 (Principios de honestidad, transparencia y rendición de cuentas).</td>
+                </tr>
+                <tr>
+                  <td><strong>VIII. Régimen Sancionatorio</strong></td>
+                  <td>Graduación escalonada según impacto en la infraestructura de justicia.</td>
+                  <td><span class="dc3-tag dc3-tag-red me-1">Reforma</span> Ley Especial contra Delitos Informáticos; Estatuto de la Función Pública; Código de Ética Judicial.</td>
+                </tr>
+                <tr>
+                  <td><strong>XI. Supremacía y Derogatoria</strong></td>
+                  <td>Reglamento (UE) 2023/2841, arts. 24-26.</td>
+                  <td><span class="dc3-tag dc3-tag-red me-1">Reforma</span> <strong>CRBV art. 203 (Supremacía de Ley Orgánica)</strong> y arts. 202-218.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       5. INSTITUTIONAL FEDERAL FOOTER (DC3.mil Standard)
+       ========================================================================= -->
+  <footer class="dc3-footer">
+    <div class="container-xxl px-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          <div class="fw-bold text-white mb-1">ULPIANO — CHIEF COMPLIANCE OFFICER</div>
+          <div>Dirección de Ciberseguridad Procesal, Informática Forense e Integridad Digital</div>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+          <div class="dc3-footer-links mb-2">
+            <a href="#" onclick="UlpianoDash.switchView('dashboard')">Dashboard</a>
+            <a href="#" onclick="UlpianoDash.switchView('reader')">Lector de versiones</a>
+            <a href="#" onclick="UlpianoDash.switchView('matrix')">Trazabilidad ISO</a>
+            <a href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer" target="_blank">Repositorio GitHub</a>
+          </div>
+          <div class="text-white-50" style="font-size: 0.75rem;">
+            Diseñado bajo estándares <strong>USWDS 3.x</strong> | Cumplimiento <strong>Section 508 &amp; WCAG 2.1 AAA</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       6. MASTER SVG ARCHITECTURE VECTOR TEMPLATE
+       ========================================================================= -->
+  <template id="svg-architecture-diagram">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 1060" width="100%" height="100%" style="max-width: 1200px; margin: 0 auto; display: block;">
+      <defs>
+        <style>
+          .svg-bg { fill: #0d131f; }
+          .text-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 17.5px; fill: #fbfcfd; letter-spacing: 0.01em; }
+          .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 12.5px; fill: #a9b4c4; }
+          .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 14px; fill: #fbfcfd; }
+          .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 11px; }
+          .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 12px; }
+          .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 11.5px; fill: #e7e9ed; }
+          .text-item-sub { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 11px; fill: #a9b4c4; }
+          .text-card-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 13px; fill: #fbfcfd; }
+          .text-card-sub { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 11px; }
+          .text-card-body { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 11.5px; fill: #cfd4dc; }
+          .text-pill { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.5px; }
+          .text-mono { font-family: 'Roboto Mono', monospace; }
+        </style>
+        <filter id="shadow-1" x="-5%" y="-5%" width="110%" height="110%">
+          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.5"/>
+        </filter>
+        <filter id="shadow-2" x="-5%" y="-5%" width="110%" height="110%">
+          <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
+        </filter>
+        <filter id="gold-glow" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#f3a534" flood-opacity="0.4"/>
+        </filter>
+        <linearGradient id="euBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#162e51"/>
+          <stop offset="100%" stop-color="#0b1b3d"/>
+        </linearGradient>
+        <linearGradient id="jtcBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#154721"/>
+          <stop offset="100%" stop-color="#0d2b14"/>
+        </linearGradient>
+        <linearGradient id="ulpianoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#21272d"/>
+          <stop offset="50%" stop-color="#192027"/>
+          <stop offset="100%" stop-color="#13171b"/>
+        </linearGradient>
+        <linearGradient id="uswdsGoldBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#fac76f"/>
+          <stop offset="50%" stop-color="#df7e00"/>
+          <stop offset="100%" stop-color="#fac76f"/>
+        </linearGradient>
+      </defs>
+
+      <rect width="1360" height="1060" class="svg-bg"/>
+      
+      <!-- Header -->
+      <g transform="translate(50, 25)">
+        <rect x="0" y="0" width="1260" height="92" rx="8" fill="#21272d" stroke="#323a45" stroke-width="1.5" filter="url(#shadow-1)"/>
+        <rect x="0" y="0" width="6" height="92" rx="3" fill="#0076d6"/>
+        <text x="28" y="36" class="text-title">⚖️ ARQUITECTURA DE INTEGRACIÓN: CIBERSEGURIDAD PROCESAL E INTEGRIDAD JUDICIAL</text>
+        <text x="28" y="65" class="text-subtitle">
+          Tokens de diseño <tspan class="text-mono" fill="#73b3e7">USWDS 3.0</tspan> aplicados al mapeo de fuentes comparadas (UE &amp; JTC) y al <tspan fill="#fac76f" font-weight="700">Aporte Propio Original (Título VII)</tspan>
+        </text>
+        <rect x="1080" y="28" width="155" height="36" rx="4" fill="#13171b" stroke="#45505f" stroke-width="1"/>
+        <circle cx="1098" cy="46" r="5" fill="#2e8540"/>
+        <text x="1112" y="50" class="text-tag" fill="#98cca3">WCAG 2.1 AAA</text>
+      </g>
+
+      <!-- Comparative Sources Top -->
+      <g transform="translate(50, 138)">
+        <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#euBgGrad)" stroke="#004987" stroke-width="1.5" filter="url(#shadow-1)"/>
+        <rect x="0" y="0" width="615" height="46" rx="8" fill="#1a5b8c" opacity="0.6"/>
+        <rect x="16" y="12" width="28" height="22" rx="3" fill="#0076d6"/>
+        <text x="22" y="27" fill="#ffffff" class="text-tag" font-weight="800">EU</text>
+        <text x="54" y="29" class="text-header-box">Reglamento (UE, Euratom) 2023/2841</text>
+        <text x="500" y="29" class="text-tag" fill="#aacdec" text-anchor="end">Marco Europeo</text>
+
+        <g transform="translate(16, 56)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
+          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
+          <text x="30" y="23" class="text-item-title" fill="#73b3e7">CERT-EU ➔ CSIRT-Ulpiano (Arts. 8 y 9)</text>
+          <text x="30" y="42" class="text-item-desc">Equipo sectorial de respuesta ante incidentes en tribunales.</text>
+          <text x="30" y="58" class="text-item-sub">Monitoreo continuo y pruebas de simulación bianuales obligatorias.</text>
+        </g>
+
+        <g transform="translate(16, 138)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
+          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
+          <text x="30" y="23" class="text-item-title" fill="#73b3e7">Junta de Ciberseguridad ➔ Junta de Integridad (Art. 10)</text>
+          <text x="30" y="42" class="text-item-desc">Gobernanza interinstitucional: TSJ, MP, DP, CGR y DINCIP.</text>
+          <text x="30" y="58" class="text-item-sub">Supervisión colegiada y protocolos de actuación coordinada.</text>
+        </g>
+
+        <g transform="translate(16, 220)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
+          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
+          <text x="30" y="23" class="text-item-title" fill="#73b3e7">Taxonomía Común de Severidad (Art. 18)</text>
+          <text x="30" y="42" class="text-item-desc">Clasificación estandarizada según impacto en actos procesales.</text>
+          <text x="30" y="58" class="text-item-sub">Umbrales de notificación obligatoria a SUSCERTE y al público.</text>
+        </g>
+
+        <g transform="translate(16, 302)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
+          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
+          <text x="30" y="23" class="text-item-title" fill="#73b3e7">Revisión Periódica &amp; Auditoría Externa (Arts. 24-26)</text>
+          <text x="30" y="42" class="text-item-desc">Evaluación trienal por comités y auditores independientes.</text>
+          <text x="30" y="58" class="text-item-sub">Mecanismos de control que impiden la autorregulación ciega.</text>
+        </g>
+      </g>
+
+      <g transform="translate(695, 138)">
+        <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#jtcBgGrad)" stroke="#2e8540" stroke-width="1.5" filter="url(#shadow-1)"/>
+        <rect x="0" y="0" width="615" height="46" rx="8" fill="#1b622b" opacity="0.6"/>
+        <rect x="16" y="12" width="34" height="22" rx="3" fill="#2e8540"/>
+        <text x="21" y="27" fill="#ffffff" class="text-tag" font-weight="800">JTC</text>
+        <text x="58" y="29" class="text-header-box">COSCA / NACM / NCSC Bulletin (2025)</text>
+        <text x="500" y="29" class="text-tag" fill="#cde5d2" text-anchor="end">Cortes de EE.UU.</text>
+
+        <g transform="translate(16, 56)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
+          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
+          <text x="30" y="23" class="text-item-title" fill="#98cca3">Defensa contra Ransomware en Cortes (Art. 12)</text>
+          <text x="30" y="42" class="text-item-desc">Lecciones aprendidas: LA Superior Court, Cleveland &amp; AOUSC.</text>
+          <text x="30" y="58" class="text-item-sub">Arquitectura de respuesta rápida ante secuestro de datos judiciales.</text>
+        </g>
+
+        <g transform="translate(16, 138)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
+          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
+          <text x="30" y="23" class="text-item-title" fill="#98cca3">Zero Trust &amp; Segmentación Judicial (Art. 12)</text>
+          <text x="30" y="42" class="text-item-desc">Aislamiento de redes de salas de audiencia respecto a la red central.</text>
+          <text x="30" y="58" class="text-item-sub">MFA obligatorio en todo acceso remoto a sistemas de expedientes.</text>
+        </g>
+
+        <g transform="translate(16, 220)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
+          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
+          <text x="30" y="23" class="text-item-title" fill="#98cca3">Continuidad Operativa COOP (Art. 13)</text>
+          <text x="30" y="42" class="text-item-desc">Garantía de despacho en flagrancia y amparos constitucionales.</text>
+          <text x="30" y="58" class="text-item-sub">Procedimientos de respaldo manual ante caída total de conectividad.</text>
+        </g>
+
+        <g transform="translate(16, 302)">
+          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
+          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
+          <text x="30" y="23" class="text-item-title" fill="#98cca3">Higiene Cibernética para Jueces y Personal (Art. 24)</text>
+          <text x="30" y="42" class="text-item-desc">Capacitación continua en detección de phishing y suplantación.</text>
+          <text x="30" y="58" class="text-item-sub">Evaluación obligatoria y periódica para todos los operadores.</text>
+        </g>
+      </g>
+
+      <!-- Bottom Original Value Proposition: Título VII -->
+      <g transform="translate(50, 560)">
+        <rect x="0" y="0" width="1260" height="465" rx="8" fill="url(#ulpianoBgGrad)" stroke="url(#uswdsGoldBorder)" stroke-width="2.5" filter="url(#shadow-2)"/>
+        
+        <g transform="translate(0, 0)">
+          <rect x="0" y="0" width="1260" height="52" rx="8" fill="#13171b"/>
+          <rect x="20" y="14" width="30" height="24" rx="4" fill="#df7e00"/>
+          <text x="27" y="31" fill="#ffffff" font-size="14">★</text>
+          <text x="58" y="32" class="text-title" fill="#fac76f">APORTE PROPIO ORIGINAL — TÍTULO VII: RÉGIMEN ESPECIAL DE INTEGRIDAD PROCESAL</text>
+          <text x="1235" y="32" class="text-tag" fill="#fac76f" text-anchor="end">Innovación Anticorrupción</text>
+        </g>
+
+        <g transform="translate(24, 68)">
+          <rect x="0" y="0" width="1212" height="52" rx="4" fill="#192027" stroke="#323a45" stroke-width="1"/>
+          <text x="16" y="22" class="text-item-title" fill="#fbfcfd">EL DOBLE FRENTE DE LA CIBERSEGURIDAD JUDICIAL</text>
+          <text x="16" y="40" class="text-item-desc">
+            La ciberseguridad convencional protege al tribunal del <tspan fill="#e57373" font-weight="700">atacante externo</tspan>. El Título VII la utiliza para <tspan fill="#81c784" font-weight="700">hacer visible, trazable e inalterable la actuación del operador interno</tspan>, reduciendo la discrecionalidad humana en procesos críticos.
+          </text>
+        </g>
+
+        <!-- 4 Pillars Cards -->
+        <g transform="translate(24, 134)">
+          <g transform="translate(0, 0)">
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#0076d6"/>
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#162e51"/>
+            <text x="22" y="39" font-size="18">⚖️</text>
+            <text x="56" y="28" class="text-card-title">Distribución Aleatoria</text>
+            <text x="56" y="44" class="text-card-sub" fill="#73b3e7">Inmutable (Art. 26)</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
+            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Algoritmo Público Auditado</text>
+            <text x="14" y="98" class="text-card-body">Elimina asignación manual de</text>
+            <text x="14" y="116" class="text-card-body">causas. Genera semilla pseudo-</text>
+            <text x="14" y="134" class="text-card-body">aleatoria basada en hash público</text>
+            <text x="14" y="152" class="text-card-body">imposible de manipular o predecir</text>
+            <text x="14" y="170" class="text-card-body">por operadores o funcionarios.</text>
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#162e51" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#aacdec" text-anchor="middle">Principio: Suum Cuique Tribuere</text>
+          </g>
+
+          <g transform="translate(308, 0)">
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#28a0e0"/>
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#162e51"/>
+            <text x="22" y="39" font-size="18">⏱️</text>
+            <text x="56" y="28" class="text-card-title">Fiscalización Automática</text>
+            <text x="56" y="44" class="text-card-sub" fill="#73b3e7">de Plazos (Art. 25)</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
+            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Monitoreo de Retardo</text>
+            <text x="14" y="98" class="text-card-body">Cálculo desatendido de lapsos</text>
+            <text x="14" y="116" class="text-card-body">procesales según CPC/COPP.</text>
+            <text x="14" y="134" class="text-card-body">Alerta automática e inmutable a</text>
+            <text x="14" y="152" class="text-card-body">la Inspectoría de Tribunales</text>
+            <text x="14" y="170" class="text-card-body">sin discrecionalidad del actuario.</text>
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#162e51" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#aacdec" text-anchor="middle">Principio: Honeste Vivere</text>
+          </g>
+
+          <g transform="translate(616, 0)">
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#df7e00"/>
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#381f00"/>
+            <text x="22" y="39" font-size="18">👁️</text>
+            <text x="56" y="28" class="text-card-title">Segregación "4 Ojos"</text>
+            <text x="56" y="44" class="text-card-sub" fill="#fac76f">&amp; Hashes (Arts. 27-28)</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
+            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Registro Criptográfico Inmutable</text>
+            <text x="14" y="98" class="text-card-body">Ningún funcionario puede ejecutar</text>
+            <text x="14" y="116" class="text-card-body">solo operaciones críticas.</text>
+            <text x="14" y="134" class="text-card-body">Bitácora electrónica inalterable</text>
+            <text x="14" y="152" class="text-card-body">incluso por los administradores</text>
+            <text x="14" y="170" class="text-card-body">técnicos de bases de datos.</text>
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#8c3b00" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#fde4b6" text-anchor="middle">Principio: Alterum Non Laedere</text>
+          </g>
+
+          <g transform="translate(924, 0)">
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#2e8540"/>
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#0d2b14"/>
+            <text x="22" y="39" font-size="18">🤖</text>
+            <text x="56" y="28" class="text-card-title">IA Anticorrupción</text>
+            <text x="56" y="44" class="text-card-sub" fill="#98cca3">&amp; Auditoría (Arts. 25, 29-31)</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
+            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Detección + Control Humano</text>
+            <text x="14" y="98" class="text-card-body">Oficina de Cumplimiento Digital</text>
+            <text x="14" y="116" class="text-card-body">con alertas en tiempo real vía API</text>
+            <text x="14" y="134" class="text-card-body">para Contraloría. Prohíbe fallos</text>
+            <text x="14" y="152" class="text-card-body">automáticos sin juez humano</text>
+            <text x="14" y="170" class="text-card-body">responsable del acto.</text>
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#1b622b" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#cde5d2" text-anchor="middle">Compliance ISO 37001 / 42001</text>
+          </g>
+        </g>
+      </g>
+    </svg>
+  </template>
+
+  <!-- Bootstrap Bundle with Popper & Engine Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./viewer.js"></script>
+</body>
+</html>

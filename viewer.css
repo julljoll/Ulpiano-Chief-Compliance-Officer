@@ -1,0 +1,693 @@
+/* ==========================================================================
+   ULPIANO CCO — CYBER FORENSICS & COMPLIANCE PORTAL (WEBSITE STYLE)
+   Single Unified Top Navigation — DC3.mil & USWDS 3.x Aesthetics
+   Accessibility: WCAG 2.1 AAA & Section 508 Compliant (Institutional Light Mode)
+   ========================================================================== */
+
+@import url("./design-system/tokens.css");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto+Mono:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+/* Google Material Symbols Helper */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.15rem;
+  line-height: 1;
+  display: inline-block;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  vertical-align: -0.18em;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* ==========================================================================
+   1. BOOTSTRAP 5 TOKEN OVERRIDES (MAPPED TO USWDS 3.x)
+   ========================================================================== */
+:root {
+  /* DC3 / Federal Navy Palette */
+  --dc3-navy-darkest: #0b1b3d;
+  --dc3-navy-dark: #162e51;
+  --dc3-navy-primary: #004987;
+  --dc3-navy-accent: #0076d6;
+  --dc3-gold-accent: #df7e00;
+  --dc3-gold-light: #fac76f;
+  --dc3-slate-bg: #f5f6f8;
+  --dc3-border-color: #dfe1e2;
+
+  /* Bootstrap Variable Mappings */
+  --bs-primary: var(--theme-color-primary-dark);      /* #004987 */
+  --bs-primary-rgb: 0, 73, 135;
+  --bs-secondary: var(--theme-color-secondary);       /* #df7e00 */
+  --bs-secondary-rgb: 223, 126, 0;
+  --bs-success: var(--theme-color-success);           /* #2e8540 */
+  --bs-success-rgb: 46, 133, 64;
+  --bs-danger: var(--theme-color-error);              /* #b50909 */
+  --bs-danger-rgb: 181, 9, 9;
+  --bs-warning: var(--theme-color-warning);           /* #f3a534 */
+  --bs-warning-rgb: 243, 165, 52;
+  --bs-info: var(--theme-color-accent-cool);          /* #0076d6 */
+  --bs-info-rgb: 0, 118, 214;
+  --bs-dark: var(--dc3-navy-darkest);                 /* #0b1b3d */
+  --bs-dark-rgb: 11, 27, 61;
+  --bs-light: var(--dc3-slate-bg);                    /* #f5f6f8 */
+  --bs-light-rgb: 245, 246, 248;
+
+  /* Typography */
+  --bs-body-font-family: var(--font-sans);
+  --bs-body-color: var(--theme-color-ink);
+  --bs-body-bg: #f4f6f8;
+
+  /* Elevation & Radii */
+  --bs-border-radius: 4px;
+  --bs-border-radius-sm: 2px;
+  --bs-border-radius-lg: 6px;
+  --bs-border-radius-xl: 8px;
+  --bs-border-radius-pill: 9999px;
+
+  --bs-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --bs-box-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --bs-box-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f4f6f8;
+  color: #1b1b1b;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. TOP GOVERNMENT BANNER
+   ========================================================================== */
+.usa-gov-banner {
+  background-color: var(--usa-color-gray-cool-5);
+  border-bottom: 1px solid var(--usa-color-gray-cool-20);
+  padding: 5px 20px;
+  font-size: 0.75rem;
+  color: var(--usa-color-gray-cool-70);
+}
+
+/* ==========================================================================
+   3. UNIFIED WEBSITE HEADER (DC3.mil Standard)
+   ========================================================================== */
+.dc3-header {
+  background: linear-gradient(180deg, var(--dc3-navy-darkest) 0%, var(--dc3-navy-dark) 100%);
+  border-bottom: 4px solid var(--dc3-gold-accent);
+  color: #ffffff;
+  padding: 14px 24px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dc3-emblem-badge {
+  width: 46px;
+  height: 46px;
+  background: #ffffff;
+  color: var(--dc3-navy-dark);
+  border: 2px solid var(--dc3-gold-accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.dc3-header-title {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.dc3-header-subtitle {
+  font-size: 0.75rem;
+  color: var(--usa-color-blue-20);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Federal Navigation Bar (Directly Under Header) */
+.dc3-navbar {
+  background-color: var(--dc3-navy-darkest);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.dc3-nav-tab {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 4px solid transparent;
+  transition: all 0.15s ease;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+}
+
+.dc3-nav-tab:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--dc3-gold-light);
+  border-bottom-color: var(--dc3-gold-light);
+}
+
+.dc3-nav-tab.active {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-bottom-color: var(--dc3-gold-accent);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   4. HERO / MISSION BANNER
+   ========================================================================== */
+.dc3-hero-banner {
+  background: linear-gradient(135deg, var(--dc3-navy-dark) 0%, var(--dc3-navy-primary) 100%);
+  color: #ffffff;
+  padding: 32px 36px;
+  border-radius: 4px;
+  border-left: 6px solid var(--dc3-gold-accent);
+  box-shadow: var(--shadow-2);
+  margin-bottom: 28px;
+}
+
+.dc3-breadcrumb {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--usa-color-blue-20);
+  margin-bottom: 8px;
+}
+
+.dc3-breadcrumb a {
+  color: var(--usa-color-blue-20);
+  text-decoration: none;
+}
+.dc3-breadcrumb a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.dc3-hero-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.dc3-hero-desc {
+  font-size: 0.95rem;
+  color: var(--usa-color-gray-cool-10);
+  line-height: 1.6;
+  max-width: 850px;
+}
+
+/* ==========================================================================
+   5. CARDS & TILES
+   ========================================================================== */
+.dc3-card {
+  background-color: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  height: 100%;
+  position: relative;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dc3-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.dc3-card-accent-top { border-top: 4px solid var(--dc3-navy-primary); }
+.dc3-card-accent-gold { border-top: 4px solid var(--dc3-gold-accent); }
+.dc3-card-accent-red { border-top: 4px solid var(--theme-color-error); }
+.dc3-card-accent-green { border-top: 4px solid var(--theme-color-success); }
+
+.dc3-stat-num {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--dc3-navy-darkest);
+  line-height: 1;
+  font-family: var(--font-sans);
+}
+
+.dc3-stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--usa-color-gray-cool-60);
+}
+
+.dc3-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--usa-color-blue-10);
+  color: var(--dc3-navy-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--usa-color-blue-20);
+}
+
+.dc3-tag-gold {
+  background-color: var(--usa-color-gold-10);
+  color: var(--usa-color-gold-70);
+  border-color: var(--usa-color-gold-30);
+}
+
+.dc3-tag-red {
+  background-color: var(--usa-color-red-10);
+  color: var(--theme-color-error-dark);
+  border-color: var(--usa-color-red-20);
+}
+
+.dc3-tag-green {
+  background-color: var(--usa-color-green-10);
+  color: var(--theme-color-success-dark);
+  border-color: var(--usa-color-green-20);
+}
+
+/* ==========================================================================
+   6. READER CANVAS (Full Width & Clean Paper)
+   ========================================================================== */
+.reader-canvas {
+  background-color: #f4f6f8;
+  padding: 28px 20px;
+}
+
+.reader-toolbar-top {
+  background: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-radius: 4px;
+  padding: 12px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.reader-paper {
+  background-color: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-top: 5px solid var(--dc3-navy-primary);
+  border-radius: 4px;
+  padding: 48px 64px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* ==========================================================================
+   FLOATING INDEX COMPONENT (LEFT SIDE)
+   ========================================================================== */
+.floating-toc-card {
+  position: sticky;
+  top: 75px;
+  max-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-top: 4px solid var(--dc3-navy-primary);
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  z-index: 1020;
+}
+
+.floating-toc-header {
+  padding: 12px 14px;
+  background-color: var(--usa-color-gray-cool-5);
+  border-bottom: 1px solid var(--dc3-border-color);
+}
+
+.floating-toc-body {
+  padding: 10px 6px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--usa-color-gray-cool-30) transparent;
+}
+
+.floating-toc-body::-webkit-scrollbar {
+  width: 5px;
+}
+.floating-toc-body::-webkit-scrollbar-thumb {
+  background: var(--usa-color-gray-cool-30);
+  border-radius: 3px;
+}
+
+.floating-toc-item {
+  display: block;
+  padding: 6px 10px;
+  font-size: 0.8125rem;
+  color: var(--usa-color-gray-cool-70);
+  text-decoration: none;
+  border-radius: 3px;
+  border-left: 3px solid transparent;
+  transition: all 0.15s ease;
+  line-height: 1.35;
+  margin-bottom: 2px;
+}
+
+.floating-toc-item:hover {
+  background-color: var(--usa-color-blue-5);
+  color: var(--dc3-navy-primary);
+  border-left-color: var(--dc3-navy-accent);
+}
+
+.floating-toc-item.active {
+  background-color: var(--usa-color-blue-10);
+  color: var(--dc3-navy-darkest);
+  border-left-color: var(--dc3-navy-primary);
+  font-weight: 700;
+}
+
+.floating-toc-item.toc-level-1 {
+  font-weight: 700;
+  color: var(--dc3-navy-darkest);
+  margin-top: 6px;
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+  padding-bottom: 4px;
+}
+
+.floating-toc-item.toc-level-2 {
+  font-weight: 600;
+  padding-left: 14px;
+  color: var(--dc3-navy-primary);
+}
+
+.floating-toc-item.toc-level-3 {
+  font-weight: 400;
+  padding-left: 22px;
+  font-size: 0.775rem;
+}
+
+.markdown-body {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #1b1b1b;
+}
+
+.markdown-body.font-sans {
+  font-family: var(--font-sans);
+  line-height: 1.65;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  color: var(--dc3-navy-darkest);
+}
+
+.markdown-body h1 {
+  font-size: 1.85rem;
+  border-bottom: 3px solid var(--dc3-navy-primary);
+  padding-bottom: 10px;
+  margin-top: 36px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.markdown-body h2 {
+  font-size: 1.4rem;
+  border-bottom: 1px solid var(--dc3-border-color);
+  padding-bottom: 6px;
+  margin-top: 30px;
+  color: var(--dc3-navy-dark);
+}
+
+.markdown-body h3 {
+  font-size: 1.15rem;
+  color: var(--dc3-navy-primary);
+  margin-top: 24px;
+}
+
+.markdown-body p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Red Highlights (Version 1.1 Modifications) */
+.markdown-body span[style*="color:red"],
+.markdown-body span[style*="color: red"] {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  border-bottom: 2px solid #dc2626 !important;
+  padding: 2px 6px !important;
+  border-radius: 2px !important;
+  font-weight: 600 !important;
+}
+
+/* Blockquotes */
+.markdown-body blockquote {
+  background-color: var(--usa-color-blue-5);
+  border-left: 5px solid var(--dc3-navy-primary);
+  border-radius: 0 4px 4px 0;
+  padding: 16px 20px;
+  margin: 24px 0;
+  font-style: normal;
+}
+
+/* Tables */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--dc3-border-color);
+  margin: 28px 0;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+
+.markdown-body th {
+  background-color: var(--dc3-navy-dark);
+  color: #ffffff;
+  padding: 12px 16px;
+  font-weight: 700;
+  border: 1px solid var(--dc3-navy-darkest);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.markdown-body td {
+  padding: 12px 16px;
+  border: 1px solid var(--dc3-border-color);
+  background-color: #ffffff;
+}
+
+.markdown-body tr:nth-child(even) td {
+  background-color: var(--usa-color-gray-cool-5);
+}
+
+/* ==========================================================================
+   7. COMPARE VIEW (SPLIT SCREEN)
+   ========================================================================== */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-height: calc(100vh - 160px);
+}
+
+.compare-pane {
+  background-color: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.compare-pane-header {
+  padding: 14px 20px;
+  background-color: var(--dc3-navy-dark);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--dc3-gold-accent);
+}
+
+.compare-pane-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px;
+}
+
+/* ==========================================================================
+   8. FOOTER
+   ========================================================================== */
+.dc3-footer {
+  background-color: var(--dc3-navy-darkest);
+  color: var(--usa-color-gray-cool-30);
+  border-top: 4px solid var(--dc3-gold-accent);
+  padding: 28px 32px;
+  font-size: 0.8125rem;
+}
+
+.dc3-footer strong {
+  color: #ffffff;
+}
+
+.dc3-footer-links a {
+  color: var(--usa-color-blue-30);
+  text-decoration: none;
+  margin-right: 18px;
+}
+.dc3-footer-links a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   9. PRINT STYLES
+   ========================================================================== */
+@media print {
+  .usa-gov-banner,
+  .dc3-header,
+  .dc3-navbar,
+  .reader-toolbar-top,
+  .dc3-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  .reader-canvas {
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .reader-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ==========================================================================
+   10. SEMANTIC REFORMS & COMPONENT CARDS (.reforma-rojo & .version-card)
+   ========================================================================== */
+.reforma-rojo {
+  color: #b50909;
+  font-weight: 600;
+  background-color: rgba(181, 9, 9, 0.05);
+  border-radius: 2px;
+  padding: 0.1em 0.25em;
+  transition: background-color 0.3s ease, outline 0.3s ease;
+}
+
+.reforma-rojo:hover {
+  background-color: rgba(181, 9, 9, 0.12);
+}
+
+.doc-component {
+  animation: fadeInDoc 0.25s ease-in-out;
+}
+
+@keyframes fadeInDoc {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.version-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.version-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(11, 27, 61, 0.12);
+}
+
+.version-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.version-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dc3-navy-darkest);
+  line-height: 1.35;
+}
+
+.version-card-desc {
+  font-size: 0.875rem;
+  color: var(--usa-color-gray-cool-70);
+  line-height: 1.45;
+  flex-grow: 1;
+}
+
+.version-card-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--dc3-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Document typography enhancements */
+.markdown-body .ol-item {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body hr.my-4 {
+  border: 0;
+  border-top: 2px solid var(--dc3-border-color);
+  margin: 2rem 0;
+}
+
+@media (max-width: 991px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+  .reader-paper {
+    padding: 24px;
+  }
+}
+
+
