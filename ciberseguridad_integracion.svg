@@ -1,0 +1,276 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 1030" width="100%" height="100%" style="background:#070b14; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14"/>
+      <stop offset="50%" stop-color="#0d1527"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+
+    <!-- Source 1 Gradient (EU) -->
+    <linearGradient id="euGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#172554"/>
+      <stop offset="100%" stop-color="#0b1329"/>
+    </linearGradient>
+
+    <!-- Source 2 Gradient (JTC) -->
+    <linearGradient id="jtcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#042f24"/>
+    </linearGradient>
+
+    <!-- Value Core Gradient (Author's Innovation) -->
+    <linearGradient id="valGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a0845"/>
+      <stop offset="50%" stop-color="#17092b"/>
+      <stop offset="100%" stop-color="#0d0517"/>
+    </linearGradient>
+
+    <!-- Glowing borders & accents -->
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="50%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+
+    <linearGradient id="cyanLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F0FF"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="glowGold" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#F59E0B" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1360" height="1030" fill="url(#bgGradient)"/>
+  
+  <!-- Subtle Grid Overlay -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="1">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40"/>
+    </pattern>
+    <rect width="1360" height="1030" fill="url(#grid)"/>
+  </g>
+
+  <!-- ================= HEADER SECTION ================= -->
+  <g transform="translate(50, 30)">
+    <rect x="0" y="0" width="1260" height="85" rx="14" fill="#111827" stroke="#1f2937" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="30" y="36" fill="#F8FAFC" font-size="21" font-weight="700" letter-spacing="0.4">⚖️ ARQUITECTURA DE INTEGRACIÓN: CIBERSEGURIDAD PROCESAL E INTEGRIDAD JUDICIAL</text>
+    <text x="30" y="62" fill="#94A3B8" font-size="13.5">
+      Mapeo de fuentes comparadas (UE &amp; JTC) hacia el anteproyecto de ley y desglose del <tspan fill="#F59E0B" font-weight="700">Aporte Propio Original (Integridad Procesal)</tspan>
+    </text>
+  </g>
+
+  <!-- ================= TOP SECTION: COMPARATIVE SOURCES ================= -->
+
+  <!-- SOURCE 1: REGULATION (EU) 2023/2841 -->
+  <g transform="translate(50, 135)">
+    <rect x="0" y="0" width="615" height="375" rx="14" fill="url(#euGrad)" stroke="#1d4ed8" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="615" height="44" rx="14" fill="#1e40af" opacity="0.5"/>
+    
+    <!-- Header Badge -->
+    <rect x="18" y="11" width="28" height="22" rx="4" fill="#3b82f6"/>
+    <text x="24" y="27" fill="#ffffff" font-size="12" font-weight="800">EU</text>
+    <text x="54" y="27" fill="#EFF6FF" font-size="14.5" font-weight="700">Reglamento (UE, Euratom) 2023/2841</text>
+    <text x="490" y="27" fill="#93C5FD" font-size="12" font-weight="600">Marco Europeo</text>
+
+    <!-- Body items integrated into Law -->
+    <g transform="translate(18, 56)">
+      <!-- Item 1 -->
+      <rect x="0" y="0" width="579" height="68" rx="8" fill="#0b1329" stroke="#1e3a8a" stroke-width="1"/>
+      <circle cx="18" cy="22" r="5" fill="#3B82F6"/>
+      <text x="32" y="22" fill="#93C5FD" font-size="12" font-weight="700">CERT-EU ➔ CSIRT-Ulpiano (Arts. 8 y 9)</text>
+      <text x="32" y="40" fill="#CBD5E1" font-size="11.5">Equipo de respuesta a incidentes cibernéticos especializado para salvaguardar</text>
+      <text x="32" y="56" fill="#94A3B8" font-size="11">la infraestructura técnica, expedientes y plataformas del sistema judicial.</text>
+
+      <!-- Item 2 -->
+      <rect x="0" y="76" width="579" height="68" rx="8" fill="#0b1329" stroke="#1e3a8a" stroke-width="1"/>
+      <circle cx="18" cy="98" r="5" fill="#3B82F6"/>
+      <text x="32" y="98" fill="#93C5FD" font-size="12" font-weight="700">Junta Interinstitucional (IICB) ➔ Junta de Integridad (Art. 10)</text>
+      <text x="32" y="116" fill="#CBD5E1" font-size="11.5">Órgano de coordinación y gobernanza colegiada entre poderes del Estado</text>
+      <text x="32" y="132" fill="#94A3B8" font-size="11">(Tribunal Supremo de Justicia, Ministerio Público, Defensa Pública y Contraloría).</text>
+
+      <!-- Item 3 -->
+      <rect x="0" y="152" width="579" height="68" rx="8" fill="#0b1329" stroke="#1e3a8a" stroke-width="1"/>
+      <circle cx="18" cy="174" r="5" fill="#3B82F6"/>
+      <text x="32" y="174" fill="#93C5FD" font-size="12" font-weight="700">Taxonomía Común y Gestión de Crisis (Arts. 18 y 208)</text>
+      <text x="32" y="192" fill="#CBD5E1" font-size="11.5">Escala unificada de severidad para clasificar incidentes tecnológicos y</text>
+      <text x="32" y="208" fill="#94A3B8" font-size="11">protocolos operativos estándar (SOPs) de contención y recuperación.</text>
+
+      <!-- Item 4 -->
+      <rect x="0" y="228" width="579" height="68" rx="8" fill="#0b1329" stroke="#1e3a8a" stroke-width="1"/>
+      <circle cx="18" cy="250" r="5" fill="#3B82F6"/>
+      <text x="32" y="250" fill="#93C5FD" font-size="12" font-weight="700">Capacidades Técnicas &amp; Revisión (Arts. 9, 25-26 y 39)</text>
+      <text x="32" y="268" fill="#CBD5E1" font-size="11.5">Inventario de capacidades y expertos forenses, simulacros bianuales y</text>
+      <text x="32" y="284" fill="#94A3B8" font-size="11">evaluación periódica de la implementación de la ley ante la Asamblea Nacional.</text>
+    </g>
+  </g>
+
+  <!-- SOURCE 2: JTC (COSCA / NACM / NCSC 2025) -->
+  <g transform="translate(695, 135)">
+    <rect x="0" y="0" width="615" height="375" rx="14" fill="url(#jtcGrad)" stroke="#059669" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="615" height="44" rx="14" fill="#047857" opacity="0.5"/>
+    
+    <!-- Header Badge -->
+    <rect x="18" y="11" width="34" height="22" rx="4" fill="#10B981"/>
+    <text x="23" y="27" fill="#ffffff" font-size="11" font-weight="800">JTC</text>
+    <text x="60" y="27" fill="#ECFDF5" font-size="14.5" font-weight="700">Cybersecurity Basics for Courts (2025)</text>
+    <text x="490" y="27" fill="#6EE7B7" font-size="12" font-weight="600">EE.UU. Courts</text>
+
+    <!-- Body items integrated into Law -->
+    <g transform="translate(18, 56)">
+      <!-- Item 1 -->
+      <rect x="0" y="0" width="579" height="68" rx="8" fill="#03271e" stroke="#065f46" stroke-width="1"/>
+      <circle cx="18" cy="22" r="5" fill="#10B981"/>
+      <text x="32" y="22" fill="#6EE7B7" font-size="12" font-weight="700">Resiliencia frente a Ransomware Judicial (Exposición &amp; Art. 8)</text>
+      <text x="32" y="40" fill="#CBD5E1" font-size="11.5">Defensa ante ciberataques reales documentados en cortes norteamericanas</text>
+      <text x="32" y="56" fill="#94A3B8" font-size="11">(Tribunales de Los Ángeles 2024, Cleveland 2025 y Cortes Federales AOUSC).</text>
+
+      <!-- Item 2 -->
+      <rect x="0" y="76" width="579" height="68" rx="8" fill="#03271e" stroke="#065f46" stroke-width="1"/>
+      <circle cx="18" cy="98" r="5" fill="#10B981"/>
+      <text x="32" y="98" fill="#6EE7B7" font-size="12" font-weight="700">Zero Trust, Mínimo Privilegio &amp; MFA (Art. 12)</text>
+      <text x="32" y="116" fill="#CBD5E1" font-size="11.5">Autenticación multifactor estricta para jueces, fiscales y personal de juzgados,</text>
+      <text x="32" y="132" fill="#94A3B8" font-size="11">con segmentación física/lógica de redes procesales frente a las administrativas.</text>
+
+      <!-- Item 3 -->
+      <rect x="0" y="152" width="579" height="68" rx="8" fill="#03271e" stroke="#065f46" stroke-width="1"/>
+      <circle cx="18" cy="174" r="5" fill="#10B981"/>
+      <text x="32" y="174" fill="#6EE7B7" font-size="12" font-weight="700">Continuidad de Operaciones - COOP (Art. 13)</text>
+      <text x="32" y="192" fill="#CBD5E1" font-size="11.5">Planes de contingencia que aseguran la tramitación de causas urgentes</text>
+      <text x="32" y="208" fill="#94A3B8" font-size="11">(flagrancias, amparos, medidas cautelares) sin depender de sistemas caídos.</text>
+
+      <!-- Item 4 -->
+      <rect x="0" y="228" width="579" height="68" rx="8" fill="#03271e" stroke="#065f46" stroke-width="1"/>
+      <circle cx="18" cy="250" r="5" fill="#10B981"/>
+      <text x="32" y="250" fill="#6EE7B7" font-size="12" font-weight="700">Capacitación Continua del Personal (Art. 37)</text>
+      <text x="32" y="268" fill="#CBD5E1" font-size="11.5">Programa de entrenamiento anual obligatorio en ciberdefensa, protección de</text>
+      <text x="32" y="284" fill="#94A3B8" font-size="11">datos y ética del uso de sistemas automatizados e inteligencia artificial.</text>
+    </g>
+  </g>
+
+  <!-- ================= CONNECTOR ARROWS ================= -->
+  <g stroke="url(#cyanLine)" stroke-width="2" stroke-dasharray="6,4" fill="none">
+    <path d="M 357 510 L 357 530 L 630 530 L 630 545"/>
+    <path d="M 1002 510 L 1002 530 L 730 530 L 730 545"/>
+  </g>
+  <polygon points="680,550 673,538 687,538" fill="#00F0FF"/>
+
+  <!-- ================= BOTTOM SECTION: AUTHOR'S INNOVATION (VALUE PROPOSITION) ================= -->
+  <g transform="translate(50, 545)">
+    <!-- Outer Glow Box -->
+    <rect x="0" y="0" width="1260" height="440" rx="18" fill="url(#valGrad)" stroke="url(#goldGlow)" stroke-width="2.5" filter="url(#shadow)"/>
+    
+    <!-- Title Bar -->
+    <rect x="0" y="0" width="1260" height="52" rx="18" fill="#3b0764" opacity="0.6"/>
+    
+    <!-- Badges in Header -->
+    <rect x="22" y="13" width="165" height="26" rx="13" fill="#F59E0B" filter="url(#glowGold)"/>
+    <text x="36" y="30" fill="#1E1B4B" font-size="11.5" font-weight="900" letter-spacing="0.5">⭐ APORTE ORIGINAL</text>
+    
+    <text x="202" y="32" fill="#FDF4FF" font-size="15.5" font-weight="800">IDEA DE VALOR CREADA POR EL AUTOR (JULL ORTIZ):</text>
+    <text x="640" y="32" fill="#F472B6" font-size="15.5" font-weight="700">RÉGIMEN DE INTEGRIDAD PROCESAL (TÍTULO VII)</text>
+
+    <!-- Subtitle banner (Two clean lines) -->
+    <g transform="translate(22, 64)">
+      <rect x="0" y="0" width="1216" height="50" rx="8" fill="#180a2c" stroke="#581c87" stroke-width="1"/>
+      <text x="18" y="21" fill="#E9D5FF" font-size="12.5" font-weight="500">
+        💡 <tspan font-weight="700" fill="#FDE047">Tesis Central:</tspan> Los marcos internacionales conciben la ciberseguridad judicial solo como defensa perimetral frente a hackers externos.
+      </text>
+      <text x="18" y="39" fill="#E9D5FF" font-size="12.5" font-weight="500">
+        La innovación consiste en usar la <tspan fill="#38BDF8" font-weight="700">ciberseguridad, criptografía e IA</tspan> como escudo <tspan fill="#F472B6" font-weight="700">activo frente a la corrupción interna, manipulación de causas y retardo procesal</tspan>.
+      </text>
+    </g>
+
+    <!-- 4 Cards Grid of Value Proposition -->
+    <g transform="translate(22, 126)">
+      
+      <!-- Card 1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="292" height="295" rx="12" fill="#12071d" stroke="#701a75" stroke-width="1.2"/>
+        <rect x="14" y="14" width="34" height="34" rx="8" fill="#831843"/>
+        <text x="22" y="37" fill="#F472B6" font-size="18">🛡️</text>
+        <text x="56" y="28" fill="#FCE7F3" font-size="13.5" font-weight="700">Doble Frente</text>
+        <text x="56" y="44" fill="#F472B6" font-size="11.5" font-weight="600">de Riesgo</text>
+        <line x1="14" y1="56" x2="278" y2="56" stroke="#4a044e" stroke-width="1"/>
+        
+        <text x="14" y="76" fill="#F3F4F6" font-size="12" font-weight="700">Defensa Externa + Interna</text>
+        <text x="14" y="96" fill="#CBD5E1" font-size="11.5">No basta protegerse de hackers;</text>
+        <text x="14" y="114" fill="#CBD5E1" font-size="11.5">el mismo aparato técnico audita</text>
+        <text x="14" y="132" fill="#CBD5E1" font-size="11.5">a operadores internos que alteran</text>
+        <text x="14" y="150" fill="#CBD5E1" font-size="11.5">expedientes, extravían evidencias</text>
+        <text x="14" y="168" fill="#CBD5E1" font-size="11.5">o inducen retardo procesal.</text>
+
+        <rect x="14" y="248" width="264" height="30" rx="6" fill="#3b0764"/>
+        <text x="24" y="268" fill="#F0ABFC" font-size="11" font-weight="700">Principio: Honeste Vivere</text>
+      </g>
+
+      <!-- Card 2 -->
+      <g transform="translate(308, 0)">
+        <rect x="0" y="0" width="292" height="295" rx="12" fill="#12071d" stroke="#701a75" stroke-width="1.2"/>
+        <rect x="14" y="14" width="34" height="34" rx="8" fill="#4c1d95"/>
+        <text x="22" y="37" fill="#A78BFA" font-size="18">🎲</text>
+        <text x="56" y="28" fill="#EDE9FE" font-size="13.5" font-weight="700">Distribución Aleatoria</text>
+        <text x="56" y="44" fill="#A78BFA" font-size="11.5" font-weight="600">Certificada (Art. 26)</text>
+        <line x1="14" y1="56" x2="278" y2="56" stroke="#4a044e" stroke-width="1"/>
+        
+        <text x="14" y="76" fill="#F3F4F6" font-size="12" font-weight="700">Algoritmo Público &amp; Auditable</text>
+        <text x="14" y="96" fill="#CBD5E1" font-size="11.5">Eliminación de la discrecionalidad</text>
+        <text x="14" y="114" fill="#CBD5E1" font-size="11.5">humana en asignación de causas.</text>
+        <text x="14" y="132" fill="#CBD5E1" font-size="11.5">Genera registro inmutable de cada</text>
+        <text x="14" y="150" fill="#CBD5E1" font-size="11.5">sorteo judicial, blindándolo de</text>
+        <text x="14" y="168" fill="#CBD5E1" font-size="11.5">manipulaciones manuales.</text>
+
+        <rect x="14" y="248" width="264" height="30" rx="6" fill="#3b0764"/>
+        <text x="24" y="268" fill="#F0ABFC" font-size="11" font-weight="700">Principio: Suum Cuique Tribuere</text>
+      </g>
+
+      <!-- Card 3 -->
+      <g transform="translate(616, 0)">
+        <rect x="0" y="0" width="292" height="295" rx="12" fill="#12071d" stroke="#701a75" stroke-width="1.2"/>
+        <rect x="14" y="14" width="34" height="34" rx="8" fill="#1e1b4b"/>
+        <text x="22" y="37" fill="#818CF8" font-size="18">🔐</text>
+        <text x="56" y="28" fill="#EEF2FF" font-size="13.5" font-weight="700">Segregación "4 Ojos"</text>
+        <text x="56" y="44" fill="#818CF8" font-size="11.5" font-weight="600">&amp; Hashes (Arts. 27-28)</text>
+        <line x1="14" y1="56" x2="278" y2="56" stroke="#4a044e" stroke-width="1"/>
+        
+        <text x="14" y="76" fill="#F3F4F6" font-size="12" font-weight="700">Registro Criptográfico Inmutable</text>
+        <text x="14" y="96" fill="#CBD5E1" font-size="11.5">Ningún funcionario puede ejecutar</text>
+        <text x="14" y="114" fill="#CBD5E1" font-size="11.5">solo operaciones críticas.</text>
+        <text x="14" y="132" fill="#CBD5E1" font-size="11.5">Bitácora electrónica inalterable</text>
+        <text x="14" y="150" fill="#CBD5E1" font-size="11.5">incluso por los administradores</text>
+        <text x="14" y="168" fill="#CBD5E1" font-size="11.5">técnicos de bases de datos.</text>
+
+        <rect x="14" y="248" width="264" height="30" rx="6" fill="#3b0764"/>
+        <text x="24" y="268" fill="#F0ABFC" font-size="11" font-weight="700">Principio: Alterum Non Laedere</text>
+      </g>
+
+      <!-- Card 4 -->
+      <g transform="translate(924, 0)">
+        <rect x="0" y="0" width="292" height="295" rx="12" fill="#12071d" stroke="#701a75" stroke-width="1.2"/>
+        <rect x="14" y="14" width="34" height="34" rx="8" fill="#064e3b"/>
+        <text x="22" y="37" fill="#34D399" font-size="18">🤖</text>
+        <text x="56" y="28" fill="#ECFDF5" font-size="13.5" font-weight="700">IA Anticorrupción</text>
+        <text x="56" y="44" fill="#34D399" font-size="11.5" font-weight="600">&amp; Auditoría (Arts. 25, 29-31)</text>
+        <line x1="14" y1="56" x2="278" y2="56" stroke="#4a044e" stroke-width="1"/>
+        
+        <text x="14" y="76" fill="#F3F4F6" font-size="12" font-weight="700">Detección + Control Humano</text>
+        <text x="14" y="96" fill="#CBD5E1" font-size="11.5">Oficina de Cumplimiento Digital</text>
+        <text x="14" y="114" fill="#CBD5E1" font-size="11.5">con alertas en tiempo real vía API</text>
+        <text x="14" y="132" fill="#CBD5E1" font-size="11.5">para Contraloría. Prohíbe fallos</text>
+        <text x="14" y="150" fill="#CBD5E1" font-size="11.5">automáticos sin juez humano</text>
+        <text x="14" y="168" fill="#CBD5E1" font-size="11.5">responsable del acto.</text>
+
+        <rect x="14" y="248" width="264" height="30" rx="6" fill="#3b0764"/>
+        <text x="24" y="268" fill="#F0ABFC" font-size="11" font-weight="700">Compliance ISO 37001 / 42001</text>
+      </g>
+
+    </g>
+  </g>
+</svg>

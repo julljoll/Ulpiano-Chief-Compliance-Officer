@@ -1,0 +1,207 @@
+/* ==========================================================================
+   USWDS 3.x DESIGN TOKENS — ULPIANO COMPLIANCE & LEGAL TECH
+   Architecture based on https://github.com/uswds/uswds
+   Adheres to Section 508 and WCAG 2.1 AAA Accessibility Standards
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. SYSTEM COLOR PALETTE (GRADE 5 to 90)
+     Rule: Grade difference >= 50 ensures WCAG AA contrast (4.5:1)
+           Grade difference >= 70 ensures WCAG AAA contrast (7:1)
+     ------------------------------------------------------------------------ */
+  
+  /* Blue */
+  --usa-color-blue-5: #eff6fb;
+  --usa-color-blue-10: #d9e8f6;
+  --usa-color-blue-20: #aacdec;
+  --usa-color-blue-30: #73b3e7;
+  --usa-color-blue-40: #28a0e0;
+  --usa-color-blue-50: #0076d6;
+  --usa-color-blue-60: #1a5b8c;
+  --usa-color-blue-70: #004987;
+  --usa-color-blue-80: #162e51;
+  --usa-color-blue-90: #0b1b3d;
+
+  /* Cool Gray */
+  --usa-color-gray-cool-1: #fbfcfd;
+  --usa-color-gray-cool-5: #f5f6f8;
+  --usa-color-gray-cool-10: #e7e9ed;
+  --usa-color-gray-cool-20: #cfd4dc;
+  --usa-color-gray-cool-30: #a9b4c4;
+  --usa-color-gray-cool-40: #8190a4;
+  --usa-color-gray-cool-50: #5c6b7e;
+  --usa-color-gray-cool-60: #45505f;
+  --usa-color-gray-cool-70: #323a45;
+  --usa-color-gray-cool-80: #21272d;
+  --usa-color-gray-cool-90: #13171b;
+
+  /* Gold / Amber */
+  --usa-color-gold-5: #fef6e7;
+  --usa-color-gold-10: #fde4b6;
+  --usa-color-gold-20: #fac76f;
+  --usa-color-gold-30: #f3a534;
+  --usa-color-gold-40: #df7e00;
+  --usa-color-gold-50: #c05600;
+  --usa-color-gold-60: #8c3b00;
+  --usa-color-gold-70: #5d2700;
+
+  /* Red */
+  --usa-color-red-5: #f9eded;
+  --usa-color-red-10: #f3d1d1;
+  --usa-color-red-20: #e79c9c;
+  --usa-color-red-30: #d96565;
+  --usa-color-red-40: #cd3a3a;
+  --usa-color-red-50: #b50909;
+  --usa-color-red-60: #8b0a03;
+  --usa-color-red-70: #5c1111;
+
+  /* Green */
+  --usa-color-green-5: #eaf4ec;
+  --usa-color-green-10: #cde5d2;
+  --usa-color-green-20: #98cca3;
+  --usa-color-green-30: #53b069;
+  --usa-color-green-40: #2e8540;
+  --usa-color-green-50: #1b622b;
+  --usa-color-green-60: #154721;
+  --usa-color-green-70: #0d2b14;
+
+  /* ------------------------------------------------------------------------
+     2. SEMANTIC THEME TOKENS
+     ------------------------------------------------------------------------ */
+  --theme-color-primary-lighter: var(--usa-color-blue-30);
+  --theme-color-primary-light: var(--usa-color-blue-40);
+  --theme-color-primary: var(--usa-color-blue-60);
+  --theme-color-primary-dark: var(--usa-color-blue-70);
+  --theme-color-primary-darker: var(--usa-color-blue-80);
+
+  --theme-color-secondary-light: var(--usa-color-gold-20);
+  --theme-color-secondary: var(--usa-color-gold-40);
+  --theme-color-secondary-dark: var(--usa-color-gold-60);
+
+  --theme-color-accent-cool-light: var(--usa-color-blue-10);
+  --theme-color-accent-cool: var(--usa-color-blue-50);
+  --theme-color-accent-cool-dark: var(--usa-color-blue-80);
+
+  --theme-color-base-lightest: #ffffff;
+  --theme-color-base-lighter: var(--usa-color-gray-cool-5);
+  --theme-color-base-light: var(--usa-color-gray-cool-10);
+  --theme-color-base: var(--usa-color-gray-cool-50);
+  --theme-color-base-dark: var(--usa-color-gray-cool-70);
+  --theme-color-base-darkest: var(--usa-color-gray-cool-90);
+
+  --theme-color-ink: var(--usa-color-gray-cool-90);
+  --theme-color-ink-inverse: #ffffff;
+
+  /* State / Alerts */
+  --theme-color-info-light: var(--usa-color-blue-5);
+  --theme-color-info: var(--usa-color-blue-60);
+  --theme-color-info-dark: var(--usa-color-blue-80);
+
+  --theme-color-success-light: var(--usa-color-green-5);
+  --theme-color-success: var(--usa-color-green-40);
+  --theme-color-success-dark: var(--usa-color-green-60);
+
+  --theme-color-warning-light: var(--usa-color-gold-5);
+  --theme-color-warning: var(--usa-color-gold-30);
+  --theme-color-warning-dark: var(--usa-color-gold-60);
+
+  --theme-color-error-light: var(--usa-color-red-5);
+  --theme-color-error: var(--usa-color-red-50);
+  --theme-color-error-dark: var(--usa-color-red-70);
+
+  --theme-color-emergency: var(--usa-color-red-60);
+
+  /* ------------------------------------------------------------------------
+     3. TYPOGRAPHY TOKENS
+     ------------------------------------------------------------------------ */
+  --font-sans: 'Public Sans Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Merriweather Web', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace;
+
+  /* Scale */
+  --size-font-3xs: 0.6875rem; /* 11px */
+  --size-font-2xs: 0.75rem;   /* 12px */
+  --size-font-xs: 0.8125rem;  /* 13px */
+  --size-font-sm: 0.875rem;   /* 14px */
+  --size-font-md: 1rem;       /* 16px (Base) */
+  --size-font-lg: 1.125rem;   /* 18px */
+  --size-font-xl: 1.25rem;    /* 20px */
+  --size-font-2xl: 1.5rem;    /* 24px */
+  --size-font-3xl: 1.875rem;  /* 30px */
+  --size-font-4xl: 2.25rem;   /* 36px */
+  --size-font-5xl: 3rem;      /* 48px */
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-heading: 1.2;
+  --line-height-body: 1.5;
+  --line-height-loose: 1.75;
+
+  /* ------------------------------------------------------------------------
+     4. SPACING TOKENS (USWDS 8px Modular Scale)
+     ------------------------------------------------------------------------ */
+  --space-05: 0.25rem; /* 4px (USWDS 0.5) */
+  --space-1: 0.5rem;   /* 8px (USWDS 1) */
+  --space-15: 0.75rem; /* 12px (USWDS 1.5) */
+  --space-2: 1rem;     /* 16px (USWDS 2) */
+  --space-25: 1.25rem; /* 20px (USWDS 2.5) */
+  --space-3: 1.5rem;   /* 24px (USWDS 3) */
+  --space-4: 2rem;     /* 32px (USWDS 4) */
+  --space-5: 2.5rem;   /* 40px (USWDS 5) */
+  --space-6: 3rem;     /* 48px (USWDS 6) */
+  --space-8: 4rem;     /* 64px (USWDS 8) */
+  --space-10: 5rem;    /* 80px (USWDS 10) */
+
+  /* ------------------------------------------------------------------------
+     5. RADIUS & ELEVATION TOKENS
+     ------------------------------------------------------------------------ */
+  --radius-none: 0px;
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-md: 0.25rem;  /* 4px */
+  --radius-lg: 0.5rem;   /* 8px */
+  --radius-xl: 1rem;     /* 16px */
+  --radius-pill: 9999px;
+
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --shadow-3: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+  --shadow-4: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
+  --shadow-5: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  /* ------------------------------------------------------------------------
+     6. BREAKPOINTS
+     ------------------------------------------------------------------------ */
+  --breakpoint-card: 160px;
+  --breakpoint-card-lg: 240px;
+  --breakpoint-mobile: 320px;
+  --breakpoint-mobile-lg: 480px;
+  --breakpoint-tablet: 640px;
+  --breakpoint-tablet-lg: 880px;
+  --breakpoint-desktop: 1040px;
+  --breakpoint-desktop-lg: 1200px;
+  --breakpoint-widescreen: 1400px;
+}
+
+/* Dark Mode Overrides (Optional High-Contrast Theme for Judicial Night Auditing) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-color-base-lightest: var(--usa-color-gray-cool-90);
+    --theme-color-base-lighter: var(--usa-color-gray-cool-80);
+    --theme-color-base-light: var(--usa-color-gray-cool-70);
+    --theme-color-base: var(--usa-color-gray-cool-30);
+    --theme-color-base-dark: var(--usa-color-gray-cool-10);
+    --theme-color-base-darkest: var(--usa-color-gray-cool-5);
+
+    --theme-color-ink: var(--usa-color-gray-cool-5);
+    --theme-color-ink-inverse: var(--usa-color-gray-cool-90);
+
+    --theme-color-primary: var(--usa-color-blue-40);
+    --theme-color-primary-light: var(--usa-color-blue-30);
+    --theme-color-primary-dark: var(--usa-color-blue-50);
+  }
+}
