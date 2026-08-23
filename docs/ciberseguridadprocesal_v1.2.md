@@ -12,6 +12,10 @@ Elaborado con base en:
 
 - Constitución de la República Bolivariana de Venezuela <span style="color:red">(en especial arts. 26, 28, 49, 110, 141, 203, 253 y 257).</span>
 
+<span style="color:red">- Sentencia de la Sala Constitucional del Tribunal Supremo de Justicia N° 0406 del 27 de marzo de 2026 (Exp. 26-0462), que fija la doctrina vinculante sobre el carácter de Ley Orgánica (art. 203 CRBV) en normativas que desarrollan los principios de la administración pública (art. 141 CRBV) y la eficacia procesal no sacrificable por formalismos (art. 257 CRBV).</span>
+
+<span style="color:red">- Ley Orgánica para la Celeridad y Optimización de Trámites Administrativos (LOCOTA, 2026), en especial arts. 5, 6, 7, 10 y 11 (interoperabilidad digital obligatoria, ventanillas únicas, Comisión Nacional para la Celeridad y Unidades Responsables).</span>
+
 <span style="color:red">- Ley Orgánica de Procedimientos Administrativos (LOPA) y principios del procedimiento administrativo digital.</span>
 
 - ISO/IEC 27037, 27041, 27042, 27043 (informática forense); RFC 3227; NIST SP 800-86; ISO/IEC 27001, 27035; ISO 37301, 37001; ISO/IEC 42001, 23894.
@@ -48,7 +52,7 @@ El instrumento se articula con el bloque constitucional venezolano —protecció
 
 
 
-<span style="color:red">Por imperativo de técnica legislativa y rigor constitucional, este instrumento reviste naturaleza de **Ley Orgánica**, de conformidad con el artículo 203 de la Constitución de la República Bolivariana de Venezuela, al estar destinada a desarrollar y garantizar de manera directa derechos constitucionales fundamentales (debido proceso, tutela judicial y administrativa efectiva, derecho a la defensa y autodeterminación informativa), a organizar el funcionamiento de los poderes públicos en el ecosistema digital y a servir de marco normativo transversal a las demás leyes en materia de ciberseguridad e integridad probatoria. En consecuencia, en la jerarquía del ordenamiento jurídico venezolano, sobre esta Ley Orgánica solo rige de forma suprema la Constitución de la República Bolivariana de Venezuela, subordinando a sus mandatos a las leyes ordinarias, decretos y reglamentos sectoriales.</span>
+<span style="color:red">Por imperativo de técnica legislativa y estricto rigor constitucional, este instrumento reviste naturaleza de **Ley Orgánica**, de conformidad con el artículo 203 de la Constitución de la República Bolivariana de Venezuela, siguiendo la uniforme doctrina de la Sala Constitucional del Tribunal Supremo de Justicia (en especial la **Sentencia N° 0406 del 27 de marzo de 2026**). Conforme a este criterio vinculante, las normativas destinadas a transformar estructuralmente la actuación del Poder Público, que desarrollan directamente derechos constitucionales fundamentales (debido proceso, tutela efectiva y autodeterminación informativa), materializan los principios del artículo 141 constitucional (honestidad, celeridad, eficacia y rendición de cuentas) y garantizan que la administración y la justicia no sacrifiquen sus fines sustantivos por formalidades no esenciales (artículo 257 constitucional), constituyen materialmente Leyes Orgánicas transversales. En consecuencia, en la jerarquía del ordenamiento jurídico venezolano, sobre esta Ley Orgánica solo rige de forma suprema la Constitución de la República Bolivariana de Venezuela, subordinando a sus mandatos a las leyes ordinarias, decretos y reglamentos sectoriales.</span>
 
 
 
@@ -89,7 +93,7 @@ Esta Ley, <span style="color:red">dictada con carácter orgánico al amparo del 
 
 **Artículo 3°. <span style="color:red">Articulación e integración normativa</span>.**
 
-<span style="color:red">Las disposiciones de esta Ley Orgánica se articulan e integran con el bloque de constitucionalidad, la Ley Orgánica de Procedimientos Administrativos, la Ley de Infogobierno, la Ley Especial contra los Delitos Informáticos y la Ley Orgánica de Amparo sobre Derechos y Garantías Constitucionales. Su supremacía y rango preferente respecto de las demás leyes ordinarias y especiales se rigen conforme a lo dispuesto en la Disposición Final Primera de este instrumento.</span>
+<span style="color:red">Las disposiciones de esta Ley Orgánica se articulan e integran con el bloque de constitucionalidad (en especial arts. 26, 28, 49, 110, 141, 203, 253 y 257 de la Constitución y la doctrina vinculante de la Sentencia TSJ/SC N° 0406/2026), la Ley Orgánica para la Celeridad y Optimización de Trámites Administrativos (LOCOTA, 2026) y sus mandatos de interoperabilidad digital y ventanillas únicas, la Ley Orgánica de Procedimientos Administrativos (LOPA), la Ley de Infogobierno, la Ley Especial contra los Delitos Informáticos y la Ley Orgánica de Amparo sobre Derechos y Garantías Constitucionales. Su supremacía y rango preferente respecto de las demás leyes ordinarias y especiales se rigen conforme a lo dispuesto en el artículo 203 constitucional y la Disposición Final Primera de este instrumento.</span>
 
 
 
@@ -387,7 +391,7 @@ Se declaran procesos de riesgo prioritario, sujetos a automatización obligatori
 
 **Artículo 25. Oficina de Cumplimiento Digital del Sistema de Justicia <span style="color:red">y de la Administración Pública</span>.**
 
-Se crea, dentro de la DINCIP, la Oficina de Cumplimiento Digital del Sistema de Justicia <span style="color:red">y de la Administración Pública</span>, que opera de forma continua motores de análisis de datos e inteligencia artificial para la detección de anomalías y señales de alerta temprana en los procesos, conforme a ISO 37301 e ISO 37001.
+Se crea, dentro de la DINCIP, la Oficina de Cumplimiento Digital del Sistema de Justicia <span style="color:red">y de la Administración Pública</span>, que opera de forma continua motores de análisis de datos e inteligencia artificial para la detección de anomalías y señales de alerta temprana en los procesos, conforme a ISO 37301 e ISO 37001. <span style="color:red">En el ámbito del Poder Ejecutivo y demás órganos del Poder Público, esta Oficina coordinará directamente con las Unidades Responsables para la Celeridad y Optimización designadas conforme al artículo 11 de la Ley Orgánica para la Celeridad y Optimización de Trámites Administrativos (LOCOTA), a los fines del intercambio seguro de datos de auditoría, verificación de tiempos de respuesta y prevención de dilaciones injustificadas.</span>
 
 
 
@@ -409,9 +413,9 @@ Todo acto procesal <span style="color:red">o administrativo</span> digital gener
 
 
 
-**Artículo 29. Interoperabilidad con órganos de control.**
+**Artículo 29. Interoperabilidad con órganos de control <span style="color:red">y optimización estatal</span>.**
 
-Los sistemas que soporten los procesos del artículo 24° interoperarán en tiempo real, mediante API seguras, con tableros de acceso directo para la Contraloría General de la República, <span style="color:red">la Defensoría del Pueblo</span> y la Inspectoría General de Tribunales, sin necesidad de solicitud previa.
+Los sistemas que soporten los procesos del artículo 24° interoperarán en tiempo real, mediante API seguras, con tableros de acceso directo para la Contraloría General de la República, <span style="color:red">la Defensoría del Pueblo, la Comisión Nacional para la Celeridad y Optimización de Trámites y Procedimientos Administrativos (LOCOTA art. 7)</span> y la Inspectoría General de Tribunales, sin necesidad de solicitud previa.
 
 
 
@@ -604,17 +608,17 @@ Esta Ley <span style="color:red">Orgánica</span> entrará en vigencia a partir 
 
 | Título / Área | Fuente Internacional / Estándar Técnico | Norma Nacional Concordante / Bloque Constitucional |
 | :--- | :--- | :--- |
-| **I. Disposiciones generales** | Reglamento (UE, Euratom) 2023/2841; JTC (2025); **S.2521 — FISMA 2014, § 3552, § 3554(a)(1)** | <span style="color:red">CRBV, arts. 26, 28, 49, 110, 141 y **203 (Carácter Orgánico)**; LOPA; Ley de Infogobierno.</span> |
-| **II. Institucionalidad sectorial** | Reglamento (UE, Euratom) 2023/2841, arts. 3-6, 23; **S.2521 — FISMA 2014, § 3553(b) (DOV); § 3555 (Auditoría Independiente)** | <span style="color:red">CRBV, arts. 253, 254 y 284.</span> |
-| **III. Estándares técnicos** | ISO/IEC 27001, 27035, 22301; JTC (2025); **S.2521 — FISMA 2014, § 3554(a)(1), § 3554(b); NIST SP 800-37, SP 800-53** | <span style="color:red">Normativas SUSCERTE y estándares de interoperabilidad del Estado.</span> |
-| **IV. Debido proceso digital** | ISO/IEC 42001, 23894; JTC (2025) | <span style="color:red">CRBV, arts. 28, 49 y 257.</span> |
-| **V. Gestión de incidentes** | JTC (2025), "COOP"; Reglamento (UE, Euratom) 2023/2841; **S.2521 — FISMA 2014, § 3554(c) (Reporte al órgano rector); § 3553(b) (DOV); § 3556 (US-CERT/CISA)** | CRBV, art. 141. |
-| **VI. Régimen probatorio forense** | ISO/IEC 27037, 27041-27043; RFC 3227; NIST SP 800-86; Manual Único de Cadena de Custodia de Evidencias 2017 | — |
-| **VII. Integridad procesal <span style="color:red">y administrativa</span>** | ISO 37001, ISO 37301, ISO/IEC 42001, ISO/IEC 23894; **S.2521 — FISMA 2014, § 3554(c) (rendición de cuentas anual al órgano legislativo)** | <span style="color:red">CRBV, art. 141 (Rendición de cuentas y probidad).</span> |
-| **VIII. Sancionatorio <span style="color:red">y disciplinario</span>** | <span style="color:red">Graduación escalonada (Leves, Graves, Muy Graves);</span> **S.2521 — FISMA 2014, §§ 3553-3554 (responsabilidad del titular y exactitud de reportes)** | <span style="color:red">Ley Especial contra los Delitos Informáticos; Estatuto de la Función Pública; Código de Ética del Juez Venezolano.</span> |
+| **I. Disposiciones generales** | Reglamento (UE, Euratom) 2023/2841; JTC (2025); **S.2521 — FISMA 2014, § 3552, § 3554(a)(1)** | <span style="color:red">CRBV, arts. 26, 28, 49, 110, 141 y **203 (Sentencia TSJ/SC N° 0406/2026 - Carácter Orgánico)**; **LOCOTA (2026)**; LOPA; Ley de Infogobierno.</span> |
+| **II. Institucionalidad sectorial** | Reglamento (UE, Euratom) 2023/2841, arts. 3-6, 23; **S.2521 — FISMA 2014, § 3553(b) (DOV); § 3555 (Auditoría Independiente)** | <span style="color:red">CRBV, arts. 253, 254 y 284; **LOCOTA (2026, art. 7 - Comisión Nacional de Celeridad)**.</span> |
+| **III. Estándares técnicos** | ISO/IEC 27001, 27035, 22301; JTC (2025); **S.2521 — FISMA 2014, § 3554(a)(1), § 3554(b); NIST SP 800-37, SP 800-53** | <span style="color:red">Normativas SUSCERTE, CNTI y estándares de interoperabilidad digital (**LOCOTA arts. 5 y 10**).</span> |
+| **IV. Debido proceso digital** | ISO/IEC 42001, 23894; JTC (2025) | <span style="color:red">CRBV, arts. 28, 49 y **257 (Justicia material procesal y administrativa - Sentencia TSJ 0406/2026)**.</span> |
+| **V. Gestión de incidentes** | JTC (2025), "COOP"; Reglamento (UE, Euratom) 2023/2841; **S.2521 — FISMA 2014, § 3554(c) (Reporte al órgano rector); § 3553(b) (DOV); § 3556 (US-CERT/CISA)** | CRBV, art. 141; Protocolo Nacional Alertas SUSCERTE. |
+| **VI. Régimen probatorio forense** | ISO/IEC 27037, 27041-27043; RFC 3227; NIST SP 800-86; Manual Único de Cadena de Custodia de Evidencias 2017 | COPP arts. 181-187; Ley Mensajes de Datos y Firmas Electrónicas. |
+| **VII. Integridad procesal <span style="color:red">y administrativa</span>** | ISO 37001, ISO 37301, ISO/IEC 42001, ISO/IEC 23894; **S.2521 — FISMA 2014, § 3554(c) (rendición de cuentas anual al órgano legislativo)** | <span style="color:red">CRBV, art. 141 (Rendición de cuentas); **LOCOTA (2026, art. 11 - Unidades Responsables de Celeridad)**; Ley Contra la Corrupción.</span> |
+| **VIII. Sancionatorio <span style="color:red">y disciplinario</span>** | <span style="color:red">Graduación escalonada (Leves, Graves, Muy Graves);</span> **S.2521 — FISMA 2014, §§ 3553-3554 (responsabilidad del titular y exactitud de reportes)** | <span style="color:red">Ley Especial contra los Delitos Informáticos; Estatuto de la Función Pública; Código de Ética del Juez Venezolano; **LOCOTA art. 11 (Responsabilidad por dilación)**.</span> |
 | **IX. Cooperación** | Reglamento (UE, Euratom) 2023/2841; **S.2521 — FISMA 2014, § 3556 (US-CERT/CISA — intercambio de inteligencia de amenazas)** | CRBV, art. 154. |
-| **X. Formación** | JTC (2025), "Training: A Foundational Element of Cyber Defense"; **S.2521 — FISMA 2014, §§ 3553-3554** | — |
-| **XI. Transitorias, <span style="color:red">Derogatorias y Supremacía</span>** | Reglamento (UE, Euratom) 2023/2841, arts. 24-26; **S.2521 — FISMA 2014, § 3555 (Evaluación Independiente Anual)** | <span style="color:red">CRBV, arts. 202-218 y 203 (Supremacía Orgánica).</span> |
+| **X. Formación** | JTC (2025), "Training: A Foundational Element of Cyber Defense"; **S.2521 — FISMA 2014, §§ 3553-3554** | Escuela Nacional de la Magistratura; Escuela Nacional de Fiscales. |
+| **XI. Transitorias, <span style="color:red">Derogatorias y Supremacía</span>** | Reglamento (UE, Euratom) 2023/2841, arts. 24-26; **S.2521 — FISMA 2014, § 3555 (Evaluación Independiente Anual)** | <span style="color:red">CRBV, arts. 202-218 y **203 (Supremacía Orgánica - Sentencia TSJ/SC N° 0406/2026)**; **LOCOTA Disposición Derogatoria Única**.</span> |
 
 
 

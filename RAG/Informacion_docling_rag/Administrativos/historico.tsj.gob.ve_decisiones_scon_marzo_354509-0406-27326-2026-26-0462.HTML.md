@@ -1,10 +1,16 @@
 ---
-tipo_instrumento: "Constitucion"
-nombre_oficial: "PREAMBULO"
+tipo_instrumento: "Jurisprudencia Constitucional"
+nombre_oficial: "Sentencia N° 0406 de la Sala Constitucional del Tribunal Supremo de Justicia (Control Previo de Constitucionalidad de Carácter Orgánico de LOCOTA)"
+expediente: "26-0462"
+tribunal: "Tribunal Supremo de Justicia - Sala Constitucional"
+ponencia: "Ponencia Conjunta"
 gaceta_oficial: ""
-fecha_publicacion: "2026-03-26"
-articulos_detectados: 11
-categorias: ["administrativo", "informatico", "constitucional", "internacional"]
+fecha_publicacion: "2026-03-27"
+articulos_detectados: 12
+categorias: ["administrativo", "constitucional", "ciberseguridad", "celeridad", "organica"]
+normativa_controlada: "Ley Orgánica para la Celeridad y Optimización de Trámites Administrativos (LOCOTA)"
+doctrina_constitucional: "Art. 203 CRBV en concordancia con Arts. 141 y 257 CRBV (Eficacia, no sacrificio por formalismos e interoperabilidad digital estatal)"
+impacto_legal: "Deroga Decreto N° 1.423 (2014) y liquida Instituto Nacional de Trámites; crea Comisión Nacional (Art. 7) y Unidades de Celeridad (Art. 11)"
 hash_pdf_sha256: "b8f39f8ace0b6680e02cbb8bac60e6bf73dfe0f0205d8421aa8a82eadb1af418"
 autor_procesamiento: "Jull Ortiz (Arquitecto de Información IA y bases de datos vectoriales)"
 sistema: "IBM Docling + LegalProcessor v2"

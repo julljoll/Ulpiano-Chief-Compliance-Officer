@@ -92,7 +92,7 @@
 
     <text x="60" y="38" class="text-title">ARQUITECTURA DE INTEGRACIÓN V-1.2: JUSTICIA, ADMINISTRACIÓN PÚBLICA &amp; FISMA 2014</text>
     <text x="60" y="66" class="text-subtitle">
-      Tokens <tspan class="text-mono" fill="#1a5b8c">USWDS 3.0</tspan> — Ley Orgánica (Art. 203 CRBV): Ámbito Judicial y Administrativo Pleno, Auditoría Anual (<tspan fill="#0050a0" font-weight="700">Art. 10-bis</tspan>), PSS (<tspan fill="#0050a0" font-weight="700">Art. 13-bis</tspan>) y DOV (<tspan fill="#0050a0" font-weight="700">Art. 19-bis</tspan>)
+      Tokens <tspan class="text-mono" fill="#1a5b8c">USWDS 3.0</tspan> — Ley Orgánica (Art. 203 CRBV / TSJ 0406/2026): Ámbito Pleno con LOCOTA 2026, Auditoría Anual (<tspan fill="#0050a0" font-weight="700">Art. 10-bis</tspan>), PSS (<tspan fill="#0050a0" font-weight="700">Art. 13-bis</tspan>) y DOV (<tspan fill="#0050a0" font-weight="700">Art. 19-bis</tspan>)
     </text>
 
     <!-- Badges Cabecera -->
@@ -391,11 +391,11 @@
         <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
 
         <text x="14" y="78" class="text-item-title">Interoperabilidad con Contraloría</text>
-        <text x="14" y="98" class="text-card-body">Oficina de Cumplimiento Digital con</text>
-        <text x="14" y="116" class="text-card-body">alertas en tiempo real vía API para</text>
-        <text x="14" y="134" class="text-card-body">Contraloría e Inspectoría. Prohíbe</text>
-        <text x="14" y="152" class="text-card-body">fallos automáticos sin juez o servidor</text>
-        <text x="14" y="170" class="text-card-body">público legalmente responsable.</text>
+        <text x="14" y="98" class="text-card-body">Oficina de Cumplimiento coordinada con</text>
+        <text x="14" y="116" class="text-card-body">Unidades de Celeridad (LOCOTA Art. 11)</text>
+        <text x="14" y="134" class="text-card-body">y alertas a Contraloría y Comisión Nal.</text>
+        <text x="14" y="152" class="text-card-body">(Art. 7). Prohíbe fallos automáticos</text>
+        <text x="14" y="170" class="text-card-body">sin supervisión humana responsable.</text>
 
         <rect x="14" y="258" width="264" height="32" rx="16" fill="#eaf4ec" stroke="#154721" stroke-width="1"/>
         <text x="146" y="278" class="text-pill" fill="#154721" text-anchor="middle">Compliance ISO 37001 / 42001</text>
@@ -410,7 +410,7 @@
       Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#0050a0">Versión 1.2 Ley Orgánica de Ciberseguridad Procesal y Administrativa</tspan> • Autor: <a href="https://sha256.us/" target="_blank"><tspan font-weight="700" fill="#0050a0">Jull Ortiz (sha256.us ↗)</tspan></a> • Estándares USWDS 3.0 Light
     </text>
     <text x="1260" y="15" font-family="'Roboto Mono', monospace" font-size="10px" fill="#5c6b7e" text-anchor="end">
-      FISMA 2014 (S.2521) • CRBV Art. 203 (Orgánico) • ISO 37001 / 42001
+      FISMA 2014 (S.2521) • LOCOTA 2026 • TSJ 0406/2026 (Orgánico) • ISO 37001 / 42001
     </text>
   </g>
 </svg>
