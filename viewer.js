@@ -333,7 +333,7 @@
     const svgTpl = document.getElementById('svg-architecture-diagram');
     if (svgTpl && svgTpl.innerHTML) {
       const inlineSvg = `
-        <div class="svg-diagram-wrapper my-4 text-center p-3 bg-dark rounded shadow-sm overflow-auto" style="max-width: 100%; border: 1px solid var(--dc3-border-color);">
+        <div class="svg-diagram-wrapper my-4 text-center p-3 bg-white rounded shadow-sm overflow-auto" style="max-width: 100%; border: 1px solid var(--dc3-border-color);">
           ${svgTpl.innerHTML}
         </div>
       `;
@@ -807,7 +807,29 @@
       });
     }
 
-    // 10. Start in Dashboard View
+    // 10. Quick filter search in Matriz de Trazabilidad
+    const matrixSearch = document.getElementById('matrix-search-input');
+    const matrixFilterCount = document.getElementById('matrix-filter-count');
+    if (matrixSearch) {
+      matrixSearch.addEventListener('input', e => {
+        const query = e.target.value.toLowerCase().trim();
+        const rows = document.querySelectorAll('#matrix-tbody tr');
+        let visibleCount = 0;
+        rows.forEach(row => {
+          const text = row.textContent.toLowerCase();
+          const matches = !query || text.includes(query);
+          row.style.display = matches ? '' : 'none';
+          if (matches) visibleCount++;
+        });
+        if (matrixFilterCount) {
+          matrixFilterCount.innerHTML = query 
+            ? `Encontradas <strong>${visibleCount}</strong> de <strong>${rows.length}</strong> secciones`
+            : `Mostrando <strong>${rows.length}</strong> secciones normativas`;
+        }
+      });
+    }
+
+    // 11. Start in Dashboard View
     switchView('dashboard');
   });
 

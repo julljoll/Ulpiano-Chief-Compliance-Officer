@@ -234,18 +234,21 @@
         <div class="dc3-card mb-5 p-4">
           <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3 pb-2 border-bottom">
             <div>
-              <h5 class="fw-bold mb-1 text-dark">🏛️ Arquitectura de Integración: Ciberseguridad Procesal e Integridad Judicial</h5>
-              <div class="text-muted small">Diagrama vectorial oficial basado en tokens <strong>USWDS 3.0</strong> (Mapeo UE &amp; JTC vs. Aporte Original Título VII).</div>
+              <h5 class="fw-bold mb-1 text-dark">🏛️ Arquitectura de Integración: Ciberseguridad Procesal, Integridad Judicial &amp; FISMA 2014</h5>
+              <div class="text-muted small">Diagrama vectorial oficial basado en tokens <strong>USWDS 3.0</strong> (Mapeo comparado UE, FISMA 2014 S.2521 y JTC 2025 vs. Aporte Original Título VII).</div>
             </div>
             <div class="d-flex gap-2">
-              <a href="./svg/ciberseguridad_integracion_V1.0.svg" target="_blank" class="btn btn-sm btn-outline-primary fw-semibold">
-                <span class="material-symbols-outlined me-1">open_in_new</span> Abrir SVG Independiente ↗
+              <a href="./svg/ciberseguridad_integracion_V1.2.svg" target="_blank" class="btn btn-sm btn-primary fw-semibold">
+                <span class="material-symbols-outlined me-1">open_in_new</span> Abrir SVG V-1.2 ↗
+              </a>
+              <a href="./svg/ciberseguridad_integracion.svg" target="_blank" class="btn btn-sm btn-outline-primary fw-semibold">
+                <span class="material-symbols-outlined me-1">image</span> SVG General
               </a>
             </div>
           </div>
 
           <!-- SVG Interactive Viewport -->
-          <div class="p-2 bg-dark rounded overflow-auto text-center shadow-inner" style="border: 1px solid var(--dc3-border-color); max-height: 850px;" id="dashboard-svg-container">
+          <div class="p-2 bg-white rounded overflow-auto text-center shadow-inner" style="border: 1px solid var(--dc3-border-color); max-height: 850px;" id="dashboard-svg-container">
             <!-- Populated with inline SVG by JavaScript -->
           </div>
         </div>
@@ -481,75 +484,392 @@
     </section>
 
     <!-- =======================================================================
-         VIEW D: MATRIZ DE TRAZABILIDAD NORMATIVA
+         VIEW D: MATRIZ DE TRAZABILIDAD NORMATIVA (REFORMATEADA EN CELDAS)
          ======================================================================= -->
     <section id="view-matrix" class="py-4 py-lg-5" style="display: none;">
       <div class="container-xxl px-3">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <!-- Cabecera de la sección -->
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
           <div>
             <h4 class="fw-bold mb-1 text-dark">📋 Matriz de Trazabilidad Normativa y Estándares Forenses</h4>
-            <div class="text-muted small">Mapeo sistemático entre las fuentes de derecho comparado internacional y el bloque constitucional venezolano.</div>
+            <div class="text-muted small">Mapeo sistemático por celdas entre los 11 Títulos del Anteproyecto, el derecho comparado (UE, EE.UU. JTC, FISMA 2014), estándares ISO/NIST y el bloque constitucional venezolano.</div>
           </div>
           <button class="btn btn-outline-primary btn-sm" onclick="UlpianoDash.switchView('dashboard')">
             <span class="material-symbols-outlined me-1">arrow_back</span> Volver al Dashboard
           </button>
         </div>
 
-        <div class="dc3-card p-4">
+        <!-- Fila de Chips de Resumen -->
+        <div class="d-flex flex-wrap gap-2 mb-4">
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">account_tree</span>
+            <span><strong>11 Títulos</strong> + Disposiciones</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-info" style="font-size:1.1rem;">public</span>
+            <span><strong>UE 2023/2841</strong> (CERT-EU)</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-success" style="font-size:1.1rem;">gavel</span>
+            <span><strong>JTC NCSC 2025</strong> (Cortes)</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">verified_user</span>
+            <span><strong>FISMA 2014</strong> S.2521 (PSS &amp; DOV)</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-warning" style="font-size:1.1rem;">shield</span>
+            <span><strong>ISO/IEC 27001 / 27037 / 42001</strong></span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-danger" style="font-size:1.1rem;">balance</span>
+            <span><strong>CRBV Art. 203</strong> (Rango Orgánico)</span>
+          </div>
+        </div>
+
+        <!-- Barra de búsqueda / filtrado rápido -->
+        <div class="dc3-card p-3 mb-4">
+          <div class="row g-2 align-items-center">
+            <div class="col-12 col-md-6 col-lg-5">
+              <div class="input-group input-group-sm">
+                <span class="input-group-text bg-light border-secondary"><span class="material-symbols-outlined" style="font-size:1rem;">search</span></span>
+                <input type="text" id="matrix-search-input" class="form-control border-secondary" placeholder="🔍 Filtrar por título, ley, artículo o estándar (ej. FISMA, ISO, CRBV, 203)...">
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-7 text-md-end">
+              <span class="text-muted small" id="matrix-filter-count">Mostrando <strong>12</strong> secciones normativas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla estructurada en celdas modulares -->
+        <div class="dc3-card p-0 shadow-sm overflow-hidden">
           <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
+            <table class="matrix-table" id="matrix-table-main">
               <thead>
                 <tr>
-                  <th style="width: 25%;">Sección / Título</th>
-                  <th style="width: 35%;">Fuente Internacional / Estándar Técnico</th>
-                  <th style="width: 40%;">Norma Nacional Concordante / Bloque Constitucional</th>
+                  <th style="width: 20%;">Título &amp; Artículos</th>
+                  <th style="width: 22%;">Materia Regulada</th>
+                  <th style="width: 26%;">Fuente Comparada / Estándar Técnico</th>
+                  <th style="width: 22%;">Bloque Constitucional &amp; Nacional</th>
+                  <th style="width: 10%; text-align: center;">Nivel</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="matrix-tbody">
+
+                <!-- Título I -->
                 <tr>
-                  <td><strong>I. Disposiciones Generales</strong></td>
-                  <td>Reglamento (UE, Euratom) 2023/2841, arts. 1-4; ISO/IEC 27000.</td>
-                  <td><span class="dc3-tag dc3-tag-red me-1">Reforma</span> <strong>CRBV arts. 26, 28, 49, 110, 141 y 203 (Carácter Orgánico)</strong>; LOPA; Ley de Infogobierno.</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO I</span>
+                    <strong class="d-block text-dark">Disposiciones Generales</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 1° al 7°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Objeto, Ámbito Pleno y Principios</div>
+                    <small class="text-muted d-block">Regula ciberseguridad procesal con rango orgánico. Extiende el ámbito a tribunales, fiscalía, defensa y administración pública sustanciadora.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-eu">UE 2023/2841</span> <small class="text-dark">Arts. 1-4 (Ámbito y definiciones)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-fisma">FISMA 2014</span> <small class="text-dark">44 U.S.C. § 3552 (Definiciones)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 27000</span> <small class="text-dark">Vocabulario de seguridad</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-organica">CRBV Art. 203</span> <small class="fw-bold text-danger">Ley Orgánica</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV</span> <small class="text-dark">Arts. 26, 28, 49, 110, 141</small></div>
+                    <div><span class="matrix-law-badge">LOPA</span> <small class="text-muted">Ley de Infogobierno</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-danger text-white">Orgánica</span>
+                  </td>
                 </tr>
+
+                <!-- Título II -->
                 <tr>
-                  <td><strong>II. Institucionalidad Sectorial</strong></td>
-                  <td>Reglamento (UE) 2023/2841 (CERT-EU y Junta Interinstitucional).</td>
-                  <td>CRBV arts. 253, 254 y 284 (Autonomía funcional del Poder Judicial y Ministerio Público).</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO II</span>
+                    <strong class="d-block text-dark">Institucionalidad Sectorial</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 8° al 11-bis°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">DINCIP, CSIRT-Ulpiano y Junta</div>
+                    <small class="text-muted d-block">Crea la Dirección Nacional, el CSIRT especializado de justicia, la Junta de Integridad y la <strong>Evaluación Independiente Anual</strong>.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-eu">UE 2023/2841</span> <small class="text-dark">CERT-EU &amp; Junta IICB (Arts. 9-11)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-fisma">FISMA 2014</span> <small class="text-dark">§ 3555 (Evaluación Independiente / Inspector General)</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV</span> <small class="text-dark">Arts. 253, 254 (Autonomía TSJ)</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV</span> <small class="text-dark">Art. 284 (Ministerio Público)</small></div>
+                    <div><span class="matrix-law-badge">LO Poder Judicial</span> <small class="text-muted">LO Ministerio Público</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-primary text-white">Institucional</span>
+                  </td>
                 </tr>
+
+                <!-- Título III -->
                 <tr>
-                  <td><strong>III. Estándares Técnicos</strong></td>
-                  <td>ISO/IEC 27001, 27035, 22301; JTC COSCA/NACM/NCSC (2025).</td>
-                  <td>Normativas SUSCERTE y Estándares Nacionales de Interoperabilidad del Estado.</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO III</span>
+                    <strong class="d-block text-dark">Estándares y Planes (PSS)</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 12°, 13°, 13-bis°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Zero Trust, COOP y Planes de Seguridad</div>
+                    <small class="text-muted d-block">Segmentación de redes procesales, MFA obligatorio, continuidad operativa judicial y <strong>Plan de Seguridad del Sistema (PSS)</strong> por activo crítico.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-jtc">JTC Courts 2025</span> <small class="text-dark">Zero Trust, MFA y COOP Judicial</small></div>
+                    <div><span class="matrix-source-badge matrix-source-fisma">FISMA 2014</span> <small class="text-dark">§ 3554(b)(1) (System Security Plan / PSS)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO 27001 / 22301</span> <small class="text-dark">Gestión de Continuidad</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 110</span> <small class="text-dark">Interés público en ciencia/TIC</small></div>
+                    <div><span class="matrix-law-badge">SUSCERTE</span> <small class="text-muted">Normas Técnicas Nacionales</small></div>
+                    <div><span class="matrix-law-badge">CNTI</span> <small class="text-muted">Interoperabilidad del Estado</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-success text-white">Técnico</span>
+                  </td>
                 </tr>
+
+                <!-- Título IV -->
                 <tr>
-                  <td><strong>IV. Debido Proceso Digital</strong></td>
-                  <td>Directiva (UE) 2016/680; Principios de IA Confiable de la OCDE.</td>
-                  <td>CRBV arts. 28, 49 y 257 (El proceso como instrumento fundamental de justicia).</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO IV</span>
+                    <strong class="d-block text-dark">Debido Proceso Digital</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 14° al 16°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Garantías Constitucionales Digitales</div>
+                    <small class="text-muted d-block">Prohibición de indefensión por falla técnica, trazabilidad de notificaciones y derecho a prueba en contrario ante sistemas automatizados.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-eu">Directiva UE 2016/680</span> <small class="text-dark">Protección datos justicia</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">OCDE 2023</span> <small class="text-dark">Principios de IA Confiable</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 49</span> <small class="fw-bold text-dark">Debido Proceso Pleno</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 28</span> <small class="text-dark">Habeas Data &amp; Acceso</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 257</span> <small class="text-dark">Eficacia Instrumental</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-warning text-dark">Garantías</span>
+                  </td>
                 </tr>
+
+                <!-- Título V -->
                 <tr>
-                  <td><strong>VI. Régimen Probatorio Forense</strong></td>
-                  <td>ISO/IEC 27037, 27041, 27042, 27043; RFC 3227; NIST SP 800-86.</td>
-                  <td>Manual Único de Cadena de Custodia de Evidencias (Venezuela, 2017).</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO V</span>
+                    <strong class="d-block text-dark">Incidentes &amp; DOV</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 17°, 18°, 19-bis°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Notificación 24h y Directivas Vinculantes</div>
+                    <small class="text-muted d-block">Taxonomía unificada de severidad, reporte obligatorio en 24h y régimen de <strong>Directivas Operativas Vinculantes (DOV)</strong> con contención en 72h.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-eu">UE 2023/2841</span> <small class="text-dark">Arts. 18-23 (Taxonomía y Crisis)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-fisma">FISMA 2014</span> <small class="text-dark">§ 3553(b) (Binding Operational Directives / CISA)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 27035</span> <small class="text-dark">Gestión de Incidentes</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 55</span> <small class="text-dark">Seguridad ciudadana y orden</small></div>
+                    <div><span class="matrix-law-badge">Ley Delitos Inf.</span> <small class="text-muted">Arts. 6, 7 (Acceso indebido)</small></div>
+                    <div><span class="matrix-law-badge">SUSCERTE</span> <small class="text-muted">Protocolo Nacional Alertas</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-info text-dark">Operativo</span>
+                  </td>
                 </tr>
+
+                <!-- Título VI -->
                 <tr>
-                  <td><strong>VII. Integridad Anticorrupción</strong></td>
-                  <td>ISO 37001 (Antisoborno), ISO 37301 (Compliance), ISO/IEC 42001 (IA Ética).</td>
-                  <td>CRBV art. 141 (Principios de honestidad, transparencia y rendición de cuentas).</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO VI</span>
+                    <strong class="d-block text-dark">Régimen Probatorio Forense</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 19° al 23°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Cadena de Custodia Digital &amp; Peritaje</div>
+                    <small class="text-muted d-block">Estándares internacionales de recolección de evidencia digital, orden de volatilidad, Registro Nacional de Peritos y preparación forense continua.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 27037</span> <small class="text-dark">Adquisición y preservación</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO 27041 / 27042</span> <small class="text-dark">Análisis e idoneidad</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 27043</span> <small class="text-dark">Preparación forense</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">RFC 3227 / NIST 800-86</span> <small class="text-dark">Volatilidad y evidencia</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">Manual Único</span> <small class="text-dark">Cadena de Custodia (2017)</small></div>
+                    <div><span class="matrix-law-badge">COPP</span> <small class="text-muted">Arts. 181-187 (Licitud probatoria)</small></div>
+                    <div><span class="matrix-law-badge">Ley Mensajes Datos</span> <small class="text-muted">Arts. 4-8 (Eficacia legal)</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-secondary text-white">Forense</span>
+                  </td>
                 </tr>
+
+                <!-- Título VII -->
+                <tr style="background-color: var(--usa-color-gold-5);">
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge" style="background-color: var(--usa-color-gold-20); color: var(--usa-color-gold-70); border-color: var(--usa-color-gold-40);">TÍTULO VII ★</span>
+                    <strong class="d-block text-dark">Integridad Procesal y Administrativa</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 24° al 32°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Aporte Original Ampliado: Justicia y Toda la Administración Pública</div>
+                    <small class="text-dark d-block"><strong>Tesis Central Jull Ortiz:</strong> Ciberseguridad activa y automatización anticorrupción transversal (CRBV Art. 203): sorteo aleatorio inmutable de causas y expedientes administrativos, 4 ojos digital en el Poder Público y alertas en tiempo real a Contraloría.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-original">★ Aporte Original</span> <small class="fw-bold text-dark">Ulpiano CCO (Jull Ortiz)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO 37001</span> <small class="text-dark">Gestión Antisoborno</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO 37301</span> <small class="text-dark">Sistemas de Compliance</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 42001</span> <small class="text-dark">Gestión de IA Ética</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-organica">CRBV Art. 203</span> <small class="fw-bold text-danger">Ley Orgánica Transversal</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 141</span> <small class="fw-bold text-dark">Honestidad y transparencia</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 49</span> <small class="text-dark">Debido proceso administrativo</small></div>
+                    <div><span class="matrix-law-badge">Ley Contra Corrupción</span> <small class="text-muted">Auditoría continua</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-warning text-dark fw-bold">Innovación</span>
+                  </td>
+                </tr>
+
+                <!-- Título VIII -->
                 <tr>
-                  <td><strong>VIII. Régimen Sancionatorio</strong></td>
-                  <td>Graduación escalonada según impacto en la infraestructura de justicia.</td>
-                  <td><span class="dc3-tag dc3-tag-red me-1">Reforma</span> Ley Especial contra Delitos Informáticos; Estatuto de la Función Pública; Código de Ética Judicial.</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO VIII</span>
+                    <strong class="d-block text-dark">Régimen Sancionatorio</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 33° al 36°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Catálogo Escalonado y Garantías</div>
+                    <small class="text-muted d-block">Sanciones leves, graves y muy graves (destitución e inhabilitación de 3 a 10 años). Agravante específica por manipulación interna del sistema.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-eu">UE Ciberseguridad</span> <small class="text-dark">Régimen de proporcionalidad</small></div>
+                    <div><span class="matrix-source-badge matrix-source-fisma">FISMA 2014</span> <small class="text-dark">§§ 3553-3554 (Responsabilidad del titular)</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 49</span> <small class="text-dark">Tipicidad y proporcionalidad</small></div>
+                    <div><span class="matrix-law-badge">Estatuto Función Pública</span> <small class="text-muted">Régimen disciplinario</small></div>
+                    <div><span class="matrix-law-badge">Código Ética Judicial</span> <small class="text-muted">Inhabilitación</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-danger text-white">Punitivo</span>
+                  </td>
                 </tr>
+
+                <!-- Título IX -->
                 <tr>
-                  <td><strong>XI. Supremacía y Derogatoria</strong></td>
-                  <td>Reglamento (UE) 2023/2841, arts. 24-26.</td>
-                  <td><span class="dc3-tag dc3-tag-red me-1">Reforma</span> <strong>CRBV art. 203 (Supremacía de Ley Orgánica)</strong> y arts. 202-218.</td>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO IX</span>
+                    <strong class="d-block text-dark">Cooperación y Formación</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 37° y 38°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Capacitación y Ciberdefensa Judicial</div>
+                    <small class="text-muted d-block">Programa anual obligatorio de entrenamiento en higiene cibernética judicial, IA y cooperación técnica con organismos internacionales.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-jtc">JTC Courts 2025</span> <small class="text-dark">Annual Cybersecurity Training</small></div>
+                    <div><span class="matrix-source-badge matrix-source-eu">CERT-EU</span> <small class="text-dark">Simulacros y ejercicios conjuntos</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 153</span> <small class="text-dark">Integración y cooperación</small></div>
+                    <div><span class="matrix-law-badge">Escuela Magistratura</span> <small class="text-muted">Capacitación judicial</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-primary text-white">Formación</span>
+                  </td>
                 </tr>
+
+                <!-- Título X -->
+                <tr>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">TÍTULO X</span>
+                    <strong class="d-block text-dark">Auditoría Algorítmica</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 39° y 40°</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Transparencia y Evaluación de IA</div>
+                    <small class="text-muted d-block">Registro público de algoritmos empleados en justicia, auditoría algorítmica continua de sesgos e impacto en derechos humanos.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 23894</span> <small class="text-dark">Riesgos en Inteligencia Artificial</small></div>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 42001</span> <small class="text-dark">Gobernanza de Sistemas de IA</small></div>
+                    <div><span class="matrix-source-badge matrix-source-eu">AI Act (UE)</span> <small class="text-dark">Sistemas de alto riesgo en justicia</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 143</span> <small class="text-dark">Acceso a información pública</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV Art. 60</span> <small class="text-dark">Protección del honor y datos</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-dark text-white">IA Ética</span>
+                  </td>
+                </tr>
+
+                <!-- Título XI & Disposiciones -->
+                <tr>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge" style="background-color: var(--usa-color-red-10); color: var(--usa-color-red-60); border-color: var(--usa-color-red-30);">TÍTULO XI</span>
+                    <strong class="d-block text-dark">Supremacía y Disposiciones</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> Arts. 41°, 42° + Disp.</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Supremacía Orgánica y Régimen Transitorio</div>
+                    <small class="text-muted d-block">Cláusula formal de supremacía orgánica solo subordinada a la CRBV. Plazos de adecuación progresiva (6 a 18 meses) y derogatoria expresa.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-eu">UE 2023/2841</span> <small class="text-dark">Arts. 24-26 (Entrada en vigor y revisión)</small></div>
+                    <div><span class="matrix-source-badge matrix-source-fisma">FISMA 2014</span> <small class="text-dark">Régimen transitorio de reporte</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge matrix-law-organica">CRBV Art. 203</span> <small class="fw-bold text-danger">Supremacía Ley Orgánica</small></div>
+                    <div><span class="matrix-law-badge matrix-law-crbv">CRBV</span> <small class="text-dark">Arts. 202-218 (Formación leyes)</small></div>
+                    <div><span class="matrix-law-badge">Disp. Finales</span> <small class="text-muted">Derogatoria expresa</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-danger text-white">Cierre</span>
+                  </td>
+                </tr>
+
+                <!-- Anexo Técnico -->
+                <tr>
+                  <td class="matrix-cell-title">
+                    <span class="matrix-title-badge">ANEXO</span>
+                    <strong class="d-block text-dark">Glosario y Taxonomía</strong>
+                    <span class="matrix-articles-tag"><span class="material-symbols-outlined" style="font-size:0.85rem;vertical-align:-1px;">tag</span> 40 Definiciones</span>
+                  </td>
+                  <td>
+                    <div class="fw-semibold text-dark mb-1">Glosario Técnico-Jurídico Forense</div>
+                    <small class="text-muted d-block">Definiciones uniformes de Hash, Cadena de Custodia, Zero Trust, DOV, PSS, Auditoría Algorítmica y Evidencia Digital.</small>
+                  </td>
+                  <td>
+                    <div><span class="matrix-source-badge matrix-source-iso">ISO/IEC 27000</span> <small class="text-dark">Términos de seguridad</small></div>
+                    <div><span class="matrix-source-badge matrix-source-fisma">FISMA 2014</span> <small class="text-dark">NIST SP 800-53 / 800-37</small></div>
+                    <div><span class="matrix-source-badge matrix-source-eu">UE 2023/2841</span> <small class="text-dark">Art. 3 (Definiciones)</small></div>
+                  </td>
+                  <td>
+                    <div><span class="matrix-law-badge">SUSCERTE</span> <small class="text-muted">Vocabulario Forense Digital</small></div>
+                    <div><span class="matrix-law-badge">CNTI</span> <small class="text-muted">Interoperabilidad Técnica</small></div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <span class="badge bg-light text-dark border">Glosario</span>
+                  </td>
+                </tr>
+
               </tbody>
             </table>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -581,255 +901,410 @@
   </footer>
 
   <!-- =========================================================================
-       6. MASTER SVG ARCHITECTURE VECTOR TEMPLATE
+       6. MASTER SVG ARCHITECTURE VECTOR TEMPLATE (3 PILLARS: UE, FISMA & JTC)
        ========================================================================= -->
   <template id="svg-architecture-diagram">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 1060" width="100%" height="100%" style="max-width: 1200px; margin: 0 auto; display: block;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 1080" width="100%" height="100%" style="max-width: 1200px; margin: 0 auto; display: block;">
       <defs>
-        <style>
-          .svg-bg { fill: #0d131f; }
-          .text-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 17.5px; fill: #fbfcfd; letter-spacing: 0.01em; }
-          .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 12.5px; fill: #a9b4c4; }
-          .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 14px; fill: #fbfcfd; }
-          .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 11px; }
-          .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 12px; }
-          .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 11.5px; fill: #e7e9ed; }
-          .text-item-sub { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 11px; fill: #a9b4c4; }
-          .text-card-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 13px; fill: #fbfcfd; }
-          .text-card-sub { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 11px; }
-          .text-card-body { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 11.5px; fill: #cfd4dc; }
-          .text-pill { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.5px; }
-          .text-mono { font-family: 'Roboto Mono', monospace; }
-        </style>
+        <style><![CDATA[
+          @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+          @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=Roboto+Mono:wght@400;700&display=swap');
+
+          .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+          .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
+
+          .text-ink { fill: #13171b; }
+          .text-primary { fill: #1a5b8c; }
+          .text-primary-dark { fill: #004987; }
+          .text-base { fill: #5c6b7e; }
+          .text-base-dark { fill: #323a45; }
+
+          .text-title { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 16.5px; fill: #13171b; letter-spacing: 0.01em; }
+          .text-subtitle { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 12px; fill: #5c6b7e; }
+          .text-header-box { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 13px; fill: #162e51; }
+          .text-tag { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 600; font-size: 10.5px; }
+
+          .text-item-title { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 11.5px; fill: #162e51; }
+          .text-item-desc { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 10.5px; fill: #323a45; }
+          .text-item-sub { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 10px; fill: #5c6b7e; }
+
+          .text-card-title { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 13px; fill: #162e51; }
+          .text-card-sub { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 600; font-size: 11px; }
+          .text-card-body { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 400; font-size: 11.2px; fill: #323a45; }
+
+          .text-pill { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; font-weight: 700; font-size: 10.5px; }
+          .text-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
+        ]]></style>
+
         <filter id="shadow-1" x="-5%" y="-5%" width="110%" height="110%">
-          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.5"/>
+          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.12"/>
         </filter>
         <filter id="shadow-2" x="-5%" y="-5%" width="110%" height="110%">
-          <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
+          <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.15"/>
         </filter>
-        <filter id="gold-glow" x="-10%" y="-10%" width="120%" height="120%">
-          <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#f3a534" flood-opacity="0.4"/>
-        </filter>
-        <linearGradient id="euBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#162e51"/>
-          <stop offset="100%" stop-color="#0b1b3d"/>
+
+        <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#eff6fb"/>
+          <stop offset="100%" stop-color="#d9e8f6"/>
         </linearGradient>
-        <linearGradient id="jtcBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#154721"/>
-          <stop offset="100%" stop-color="#0d2b14"/>
+
+        <linearGradient id="euCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#eff6fb"/>
+          <stop offset="100%" stop-color="#ffffff"/>
         </linearGradient>
-        <linearGradient id="ulpianoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#21272d"/>
-          <stop offset="50%" stop-color="#192027"/>
-          <stop offset="100%" stop-color="#13171b"/>
+
+        <linearGradient id="fismaCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#e0edfb"/>
+          <stop offset="100%" stop-color="#ffffff"/>
         </linearGradient>
-        <linearGradient id="uswdsGoldBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+
+        <linearGradient id="jtcCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#eaf4ec"/>
+          <stop offset="100%" stop-color="#ffffff"/>
+        </linearGradient>
+
+        <linearGradient id="innovGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#fbfcfd"/>
+          <stop offset="100%" stop-color="#f5f6f8"/>
+        </linearGradient>
+
+        <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stop-color="#fac76f"/>
           <stop offset="50%" stop-color="#df7e00"/>
           <stop offset="100%" stop-color="#fac76f"/>
         </linearGradient>
       </defs>
 
-      <rect width="1360" height="1060" class="svg-bg"/>
-      
-      <!-- Header -->
-      <g transform="translate(50, 25)">
-        <rect x="0" y="0" width="1260" height="92" rx="8" fill="#21272d" stroke="#323a45" stroke-width="1.5" filter="url(#shadow-1)"/>
-        <rect x="0" y="0" width="6" height="92" rx="3" fill="#0076d6"/>
-        <text x="28" y="36" class="text-title">⚖️ ARQUITECTURA DE INTEGRACIÓN: CIBERSEGURIDAD PROCESAL E INTEGRIDAD JUDICIAL</text>
-        <text x="28" y="65" class="text-subtitle">
-          Tokens de diseño <tspan class="text-mono" fill="#73b3e7">USWDS 3.0</tspan> aplicados al mapeo de fuentes comparadas (UE &amp; JTC) y al <tspan fill="#fac76f" font-weight="700">Aporte Propio Original (Título VII)</tspan>
+      <!-- CANVAS BACKGROUND -->
+      <rect width="1360" height="1080" fill="#ffffff"/>
+
+      <!-- GRID PATTERN -->
+      <pattern id="uswds-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+        <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#e7e9ed" stroke-width="1"/>
+      </pattern>
+      <rect width="1360" height="1080" fill="url(#uswds-grid)" opacity="0.6"/>
+
+      <!-- HEADER COMPONENT -->
+      <g transform="translate(50, 22)">
+        <rect x="0" y="0" width="1260" height="94" rx="8" fill="url(#headerGrad)" stroke="#cfd4dc" stroke-width="1.5" filter="url(#shadow-1)"/>
+        <rect x="0" y="0" width="6" height="94" rx="3" fill="#0050a0"/>
+
+        <!-- Google Material Icon: Balance / Gavel -->
+        <g transform="translate(24, 18)">
+          <rect width="28" height="28" rx="4" fill="#d0e4fa"/>
+          <path d="M6 18h12v2H6zm6-14l6 4.5V11H6V8.5zm0 2.2L8.5 8h7zM4 12h2v4H4zm14 0h2v4h-2z" fill="#0050a0"/>
+        </g>
+
+        <text x="60" y="38" class="text-title">ARQUITECTURA DE INTEGRACIÓN V-1.2: JUSTICIA, ADMINISTRACIÓN PÚBLICA &amp; FISMA 2014</text>
+        <text x="60" y="66" class="text-subtitle">
+          Tokens <tspan class="text-mono" fill="#1a5b8c">USWDS 3.0</tspan> — Ley Orgánica (Art. 203 CRBV): Ámbito Judicial y Administrativo Pleno, Auditoría Anual (<tspan fill="#0050a0" font-weight="700">Art. 10-bis</tspan>), PSS (<tspan fill="#0050a0" font-weight="700">Art. 13-bis</tspan>) y DOV (<tspan fill="#0050a0" font-weight="700">Art. 19-bis</tspan>)
         </text>
-        <rect x="1080" y="28" width="155" height="36" rx="4" fill="#13171b" stroke="#45505f" stroke-width="1"/>
-        <circle cx="1098" cy="46" r="5" fill="#2e8540"/>
-        <text x="1112" y="50" class="text-tag" fill="#98cca3">WCAG 2.1 AAA</text>
-      </g>
 
-      <!-- Comparative Sources Top -->
-      <g transform="translate(50, 138)">
-        <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#euBgGrad)" stroke="#004987" stroke-width="1.5" filter="url(#shadow-1)"/>
-        <rect x="0" y="0" width="615" height="46" rx="8" fill="#1a5b8c" opacity="0.6"/>
-        <rect x="16" y="12" width="28" height="22" rx="3" fill="#0076d6"/>
-        <text x="22" y="27" fill="#ffffff" class="text-tag" font-weight="800">EU</text>
-        <text x="54" y="29" class="text-header-box">Reglamento (UE, Euratom) 2023/2841</text>
-        <text x="500" y="29" class="text-tag" fill="#aacdec" text-anchor="end">Marco Europeo</text>
+        <!-- Badges Cabecera -->
+        <g transform="translate(1000, 26)">
+          <rect x="0" y="0" width="118" height="36" rx="4" fill="#0050a0"/>
+          <text x="59" y="23" class="text-tag" fill="#ffffff" text-anchor="middle" font-weight="700">VERSIÓN 1.2</text>
 
-        <g transform="translate(16, 56)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
-          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
-          <text x="30" y="23" class="text-item-title" fill="#73b3e7">CERT-EU ➔ CSIRT-Ulpiano (Arts. 8 y 9)</text>
-          <text x="30" y="42" class="text-item-desc">Equipo sectorial de respuesta ante incidentes en tribunales.</text>
-          <text x="30" y="58" class="text-item-sub">Monitoreo continuo y pruebas de simulación bianuales obligatorias.</text>
-        </g>
-
-        <g transform="translate(16, 138)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
-          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
-          <text x="30" y="23" class="text-item-title" fill="#73b3e7">Junta de Ciberseguridad ➔ Junta de Integridad (Art. 10)</text>
-          <text x="30" y="42" class="text-item-desc">Gobernanza interinstitucional: TSJ, MP, DP, CGR y DINCIP.</text>
-          <text x="30" y="58" class="text-item-sub">Supervisión colegiada y protocolos de actuación coordinada.</text>
-        </g>
-
-        <g transform="translate(16, 220)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
-          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
-          <text x="30" y="23" class="text-item-title" fill="#73b3e7">Taxonomía Común de Severidad (Art. 18)</text>
-          <text x="30" y="42" class="text-item-desc">Clasificación estandarizada según impacto en actos procesales.</text>
-          <text x="30" y="58" class="text-item-sub">Umbrales de notificación obligatoria a SUSCERTE y al público.</text>
-        </g>
-
-        <g transform="translate(16, 302)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0b1b3d" stroke="#162e51" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#28a0e0"/>
-          <circle cx="18" cy="22" r="4" fill="#73b3e7"/>
-          <text x="30" y="23" class="text-item-title" fill="#73b3e7">Revisión Periódica &amp; Auditoría Externa (Arts. 24-26)</text>
-          <text x="30" y="42" class="text-item-desc">Evaluación trienal por comités y auditores independientes.</text>
-          <text x="30" y="58" class="text-item-sub">Mecanismos de control que impiden la autorregulación ciega.</text>
+          <rect x="126" y="0" width="108" height="36" rx="4" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1"/>
+          <circle cx="140" cy="18" r="4" fill="#2e8540"/>
+          <text x="150" y="22" class="text-tag" fill="#154721">WCAG AAA</text>
         </g>
       </g>
 
-      <g transform="translate(695, 138)">
-        <rect x="0" y="0" width="615" height="395" rx="8" fill="url(#jtcBgGrad)" stroke="#2e8540" stroke-width="1.5" filter="url(#shadow-1)"/>
-        <rect x="0" y="0" width="615" height="46" rx="8" fill="#1b622b" opacity="0.6"/>
-        <rect x="16" y="12" width="34" height="22" rx="3" fill="#2e8540"/>
-        <text x="21" y="27" fill="#ffffff" class="text-tag" font-weight="800">JTC</text>
-        <text x="58" y="29" class="text-header-box">COSCA / NACM / NCSC Bulletin (2025)</text>
-        <text x="500" y="29" class="text-tag" fill="#cde5d2" text-anchor="end">Cortes de EE.UU.</text>
+      <!-- ================= TOP SECTION: 3 FUENTES COMPARADAS ================= -->
 
-        <g transform="translate(16, 56)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
-          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
-          <text x="30" y="23" class="text-item-title" fill="#98cca3">Defensa contra Ransomware en Cortes (Art. 12)</text>
-          <text x="30" y="42" class="text-item-desc">Lecciones aprendidas: LA Superior Court, Cleveland &amp; AOUSC.</text>
-          <text x="30" y="58" class="text-item-sub">Arquitectura de respuesta rápida ante secuestro de datos judiciales.</text>
+      <!-- FUENTE 1: REGULATION (EU) 2023/2841 -->
+      <g transform="translate(50, 134)">
+        <rect x="0" y="0" width="404" height="402" rx="8" fill="url(#euCardGrad)" stroke="#aacdec" stroke-width="1.5" filter="url(#shadow-1)"/>
+        <rect x="0" y="0" width="404" height="44" rx="8" fill="#d9e8f6"/>
+        <rect x="0" y="28" width="404" height="16" fill="#d9e8f6"/>
+
+        <!-- Google Material Icon: Hub / Policy -->
+        <g transform="translate(12, 10)">
+          <rect width="24" height="24" rx="3" fill="#1a5b8c"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="#ffffff" transform="scale(0.8) translate(3,3)"/>
         </g>
 
-        <g transform="translate(16, 138)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
-          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
-          <text x="30" y="23" class="text-item-title" fill="#98cca3">Zero Trust &amp; Segmentación Judicial (Art. 12)</text>
-          <text x="30" y="42" class="text-item-desc">Aislamiento de redes de salas de audiencia respecto a la red central.</text>
-          <text x="30" y="58" class="text-item-sub">MFA obligatorio en todo acceso remoto a sistemas de expedientes.</text>
-        </g>
+        <text x="44" y="27" class="text-header-box">Reglamento (UE) 2023/2841</text>
+        <text x="392" y="27" class="text-tag" fill="#1a5b8c" text-anchor="end">Marco UE</text>
 
-        <g transform="translate(16, 220)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
-          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
-          <text x="30" y="23" class="text-item-title" fill="#98cca3">Continuidad Operativa COOP (Art. 13)</text>
-          <text x="30" y="42" class="text-item-desc">Garantía de despacho en flagrancia y amparos constitucionales.</text>
-          <text x="30" y="58" class="text-item-sub">Procedimientos de respaldo manual ante caída total de conectividad.</text>
-        </g>
+        <g transform="translate(12, 52)">
+          <rect x="0" y="0" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="78" rx="2" fill="#28a0e0"/>
+          <circle cx="16" cy="20" r="4" fill="#73b3e7"/>
+          <text x="26" y="21" class="text-item-title" fill="#004987">CERT-EU ➔ CSIRT-Ulpiano (Arts. 8-9)</text>
+          <text x="26" y="39" class="text-item-desc">Respuesta a incidentes para proteger expedientes,</text>
+          <text x="26" y="55" class="text-item-sub">plataformas judiciales y trámites administrativos.</text>
 
-        <g transform="translate(16, 302)">
-          <rect x="0" y="0" width="583" height="74" rx="4" fill="#0d2b14" stroke="#154721" stroke-width="1"/>
-          <rect x="0" y="0" width="4" height="74" rx="2" fill="#4aa564"/>
-          <circle cx="18" cy="22" r="4" fill="#98cca3"/>
-          <text x="30" y="23" class="text-item-title" fill="#98cca3">Higiene Cibernética para Jueces y Personal (Art. 24)</text>
-          <text x="30" y="42" class="text-item-desc">Capacitación continua en detección de phishing y suplantación.</text>
-          <text x="30" y="58" class="text-item-sub">Evaluación obligatoria y periódica para todos los operadores.</text>
+          <rect x="0" y="86" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
+          <rect x="0" y="86" width="4" height="78" rx="2" fill="#28a0e0"/>
+          <circle cx="16" cy="106" r="4" fill="#73b3e7"/>
+          <text x="26" y="107" class="text-item-title" fill="#004987">Junta Interinstitucional (Art. 10)</text>
+          <text x="26" y="125" class="text-item-desc">Gobernanza transversal: TSJ, Ministerio Público,</text>
+          <text x="26" y="141" class="text-item-sub">Defensa Pública, Contraloría y Administración Pública.</text>
+
+          <rect x="0" y="172" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
+          <rect x="0" y="172" width="4" height="78" rx="2" fill="#28a0e0"/>
+          <circle cx="16" cy="192" r="4" fill="#73b3e7"/>
+          <text x="26" y="193" class="text-item-title" fill="#004987">Taxonomía Común &amp; Crisis (Arts. 18, 23)</text>
+          <text x="26" y="211" class="text-item-desc">Escala unificada de severidad de incidentes técnicos</text>
+          <text x="26" y="227" class="text-item-sub">y protocolos operativos estándar (SOPs) de contención.</text>
+
+          <rect x="0" y="258" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#d9e8f6" stroke-width="1"/>
+          <rect x="0" y="258" width="4" height="78" rx="2" fill="#28a0e0"/>
+          <circle cx="16" cy="278" r="4" fill="#73b3e7"/>
+          <text x="26" y="279" class="text-item-title" fill="#004987">Capacidades &amp; Revisión (Arts. 9, 25-26)</text>
+          <text x="26" y="297" class="text-item-desc">Inventario de peritos, simulacros bianuales y reporte</text>
+          <text x="26" y="313" class="text-item-sub">de evaluación periódica ante la Asamblea Nacional.</text>
         </g>
       </g>
 
-      <!-- Bottom Original Value Proposition: Título VII -->
-      <g transform="translate(50, 560)">
-        <rect x="0" y="0" width="1260" height="465" rx="8" fill="url(#ulpianoBgGrad)" stroke="url(#uswdsGoldBorder)" stroke-width="2.5" filter="url(#shadow-2)"/>
-        
-        <g transform="translate(0, 0)">
-          <rect x="0" y="0" width="1260" height="52" rx="8" fill="#13171b"/>
-          <rect x="20" y="14" width="30" height="24" rx="4" fill="#df7e00"/>
-          <text x="27" y="31" fill="#ffffff" font-size="14">★</text>
-          <text x="58" y="32" class="text-title" fill="#fac76f">APORTE PROPIO ORIGINAL — TÍTULO VII: RÉGIMEN ESPECIAL DE INTEGRIDAD PROCESAL</text>
-          <text x="1235" y="32" class="text-tag" fill="#fac76f" text-anchor="end">Innovación Anticorrupción</text>
+      <!-- FUENTE 2: FISMA 2014 (EE.UU. S.2521) - DESTACADO V1.2 -->
+      <g transform="translate(478, 134)">
+        <rect x="0" y="0" width="404" height="402" rx="8" fill="url(#fismaCardGrad)" stroke="#0050a0" stroke-width="2" filter="url(#shadow-1)"/>
+        <rect x="0" y="0" width="404" height="44" rx="8" fill="#d0e4fa"/>
+        <rect x="0" y="28" width="404" height="16" fill="#d0e4fa"/>
+
+        <!-- Google Material Icon: Verified User / Security -->
+        <g transform="translate(12, 10)">
+          <rect width="24" height="24" rx="3" fill="#0050a0"/>
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="#ffffff" transform="scale(0.75) translate(4,4)"/>
         </g>
 
-        <g transform="translate(24, 68)">
-          <rect x="0" y="0" width="1212" height="52" rx="4" fill="#192027" stroke="#323a45" stroke-width="1"/>
-          <text x="16" y="22" class="text-item-title" fill="#fbfcfd">EL DOBLE FRENTE DE LA CIBERSEGURIDAD JUDICIAL</text>
-          <text x="16" y="40" class="text-item-desc">
-            La ciberseguridad convencional protege al tribunal del <tspan fill="#e57373" font-weight="700">atacante externo</tspan>. El Título VII la utiliza para <tspan fill="#81c784" font-weight="700">hacer visible, trazable e inalterable la actuación del operador interno</tspan>, reduciendo la discrecionalidad humana en procesos críticos.
+        <text x="44" y="27" class="text-header-box" fill="#003366">FISMA 2014 (S.2521 / PL 113-283)</text>
+        <rect x="300" y="11" width="92" height="22" rx="3" fill="#0050a0"/>
+        <text x="346" y="26" class="text-tag" fill="#ffffff" text-anchor="middle" font-weight="700">CLAVE V1.2</text>
+
+        <g transform="translate(12, 52)">
+          <rect x="0" y="0" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#a3caf5" stroke-width="1.2"/>
+          <rect x="0" y="0" width="5" height="78" rx="2" fill="#0050a0"/>
+          <circle cx="16" cy="20" r="4" fill="#0050a0"/>
+          <text x="26" y="21" class="text-item-title" fill="#003366">Auditoría Independiente Anual (Art. 10-bis)</text>
+          <text x="26" y="39" class="text-item-desc">Evaluación externa obligatoria anual por órgano de control</text>
+          <text x="26" y="55" class="text-item-sub">fiscal independiente (§ 3555 - Inspector General Model).</text>
+
+          <rect x="0" y="86" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#a3caf5" stroke-width="1.2"/>
+          <rect x="0" y="0" width="5" height="78" rx="2" fill="#0050a0"/>
+          <circle cx="16" cy="106" r="4" fill="#0050a0"/>
+          <text x="26" y="107" class="text-item-title" fill="#003366">Plan de Seguridad del Sistema - PSS (Art. 13-bis)</text>
+          <text x="26" y="125" class="text-item-desc">Documentación formal y periódica (PSS) por activo crítico</text>
+          <text x="26" y="141" class="text-item-sub">judicial y administrativo (§ 3554(b)(1)).</text>
+
+          <rect x="0" y="172" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#a3caf5" stroke-width="1.2"/>
+          <rect x="0" y="172" width="5" height="78" rx="2" fill="#0050a0"/>
+          <circle cx="16" cy="192" r="4" fill="#0050a0"/>
+          <text x="26" y="193" class="text-item-title" fill="#003366">Directivas Vinculantes - DOV (Art. 19-bis)</text>
+          <text x="26" y="211" class="text-item-desc">Mandatos de ciberdefensa de cumplimiento perentorio (72h)</text>
+          <text x="26" y="227" class="text-item-sub">aplicables a tribunales y entes públicos (§ 3553(b)).</text>
+
+          <rect x="0" y="258" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#a3caf5" stroke-width="1.2"/>
+          <rect x="0" y="258" width="5" height="78" rx="2" fill="#0050a0"/>
+          <circle cx="16" cy="278" r="4" fill="#0050a0"/>
+          <text x="26" y="279" class="text-item-title" fill="#003366">Responsabilidad de la Autoridad (Arts. 7, 34)</text>
+          <text x="26" y="297" class="text-item-desc">Deber indelegable del titular del órgano en la seguridad</text>
+          <text x="26" y="313" class="text-item-sub">y rendición de cuentas ante el legislativo (§ 3554(a)).</text>
+        </g>
+      </g>
+
+      <!-- FUENTE 3: JTC (COSCA / NACM / NCSC 2025) -->
+      <g transform="translate(906, 134)">
+        <rect x="0" y="0" width="404" height="402" rx="8" fill="url(#jtcCardGrad)" stroke="#98cca3" stroke-width="1.5" filter="url(#shadow-1)"/>
+        <rect x="0" y="0" width="404" height="44" rx="8" fill="#cde5d2"/>
+        <rect x="0" y="28" width="404" height="16" fill="#cde5d2"/>
+
+        <!-- Google Material Icon: Account Balance (Courts) -->
+        <g transform="translate(12, 10)">
+          <rect width="24" height="24" rx="3" fill="#2e8540"/>
+          <path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-5-7L2 6v2h19V6l-9-5z" fill="#ffffff" transform="scale(0.75) translate(4,4)"/>
+        </g>
+
+        <text x="44" y="27" class="text-header-box" fill="#154721">Cybersecurity Basics (2025)</text>
+        <text x="392" y="27" class="text-tag" fill="#154721" text-anchor="end">EE.UU. Cortes</text>
+
+        <g transform="translate(12, 52)">
+          <rect x="0" y="0" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="78" rx="2" fill="#2e8540"/>
+          <circle cx="16" cy="20" r="4" fill="#98cca3"/>
+          <text x="26" y="21" class="text-item-title" fill="#154721">Defensa contra Ransomware (Art. 8)</text>
+          <text x="26" y="39" class="text-item-desc">Resiliencia judicial y administrativa ante secuestro de datos</text>
+          <text x="26" y="55" class="text-item-sub">(Lecciones de Cortes de Los Ángeles 2024 y Cleveland 2025).</text>
+
+          <rect x="0" y="86" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+          <rect x="0" y="86" width="4" height="78" rx="2" fill="#2e8540"/>
+          <circle cx="16" cy="106" r="4" fill="#98cca3"/>
+          <text x="26" y="107" class="text-item-title" fill="#154721">Zero Trust, Mínimo Privilegio &amp; MFA (Art. 12)</text>
+          <text x="26" y="125" class="text-item-desc">Autenticación estricta para operadores de justicia y entes públicos;</text>
+          <text x="26" y="141" class="text-item-sub">segmentación de redes procesales y sustanciadoras.</text>
+
+          <rect x="0" y="172" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+          <rect x="0" y="172" width="4" height="78" rx="2" fill="#2e8540"/>
+          <circle cx="16" cy="192" r="4" fill="#98cca3"/>
+          <text x="26" y="193" class="text-item-title" fill="#154721">Continuidad Operativa COOP (Art. 13)</text>
+          <text x="26" y="211" class="text-item-desc">Planes de contingencia que aseguran despacho urgente</text>
+          <text x="26" y="227" class="text-item-sub">(flagrancias, amparos y actos administrativos perentorios).</text>
+
+          <rect x="0" y="258" width="380" height="78" rx="4" fill="#fbfcfd" stroke="#cde5d2" stroke-width="1"/>
+          <rect x="0" y="258" width="4" height="78" rx="2" fill="#2e8540"/>
+          <circle cx="16" cy="278" r="4" fill="#98cca3"/>
+          <text x="26" y="279" class="text-item-title" fill="#154721">Capacitación Continua Anual (Art. 37)</text>
+          <text x="26" y="297" class="text-item-desc">Programa obligatorio en ciberhigiene, phishing</text>
+          <text x="26" y="313" class="text-item-sub">y ética de uso de IA para todos los servidores públicos.</text>
+        </g>
+      </g>
+
+      <!-- CONECTOR STREAM -->
+      <g stroke="#0076d6" stroke-width="2" stroke-dasharray="6,4" fill="none" opacity="0.7">
+        <path d="M 252 536 L 252 550 L 680 550 L 680 562"/>
+        <path d="M 680 536 L 680 562"/>
+        <path d="M 1108 536 L 1108 550 L 680 550 L 680 562"/>
+      </g>
+      <polygon points="680,568 673,556 687,556" fill="#df7e00"/>
+
+      <!-- BOTTOM SECTION: APORTE ORIGINAL AMPLIO -->
+      <g transform="translate(50, 568)">
+        <rect x="0" y="0" width="1260" height="460" rx="8" fill="url(#innovGrad)" stroke="url(#goldBorder)" stroke-width="2" filter="url(#shadow-2)"/>
+
+        <rect x="0" y="0" width="1260" height="54" rx="8" fill="#f5f6f8"/>
+        <line x1="0" y1="54" x2="1260" y2="54" stroke="#cfd4dc" stroke-width="1"/>
+
+        <!-- Google Material Icon: Star Pill -->
+        <rect x="22" y="14" width="160" height="26" rx="13" fill="#df7e00"/>
+        <g transform="translate(32, 19)">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#13171b" transform="scale(0.65) translate(-2,-2)"/>
+        </g>
+        <text x="110" y="31" class="text-pill" fill="#13171b" text-anchor="middle" letter-spacing="0.5">APORTE ORIGINAL</text>
+
+        <text x="196" y="34" class="text-title" font-size="14.5">
+          IDEA DE VALOR CREADA POR EL AUTOR: <tspan fill="#8c3b00">RÉGIMEN DE INTEGRIDAD PROCESAL Y ADMINISTRATIVA (TÍTULO VII)</tspan>
+        </text>
+
+        <g transform="translate(22, 68)">
+          <rect x="0" y="0" width="1216" height="54" rx="4" fill="#fef6e7" stroke="#cfd4dc" stroke-width="1"/>
+          <rect x="0" y="0" width="4" height="54" rx="2" fill="#df7e00"/>
+          
+          <!-- Google Material Icon: Lightbulb -->
+          <g transform="translate(14, 8)">
+            <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-1.3l-.85-.6C7.8 13.16 7 11.18 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.18-.8 4.16-2.15 5.1z" fill="#df7e00" transform="scale(0.8) translate(0, 0)"/>
+          </g>
+          
+          <text x="40" y="22" class="text-item-desc" fill="#13171b">
+            <tspan font-weight="700" fill="#8c3b00">Tesis Central Ampliada:</tspan> Los marcos internacionales conciben la ciberseguridad judicial solo como defensa perimetral externa.
+          </text>
+          <text x="40" y="42" class="text-item-desc" fill="#13171b">
+            La innovación consiste en usar la <tspan fill="#004987" font-weight="700">ciberseguridad, criptografía e IA</tspan> como escudo <tspan fill="#8c3b00" font-weight="700">activo frente a la corrupción interna y retardo procesal</tspan> en el <tspan fill="#004987" font-weight="700">Sistema de Justicia y en la Administración Pública completa (CRBV Art. 203)</tspan>.
           </text>
         </g>
 
-        <!-- 4 Pillars Cards -->
-        <g transform="translate(24, 134)">
+        <!-- 4 Tarjetas -->
+        <g transform="translate(22, 136)">
+
+          <!-- Tarjeta 1: Doble Frente (Google Material Icon: Security / Shield) -->
           <g transform="translate(0, 0)">
-            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
-            <rect x="0" y="0" width="292" height="4" rx="2" fill="#0076d6"/>
-            <rect x="14" y="16" width="34" height="34" rx="4" fill="#162e51"/>
-            <text x="22" y="39" font-size="18">⚖️</text>
-            <text x="56" y="28" class="text-card-title">Distribución Aleatoria</text>
-            <text x="56" y="44" class="text-card-sub" fill="#73b3e7">Inmutable (Art. 26)</text>
-            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Algoritmo Público Auditado</text>
-            <text x="14" y="98" class="text-card-body">Elimina asignación manual de</text>
-            <text x="14" y="116" class="text-card-body">causas. Genera semilla pseudo-</text>
-            <text x="14" y="134" class="text-card-body">aleatoria basada en hash público</text>
-            <text x="14" y="152" class="text-card-body">imposible de manipular o predecir</text>
-            <text x="14" y="170" class="text-card-body">por operadores o funcionarios.</text>
-            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#162e51" stroke-width="1"/>
-            <text x="146" y="278" class="text-pill" fill="#aacdec" text-anchor="middle">Principio: Suum Cuique Tribuere</text>
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#b50909"/>
+
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#f9eded"/>
+            <g transform="translate(19, 21)">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" fill="#b50909"/>
+            </g>
+            <text x="56" y="28" class="text-card-title" fill="#b50909">Doble Frente</text>
+            <text x="56" y="44" class="text-card-sub" fill="#5c6b7e">Judicial &amp; Administrativo</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+            <text x="14" y="78" class="text-item-title">Defensa Externa + Interna</text>
+            <text x="14" y="98" class="text-card-body">No solo protege de hackers externos;</text>
+            <text x="14" y="116" class="text-card-body">el sistema audita a operadores internos</text>
+            <text x="14" y="134" class="text-card-body">que alteren causas judiciales o</text>
+            <text x="14" y="152" class="text-card-body">expedientes administrativos públicos,</text>
+            <text x="14" y="170" class="text-card-body">extravíen pruebas o causen retardo.</text>
+
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#f9eded" stroke="#b50909" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#b50909" text-anchor="middle">Principio: Honeste Vivere</text>
           </g>
 
+          <!-- Tarjeta 2: Distribución Aleatoria (Google Material Icon: Shuffle) -->
           <g transform="translate(308, 0)">
-            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
-            <rect x="0" y="0" width="292" height="4" rx="2" fill="#28a0e0"/>
-            <rect x="14" y="16" width="34" height="34" rx="4" fill="#162e51"/>
-            <text x="22" y="39" font-size="18">⏱️</text>
-            <text x="56" y="28" class="text-card-title">Fiscalización Automática</text>
-            <text x="56" y="44" class="text-card-sub" fill="#73b3e7">de Plazos (Art. 25)</text>
-            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Monitoreo de Retardo</text>
-            <text x="14" y="98" class="text-card-body">Cálculo desatendido de lapsos</text>
-            <text x="14" y="116" class="text-card-body">procesales según CPC/COPP.</text>
-            <text x="14" y="134" class="text-card-body">Alerta automática e inmutable a</text>
-            <text x="14" y="152" class="text-card-body">la Inspectoría de Tribunales</text>
-            <text x="14" y="170" class="text-card-body">sin discrecionalidad del actuario.</text>
-            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#162e51" stroke-width="1"/>
-            <text x="146" y="278" class="text-pill" fill="#aacdec" text-anchor="middle">Principio: Honeste Vivere</text>
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#0076d6"/>
+
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#eff6fb"/>
+            <g transform="translate(19, 21)">
+              <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z" fill="#0076d6"/>
+            </g>
+            <text x="56" y="28" class="text-card-title" fill="#004987">Distribución Aleatoria</text>
+            <text x="56" y="44" class="text-card-sub" fill="#1a5b8c">Causas y Trámites (Art. 26)</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+            <text x="14" y="78" class="text-item-title">Algoritmo Público &amp; Auditable</text>
+            <text x="14" y="98" class="text-card-body">Elimina la asignación manual en cortes,</text>
+            <text x="14" y="116" class="text-card-body">fiscalías, procedimientos sancionatorios</text>
+            <text x="14" y="134" class="text-card-body">y licitaciones del Estado. Genera</text>
+            <text x="14" y="152" class="text-card-body">registro inmutable del sorteo digital</text>
+            <text x="14" y="170" class="text-card-body">inmune a manipulaciones humanas.</text>
+
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#eff6fb" stroke="#004987" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#004987" text-anchor="middle">Principio: Suum Cuique Tribuere</text>
           </g>
 
+          <!-- Tarjeta 3: Segregación 4 Ojos (Google Material Icon: Lock) -->
           <g transform="translate(616, 0)">
-            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
             <rect x="0" y="0" width="292" height="4" rx="2" fill="#df7e00"/>
-            <rect x="14" y="16" width="34" height="34" rx="4" fill="#381f00"/>
-            <text x="22" y="39" font-size="18">👁️</text>
-            <text x="56" y="28" class="text-card-title">Segregación "4 Ojos"</text>
-            <text x="56" y="44" class="text-card-sub" fill="#fac76f">&amp; Hashes (Arts. 27-28)</text>
-            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Registro Criptográfico Inmutable</text>
-            <text x="14" y="98" class="text-card-body">Ningún funcionario puede ejecutar</text>
-            <text x="14" y="116" class="text-card-body">solo operaciones críticas.</text>
-            <text x="14" y="134" class="text-card-body">Bitácora electrónica inalterable</text>
-            <text x="14" y="152" class="text-card-body">incluso por los administradores</text>
-            <text x="14" y="170" class="text-card-body">técnicos de bases de datos.</text>
-            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#8c3b00" stroke-width="1"/>
-            <text x="146" y="278" class="text-pill" fill="#fde4b6" text-anchor="middle">Principio: Alterum Non Laedere</text>
+
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#fef6e7"/>
+            <g transform="translate(19, 21)">
+              <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="#8c3b00"/>
+            </g>
+            <text x="56" y="28" class="text-card-title" fill="#8c3b00">Segregación "4 Ojos"</text>
+            <text x="56" y="44" class="text-card-sub" fill="#8c3b00">&amp; Hashes (Arts. 27-28)</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+            <text x="14" y="78" class="text-item-title">Control en Todo el Poder Público</text>
+            <text x="14" y="98" class="text-card-body">Ningún funcionario judicial o servidor</text>
+            <text x="14" y="116" class="text-card-body">administrativo puede iniciar, aprobar</text>
+            <text x="14" y="134" class="text-card-body">y ejecutar solo actos críticos. Bitácora</text>
+            <text x="14" y="152" class="text-card-body">digital inalterable e inviolable incluso</text>
+            <text x="14" y="170" class="text-card-body">por administradores de bases de datos.</text>
+
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#fef6e7" stroke="#8c3b00" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#8c3b00" text-anchor="middle">Principio: Alterum Non Laedere</text>
           </g>
 
+          <!-- Tarjeta 4: IA Anticorrupción (Google Material Icon: Smart Toy / AI) -->
           <g transform="translate(924, 0)">
-            <rect x="0" y="0" width="292" height="305" rx="6" fill="#13171b" stroke="#323a45" stroke-width="1.2"/>
+            <rect x="0" y="0" width="292" height="305" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2"/>
             <rect x="0" y="0" width="292" height="4" rx="2" fill="#2e8540"/>
-            <rect x="14" y="16" width="34" height="34" rx="4" fill="#0d2b14"/>
-            <text x="22" y="39" font-size="18">🤖</text>
-            <text x="56" y="28" class="text-card-title">IA Anticorrupción</text>
-            <text x="56" y="44" class="text-card-sub" fill="#98cca3">&amp; Auditoría (Arts. 25, 29-31)</text>
-            <line x1="14" y1="58" x2="278" y2="58" stroke="#323a45" stroke-width="1"/>
-            <text x="14" y="78" class="text-item-title" fill="#fbfcfd">Detección + Control Humano</text>
-            <text x="14" y="98" class="text-card-body">Oficina de Cumplimiento Digital</text>
-            <text x="14" y="116" class="text-card-body">con alertas en tiempo real vía API</text>
-            <text x="14" y="134" class="text-card-body">para Contraloría. Prohíbe fallos</text>
-            <text x="14" y="152" class="text-card-body">automáticos sin juez humano</text>
-            <text x="14" y="170" class="text-card-body">responsable del acto.</text>
-            <rect x="14" y="258" width="264" height="32" rx="16" fill="#21272d" stroke="#1b622b" stroke-width="1"/>
-            <text x="146" y="278" class="text-pill" fill="#cde5d2" text-anchor="middle">Compliance ISO 37001 / 42001</text>
+
+            <rect x="14" y="16" width="34" height="34" rx="4" fill="#eaf4ec"/>
+            <g transform="translate(19, 21)">
+              <path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3zm-2 10H6V7h12v12zm-9-6c-.83 0-1.5-.67-1.5-1.5S8.17 10 9 10s1.5.67 1.5 1.5S9.83 13 9 13zm6 0c-.83 0-1.5-.67-1.5-1.5S14.17 10 15 10s1.5.67 1.5 1.5S15.83 13 15 13zm-3 4c1.66 0 3-1.34 3-3h-6c0 1.66 1.34 3 3 3z" fill="#154721"/>
+            </g>
+            <text x="56" y="28" class="text-card-title" fill="#154721">IA Anticorrupción</text>
+            <text x="56" y="44" class="text-card-sub" fill="#154721">&amp; Auditoría (Arts. 25, 29-31)</text>
+            <line x1="14" y1="58" x2="278" y2="58" stroke="#e7e9ed" stroke-width="1"/>
+
+            <text x="14" y="78" class="text-item-title">Interoperabilidad con Contraloría</text>
+            <text x="14" y="98" class="text-card-body">Oficina de Cumplimiento Digital con</text>
+            <text x="14" y="116" class="text-card-body">alertas en tiempo real vía API para</text>
+            <text x="14" y="134" class="text-card-body">Contraloría e Inspectoría. Prohíbe</text>
+            <text x="14" y="152" class="text-card-body">fallos automáticos sin juez o servidor</text>
+            <text x="14" y="170" class="text-card-body">público legalmente responsable.</text>
+
+            <rect x="14" y="258" width="264" height="32" rx="16" fill="#eaf4ec" stroke="#154721" stroke-width="1"/>
+            <text x="146" y="278" class="text-pill" fill="#154721" text-anchor="middle">Compliance ISO 37001 / 42001</text>
           </g>
+
         </g>
+      </g>
+
+      <!-- WATERMARK FOOTER -->
+      <g transform="translate(50, 1040)">
+        <text x="0" y="15" font-family="'Public Sans', sans-serif" font-size="10.5px" fill="#5c6b7e">
+          Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#0050a0">Versión 1.2 Ley Orgánica de Ciberseguridad Procesal y Administrativa</tspan> • Autor: <a href="https://sha256.us/" target="_blank"><tspan font-weight="700" fill="#0050a0">Jull Ortiz (sha256.us ↗)</tspan></a> • Estándares USWDS 3.0 Light
+        </text>
+        <text x="1260" y="15" font-family="'Roboto Mono', monospace" font-size="10px" fill="#5c6b7e" text-anchor="end">
+          FISMA 2014 (S.2521) • CRBV Art. 203 (Orgánico) • ISO 37001 / 42001
+        </text>
       </g>
     </svg>
   </template>

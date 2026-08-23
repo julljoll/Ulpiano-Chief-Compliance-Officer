@@ -757,4 +757,168 @@ body {
 .legend-dot--blue  { background-color: #0050a0; }
 .legend-dot--black { background-color: #1b1b1b; }
 
+/* ==========================================================================
+   MATRIZ DE TRAZABILIDAD NORMATIVA — USWDS LIGHT MODE STYLES
+   ========================================================================== */
+.matrix-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  border: 1px solid var(--theme-color-base-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-size: var(--size-font-sm);
+}
+
+.matrix-table thead th {
+  background-color: var(--usa-color-gray-cool-5);
+  color: var(--theme-color-ink);
+  font-weight: 700;
+  font-size: var(--size-font-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: var(--space-2) var(--space-25);
+  border-bottom: 2px solid var(--theme-color-primary-light);
+  border-right: 1px solid var(--theme-color-base-light);
+  vertical-align: middle;
+}
+
+.matrix-table thead th:last-child {
+  border-right: none;
+}
+
+.matrix-table tbody td {
+  padding: var(--space-2) var(--space-25);
+  border-bottom: 1px solid var(--theme-color-base-light);
+  border-right: 1px solid var(--theme-color-base-light);
+  vertical-align: top;
+  color: var(--theme-color-ink);
+  line-height: var(--line-height-body);
+}
+
+.matrix-table tbody td:last-child {
+  border-right: none;
+}
+
+.matrix-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.matrix-table tbody tr:hover {
+  background-color: var(--usa-color-blue-5);
+}
+
+.matrix-cell-title {
+  min-width: 170px;
+}
+
+.matrix-title-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--size-font-2xs);
+  font-weight: 700;
+  color: var(--theme-color-primary-dark);
+  background-color: var(--usa-color-blue-10);
+  border: 1px solid var(--usa-color-blue-20);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  margin-bottom: 4px;
+}
+
+.matrix-articles-tag {
+  display: block;
+  font-size: var(--size-font-2xs);
+  color: var(--theme-color-base);
+  margin-top: 2px;
+}
+
+.matrix-source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--size-font-2xs);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.matrix-source-eu {
+  background-color: var(--usa-color-blue-10);
+  color: var(--usa-color-blue-80);
+  border: 1px solid var(--usa-color-blue-30);
+}
+
+.matrix-source-jtc {
+  background-color: var(--usa-color-green-10);
+  color: var(--usa-color-green-60);
+  border: 1px solid var(--usa-color-green-30);
+}
+
+.matrix-source-fisma {
+  background-color: #e0edfb;
+  color: #004085;
+  border: 1px solid #73b3e7;
+}
+
+.matrix-source-iso {
+  background-color: var(--usa-color-gold-10);
+  color: var(--usa-color-gold-60);
+  border: 1px solid var(--usa-color-gold-30);
+}
+
+.matrix-source-original {
+  background-color: var(--usa-color-gold-10);
+  color: var(--usa-color-gold-70);
+  border: 1px solid var(--usa-color-gold-40);
+  font-weight: 700;
+}
+
+.matrix-law-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--size-font-2xs);
+  font-weight: 700;
+  background-color: var(--usa-color-gray-cool-10);
+  color: var(--usa-color-gray-cool-90);
+  border: 1px solid var(--usa-color-gray-cool-30);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.matrix-law-crbv {
+  background-color: #fff4e5;
+  color: #7a3e00;
+  border: 1px solid #fac76f;
+}
+
+.matrix-law-organica {
+  background-color: var(--usa-color-red-5);
+  color: var(--usa-color-red-60);
+  border: 1px solid var(--usa-color-red-20);
+  font-weight: 700;
+}
+
+.matrix-summary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #ffffff;
+  border: 1px solid var(--theme-color-base-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--size-font-xs);
+  color: var(--theme-color-ink);
+  box-shadow: var(--shadow-1);
+}
+
+
 

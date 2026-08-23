@@ -82,15 +82,18 @@ Basado en **USWDS 3.x (U.S. Web Design System)**, cumple **Section 508 / WCAG 2.
 
 ---
 
-## 📐 Reglas específicas para archivos SVG
+## 📐 Reglas específicas para archivos SVG e Iconografía
 
 Todo SVG generado o modificado en este proyecto DEBE:
 
-1. Usar únicamente colores de la paleta USWDS (valores hexadecimales resueltos aceptados si corresponden a un token).
-2. Incluir en el SVG un comentario XML con la referencia al token utilizado. Ejemplo: `<!-- usa-color-blue-60: #1a5b8c -->`.
-3. Usar fondo blanco (`fill="#ffffff"` o `fill="none"`) — nunca fondos oscuros como fondo principal.
-4. No incluir bloques `<style>` con `prefers-color-scheme: dark`.
-5. Verificar contraste WCAG AA (≥ 4.5:1) entre todos los elementos superpuestos.
+1. **Uso exclusivo de Google Material Design Icons:**
+   - ❌ **ESTRICTAMENTE PROHIBIDO el uso de emojis** (como ⚖️, 🛡️, 🎲, 🔐, 🤖, 💡, ⭐, etc.) en SVGs o componentes visuales.
+   - ✅ **OBLIGATORIO usar iconos vectoriales de Google Material Design** (Material Symbols / Material Icons), ya sea mediante trazados vectoriales `<path>` oficiales de Material Design o mediante `<text class="material-symbols-outlined">`.
+2. Usar únicamente colores de la paleta USWDS (valores hexadecimales resueltos aceptados si corresponden a un token).
+3. Incluir en el SVG comentarios de trazabilidad al design system.
+4. Usar fondo blanco (`fill="#ffffff"` o `fill="none"`) — nunca fondos oscuros como fondo principal.
+5. No incluir bloques `<style>` con `prefers-color-scheme: dark`.
+6. Verificar contraste WCAG AA (≥ 4.5:1) entre todos los elementos superpuestos.
 
 ### Colores hexadecimales resueltos permitidos en SVG
 
