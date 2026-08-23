@@ -1,5 +1,39 @@
 [
   {
+    "id": "v1.2",
+    "label": "Ley Orgánica V-1.2 (FISMA 2014 — Auditoría Independiente + DOV)",
+    "shortLabel": "V-1.2 FISMA",
+    "file": "components/docs/v1.2.html",
+    "sourceFile": "docs/ciberseguridadprocesal_v1.2.md",
+    "type": "Ley Orgánica",
+    "hierarchy": "Orgánica",
+    "hierarchySub": "Art. 203 CRBV",
+    "articlesCount": 47,
+    "titlesCount": "11 Títulos + Anexo",
+    "coverage": "100% Pleno",
+    "coverageSub": "Judicial + Adm. + FISMA",
+    "badge": "reform",
+    "badgeClass": "dc3-tag",
+    "badgeText": "Versión 1.2 FISMA",
+    "date": "2026-08-23",
+    "changes": 12,
+    "changesLabel": "Nuevas cláusulas FISMA 2014 (v1.2)",
+    "changesTag": "Marcadas en Azul",
+    "description": "Versión 1.2 de gobernanza estratégica: integra la Ley Federal de Modernización de la Seguridad de la Información de los EE.UU. (S.2521 — FISMA 2014). Introduce la Auditoría Independiente Anual (Art. 10-bis), el Plan de Seguridad del Sistema por sistema crítico (Art. 13-bis), el régimen de Directivas Operativas Vinculantes de cumplimiento inmediato (Art. 19-bis), y el ciclo de rendición de cuentas al órgano legislativo.",
+    "highlights": [
+      "FISMA 2014 — S.2521",
+      "Directivas Operativas Vinculantes (DOV)",
+      "Auditoría Independiente Anual (Art. 10-bis)",
+      "Plan de Seguridad del Sistema — PSS (Art. 13-bis)"
+    ],
+    "icon": "article",
+    "reformsDistribution": {
+      "labels": ["Título I (Principios+Def.)", "Título II (DINCIP+Auditoría)", "Título III (Estándares+PSS)", "Título V (Incidentes+DOV)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Títulos IX-XI (Coop/Form/Trans.)"],
+      "data": [3, 3, 2, 2, 1, 3, 2]
+    }
+  },
+  {
+
     "id": "v1.1",
     "label": "Ley Orgánica V-1.1 (Con Reformas)",
     "shortLabel": "V-1.1 Orgánica",

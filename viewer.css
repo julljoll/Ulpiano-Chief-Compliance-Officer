@@ -690,4 +690,71 @@ body {
   }
 }
 
+/* ==========================================================================
+   VERSION REFORM MARKUP STYLES
+   .reforma-v12  — V-1.2 new/modified clauses (FISMA 2014 — S.2521) → Blue
+   Inline <span style="color:red"> — V-1.1 changes → Red (rendered natively)
+   ========================================================================== */
+
+/* V-1.2 FISMA 2014 additions — DC3 Institutional Blue */
+.reforma-v12 {
+  color: #0050a0;                           /* DC3 Navy Blue — readable on white */
+  font-weight: 500;
+  position: relative;
+}
+
+/* Subtle left border to aid skimming in the reader */
+.markdown-body p > .reforma-v12,
+.markdown-body li > .reforma-v12 {
+  border-left: 3px solid #0050a0;
+  padding-left: 6px;
+  margin-left: -9px;
+  display: inline-block;
+  width: calc(100% + 9px);
+}
+
+/* Block-level reforma-v12 (inside strong headings etc.) */
+.reforma-v12 strong {
+  color: #0050a0;
+}
+
+/* Inline badge/tag used in version legends */
+.reforma-v12-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #0050a0;
+  border-radius: 4px;
+  padding: 2px 8px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* Version legend row in the reader header */
+.version-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--usa-color-gray-cool-70);
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot--red   { background-color: #b50909; }
+.legend-dot--blue  { background-color: #0050a0; }
+.legend-dot--black { background-color: #1b1b1b; }
+
 
