@@ -54,6 +54,30 @@ function Convert-MdToHtml {
         $b = $block.Trim()
         if ([string]::IsNullOrWhiteSpace($b)) { continue }
 
+        # Markdown Table Detection
+        $lines = @($b -split "`n" | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+        if ($lines.Count -ge 2) {
+            $firstLine = [string]$lines[0]
+            $secondLine = [string]$lines[1]
+            if ($firstLine.Trim().StartsWith('|') -and $firstLine.Trim().EndsWith('|') -and $secondLine -match '^\s*\|[\s\:\-\|]+\|\s*$') {
+                $headerCells = ($firstLine.Trim().Trim('|') -split '\|') | ForEach-Object { ([string]$_).Trim() }
+                $thHtml = ($headerCells | ForEach-Object { "<th>$_</th>" }) -join ""
+                $rowsHtml = @()
+
+                for ($i = 2; $i -lt $lines.Count; $i++) {
+                    $rowLine = ([string]$lines[$i]).Trim()
+                    if (-not ($rowLine.StartsWith('|') -and $rowLine.EndsWith('|'))) { continue }
+                    $cells = ($rowLine.Trim('|') -split '\|') | ForEach-Object { ([string]$_).Trim() }
+                    $tdHtml = ($cells | ForEach-Object { "<td>$_</td>" }) -join ""
+                    $rowsHtml += "<tr>$tdHtml</tr>"
+                }
+
+                $tableHtml = "<div class=""table-responsive my-4"">`n<table class=""matrix-doc-table"">`n<thead>`n<tr>$thHtml</tr>`n</thead>`n<tbody>`n$($rowsHtml -join "`n")`n</tbody>`n</table>`n</div>"
+                $resultList += $tableHtml
+                continue
+            }
+        }
+
         if ($b -match '^<(h[1-6]|ul|ol|hr|div|table|blockquote|article|section|pre|p|figure|img)') {
             $resultList += $b
         } else {

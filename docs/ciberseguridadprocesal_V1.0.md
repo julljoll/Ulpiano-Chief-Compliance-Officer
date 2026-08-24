@@ -554,45 +554,23 @@ Esta Ley entrará en vigencia a partir de su publicación en la Gaceta Oficial d
 
 
 
-ANEXO. 
+## ANEXO. 
 
-MATRIZ DE TRAZABILIDAD NORMATIVA
+### MATRIZ DE TRAZABILIDAD NORMATIVA (V-1.0 BASE SECTORIAL)
 
-
-
-
-
-
-
-Fuente internacional | Norma nacional concordante 
-
-
-
- I. Disposiciones generales - CRBV.
-
-II. Institucionalidad sectorial - Reglamento (UE, Euratom) 2023/2841, arts. 3-6, 23
-
-III. Estándares técnicos - ISO/IEC 27001, 27035, 22301; JTC (2025) - Normativas SUSCERTE.
-
-
-
-IV. Debido proceso digital - CRBV, arts. 28, 49 
-
-V. Gestión de incidentes | JTC (2025), "COOP"
-
-VI. Régimen probatorio forense - ISO/IEC 27037, 27041-27043; RFC 3227; NIST SP 800-86, Manual Único de Cadena de Custodia de Evidencias 2017.
-
-
-
-VII. Integridad procesal (aporte propio) - Sin antecedente directo
-
-VIII. Sancionatorio - Ley Especial contra los Delitos Informáticos.
-
-IX. Cooperación - CRBV, art. 154.
-
-X. Formación - JTC (2025).
-
-XI. Transitorias - Reglamento (UE, Euratom) 2023/2841, arts. 24-26 (adaptado) - CRBV, arts. 202-218.
+| Título & Materia Regulada | Artículos | Fuente Internacional & Estándar Técnico | Norma Nacional Concordante (Sector Judicial) |
+| :--- | :--- | :--- | :--- |
+| **Título I. Disposiciones Generales**<br>Objeto y ámbito en el sistema de justicia | Arts. 1° al 7° | Boletín JTC Courts (2025); ISO/IEC 27000 | CRBV, arts. 26, 28, 49, 110; Ley de Infogobierno. |
+| **Título II. Institucionalidad Sectorial**<br>DINCIP y CSIRT judicial | Arts. 8° al 11° | Reglamento (UE, Euratom) 2023/2841, arts. 3-6, 23 | CRBV, arts. 253, 254 (Poder Judicial); Ley Orgánica del TSJ. |
+| **Título III. Estándares Técnicos**<br>Seguridad de la información procesal | Arts. 12° y 13° | ISO/IEC 27001, 27035, 22301; JTC (2025) | Normativas técnicas SUSCERTE para tribunales. |
+| **Título IV. Debido Proceso Digital**<br>Garantías de no indefensión | Arts. 14° al 16° | JTC (2025); Directiva (UE) 2016/680 | CRBV, arts. 28, 49 (Garantías procesales en tribunales). |
+| **Título V. Gestión de Incidentes**<br>Continuidad y respuesta a fallas | Arts. 17° y 18° | JTC (2025) "COOP"; Reglamento (UE) 2023/2841 | CSIRT-Ulpiano; Protocolo Nacional Alertas SUSCERTE. |
+| **Título VI. Régimen Probatorio Forense**<br>Evidencia digital y peritaje informático | Arts. 19° al 23° | ISO/IEC 27037, 27041-27043; RFC 3227; NIST SP 800-86 | Manual Único de Cadena de Custodia de Evidencias (2017); COPP arts. 181-187. |
+| **Título VII. Integridad Procesal**<br>Sorteo inmutable y 4 ojos (Aporte propio) | Arts. 24° al 32° | **Aporte Propio Técnico (Jull Ortiz)** — Sin antecedente directo | CRBV, art. 141 (Honestidad y transparencia en tribunales). |
+| **Título VIII. Régimen Sancionatorio**<br>Régimen disciplinario y penal | Arts. 33° al 36° | Régimen sectorial estándar | Ley Especial contra los Delitos Informáticos; Código Ética Judicial. |
+| **Título IX. Cooperación**<br>Intercambio de datos judiciales | Art. 37° | Estándares de interoperabilidad forense | CRBV, art. 154 (Cooperación institucional). |
+| **Título X. Formación**<br>Capacitación al personal del poder judicial | Art. 38° | JTC (2025) "Cybersecurity Basics" | Escuela Nacional de la Magistratura. |
+| **Título XI. Transitorias y Vigencia**<br>Régimen de adecuación y vigencia | Arts. 39° al 42° | Reglamento (UE, Euratom) 2023/2841, arts. 24-26 | CRBV, arts. 202-218; Gaceta Oficial de la República. |
 
 
 

@@ -10,7 +10,7 @@
   // --- App State ---
   const state = {
     currentView: 'dashboard', // 'dashboard', 'reader', 'compare', 'matrix'
-    currentDocKey: 'v1.1',
+    currentDocKey: 'v1.2',
     fontFamily: 'serif',
     fontSize: 17,
     searchQuery: '',
@@ -22,68 +22,78 @@
   const DocRegistry = {
     docs: [
       {
-        id: 'v1.1',
-        label: 'Ley Orgánica V-1.1 (Con Reformas)',
-        shortLabel: 'V-1.1 Orgánica',
-        file: 'components/docs/v1.1.html',
-        sourceFile: 'docs/ciberseguridadprocesal_v1.1.md',
+        id: 'v1.2',
+        label: 'Ley Orgánica V-1.2 (FISMA 2014 + LOCOTA 2026 — Auditoría + DOV)',
+        shortLabel: 'V-1.2 FISMA & LOCOTA',
+        file: 'components/docs/v1.2.html',
+        sourceFile: 'docs/ciberseguridadprocesal_v1.2.md',
         type: 'Ley Orgánica',
         hierarchy: 'Orgánica',
-        hierarchySub: 'Art. 203 CRBV',
-        articlesCount: 42,
+        hierarchySub: 'Art. 203 CRBV (TSJ 0406/2026)',
+        articlesCount: 47,
         titlesCount: '11 Títulos + Anexo',
         coverage: '100% Pleno',
-        coverageSub: 'Judicial + Administrativo',
+        coverageSub: 'Judicial + Adm. Pública + LOCOTA',
         badge: 'reform',
         badgeClass: 'dc3-tag',
-        badgeText: 'Versión 1.1 Orgánica',
-        date: '2025-08-23',
-        changes: 28,
-        changesLabel: 'Cláusulas Mejoradas (v1.1)',
-        changesTag: 'Marcadas en Rojo',
-        description: 'Evolución técnico-legislativa del anteproyecto de ciberseguridad procesal: rango de Ley Orgánica (CRBV art. 203), cobertura integral de la Administración Pública y régimen sancionatorio escalonado con plenas garantías de debido proceso.',
+        badgeText: 'Versión 1.2 FISMA & LOCOTA',
+        date: '2026-08-23',
+        changes: 14,
+        changesLabel: 'Cláusulas FISMA 2014 & LOCOTA 2026 (v1.2)',
+        changesTag: 'Marcadas en Azul y Rojo',
+        description: 'Versión 1.2 de gobernanza estratégica e interoperabilidad: integra la Ley Federal de Modernización de la Seguridad de la Información (S.2521 — FISMA 2014), la doctrina de la Sentencia TSJ/SC N° 0406 (2026) sobre el Art. 203 CRBV y la Ley Orgánica para la Celeridad y Optimización de Trámites Administrativos (LOCOTA 2026). Introduce la Auditoría Independiente Anual (Art. 10-bis), el Plan de Seguridad del Sistema (Art. 13-bis), Directivas Operativas Vinculantes (Art. 19-bis), articulación con Unidades de Celeridad (Art. 11 LOCOTA) y la Comisión Nacional de Celeridad (Art. 7 LOCOTA).',
         highlights: [
-          'Ámbito Administrativo',
-          'Rango Orgánico Art. 203 CRBV',
-          'Sanciones Escalonadas',
-          'Disposiciones Finales'
+          'FISMA 2014 — S.2521',
+          'LOCOTA 2026 & Sentencia TSJ 0406/2026',
+          'Directivas Operativas Vinculantes (DOV)',
+          'Auditoría Independiente Anual (Art. 10-bis)',
+          'Unidades de Celeridad (Art. 11 LOCOTA) & PSS'
         ],
         icon: 'article',
-        reformsDistribution: {
-          labels: ['Título I (Gral)', 'Título II (Institucional)', 'Título III (Técnico)', 'Título IV (Garantías)', 'Título VII (Integridad)', 'Título VIII (Sanciones)', 'Título XI (Supremacía)'],
-          data: [6, 4, 3, 2, 4, 8, 5]
-        }
-      },
-      {
-        id: 'v1.0',
-        label: 'Ley Especial V-1.0 (Base Original)',
-        shortLabel: 'V-1.0 Base',
-        file: 'components/docs/v1.0.html',
-        sourceFile: 'docs/ciberseguridadprocesal_V1.0.md',
-        type: 'Ley Especial',
-        hierarchy: 'Especial',
-        hierarchySub: 'Ámbito Sectorial',
-        articlesCount: 42,
-        titlesCount: '11 Títulos',
-        coverage: 'Sector Judicial',
-        coverageSub: 'Tribunales y Cortes',
-        badge: 'base',
-        badgeClass: 'dc3-tag',
-        badgeText: 'Versión 1.0 Base',
-        date: '2025-01-01',
-        changes: 0,
-        changesLabel: 'Cláusulas Base (v1.0)',
-        changesTag: 'Texto Original',
-        description: 'Versión base de investigación técnica preliminar orientada al sistema de justicia y tribunales.',
-        highlights: [
-          'CSIRT-Ulpiano',
-          'ISO 27037 Forense',
-          'Zero Trust en Cortes'
+        coreReforms: [
+          {
+            tag: 'Gobernanza Federal FISMA',
+            tagClass: 'dc3-tag dc3-tag-green',
+            accentClass: 'dc3-card-accent-green',
+            articles: 'Arts. 10-bis, 13-bis, 19-bis',
+            title: 'Gobernanza FISMA 2014, Auditoría Anual y DOV',
+            desc: 'Adopción de la Ley Federal de Modernización de la Seguridad de la Información (S.2521 FISMA 2014): Auditoría Independiente Anual obligatoria (Art. 10-bis), Planes de Seguridad del Sistema - PSS (Art. 13-bis) y Directivas Operativas Vinculantes - DOV de cumplimiento perentorio en 72 horas dictadas por DINCIP (Art. 19-bis).',
+            before: 'V-1.1: Sin mandato expreso de auditoría independiente periódica ni directivas técnicas de remediación vinculante inmediata.',
+            after: 'V-1.2: Auditoría anual independiente por el Poder Ciudadano, PSS por cada sistema crítico y DOVs vinculantes con fuerza ejecutiva.',
+            benefit: 'Gobernanza estratégica permanente y remediación obligatoria de incidentes.',
+            benefitIcon: 'verified_user',
+            benefitClass: 'text-success'
+          },
+          {
+            tag: 'Celeridad & Jerarquía Constitucional',
+            tagClass: 'dc3-tag dc3-tag-gold',
+            accentClass: 'dc3-card-accent-top',
+            articles: 'Arts. 3°, 4°, 11 LOCOTA & Art. 203 CRBV',
+            title: 'Interoperabilidad LOCOTA 2026 & Doctrina TSJ 0406',
+            desc: 'Articulación obligatoria con la Ley Orgánica para la Celeridad y Optimización de Trámites Administrativos (LOCOTA 2026), interconexión con Unidades de Celeridad (Art. 11 LOCOTA), ventanillas únicas y fundamentación formal en la Sentencia TSJ/SC N° 0406/2026 para blindar su rango de Ley Orgánica.',
+            before: 'V-1.1: Rango orgánico genérico sin articulación expresa con el nuevo régimen LOCOTA 2026 ni doctrina vinculante TSJ 0406.',
+            after: 'V-1.2: Interoperabilidad directa con Unidades de Celeridad y blindaje de jerarquía preferente sobre cualquier ley ordinaria.',
+            benefit: 'Cero dilaciones indebidas e interoperabilidad procesal transversal del Estado.',
+            benefitIcon: 'account_balance',
+            benefitClass: 'text-primary'
+          },
+          {
+            tag: 'Integridad Procesal & Sanciones',
+            tagClass: 'dc3-tag dc3-tag-red',
+            accentClass: 'dc3-card-accent-red',
+            articles: 'Título VII & Título VIII (Arts. 26°-37°)',
+            title: 'Integridad Procesal y Régimen Sancionatorio Garantista',
+            desc: 'Reducción de la discrecionalidad humana mediante sorteo automatizado, trazabilidad forense (ISO 27037) y catálogo completo de sanciones clasificadas (Leves, Graves y Muy Graves) con plenas garantías de debido proceso y doble instancia (Art. 49 CRBV).',
+            before: 'V-1.0: Ámbito limitado exclusivamente a tribunales y régimen sancionatorio incompleto sin tipicidad escalonada.',
+            after: 'V-1.2: Cobertura integral en sede judicial y administrativa con régimen disciplinario y sancionatorio tipificado.',
+            benefit: 'Trazabilidad forense inalterable y responsabilidad administrativa garantista.',
+            benefitIcon: 'gavel',
+            benefitClass: 'text-danger'
+          }
         ],
-        icon: 'article',
         reformsDistribution: {
-          labels: ['Título I (Gral)', 'Título II (Institucional)', 'Título III (Técnico)', 'Título IV (Garantías)', 'Título VII (Integridad)', 'Título VIII (Sanciones)', 'Título XI (Supremacía)'],
-          data: [0, 0, 0, 0, 0, 0, 0]
+          labels: ['Título I (Principios+Def.)', 'Título II (DINCIP+Auditoría)', 'Título III (Estándares+PSS)', 'Título V (Incidentes+DOV)', 'Título VII (Integridad)', 'Título VIII (Sanciones)', 'Títulos IX-XI (Coop/Form/Trans.)'],
+          data: [3, 3, 2, 2, 1, 3, 2]
         }
       }
     ],
@@ -119,29 +129,84 @@
     syncUI() {
       buildVersionSelectors();
       buildDashboardVersionCards();
+      renderCoreReforms();
       updateDashboardStats();
     }
   };
 
-  // Detailed catalog of all modifications in V1.1 for the Delta Inspector
+  // Detailed catalog of all modifications in V1.1 and V1.2 for the Delta Inspector
   const REFORMS_CATALOG = [
+    {
+      article: 'Artículo 10-bis° (FISMA 2014 § 3555)',
+      type: 'Gobernanza & Auditoría',
+      badgeClass: 'dc3-tag dc3-tag-green',
+      summary: 'Auditoría Independiente Anual de Ciberseguridad Procesal obligatoria contratada por DINCIP con reporte a AN y CGR.',
+      impact: 'Establece control y evaluación independiente anual obligatoria con rendición de cuentas al poder legislativo.',
+      before: 'V1.1: Auditorías internas periódicas sin mandato anual independiente ni reporte obligado a la Asamblea Nacional.',
+      beforeTag: 'V1.1',
+      after: 'V1.2: Auditoría anual independiente por el Poder Ciudadano con informe vinculante en 90 días a la AN, CGR y TSJ.',
+      afterTag: 'V1.2',
+      targetDoc: 'v1.2'
+    },
+    {
+      article: 'Artículo 13-bis° (FISMA 2014 § 3554)',
+      type: 'Gestión de Riesgos',
+      badgeClass: 'dc3-tag dc3-tag-gold',
+      summary: 'Plan de Seguridad del Sistema (PSS) obligatorio por cada sistema de información crítico con actualización anual.',
+      impact: 'Asigna propietarios institucionales y técnicos responsables nominalmente por la seguridad de cada plataforma.',
+      before: 'V1.1: Disposiciones generales de seguridad sin ficha técnica individualizada ni planes PSS registrados.',
+      beforeTag: 'V1.1',
+      after: 'V1.2: PSS anual registrado en DINCIP con clasificación NIST SP 800-30 y cronograma de remediación.',
+      afterTag: 'V1.2',
+      targetDoc: 'v1.2'
+    },
+    {
+      article: 'Artículo 19-bis° (FISMA 2014 § 3553 / CISA)',
+      type: 'Respuesta Vinculante',
+      badgeClass: 'dc3-tag dc3-tag-red',
+      summary: 'Directivas Operativas Vinculantes (DOV) de cumplimiento obligatorio e inmediato en 72 horas ante incidentes críticos.',
+      impact: 'Otorga potestad coercitiva a la DINCIP para ordenar contención inmediata de incidentes de seguridad.',
+      before: 'V1.1: Alertas y recomendaciones del CSIRT sin fuerza vinculante inmediata ni plazos perentorios de 72 horas.',
+      beforeTag: 'V1.1',
+      after: 'V1.2: DOV ejecutivas con plazo perentorio de 72h para contención y 30 días para remediación estructural.',
+      afterTag: 'V1.2',
+      targetDoc: 'v1.2'
+    },
+    {
+      article: 'Artículo 3° y 4° (LOCOTA 2026 & TSJ 0406)',
+      type: 'Interoperabilidad & Rango',
+      badgeClass: 'dc3-tag',
+      summary: 'Articulación con Unidades de Celeridad (Art. 11 LOCOTA) y doctrina vinculante de la Sentencia TSJ/SC N° 0406/2026.',
+      impact: 'Alinea los sistemas con la optimización de trámites y blinda la supremacía como Ley Orgánica transversal.',
+      before: 'V1.1: Referencia orgánica genérica sin articulación con el ecosistema de celeridad de trámites ni doctrina TSJ 0406.',
+      beforeTag: 'V1.1',
+      after: 'V1.2: Integración con Unidades de Celeridad, ventanillas únicas y doctrina vinculante constitucional.',
+      afterTag: 'V1.2',
+      targetDoc: 'v1.2'
+    },
+    {
+      article: 'Artículo 11°. Estándares NIST SP 800-37/53',
+      type: 'Estándares Técnicos',
+      badgeClass: 'dc3-tag dc3-tag-blue',
+      summary: 'Adopción de marcos de gestión de riesgos y controles NIST SP 800-37 y NIST SP 800-53 en armonía con ISO/IEC 27001.',
+      impact: 'Estandariza los controles técnicos de seguridad con los referentes más avanzados de derecho comparado.',
+      before: 'V1.1: Solo estándares ISO/IEC 27001, 27035 y 22301.',
+      beforeTag: 'V1.1',
+      after: 'V1.2: Integración complementaria de NIST SP 800-37 (RMF) y NIST SP 800-53 (Security Controls).',
+      afterTag: 'V1.2',
+      targetDoc: 'v1.2'
+    },
     {
       article: 'Título y Portada',
       type: 'Técnica Legislativa',
       badgeClass: 'dc3-tag',
       summary: 'Denominación de Ley Orgánica y adición expresa del ámbito de la Administración Pública.',
       impact: 'Eleva el rango normativo y formaliza la cobertura integral de la vida jurídica.',
-      before: 'ANTEPROYECTO DE LEY ESPECIAL DE CIBERSEGURIDAD PROCESAL E INTEGRIDAD DEL SISTEMA DE JUSTICIA.',
-      after: 'ANTEPROYECTO DE LEY ORGÁNICA DE CIBERSEGURIDAD PROCESAL E INTEGRIDAD DEL SISTEMA DE JUSTICIA Y DE LA ADMINISTRACIÓN PÚBLICA.'
-    },
-    {
-      article: 'Exposición de Motivos',
-      type: 'Fundamento Constitucional',
-      badgeClass: 'dc3-tag dc3-tag-gold',
-      summary: 'Incorporación de justificación orgánica (CRBV art. 203) y principio de supremacía solo subordinada a la CRBV.',
-      impact: 'Blindaje de jerarquía normativa: ninguna ley ordinaria puede contradecirla ni derogarla.',
-      before: 'Enfoque de ley especial con fundamentación estándar en ciencia y tecnología.',
-      after: 'Invocación del art. 203 CRBV por organizar poderes públicos y desarrollar derechos constitucionales (arts. 28, 49, 141).'
+      before: 'V1.0: ANTEPROYECTO DE LEY ESPECIAL DE CIBERSEGURIDAD PROCESAL E INTEGRIDAD DEL SISTEMA DE JUSTICIA.',
+      beforeTag: 'V1.0',
+      after: 'V1.1: ANTEPROYECTO DE LEY ORGÁNICA DE CIBERSEGURIDAD PROCESAL E INTEGRIDAD DEL SISTEMA DE JUSTICIA Y DE LA ADMINISTRACIÓN PÚBLICA.',
+      afterTag: 'V1.1',
+      targetDoc: 'v1.1'
     },
     {
       article: 'Artículo 1°. Objeto',
@@ -149,8 +214,11 @@
       badgeClass: 'dc3-tag dc3-tag-green',
       summary: 'Inclusión de procedimientos administrativos que produzcan efectos jurídicos y carácter orgánico expreso.',
       impact: 'Protege a los ciudadanos frente a actos administrativos viciados o manipulados digitalmente.',
-      before: 'Limitado a la función jurisdiccional y de investigación penal en tribunales.',
-      after: 'Extendido a la totalidad de los órganos del Poder Público que generen actos administrativos vinculantes.'
+      before: 'V1.0: Limitado a la función jurisdiccional y de investigación penal en tribunales.',
+      beforeTag: 'V1.0',
+      after: 'V1.1: Extendido a la totalidad de los órganos del Poder Público que generen actos administrativos vinculantes.',
+      afterTag: 'V1.1',
+      targetDoc: 'v1.1'
     },
     {
       article: 'Artículo 2°. Ámbito de Aplicación',
@@ -158,17 +226,11 @@
       badgeClass: 'dc3-tag dc3-tag-green',
       summary: 'Numerales 5 y 6: Inclusión expresa de órganos de la Administración Pública Nacional, Estadal y Municipal.',
       impact: 'Cierra la brecha donde los fraudes ocurrían en instancias administrativas previas al juicio.',
-      before: 'Solo aplicaba a tribunales, fiscalía, defensa pública y peritos forenses.',
-      after: 'Aplica a todo el Estado venezolano en procedimientos con efectos sobre los ciudadanos.'
-    },
-    {
-      article: 'Artículo 3°. Articulación Normativa',
-      type: 'Jerarquía',
-      badgeClass: 'dc3-tag dc3-tag-gold',
-      summary: 'Integración expresa con la LOPA y supremacía de Ley Orgánica.',
-      impact: 'Prevalencia formal en caso de colisión con normativas sectoriales o decretos.',
-      before: 'Articulación simple con leyes ordinarias.',
-      after: 'Supremacía orgánica vinculada a la Disposición Final Primera.'
+      before: 'V1.0: Solo aplicaba a tribunales, fiscalía, defensa pública y peritos forenses.',
+      beforeTag: 'V1.0',
+      after: 'V1.1: Aplica a todo el Estado venezolano en procedimientos con efectos sobre los ciudadanos.',
+      afterTag: 'V1.1',
+      targetDoc: 'v1.1'
     },
     {
       article: 'Título VIII. Régimen Sancionatorio',
@@ -176,8 +238,11 @@
       badgeClass: 'dc3-tag dc3-tag-red',
       summary: 'Tipificación detallada de faltas leves, graves y gravísimas con sanciones administrativas, disciplinarias y penales.',
       impact: 'Proporcionalidad y tipicidad garantizada conforme al art. 49 CRBV.',
-      before: 'Sanciones genéricas con remisión a leyes preexistentes.',
-      after: 'Catálogo autónomo y escalonado con destitución e inhabilitación para actos graves de corrupción digital.'
+      before: 'V1.0: Sanciones genéricas con remisión a leyes preexistentes.',
+      beforeTag: 'V1.0',
+      after: 'V1.1: Catálogo autónomo y escalonado con destitución e inhabilitación para actos graves de corrupción digital.',
+      afterTag: 'V1.1',
+      targetDoc: 'v1.1'
     },
     {
       article: 'Disposiciones Finales',
@@ -185,8 +250,11 @@
       badgeClass: 'dc3-tag dc3-tag-red',
       summary: 'Declaratoria formal de carácter orgánico (CRBV art. 203) y derogatoria expresa de normas incompatibles.',
       impact: 'Garantiza que ninguna ley ordinaria posterior derogue tácitamente sus disposiciones de integridad.',
-      before: 'Disposiciones finales genéricas sin cláusula formal de supremacía orgánica.',
-      after: 'Capítulo II de Disposiciones Finales con supremacía orgánica y derogatoria expresa.'
+      before: 'V1.0: Disposiciones finales genéricas sin cláusula formal de supremacía orgánica.',
+      beforeTag: 'V1.0',
+      after: 'V1.1: Capítulo II de Disposiciones Finales con supremacía orgánica y derogatoria expresa.',
+      afterTag: 'V1.1',
+      targetDoc: 'v1.1'
     }
   ];
 
@@ -219,22 +287,77 @@
     const coverageNum = document.getElementById('kpi-coverage-num');
     const coverageTag = document.getElementById('kpi-coverage-tag');
 
-    if (articlesNum) articlesNum.textContent = latest.articlesCount || 42;
+    if (articlesNum) articlesNum.textContent = latest.articlesCount || 47;
     if (articlesTag) articlesTag.textContent = latest.titlesCount || '11 Títulos + Anexo';
 
     if (reformsLabel) reformsLabel.textContent = latest.changesLabel || `Cláusulas Mejoradas (${latest.shortLabel || latest.id})`;
-    if (reformsNum) reformsNum.textContent = latest.changes !== undefined ? latest.changes : 28;
-    if (reformsTag) reformsTag.textContent = latest.changesTag || (latest.changes > 0 ? 'Marcadas en Rojo' : 'Texto Base');
+    if (reformsNum) reformsNum.textContent = latest.changes !== undefined ? latest.changes : 14;
+    if (reformsTag) reformsTag.textContent = latest.changesTag || (latest.changes > 0 ? 'Marcadas en Azul y Rojo' : 'Texto Base');
 
     if (hierarchyNum) hierarchyNum.textContent = latest.hierarchy || latest.type || 'Orgánica';
     if (hierarchyTag) hierarchyTag.textContent = latest.hierarchySub || 'Art. 203 CRBV';
 
     if (coverageNum) coverageNum.textContent = latest.coverage || '100% Pleno';
-    if (coverageTag) coverageTag.textContent = latest.coverageSub || 'Judicial + Administrativo';
+    if (coverageTag) coverageTag.textContent = latest.coverageSub || 'Judicial + Adm. Pública + LOCOTA';
 
     // 3. Chart version tag
     const chartTag = document.getElementById('chart-reforms-version-tag');
     if (chartTag) chartTag.textContent = latest.shortLabel || latest.label;
+
+    // 4. Core Structural Reforms
+    renderCoreReforms();
+  }
+
+  // --- Dynamic Dashboard Core Structural Reforms Cards Generator ---
+  function renderCoreReforms() {
+    const grid = document.getElementById('core-reforms-grid');
+    const titleEl = document.getElementById('core-reforms-section-title');
+    if (!grid) return;
+
+    const latest = DocRegistry.getLatest();
+    if (!latest) return;
+
+    if (titleEl) {
+      const count = (latest.coreReforms && latest.coreReforms.length) || 3;
+      titleEl.innerHTML = `<span class="material-symbols-outlined text-primary">shield</span> Desglose de las ${count} Grandes Reformas Estructurales (${escapeHtml(latest.shortLabel || latest.label)})`;
+    }
+
+    const reforms = latest.coreReforms || [];
+    if (reforms.length === 0) {
+      grid.innerHTML = `<div class="col-12"><div class="alert alert-info">No hay desglose de reformas configurado para esta versión.</div></div>`;
+      return;
+    }
+
+    const colClass = reforms.length === 3 ? 'col-12 col-lg-4' : (reforms.length === 2 ? 'col-12 col-md-6' : 'col-12 col-lg-4');
+
+    let html = '';
+    reforms.forEach(ref => {
+      html += `
+        <div class="${colClass}">
+          <div class="dc3-card ${ref.accentClass || 'dc3-card-accent-top'} h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="${ref.tagClass || 'dc3-tag'}">${escapeHtml(ref.tag)}</span>
+                <span class="text-muted small">${escapeHtml(ref.articles)}</span>
+              </div>
+              <h5 class="fw-bold text-dark">${escapeHtml(ref.title)}</h5>
+              <p class="text-muted small mb-3">
+                ${escapeHtml(ref.desc)}
+              </p>
+              <div class="p-3 bg-light border rounded mb-3">
+                <div class="small mb-1"><strong class="text-danger">❌ Antes:</strong> ${escapeHtml(ref.before)}</div>
+                <div class="small"><strong class="text-success">✅ Ahora:</strong> ${escapeHtml(ref.after)}</div>
+              </div>
+            </div>
+            <div class="small ${ref.benefitClass || 'text-primary'} fw-bold pt-2 border-top">
+              <span class="material-symbols-outlined me-1" style="font-size: 1.1rem; vertical-align: -2px;">${ref.benefitIcon || 'check_circle'}</span> ${escapeHtml(ref.benefit)}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    grid.innerHTML = html;
   }
 
   // --- Dynamic Dashboard Version Cards Generator ---
@@ -616,6 +739,8 @@
 
     let html = '';
     REFORMS_CATALOG.forEach(item => {
+      const beforeTag = item.beforeTag || 'V1.0';
+      const afterTag = item.afterTag || 'V1.2';
       html += `
         <tr>
           <td>
@@ -627,11 +752,11 @@
             <div class="small text-muted mt-1">${escapeHtml(item.impact)}</div>
           </td>
           <td>
-            <div class="mb-1"><span class="diff-tag-before">V1.0:</span> <small class="text-muted">${escapeHtml(item.before)}</small></div>
-            <div><span class="diff-tag-after">V1.1:</span> <small class="text-dark">${escapeHtml(item.after)}</small></div>
+            <div class="mb-1"><span class="diff-tag-before">${beforeTag}:</span> <small class="text-muted">${escapeHtml(item.before)}</small></div>
+            <div><span class="diff-tag-after">${afterTag}:</span> <small class="text-dark">${escapeHtml(item.after)}</small></div>
           </td>
           <td class="text-end">
-            <button class="btn btn-sm btn-outline-primary btn-jump-article" data-article="${item.article}">
+            <button class="btn btn-sm btn-outline-primary btn-jump-article" data-article="${item.article}" data-doc="${item.targetDoc || 'v1.2'}">
               <span class="material-symbols-outlined me-1" style="font-size: 1rem;">open_in_new</span> Ver en Texto
             </button>
           </td>
@@ -642,7 +767,8 @@
 
     tbody.querySelectorAll('.btn-jump-article').forEach(btn => {
       btn.addEventListener('click', () => {
-        state.currentDocKey = 'v1.1';
+        const targetDoc = btn.getAttribute('data-doc') || 'v1.2';
+        state.currentDocKey = targetDoc;
         switchView('reader');
         setTimeout(() => {
           jumpToNextRedHighlight();
@@ -824,7 +950,7 @@
         if (matrixFilterCount) {
           matrixFilterCount.innerHTML = query 
             ? `Encontradas <strong>${visibleCount}</strong> de <strong>${rows.length}</strong> secciones`
-            : `Mostrando <strong>${rows.length}</strong> secciones normativas`;
+            : `Mostrando <strong>${rows.length}</strong> filas normativas en cuadrícula`;
         }
       });
     }
@@ -832,6 +958,96 @@
     // 11. Start in Dashboard View
     switchView('dashboard');
   });
+
+  // --- Excel Spreadsheet Matrix Helpers ---
+  function exportMatrixCSV() {
+    const rows = document.querySelectorAll('#matrix-tbody tr');
+    let csv = '\uFEFF'; // UTF-8 BOM for Excel
+    csv += '"Fila";"Título & Artículos";"Materia Regulada & Alcance";"Derecho Comparado / Estándares";"Bloque Constitucional & Nacional";"Jerarquía"\r\n';
+
+    rows.forEach(row => {
+      if (row.style.display === 'none') return;
+      const cells = row.querySelectorAll('td');
+      if (cells.length < 6) return;
+
+      const rowNum = cells[0].textContent.trim();
+      const colA = cells[1].innerText.replace(/\r?\n|\r/g, ' ').replace(/"/g, '""').trim();
+      const colB = cells[2].innerText.replace(/\r?\n|\r/g, ' ').replace(/"/g, '""').trim();
+      const colC = cells[3].innerText.replace(/\r?\n|\r/g, ' | ').replace(/"/g, '""').trim();
+      const colD = cells[4].innerText.replace(/\r?\n|\r/g, ' | ').replace(/"/g, '""').trim();
+      const colE = cells[5].innerText.replace(/\r?\n|\r/g, ' ').replace(/"/g, '""').trim();
+
+      csv += `"${rowNum}";"${colA}";"${colB}";"${colC}";"${colD}";"${colE}"\r\n`;
+    });
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'Matriz_Trazabilidad_Normativa_V1.2.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function copyMatrixTable() {
+    const rows = document.querySelectorAll('#matrix-tbody tr');
+    let tsv = 'Fila\tTítulo & Artículos\tMateria Regulada\tDerecho Comparado / Estándares\tBloque Constitucional & Nacional\tJerarquía\n';
+
+    rows.forEach(row => {
+      if (row.style.display === 'none') return;
+      const cells = row.querySelectorAll('td');
+      if (cells.length < 6) return;
+
+      const rowNum = cells[0].textContent.trim();
+      const colA = cells[1].innerText.replace(/\r?\n|\r/g, ' ').trim();
+      const colB = cells[2].innerText.replace(/\r?\n|\r/g, ' ').trim();
+      const colC = cells[3].innerText.replace(/\r?\n|\r/g, ' | ').trim();
+      const colD = cells[4].innerText.replace(/\r?\n|\r/g, ' | ').trim();
+      const colE = cells[5].innerText.replace(/\r?\n|\r/g, ' ').trim();
+
+      tsv += `${rowNum}\t${colA}\t${colB}\t${colC}\t${colD}\t${colE}\n`;
+    });
+
+    navigator.clipboard.writeText(tsv).then(() => {
+      alert('✅ Matriz copiada al portapapeles en formato tabular Excel. ¡Puedes pegarla directamente (Ctrl+V) en Excel o Google Sheets!');
+    }).catch(err => {
+      console.error('Error al copiar:', err);
+    });
+  }
+
+  function filterMatrixBySheet(sheetType) {
+    const rows = document.querySelectorAll('#matrix-tbody tr');
+    const tabs = document.querySelectorAll('.excel-sheet-tab');
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-sheet') === sheetType));
+
+    let visibleCount = 0;
+    rows.forEach(row => {
+      const category = (row.getAttribute('data-category') || '').toLowerCase();
+      const text = row.textContent.toLowerCase();
+      let show = false;
+
+      if (sheetType === 'all') {
+        show = true;
+      } else if (sheetType === 'organica') {
+        show = category.includes('organica') || category.includes('cierre') || text.includes('0406') || text.includes('203');
+      } else if (sheetType === 'fisma') {
+        show = category.includes('fisma') || text.includes('fisma') || text.includes('2023/2841');
+      } else if (sheetType === 'original') {
+        show = category.includes('original') || text.includes('aporte original') || text.includes('título vii');
+      } else if (sheetType === 'forense') {
+        show = category.includes('forense') || category.includes('punitivo') || text.includes('27037') || text.includes('sancionatorio');
+      }
+
+      row.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+
+    const filterCountEl = document.getElementById('matrix-filter-count');
+    if (filterCountEl) {
+      filterCountEl.innerHTML = `Hoja seleccionada: Mostrando <strong>${visibleCount}</strong> de <strong>${rows.length}</strong> filas`;
+    }
+  }
 
   // Global API
   window.UlpianoDash = {
@@ -842,12 +1058,15 @@
     },
     openLatestDoc: () => {
       const latest = DocRegistry.getLatest();
-      state.currentDocKey = latest ? latest.id : 'v1.1';
+      state.currentDocKey = latest ? latest.id : 'v1.2';
       switchView('reader');
     },
     runCompare,
     swapComparePanels,
     jumpToNextRedHighlight,
+    exportMatrixCSV,
+    copyMatrixTable,
+    filterMatrixBySheet,
     DocRegistry
   };
 })();

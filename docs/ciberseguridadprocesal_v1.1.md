@@ -632,25 +632,21 @@ Esta Ley <span style="color:red">Orgánica</span> entrará en vigencia a partir 
 
 ## ANEXO. 
 
-### MATRIZ DE TRAZABILIDAD NORMATIVA
+### MATRIZ DE TRAZABILIDAD NORMATIVA (V-1.1 ORGÁNICA)
 
-
-
-Fuente internacional | Norma nacional concordante 
-
-| Fuente Internacional / Estándar Técnico | Norma Nacional Concordante / Bloque Constitucional |
-| :--- | :--- |
-| **I. Disposiciones generales** | <span style="color:red">CRBV, arts. 26, 28, 49, 110, 141 y **203 (Carácter Orgánico)**; LOPA; Ley de Infogobierno.</span> |
-| **II. Institucionalidad sectorial** | Reglamento (UE, Euratom) 2023/2841, arts. 3-6, 23 <span style="color:red">— CRBV, arts. 253, 254 y 284.</span> |
-| **III. Estándares técnicos** | ISO/IEC 27001, 27035, 22301; JTC (2025) — Normativas SUSCERTE <span style="color:red">y estándares de interoperabilidad del Estado.</span> |
-| **IV. Debido proceso digital** | CRBV, arts. 28, 49 <span style="color:red">y 257 (El proceso como instrumento fundamental para la realización de la justicia).</span> |
-| **V. Gestión de incidentes** | JTC (2025), "COOP" — Reglamento (UE, Euratom) 2023/2841. |
-| **VI. Régimen probatorio forense** | ISO/IEC 27037, 27041-27043; RFC 3227; NIST SP 800-86; Manual Único de Cadena de Custodia de Evidencias 2017. |
-| **VII. Integridad procesal <span style="color:red">y administrativa</span>** (aporte propio) | ISO 37001, ISO 37301, ISO/IEC 42001, ISO/IEC 23894 <span style="color:red">— CRBV, art. 141 (Rendición de cuentas y probidad).</span> |
-| **VIII. Sancionatorio <span style="color:red">y disciplinario</span>** | <span style="color:red">Graduación escalonada (Leves, Graves, Muy Graves) — Ley Especial contra los Delitos Informáticos; Estatuto de la Función Pública; Código de Ética del Juez Venezolano.</span> |
-| **IX. Cooperación** | CRBV, art. 154. |
-| **X. Formación** | JTC (2025). |
-| **XI. Transitorias, <span style="color:red">Derogatorias y Supremacía</span>** | Reglamento (UE, Euratom) 2023/2841, arts. 24-26 <span style="color:red">— CRBV, arts. 202-218 y 203 (Supremacía Orgánica).</span> |
+| Título & Materia Regulada | Artículos | Fuente Internacional & Estándar Técnico | Bloque Constitucional & Norma Nacional Concordante |
+| :--- | :--- | :--- | :--- |
+| **Título I. Disposiciones Generales**<br>Objeto, ámbito subjetivo amplio y principios rectores | Arts. 1° al 7° | Reglamento (UE, Euratom) 2023/2841; JTC (2025); ISO/IEC 27000 | <span style="color:red">**CRBV, arts. 26, 28, 49, 110, 141 y 203 (Carácter Orgánico)**; LOPA; Ley de Infogobierno.</span> |
+| **Título II. Institucionalidad Sectorial**<br>DINCIP, CSIRT-Ulpiano y Junta de Ciberseguridad | Arts. 8° al 11° | Reglamento (UE, Euratom) 2023/2841, arts. 3-6, 23 | <span style="color:red">CRBV, arts. 253, 254 y 284; Ley Orgánica del Poder Judicial.</span> |
+| **Título III. Estándares Técnicos**<br>Zero Trust, MFA y Continuidad Operativa | Arts. 12° y 13° | ISO/IEC 27001, 27035, 22301; JTC (2025) "Zero Trust" | <span style="color:red">Normativas SUSCERTE y estándares de interoperabilidad del Estado.</span> |
+| **Título IV. Debido Proceso Digital**<br>Garantías procesales frente a tecnologías | Arts. 14° al 16° | Directiva (UE) 2016/680; ISO/IEC 42001 | <span style="color:red">CRBV, arts. 28, 49 y **257 (El proceso como instrumento fundamental para la justicia)**.</span> |
+| **Título V. Gestión de Incidentes**<br>Notificación obligatoria y respuesta inmediata | Arts. 17° y 18° | JTC (2025), "COOP" — Reglamento (UE, Euratom) 2023/2841 | CRBV, art. 141; Protocolo Nacional Alertas SUSCERTE. |
+| **Título VI. Régimen Probatorio Forense**<br>Cadena de custodia y peritaje informático | Arts. 19° al 23° | ISO/IEC 27037, 27041-27043; RFC 3227; NIST SP 800-86 | Manual Único de Cadena de Custodia de Evidencias (2017); COPP arts. 181-187. |
+| **Título VII. Integridad Procesal y Administrativa**<br>Sorteo inmutable y 4 ojos digital (Aporte propio) | Arts. 24° al 32° | **★ Aporte Original: Ulpiano CCO (Jull Ortiz)**; ISO 37001, ISO 37301, ISO/IEC 42001, ISO/IEC 23894 | <span style="color:red">**CRBV, art. 141 (Rendición de cuentas y probidad)**; CRBV art. 203; Ley Contra la Corrupción.</span> |
+| **Título VIII. Régimen Sancionatorio**<br>Graduación escalonada y agravante por manipulación | Arts. 33° al 36° | Graduación escalonada (Leves, Graves, Muy Graves) | <span style="color:red">Ley Especial contra los Delitos Informáticos; Estatuto de la Función Pública; Código de Ética del Juez.</span> |
+| **Título IX. Cooperación**<br>Asistencia técnica interinstitucional | Art. 37° | Reglamento (UE, Euratom) 2023/2841 | CRBV, art. 154 (Cooperación institucional e internacional). |
+| **Título X. Formación**<br>Capacitación continua en ciberseguridad | Art. 38° | JTC (2025) "Cybersecurity Training" | Escuela Nacional de la Magistratura; Escuela de Fiscales. |
+| **Título XI. Supremacía y Disposiciones**<br>Supremacía Orgánica y régimen transitorio | Arts. 39° al 42° | Reglamento (UE, Euratom) 2023/2841, arts. 24-26 | <span style="color:red">CRBV, arts. 202-218 y **203 (Supremacía Orgánica)**; Disposiciones Finales.</span> |
 
 
 

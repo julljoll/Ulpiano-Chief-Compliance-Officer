@@ -758,167 +758,496 @@ body {
 .legend-dot--black { background-color: #1b1b1b; }
 
 /* ==========================================================================
-   MATRIZ DE TRAZABILIDAD NORMATIVA — USWDS LIGHT MODE STYLES
+   MATRIZ DE TRAZABILIDAD NORMATIVA — EXCEL SPREADSHEET GRID SYSTEM
    ========================================================================== */
-.matrix-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+.excel-spreadsheet-card {
   background-color: #ffffff;
-  border: 1px solid var(--theme-color-base-light);
-  border-radius: var(--radius-md);
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
   overflow: hidden;
-  font-size: var(--size-font-sm);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin-bottom: 2rem;
 }
 
-.matrix-table thead th {
-  background-color: var(--usa-color-gray-cool-5);
-  color: var(--theme-color-ink);
+/* 1. Excel Top Ribbon Header */
+.excel-ribbon-bar {
+  background: linear-gradient(180deg, #107c41 0%, #0d6937 100%);
+  color: #ffffff;
+  padding: 8px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #094826;
+}
+
+.excel-ribbon-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
   font-weight: 700;
-  font-size: var(--size-font-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: var(--space-2) var(--space-25);
-  border-bottom: 2px solid var(--theme-color-primary-light);
-  border-right: 1px solid var(--theme-color-base-light);
-  vertical-align: middle;
+  letter-spacing: 0.02em;
 }
 
-.matrix-table thead th:last-child {
-  border-right: none;
+.excel-file-badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
 }
 
-.matrix-table tbody td {
-  padding: var(--space-2) var(--space-25);
-  border-bottom: 1px solid var(--theme-color-base-light);
-  border-right: 1px solid var(--theme-color-base-light);
-  vertical-align: top;
-  color: var(--theme-color-ink);
-  line-height: var(--line-height-body);
+.excel-ribbon-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.matrix-table tbody td:last-child {
-  border-right: none;
-}
-
-.matrix-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.matrix-table tbody tr:hover {
-  background-color: var(--usa-color-blue-5);
-}
-
-.matrix-cell-title {
-  min-width: 170px;
-}
-
-.matrix-title-badge {
+.excel-btn-action {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: var(--font-mono);
-  font-size: var(--size-font-2xs);
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.excel-btn-action:hover {
+  background-color: #ffffff;
+  color: #107c41;
+  border-color: #ffffff;
+}
+
+/* 2. Excel Formula Bar */
+.excel-formula-bar {
+  background-color: #f8fafc;
+  border-bottom: 1px solid #cbd5e1;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+}
+
+.excel-name-box {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  padding: 2px 8px;
+  font-family: "Consolas", "Courier New", monospace;
   font-weight: 700;
-  color: var(--theme-color-primary-dark);
-  background-color: var(--usa-color-blue-10);
-  border: 1px solid var(--usa-color-blue-20);
-  border-radius: var(--radius-sm);
-  padding: 2px 6px;
-  margin-bottom: 4px;
+  color: #0f172a;
+  min-width: 65px;
+  text-align: center;
+  font-size: 0.78rem;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
 }
 
-.matrix-articles-tag {
+.excel-fx {
+  color: #475569;
+  font-weight: 800;
+  font-style: italic;
+  font-family: "Georgia", serif;
+  font-size: 0.95rem;
+}
+
+.excel-formula-text {
+  flex-grow: 1;
+  font-family: "Consolas", monospace;
+  font-size: 0.78rem;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 3. Excel Grid Table & Strict Cell Borders */
+.excel-table-scroll {
+  overflow-x: auto;
+  max-height: 850px;
+  background-color: #ffffff;
+}
+
+.excel-grid-table {
+  width: 100%;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  table-layout: fixed;
+  background-color: #ffffff;
+  font-size: 0.83rem;
+}
+
+/* Column Header Row (A, B, C, D, E) */
+.excel-grid-table thead th {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1 !important;
+  text-align: left;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: inset 0 -1px 0 #94a3b8;
+}
+
+.excel-col-letter {
   display: block;
-  font-size: var(--size-font-2xs);
-  color: var(--theme-color-base);
-  margin-top: 2px;
+  font-size: 0.65rem;
+  color: #64748b;
+  font-weight: 800;
+  margin-bottom: 2px;
+  font-family: "Consolas", monospace;
 }
 
-.matrix-source-badge {
+/* Row Numbering Left Column */
+.excel-cell-row-num {
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-align: center !important;
+  vertical-align: middle !important;
+  border: 1px solid #cbd5e1 !important;
+  user-select: none;
+  font-family: "Consolas", monospace;
+}
+
+/* Excel Grid Cells */
+.excel-grid-table tbody td {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1 !important;
+  vertical-align: top;
+  line-height: 1.45;
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+.excel-grid-table tbody tr:nth-child(even) td:not(.excel-cell-row-num) {
+  background-color: #fafbfc;
+}
+
+.excel-grid-table tbody tr:hover td {
+  background-color: #eff6ff !important;
+}
+
+.excel-grid-table tbody tr:hover td.excel-cell-row-num {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Título VII Star Innovation Row */
+.excel-row-star td:not(.excel-cell-row-num) {
+  background-color: #fffdf5 !important;
+  border-top: 2px solid #f59e0b !important;
+  border-bottom: 2px solid #f59e0b !important;
+}
+
+/* Structured Mini-Cells inside Columns */
+.excel-title-cell-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.excel-title-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Consolas", monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0284c7;
+  background-color: #e0f2fe;
+  border: 1px solid #bae6fd;
+  border-radius: 3px;
+  padding: 2px 6px;
+  width: fit-content;
+}
+
+.excel-art-range {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: var(--size-font-2xs);
+  font-size: 0.74rem;
+  color: #475569;
   font-weight: 600;
-  border-radius: var(--radius-sm);
-  padding: 2px 6px;
-  margin-bottom: 4px;
-  margin-right: 4px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px;
+  padding: 1px 6px;
+  width: fit-content;
+}
+
+.excel-desc-box {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 0.77rem;
+  color: #334155;
+  margin-top: 4px;
+}
+
+.excel-data-grid-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.excel-data-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px;
+  font-size: 0.76rem;
+}
+
+.excel-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-family: "Consolas", monospace;
   white-space: nowrap;
 }
 
-.matrix-source-eu {
-  background-color: var(--usa-color-blue-10);
-  color: var(--usa-color-blue-80);
-  border: 1px solid var(--usa-color-blue-30);
+.excel-pill-eu {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
 }
 
-.matrix-source-jtc {
-  background-color: var(--usa-color-green-10);
-  color: var(--usa-color-green-60);
-  border: 1px solid var(--usa-color-green-30);
+.excel-pill-fisma {
+  background-color: #ecfeff;
+  color: #0e7490;
+  border: 1px solid #a5f3fc;
 }
 
-.matrix-source-fisma {
-  background-color: #e0edfb;
-  color: #004085;
-  border: 1px solid #73b3e7;
+.excel-pill-iso {
+  background-color: #fefce8;
+  color: #854d0e;
+  border: 1px solid #fef08a;
 }
 
-.matrix-source-iso {
-  background-color: var(--usa-color-gold-10);
-  color: var(--usa-color-gold-60);
-  border: 1px solid var(--usa-color-gold-30);
+.excel-pill-crbv {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
 }
 
-.matrix-source-original {
-  background-color: var(--usa-color-gold-10);
-  color: var(--usa-color-gold-70);
-  border: 1px solid var(--usa-color-gold-40);
-  font-weight: 700;
+.excel-pill-law {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
 }
 
-.matrix-law-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: var(--size-font-2xs);
-  font-weight: 700;
-  background-color: var(--usa-color-gray-cool-10);
-  color: var(--usa-color-gray-cool-90);
-  border: 1px solid var(--usa-color-gray-cool-30);
-  border-radius: var(--radius-sm);
-  padding: 2px 6px;
-  margin-bottom: 4px;
-  margin-right: 4px;
+.excel-pill-original {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  font-weight: 800;
 }
 
-.matrix-law-crbv {
-  background-color: #fff4e5;
-  color: #7a3e00;
-  border: 1px solid #fac76f;
+/* 4. Excel Bottom Sheet Tabs (Hojas de Cálculo) */
+.excel-bottom-sheet-bar {
+  background-color: #f1f5f9;
+  border-top: 1px solid #cbd5e1;
+  padding: 6px 12px 0 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 4px;
 }
 
-.matrix-law-organica {
-  background-color: var(--usa-color-red-5);
-  color: var(--usa-color-red-60);
-  border: 1px solid var(--usa-color-red-20);
-  font-weight: 700;
-}
-
-.matrix-summary-chip {
+.excel-sheet-tab {
+  background-color: #e2e8f0;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #ffffff;
-  border: 1px solid var(--theme-color-base-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-1) var(--space-2);
-  font-size: var(--size-font-xs);
-  color: var(--theme-color-ink);
-  box-shadow: var(--shadow-1);
+  transition: all 0.15s ease;
+  user-select: none;
 }
+
+.excel-sheet-tab:hover {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.excel-sheet-tab.active {
+  background-color: #ffffff;
+  color: #107c41;
+  border-color: #cbd5e1;
+  border-bottom: 2px solid #ffffff;
+  font-weight: 700;
+  margin-bottom: -1px;
+  padding-bottom: 7px;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.04);
+}
+
+.excel-sheet-tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.excel-status-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+}
+
+.excel-status-organica {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.excel-status-institucional {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.excel-status-tecnico {
+  background-color: #f0fdf4;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.excel-status-garantias {
+  background-color: #fefce8;
+  color: #854d0e;
+  border-color: #fef08a;
+}
+
+.excel-status-operativo {
+  background-color: #ecfeff;
+  color: #155e75;
+  border-color: #a5f3fc;
+}
+
+.excel-status-forense {
+  background-color: #f8fafc;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.excel-status-innovacion {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+.excel-status-punitivo {
+  background-color: #fff1f2;
+  color: #be123c;
+  border-color: #fecdd3;
+}
+
+.excel-status-formacion {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+.excel-status-etica {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+}
+
+.excel-status-cierre {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+/* ==========================================================================
+   DOCUMENT READER MATRIX TABLES (TABLAS EN DOCUMENTOS DE ANEXO)
+   ========================================================================== */
+.matrix-doc-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.matrix-doc-table thead th {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 14px;
+  border: 1px solid #334155;
+  vertical-align: middle;
+}
+
+.matrix-doc-table tbody td {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  vertical-align: top;
+  line-height: 1.5;
+  color: #1e293b;
+}
+
+.matrix-doc-table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.matrix-doc-table tbody tr:hover {
+  background-color: #eff6ff;
+}
+
+.matrix-doc-table strong {
+  color: #0f172a;
+}
+
 
 
 

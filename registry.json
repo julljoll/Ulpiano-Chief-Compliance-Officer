@@ -28,13 +28,53 @@
       "Unidades de Celeridad (Art. 11 LOCOTA) & PSS"
     ],
     "icon": "article",
+    "coreReforms": [
+      {
+        "tag": "Gobernanza Federal FISMA",
+        "tagClass": "dc3-tag dc3-tag-green",
+        "accentClass": "dc3-card-accent-green",
+        "articles": "Arts. 10-bis, 13-bis, 19-bis",
+        "title": "Gobernanza FISMA 2014, Auditoría Anual y DOV",
+        "desc": "Adopción de la Ley Federal de Modernización de la Seguridad de la Información (S.2521 FISMA 2014): Auditoría Independiente Anual obligatoria (Art. 10-bis), Planes de Seguridad del Sistema - PSS (Art. 13-bis) y Directivas Operativas Vinculantes - DOV de cumplimiento perentorio en 72 horas dictadas por DINCIP (Art. 19-bis).",
+        "before": "V-1.1: Sin mandato expreso de auditoría independiente periódica ni directivas técnicas de remediación vinculante inmediata.",
+        "after": "V-1.2: Auditoría anual independiente por el Poder Ciudadano, PSS por cada sistema crítico y DOVs vinculantes con fuerza ejecutiva.",
+        "benefit": "Gobernanza estratégica permanente y remediación obligatoria de incidentes.",
+        "benefitIcon": "verified_user",
+        "benefitClass": "text-success"
+      },
+      {
+        "tag": "Celeridad & Jerarquía Constitucional",
+        "tagClass": "dc3-tag dc3-tag-gold",
+        "accentClass": "dc3-card-accent-top",
+        "articles": "Arts. 3°, 4°, 11 LOCOTA & Art. 203 CRBV",
+        "title": "Interoperabilidad LOCOTA 2026 & Doctrina TSJ 0406",
+        "desc": "Articulación obligatoria con la Ley Orgánica para la Celeridad y Optimización de Trámites Administrativos (LOCOTA 2026), interconexión con Unidades de Celeridad (Art. 11 LOCOTA), ventanillas únicas y fundamentación formal en la Sentencia TSJ/SC N° 0406/2026 para blindar su rango de Ley Orgánica.",
+        "before": "V-1.1: Rango orgánico genérico sin articulación expresa con el nuevo régimen LOCOTA 2026 ni doctrina vinculante TSJ 0406.",
+        "after": "V-1.2: Interoperabilidad directa con Unidades de Celeridad y blindaje de jerarquía preferente sobre cualquier ley ordinaria.",
+        "benefit": "Cero dilaciones indebidas e interoperabilidad procesal transversal del Estado.",
+        "benefitIcon": "account_balance",
+        "benefitClass": "text-primary"
+      },
+      {
+        "tag": "Integridad Procesal & Sanciones",
+        "tagClass": "dc3-tag dc3-tag-red",
+        "accentClass": "dc3-card-accent-red",
+        "articles": "Título VII & Título VIII (Arts. 26°-37°)",
+        "title": "Integridad Procesal y Régimen Sancionatorio Garantista",
+        "desc": "Reducción de la discrecionalidad humana mediante sorteo automatizado, trazabilidad forense (ISO 27037) y catálogo completo de sanciones clasificadas (Leves, Graves y Muy Graves) con plenas garantías de debido proceso y doble instancia (Art. 49 CRBV).",
+        "before": "V-1.0: Ámbito limitado exclusivamente a tribunales y régimen sancionatorio incompleto sin tipicidad escalonada.",
+        "after": "V-1.2: Cobertura integral en sede judicial y administrativa con régimen disciplinario y sancionatorio tipificado.",
+        "benefit": "Trazabilidad forense inalterable y responsabilidad administrativa garantista.",
+        "benefitIcon": "gavel",
+        "benefitClass": "text-danger"
+      }
+    ],
     "reformsDistribution": {
       "labels": ["Título I (Principios+Def.)", "Título II (DINCIP+Auditoría)", "Título III (Estándares+PSS)", "Título V (Incidentes+DOV)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Títulos IX-XI (Coop/Form/Trans.)"],
       "data": [3, 3, 2, 2, 1, 3, 2]
     }
   },
   {
-
     "id": "v1.1",
     "label": "Ley Orgánica V-1.1 (Con Reformas)",
     "shortLabel": "V-1.1 Orgánica",
@@ -62,6 +102,47 @@
       "Disposiciones Finales"
     ],
     "icon": "article",
+    "coreReforms": [
+      {
+        "tag": "Ámbito Material",
+        "tagClass": "dc3-tag dc3-tag-green",
+        "accentClass": "dc3-card-accent-green",
+        "articles": "Art. 2°, 5°",
+        "title": "Ampliación a la Administración Pública",
+        "desc": "Se superó la limitación exclusivamente judicial. La ley ahora abarca expedientes electrónicos, procedimientos sancionatorios y actuaciones administrativas vinculantes.",
+        "before": "V-1.0: Exclusión expresa de procesos administrativos.",
+        "after": "V-1.1: Cobertura plena de actos administrativos con efectos jurídicos.",
+        "benefit": "Garantiza debido proceso digital en trámites del Estado.",
+        "benefitIcon": "check_circle",
+        "benefitClass": "text-success"
+      },
+      {
+        "tag": "Técnica Legislativa",
+        "tagClass": "dc3-tag",
+        "accentClass": "dc3-card-accent-top",
+        "articles": "Art. 1°, 3°, Título XI",
+        "title": "Rango de Ley Orgánica & Supremacía",
+        "desc": "Fundamentada en el Art. 203 CRBV. Sobre esta ley solo rige la Constitución. Las cláusulas de supremacía y derogatoria se reubicaron en el Título XI al final del texto.",
+        "before": "V-1.0: Cláusula de supremacía desubicada en el Art. 3°.",
+        "after": "V-1.1: Reubicada en Disposición Final Primera y Segunda.",
+        "benefit": "Rango prevalente sobre cualquier ley ordinaria o especial.",
+        "benefitIcon": "account_balance",
+        "benefitClass": "text-primary"
+      },
+      {
+        "tag": "Régimen Sancionatorio",
+        "tagClass": "dc3-tag dc3-tag-red",
+        "accentClass": "dc3-card-accent-red",
+        "articles": "Título VIII (Arts. 33°-37°)",
+        "title": "Sanciones Escalonadas y Garantistas",
+        "desc": "Catálogo de sanciones principales clasificadas por gravedad (Leves, Graves y Muy Graves), tipificando conductas e integrando atenuantes y doble instancia (Art. 49 CRBV).",
+        "before": "V-1.0: Iniciaba directamente con agravantes sin detallar sanciones.",
+        "after": "V-1.1: Catálogo completo, atenuantes y doble instancia.",
+        "benefit": "Plena proporcionalidad y tipicidad sancionatoria.",
+        "benefitIcon": "gavel",
+        "benefitClass": "text-danger"
+      }
+    ],
     "reformsDistribution": {
       "labels": ["Título I (Gral)", "Título II (Institucional)", "Título III (Técnico)", "Título IV (Garantías)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Título XI (Supremacía)"],
       "data": [6, 4, 3, 2, 4, 8, 5]
@@ -94,6 +175,21 @@
       "Zero Trust en Cortes"
     ],
     "icon": "article",
+    "coreReforms": [
+      {
+        "tag": "Investigación Base",
+        "tagClass": "dc3-tag",
+        "accentClass": "dc3-card-accent-top",
+        "articles": "Arts. 1°-42°",
+        "title": "Estructura Base Sectorial de Justicia",
+        "desc": "Marco original de ciberseguridad procesal orientado estrictamente a tribunales, fiscalías y cortes.",
+        "before": "Investigación preliminar de ciberseguridad judicial.",
+        "after": "V-1.0: Propuesta inicial con 11 Títulos y 42 artículos.",
+        "benefit": "Establecimiento de CSIRT-Ulpiano e ISO 27037.",
+        "benefitIcon": "security",
+        "benefitClass": "text-primary"
+      }
+    ],
     "reformsDistribution": {
       "labels": ["Título I (Gral)", "Título II (Institucional)", "Título III (Técnico)", "Título IV (Garantías)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Título XI (Supremacía)"],
       "data": [0, 0, 0, 0, 0, 0, 0]

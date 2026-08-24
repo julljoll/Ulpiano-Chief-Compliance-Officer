@@ -50,11 +50,30 @@ function convertMdToHtml(md) {
   text = text.replace(/^\s*-\s+(.*)$/gm, '<li>$1</li>');
   text = text.replace(/(<li>[\s\S]*?<\/li>(\s*<li>[\s\S]*?<\/li>)*)/g, '<ul>$1</ul>');
 
-  // Paragraphs
+  // Paragraphs & Tables
   const blocks = text.split(/\n\s*\n/);
   const processed = blocks.map(block => {
     const b = block.trim();
     if (!b) return '';
+
+    // Markdown Table Detection
+    const lines = b.split('\n').filter(l => l.trim().length > 0);
+    if (lines.length >= 2 && lines[0].trim().startsWith('|') && lines[0].trim().endsWith('|') && /^\s*\|[\s\:\-\|]+\|\s*$/.test(lines[1])) {
+      const headerCells = lines[0].trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+      const thHtml = headerCells.map(c => `<th>${c}</th>`).join('');
+      const rowsHtml = [];
+
+      for (let i = 2; i < lines.length; i++) {
+        const rowLine = lines[i].trim();
+        if (!rowLine.startsWith('|') || !rowLine.endsWith('|')) continue;
+        const cells = rowLine.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+        const tdHtml = cells.map(c => `<td>${c}</td>`).join('');
+        rowsHtml.push(`<tr>${tdHtml}</tr>`);
+      }
+
+      return `<div class="table-responsive my-4">\n<table class="matrix-doc-table">\n<thead>\n<tr>${thHtml}</tr>\n</thead>\n<tbody>\n${rowsHtml.join('\n')}\n</tbody>\n</table>\n</div>`;
+    }
+
     if (/^<(h[1-6]|ul|ol|hr|div|table|blockquote|article|section|pre|p|figure|img)/.test(b)) {
       return b;
     }
