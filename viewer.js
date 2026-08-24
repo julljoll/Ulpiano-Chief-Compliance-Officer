@@ -9,8 +9,10 @@
 
   // --- App State ---
   const state = {
-    currentView: 'dashboard', // 'dashboard', 'reader', 'compare', 'matrix'
+    currentView: 'dashboard', // 'dashboard', 'diagrams', 'reader', 'compare', 'matrix'
     currentDocKey: 'v1.2',
+    currentDiagramTab: 'master', // 'master', 'technical', 'international', 'national', 'original'
+    diagramZoom: 1.0,
     fontFamily: 'serif',
     fontSize: 17,
     searchQuery: '',
@@ -524,7 +526,7 @@
     });
 
     // Toggle View Sections
-    const views = ['dashboard', 'reader', 'compare', 'matrix'];
+    const views = ['dashboard', 'diagrams', 'reader', 'compare', 'matrix'];
     views.forEach(v => {
       const el = document.getElementById(`view-${v}`);
       if (el) {
@@ -536,6 +538,8 @@
       renderReaderDoc();
     } else if (viewName === 'compare') {
       renderCompareView();
+    } else if (viewName === 'diagrams') {
+      renderDiagramsView();
     } else if (viewName === 'dashboard') {
       updateDashboardStats();
       initDashboardCharts();
@@ -1049,6 +1053,347 @@
     }
   }
 
+  // =========================================================================
+  // DIAGRAMS SUITE MODULE (V-1.2: INTEGRAL, TÉCNICA, INTL, NACIONAL, ORIGINAL)
+  // =========================================================================
+  const DIAGRAMS_REGISTRY = {
+    master: {
+      id: 'master',
+      name: 'Arquitectura de Integración V-1.2 (Maestra Integral)',
+      icon: 'account_tree',
+      badge: 'V-1.2 Todo-en-Uno',
+      sub: 'Mapeo comparado de los 4 grandes bloques: Reglamento UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025 y Aporte Original Título VII.',
+      file: './svg/ciberseguridad_integracion_V1.2.svg',
+      fallbackTpl: 'svg-architecture-diagram',
+      breakdown: [
+        {
+          title: '🇪🇺 Bloque UE: Gobernanza Sectorial',
+          icon: 'hub',
+          badge: 'UE 2023/2841',
+          badgeClass: 'diagram-legal-ref-eu',
+          desc: 'CERT-EU adaptado como CSIRT-Ulpiano judicial (Arts. 8-9), Junta Interinstitucional IICB (Art. 10) y taxonomía unificada de severidad de incidentes (Art. 18).'
+        },
+        {
+          title: '🇺🇸 Bloque FISMA 2014: Gobernanza Federal',
+          icon: 'verified_user',
+          badge: 'S.2521 / PL 113-283',
+          badgeClass: 'diagram-legal-ref-fisma',
+          desc: 'Evaluación Independiente Anual obligatoria (Art. 10-bis), Planes de Seguridad del Sistema - PSS (Art. 13-bis) y Directivas Operativas Vinculantes en 72h (Art. 19-bis).'
+        },
+        {
+          title: '🏛️ Bloque JTC: Resiliencia en Cortes',
+          icon: 'gavel',
+          badge: 'NCSC 2025',
+          badgeClass: 'diagram-legal-ref-iso',
+          desc: 'Arquitectura Zero Trust, autenticación MFA criptográfica (Art. 12) y Continuidad Operativa Judicial (COOP - Art. 13) para causas de flagrancia y amparos.'
+        },
+        {
+          title: '⭐ Aporte Original: Integridad Título VII',
+          icon: 'star',
+          badge: 'Anticorrupción',
+          badgeClass: 'diagram-legal-ref-crbv',
+          desc: 'Doble frente de protección, sorteo aleatorio algorítmico inmutable (Art. 26), segregación "4 ojos digital" (Art. 27), sellado criptográfico (Art. 28) e IA ética (Arts. 25, 29-31).'
+        }
+      ]
+    },
+    technical: {
+      id: 'technical',
+      name: 'Arquitectura Técnica & Ciberseguridad Forense V-1.2',
+      icon: 'memory',
+      badge: 'Defensa por Capas',
+      sub: 'Infraestructura tecnológica, capas de defensa Zero Trust, CSIRT-Ulpiano, cadena de custodia ISO 27037, sellado SHA-256 e IA de cumplimiento.',
+      file: './svg/arquitectura_tecnica_v1.2.svg',
+      breakdown: [
+        {
+          title: 'Capa 1: Identidad Digital & Zero Trust',
+          icon: 'vpn_key',
+          badge: 'NIST SP 800-207',
+          badgeClass: 'diagram-legal-ref-fisma',
+          desc: 'MFA biométrico/criptográfico FIDO2 (Art. 12), micro-segmentación de redes procesales, Planes de Seguridad PSS (Art. 13-bis) y continuidad COOP (Art. 13).'
+        },
+        {
+          title: 'Capa 2: CSIRT & Directivas DOV',
+          icon: 'security',
+          badge: 'UE 2023/2841 & FISMA',
+          badgeClass: 'diagram-legal-ref-eu',
+          desc: 'CSIRT-Ulpiano 24/7 (Art. 8), taxonomía de incidentes (Art. 18), Directivas Operativas Vinculantes en 72h (Art. 19-bis) y Auditoría Anual Independiente (Art. 10-bis).'
+        },
+        {
+          title: 'Capa 3: Informática Forense & Hashes',
+          icon: 'fingerprint',
+          badge: 'ISO/IEC 27037 & RFC 3227',
+          badgeClass: 'diagram-legal-ref-iso',
+          desc: 'Cadena de custodia forense estandarizada (Art. 20), orden de volatilidad (Art. 21), sellado criptográfico SHA-256 inmutable (Art. 28) y bitácoras WORM inalterables.'
+        },
+        {
+          title: 'Capa 4: Motor Algorítmico & IA Ética',
+          icon: 'smart_toy',
+          badge: 'ISO/IEC 42001 & ISO 37001',
+          badgeClass: 'diagram-legal-ref-locota',
+          desc: 'Sorteo aleatorio público certificado (Art. 26), segregación dual 4 ojos (Art. 27), supervisión humana obligatoria (Art. 25) y alertas API en tiempo real (Arts. 29-31).'
+        }
+      ]
+    },
+    international: {
+      id: 'international',
+      name: 'Marco Legal Internacional & Derecho Comparado V-1.2',
+      icon: 'public',
+      badge: 'Estándares Globales',
+      sub: 'Articulación sistemática con el Reglamento (UE) 2023/2841, Directiva NIS2, FISMA 2014 (S.2521), JTC NCSC 2025 y Normas ISO/IEC / NIST.',
+      file: './svg/marco_legal_internacional_v1.2.svg',
+      breakdown: [
+        {
+          title: '🇪🇺 Unión Europea: Gobernanza & NIS2',
+          icon: 'hub',
+          badge: 'UE 2023/2841 & NIS2',
+          badgeClass: 'diagram-legal-ref-eu',
+          desc: 'Ecosistema de ciberseguridad CERT-EU/IICB, Directiva de datos en materia penal 2016/680, deber de diligencia NIS2 y principio de privacidad desde el diseño (GDPR).'
+        },
+        {
+          title: '🇺🇸 Estados Unidos: FISMA 2014 & NIST',
+          icon: 'verified_user',
+          badge: 'S.2521 / PL 113-283',
+          badgeClass: 'diagram-legal-ref-fisma',
+          desc: 'Adopción de los tres pilares FISMA 2014: Auditoría Anual Independiente (§ 3555), PSS por activo crítico (§ 3554) y DOVs perentorias (§ 3553) bajo controles NIST SP 800-53.'
+        },
+        {
+          title: '🏛️ Resiliencia en Cortes: JTC NCSC 2025',
+          icon: 'gavel',
+          badge: 'COSCA / NCSC 2025',
+          badgeClass: 'diagram-legal-ref-iso',
+          desc: 'Estándares de ciberdefensa judicial, planes de continuidad COOP, copias de seguridad desconectadas (air-gapped) anti-ransomware y capacitación procesal.'
+        },
+        {
+          title: '🌐 Estándares ISO/IEC & Compliance',
+          icon: 'shield',
+          badge: 'ISO 27001 / 27037 / 42001',
+          badgeClass: 'diagram-legal-ref-locota',
+          desc: 'SGSI (27001), Gestión de Incidentes (27035), Evidencia Forense (27037/42), Continuidad (22301), Antisoborno (37001), Compliance (37301) e IA Ética (42001).'
+        }
+      ]
+    },
+    national: {
+      id: 'national',
+      name: 'Marco Legal Nacional & Bloque Constitucional V-1.2',
+      icon: 'balance',
+      badge: 'Art. 203 CRBV Orgánico',
+      sub: 'Pirámide de jerarquía de Ley Orgánica preferente transversal, doctrina vinculante TSJ/SC 0406/2026, articulación con LOCOTA 2026 y garantías procesales.',
+      file: './svg/marco_legal_nacional_v1.2.svg',
+      breakdown: [
+        {
+          title: '🇻🇪 Bloque Constitucional (CRBV)',
+          icon: 'balance',
+          badge: 'Art. 203 CRBV',
+          badgeClass: 'diagram-legal-ref-crbv',
+          desc: 'Rango de Ley Orgánica transversal preferente sobre leyes ordinarias, tutela efectiva (Art. 26), debido proceso (Art. 49), habeas data (Art. 28) e interés público TIC (Art. 110).'
+        },
+        {
+          title: '⚖️ Doctrina Vinculante TSJ/SC N° 0406',
+          icon: 'gavel',
+          badge: 'Sentencia 0406/2026',
+          badgeClass: 'diagram-legal-ref-fisma',
+          desc: 'Interpretación jurisprudencial vinculante que blinda el carácter orgánico de la ciberseguridad procesal, convalida el sorteo digital y exige supervisión humana indelegable.'
+        },
+        {
+          title: '📜 Celeridad & Trámites: LOCOTA 2026',
+          icon: 'bolt',
+          badge: 'LOCOTA Arts. 7 & 11',
+          badgeClass: 'diagram-legal-ref-locota',
+          desc: 'Interconexión con Unidades de Celeridad (Art. 11 LOCOTA), articulación con Comisión Nacional (Art. 7 LOCOTA), Ley de Infogobierno y Manual de Cadena de Custodia.'
+        },
+        {
+          title: '🛡️ Régimen Sancionatorio & Garantías',
+          icon: 'policy',
+          badge: 'Título VIII (Arts. 32-37)',
+          badgeClass: 'diagram-legal-ref-iso',
+          desc: 'Tipicidad escalonada (Leves, Graves, Muy Graves), penas proporcionales, doble instancia administrativa y judicial asegurada y debido proceso garantista.'
+        }
+      ]
+    },
+    original: {
+      id: 'original',
+      name: 'Aporte de Valor Original: Régimen de Integridad (Título VII)',
+      icon: 'star',
+      badge: 'Anticorrupción & IA',
+      sub: 'Tesis innovadora: Ciberseguridad activa no solo perimetral externa sino como mecanismo auditor interno anticorrupción y anticretardo en justicia y entes públicos.',
+      file: './svg/titulo_vii_idea_de_valor_v1.2.svg',
+      breakdown: [
+        {
+          title: '🛡️ Doble Frente (Honeste Vivere)',
+          icon: 'security',
+          badge: 'Judicial & Administrativo',
+          badgeClass: 'diagram-legal-ref-crbv',
+          desc: 'Protección perimetral externa frente a hackers y auditoría interna a operadores para evitar alteración de causas, extravío de pruebas o dilación indebida.'
+        },
+        {
+          title: '🎲 Sorteo Aleatorio (Suum Cuique Tribuere)',
+          icon: 'shuffle',
+          badge: 'Art. 26 Anteproyecto',
+          badgeClass: 'diagram-legal-ref-fisma',
+          desc: 'Algoritmo público y auditable que elimina la asignación manual de causas, trámites y licitaciones, generando registro criptográfico inmutable.'
+        },
+        {
+          title: '🔒 Segregación "4 Ojos" (Alterum Non Laedere)',
+          icon: 'lock',
+          badge: 'Arts. 27-28 Anteproyecto',
+          badgeClass: 'diagram-legal-ref-locota',
+          desc: 'Ningún funcionario o servidor público puede aprobar actos críticos en solitario. Bitácoras protegidas con Hashes inalterables incluso por DBAs.'
+        },
+        {
+          title: '🤖 IA Anticorrupción & Supervisión',
+          icon: 'smart_toy',
+          badge: 'Arts. 25, 29-31',
+          badgeClass: 'diagram-legal-ref-iso',
+          desc: 'Alertas en tiempo real vía API para Contraloría e Inspectoría General, detección automática de anomalías y prohibición de fallos 100% autónomos sin juez responsable.'
+        }
+      ]
+    }
+  };
+
+  const svgDiagramCache = {};
+
+  async function loadDiagramSvg(tabKey) {
+    const diag = DIAGRAMS_REGISTRY[tabKey] || DIAGRAMS_REGISTRY.master;
+    if (svgDiagramCache[diag.id]) return svgDiagramCache[diag.id];
+
+    if (diag.file) {
+      try {
+        const res = await fetch(diag.file);
+        if (res.ok) {
+          const svgContent = await res.text();
+          svgDiagramCache[diag.id] = svgContent;
+          return svgContent;
+        }
+      } catch (e) {
+        console.warn(`No se pudo cargar el SVG desde ${diag.file}:`, e);
+      }
+    }
+
+    if (diag.fallbackTpl) {
+      const tpl = document.getElementById(diag.fallbackTpl);
+      if (tpl && tpl.innerHTML) {
+        svgDiagramCache[diag.id] = tpl.innerHTML;
+        return tpl.innerHTML;
+      }
+    }
+
+    return '<div class="alert alert-warning my-4">No se pudo cargar el diagrama vectorial. Verifique la ruta del archivo SVG.</div>';
+  }
+
+  async function renderDiagramsView(tabKey) {
+    if (tabKey) state.currentDiagramTab = tabKey;
+    const activeKey = state.currentDiagramTab || 'master';
+    const diag = DIAGRAMS_REGISTRY[activeKey] || DIAGRAMS_REGISTRY.master;
+
+    // 1. Update sub-nav tabs active state
+    document.querySelectorAll('#diagram-nav-tabs .diagram-tab-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-tab') === activeKey);
+    });
+
+    // 2. Update toolbar texts
+    const titleNameEl = document.getElementById('diagram-active-name');
+    const titleIconEl = document.getElementById('diagram-active-icon');
+    const titleSubEl = document.getElementById('diagram-active-sub');
+    const breadcrumbTitleEl = document.getElementById('diagram-breadcrumb-title');
+
+    if (titleNameEl) titleNameEl.textContent = diag.name;
+    if (titleIconEl) titleIconEl.textContent = diag.icon;
+    if (titleSubEl) titleSubEl.textContent = diag.sub;
+    if (breadcrumbTitleEl) breadcrumbTitleEl.textContent = diag.name;
+
+    // 3. Render SVG viewport content
+    const viewportContent = document.getElementById('diagram-viewport-content');
+    if (viewportContent) {
+      viewportContent.innerHTML = '<div class="text-center py-5 text-muted"><div class="spinner-border text-primary mb-3"></div><p>Cargando diagrama vectorial en alta resolución...</p></div>';
+      const svgText = await loadDiagramSvg(activeKey);
+      viewportContent.innerHTML = svgText;
+      applyDiagramZoom();
+    }
+
+    // 4. Render Breakdown Cards below diagram
+    const breakdownContainer = document.getElementById('diagram-breakdown-section');
+    if (breakdownContainer && Array.isArray(diag.breakdown)) {
+      let html = '<div class="row g-4">';
+      diag.breakdown.forEach(item => {
+        html += `
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="diagram-card-info">
+              <div class="diagram-card-info-header">
+                <div class="diagram-card-info-icon" style="background-color: var(--usa-color-blue-5); color: var(--dc3-navy-primary);">
+                  <span class="material-symbols-outlined">${item.icon || 'info'}</span>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-dark mb-0" style="font-size: 0.95rem;">${escapeHtml(item.title)}</h6>
+                  <span class="diagram-legal-ref ${item.badgeClass || 'diagram-legal-ref-eu'}">${escapeHtml(item.badge || '')}</span>
+                </div>
+              </div>
+              <p class="text-muted small mb-0" style="line-height: 1.5;">${escapeHtml(item.desc)}</p>
+            </div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      breakdownContainer.innerHTML = html;
+    }
+  }
+
+  function switchDiagramTab(tabKey) {
+    state.currentDiagramTab = tabKey;
+    resetDiagramZoom();
+    renderDiagramsView(tabKey);
+  }
+
+  function applyDiagramZoom() {
+    const viewportContent = document.getElementById('diagram-viewport-content');
+    const zoomValEl = document.getElementById('diagram-zoom-val');
+    if (viewportContent) {
+      viewportContent.style.transform = `scale(${state.diagramZoom})`;
+    }
+    if (zoomValEl) {
+      zoomValEl.textContent = `${Math.round(state.diagramZoom * 100)}%`;
+    }
+  }
+
+  function zoomDiagram(delta) {
+    state.diagramZoom = Math.max(0.5, Math.min(2.5, state.diagramZoom + delta));
+    applyDiagramZoom();
+  }
+
+  function resetDiagramZoom() {
+    state.diagramZoom = 1.0;
+    applyDiagramZoom();
+  }
+
+  function toggleDiagramFullscreen() {
+    const card = document.getElementById('main-diagram-viewer-card');
+    const btn = document.getElementById('btn-diagram-fullscreen');
+    if (!card) return;
+
+    const isFull = card.classList.toggle('is-fullscreen');
+    if (btn) {
+      btn.innerHTML = isFull 
+        ? '<span class="material-symbols-outlined" style="font-size:1rem;">fullscreen_exit</span> Salir de Pantalla Completa'
+        : '<span class="material-symbols-outlined" style="font-size:1rem;">fullscreen</span> Pantalla Completa';
+    }
+  }
+
+  function downloadActiveDiagram() {
+    const activeKey = state.currentDiagramTab || 'master';
+    const diag = DIAGRAMS_REGISTRY[activeKey] || DIAGRAMS_REGISTRY.master;
+    const link = document.createElement('a');
+    link.href = diag.file;
+    link.download = diag.file.split('/').pop();
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function openActiveDiagramNewTab() {
+    const activeKey = state.currentDiagramTab || 'master';
+    const diag = DIAGRAMS_REGISTRY[activeKey] || DIAGRAMS_REGISTRY.master;
+    window.open(diag.file, '_blank');
+  }
+
   // Global API
   window.UlpianoDash = {
     switchView,
@@ -1067,6 +1412,12 @@
     exportMatrixCSV,
     copyMatrixTable,
     filterMatrixBySheet,
+    switchDiagramTab,
+    zoomDiagram,
+    resetDiagramZoom,
+    toggleDiagramFullscreen,
+    downloadActiveDiagram,
+    openActiveDiagramNewTab,
     DocRegistry
   };
 })();

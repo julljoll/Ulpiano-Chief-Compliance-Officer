@@ -80,8 +80,13 @@ A continuación se ilustra la integración de los marcos comparados internaciona
 
 ## 📂 Estructura del Repositorio
 
-- [`svg/ciberseguridad_integracion.svg`](./svg/ciberseguridad_integracion.svg) — Diagrama visual de la arquitectura del sistema y aporte original.
-- [`docs/ciberseguridadprocesal_v1.1.md`](./docs/ciberseguridadprocesal_v1.1.md) — Documento técnico-jurídico (Ley Orgánica V-1.1 con reformas).
+- [`svg/ciberseguridad_integracion_V1.2.svg`](./svg/ciberseguridad_integracion_V1.2.svg) — Diagrama de Arquitectura Maestra Integral V-1.2 (UE + FISMA 2014 + JTC + Título VII).
+- [`svg/arquitectura_tecnica_v1.2.svg`](./svg/arquitectura_tecnica_v1.2.svg) — Diagrama de Arquitectura Técnica, Forense y Ciberseguridad por Capas V-1.2.
+- [`svg/marco_legal_internacional_v1.2.svg`](./svg/marco_legal_internacional_v1.2.svg) — Diagrama de Marco Legal Internacional y Derecho Comparado (UE, FISMA 2014 S.2521, JTC NCSC 2025, ISO/NIST).
+- [`svg/marco_legal_nacional_v1.2.svg`](./svg/marco_legal_nacional_v1.2.svg) — Diagrama de Marco Legal Nacional y Bloque Constitucional (CRBV Art. 203, TSJ 0406/2026, LOCOTA 2026).
+- [`svg/titulo_vii_idea_de_valor_v1.2.svg`](./svg/titulo_vii_idea_de_valor_v1.2.svg) — Diagrama del Aporte Original de Integridad Procesal Anticorrupción (Título VII).
+- [`docs/ciberseguridadprocesal_v1.2.md`](./docs/ciberseguridadprocesal_v1.2.md) — Documento técnico-jurídico V-1.2 (FISMA 2014 + LOCOTA 2026 + Sentencia TSJ 0406/2026).
+- [`docs/ciberseguridadprocesal_v1.1.md`](./docs/ciberseguridadprocesal_v1.1.md) — Documento técnico-jurídico V-1.1 (Ley Orgánica con reformas).
 - [`docs/ciberseguridadprocesal_V1.0.md`](./docs/ciberseguridadprocesal_V1.0.md) — Documento base original (Ley Especial V-1.0).
 - [`components/`](./components/) — Componentes HTML compilados para el portal web.
 - [`design-system/`](./design-system/) — Tokens de diseño JSON/CSS bajo el estándar USWDS 3.0.

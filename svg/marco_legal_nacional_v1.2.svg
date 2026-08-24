@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 1080" width="100%" height="100%" style="max-width: 1200px; margin: 0 auto; display: block;">
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+      @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=Roboto+Mono:wght@400;700&display=swap');
+
+      .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+      .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
+
+      .text-ink { fill: #13171b; }
+      .text-primary { fill: #1a5b8c; }
+      .text-primary-dark { fill: #004987; }
+      .text-base { fill: #5c6b7e; }
+      .text-base-dark { fill: #323a45; }
+
+      .text-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 16.5px; fill: #13171b; letter-spacing: 0.01em; }
+      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 12px; fill: #5c6b7e; }
+      .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 13px; fill: #162e51; }
+      .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 10.5px; }
+
+      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 11.5px; fill: #162e51; }
+      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 10.5px; fill: #323a45; }
+      .text-item-sub { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 10px; fill: #5c6b7e; }
+
+      .text-card-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 13px; fill: #162e51; }
+      .text-card-sub { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 11px; }
+      .text-card-body { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 11.2px; fill: #323a45; }
+
+      .text-pill { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.5px; }
+      .text-mono { font-family: 'Roboto Mono', monospace; }
+    ]]></style>
+
+    <filter id="nat-shadow-1" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+
+    <linearGradient id="natHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#eff6fb"/>
+      <stop offset="100%" stop-color="#d9e8f6"/>
+    </linearGradient>
+
+    <linearGradient id="colCrbvGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f9eded"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <linearGradient id="colTsjGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0edfb"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <linearGradient id="colLocotaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef6e7"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <linearGradient id="colSancionGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eaf4ec"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- CANVAS BACKGROUND -->
+  <rect width="1360" height="1080" fill="#ffffff"/>
+
+  <!-- GRID PATTERN -->
+  <pattern id="uswds-nat-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+    <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#e7e9ed" stroke-width="1"/>
+  </pattern>
+  <rect width="1360" height="1080" fill="url(#uswds-nat-grid)" opacity="0.6"/>
+
+  <!-- HEADER COMPONENT -->
+  <g transform="translate(50, 22)">
+    <rect x="0" y="0" width="1260" height="94" rx="8" fill="url(#natHeaderGrad)" stroke="#cfd4dc" stroke-width="1.5" filter="url(#nat-shadow-1)"/>
+    <rect x="0" y="0" width="6" height="94" rx="3" fill="#b50909"/>
+
+    <!-- Google Material Icon: Balance / Law -->
+    <g transform="translate(24, 18)">
+      <rect width="28" height="28" rx="4" fill="#b50909"/>
+      <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.28 19.63 10.59 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" fill="#ffffff" transform="scale(0.75) translate(4,4)"/>
+    </g>
+
+    <text x="60" y="38" class="text-title">MARCO LEGAL NACIONAL &amp; BLOQUE CONSTITUCIONAL V-1.2</text>
+    <text x="60" y="66" class="text-subtitle">
+      Jerarquía orgánica y articulación nacional: <tspan fill="#b50909" font-weight="700">CRBV Art. 203 (Ley Orgánica)</tspan>, <tspan fill="#004987" font-weight="700">Sentencia TSJ/SC N° 0406/2026</tspan>, <tspan fill="#8c3b00" font-weight="700">LOCOTA 2026 (Celeridad &amp; Trámites)</tspan> y <tspan fill="#154721" font-weight="700">Régimen Sancionatorio Garantista (Art. 49)</tspan>
+    </text>
+
+    <!-- Badges Cabecera -->
+    <g transform="translate(1000, 26)">
+      <rect x="0" y="0" width="118" height="36" rx="4" fill="#b50909"/>
+      <text x="59" y="23" class="text-tag" fill="#ffffff" text-anchor="middle" font-weight="700">LEGAL NACIONAL</text>
+
+      <rect x="126" y="0" width="108" height="36" rx="4" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1"/>
+      <circle cx="140" cy="18" r="4" fill="#b50909"/>
+      <text x="150" y="22" class="text-tag" fill="#b50909">ART. 203 CRBV</text>
+    </g>
+  </g>
+
+  <!-- ================= 4 VERTICAL PILLARS (NATIONAL LAW) ================= -->
+
+  <!-- PILAR 1: BLOQUE CONSTITUCIONAL (CRBV) -->
+  <g transform="translate(50, 134)">
+    <rect x="0" y="0" width="298" height="860" rx="8" fill="url(#colCrbvGrad)" stroke="#e79c9c" stroke-width="1.5" filter="url(#nat-shadow-1)"/>
+    <rect x="0" y="0" width="298" height="46" rx="8" fill="#f3d1d1"/>
+    <rect x="0" y="30" width="298" height="16" fill="#f3d1d1"/>
+
+    <text x="14" y="28" class="text-header-box" fill="#b50909">🇻🇪 BLOQUE CONSTITUCIONAL</text>
+    <text x="284" y="28" class="text-tag" fill="#b50909" text-anchor="end">CRBV 1999</text>
+
+    <!-- Content Items Pillar 1 -->
+    <g transform="translate(12, 58)">
+      <!-- Item 1.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#b50909"/>
+        <text x="12" y="22" class="text-item-title">Art. 203 CRBV: Rango Orgánico</text>
+        <text x="12" y="38" class="text-tag" fill="#b50909">Supremacía &amp; Transversalidad</text>
+        <text x="12" y="58" class="text-item-desc">• Fundamenta la jerarquía de Ley Orgánica.</text>
+        <text x="12" y="74" class="text-item-desc">• Prevalece sobre cualquier ley ordinaria.</text>
+        <text x="12" y="90" class="text-item-desc">• Vincula a todos los Poderes Públicos.</text>
+        <text x="12" y="106" class="text-item-desc">• Abarca sede Judicial y Administrativa.</text>
+        <text x="12" y="122" class="text-item-desc">• Mandato de ciberseguridad ineludible.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#f9eded"/>
+        <text x="137" y="159" class="text-tag" fill="#b50909" text-anchor="middle">Núcleo Jurídico de la Ley</text>
+      </g>
+
+      <!-- Item 1.2 -->
+      <g transform="translate(0, 196)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#b50909"/>
+        <text x="12" y="22" class="text-item-title">Arts. 26 &amp; 49: Tutela &amp; Debido Proceso</text>
+        <text x="12" y="38" class="text-tag" fill="#b50909">Garantías Judiciales Digitales</text>
+        <text x="12" y="58" class="text-item-desc">• Justicia gratuita, accesible y sin dilación.</text>
+        <text x="12" y="74" class="text-item-desc">• Prohibición de indefensión por fallo técnico.</text>
+        <text x="12" y="90" class="text-item-desc">• Derecho a prueba en contrario ante IA.</text>
+        <text x="12" y="106" class="text-item-desc">• Doble instancia obligatoria en sanciones.</text>
+        <text x="12" y="122" class="text-item-desc">• Notificaciones electrónicas auditables.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#f9eded"/>
+        <text x="137" y="159" class="text-tag" fill="#b50909" text-anchor="middle">Garantías Constitucionales</text>
+      </g>
+
+      <!-- Item 1.3 -->
+      <g transform="translate(0, 392)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#b50909"/>
+        <text x="12" y="22" class="text-item-title">Arts. 28 &amp; 110: Habeas Data &amp; TIC</text>
+        <text x="12" y="38" class="text-tag" fill="#b50909">Interés Público en Ciencia &amp; Datos</text>
+        <text x="12" y="58" class="text-item-desc">• Derecho a la autodeterminación informativa.</text>
+        <text x="12" y="74" class="text-item-desc">• TIC declaradas de interés público nacional.</text>
+        <text x="12" y="90" class="text-item-desc">• Soberanía y seguridad informática estatal.</text>
+        <text x="12" y="106" class="text-item-desc">• Protección reforzada de expedientes públicos.</text>
+        <text x="12" y="122" class="text-item-desc">• Base legal para firma digital y criptografía.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#f9eded"/>
+        <text x="137" y="159" class="text-tag" fill="#b50909" text-anchor="middle">Marco de Interés Público</text>
+      </g>
+
+      <!-- Item 1.4 -->
+      <g transform="translate(0, 588)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#b50909"/>
+        <text x="12" y="22" class="text-item-title">Arts. 141, 253, 254: Sistema de Justicia</text>
+        <text x="12" y="38" class="text-tag" fill="#b50909">Autonomía &amp; Principios Públicos</text>
+        <text x="12" y="58" class="text-item-desc">• Principios: honestidad, celeridad, eficacia.</text>
+        <text x="12" y="74" class="text-item-desc">• Autonomía funcional y técnica del TSJ.</text>
+        <text x="12" y="90" class="text-item-desc">• Facultades del Ministerio Público (Art. 284).</text>
+        <text x="12" y="106" class="text-item-desc">• Control fiscal de Contraloría General (CGR).</text>
+        <text x="12" y="122" class="text-item-desc">• Articulación en Junta de Integridad.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#f9eded"/>
+        <text x="137" y="159" class="text-tag" fill="#b50909" text-anchor="middle">Articulación Institucional</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- PILAR 2: JURISPRUDENCIA TSJ 0406/2026 -->
+  <g transform="translate(362, 134)">
+    <rect x="0" y="0" width="298" height="860" rx="8" fill="url(#colTsjGrad)" stroke="#0050a0" stroke-width="2" filter="url(#nat-shadow-1)"/>
+    <rect x="0" y="0" width="298" height="46" rx="8" fill="#d0e4fa"/>
+    <rect x="0" y="30" width="298" height="16" fill="#d0e4fa"/>
+
+    <text x="14" y="28" class="text-header-box" fill="#003366">⚖️ SENTENCIA TSJ 0406</text>
+    <rect x="194" y="11" width="92" height="24" rx="3" fill="#0050a0"/>
+    <text x="240" y="27" class="text-tag" fill="#ffffff" text-anchor="middle" font-weight="700">TSJ/SC 2026</text>
+
+    <!-- Content Items Pillar 2 -->
+    <g transform="translate(12, 58)">
+      <!-- Item 2.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#0050a0"/>
+        <text x="12" y="22" class="text-item-title">Doctrina Art. 203 CRBV</text>
+        <text x="12" y="38" class="text-tag" fill="#003366">Interpretación Vinculante de Rango</text>
+        <text x="12" y="58" class="text-item-desc">• Fija el carácter orgánico de la ciberseguridad.</text>
+        <text x="12" y="74" class="text-item-desc">• Doctrina formal de la Sala Constitucional.</text>
+        <text x="12" y="90" class="text-item-desc">• Blindaje de competencia preferente.</text>
+        <text x="12" y="106" class="text-item-desc">• Derogación de normas ordinarias contrarias.</text>
+        <text x="12" y="122" class="text-item-desc">• Aplicación inmediata e indisponible.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#e0edfb"/>
+        <text x="137" y="159" class="text-tag" fill="#003366" text-anchor="middle">Doctrina Vinculante TSJ/SC</text>
+      </g>
+
+      <!-- Item 2.2 -->
+      <g transform="translate(0, 196)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#0050a0"/>
+        <text x="12" y="22" class="text-item-title">Validez de Sorteo Digital</text>
+        <text x="12" y="38" class="text-tag" fill="#003366">Inmutabilidad Algorítmica</text>
+        <text x="12" y="58" class="text-item-desc">• Convalida la asignación algorítmica (Art. 26).</text>
+        <text x="12" y="74" class="text-item-desc">• Prohibición de manipulación discrecional.</text>
+        <text x="12" y="90" class="text-item-desc">• Plena eficacia jurídica del ticket digital.</text>
+        <text x="12" y="106" class="text-item-desc">• Auditoría forense obligatoria del código.</text>
+        <text x="12" y="122" class="text-item-desc">• Nulidad absoluta de asignaciones manuales.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#e0edfb"/>
+        <text x="137" y="159" class="text-tag" fill="#003366" text-anchor="middle">Eficacia Probatoria Plena</text>
+      </g>
+
+      <!-- Item 2.3 -->
+      <g transform="translate(0, 392)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#0050a0"/>
+        <text x="12" y="22" class="text-item-title">Mandato de Supervisión Humana</text>
+        <text x="12" y="38" class="text-tag" fill="#003366">Límites a la Automatización</text>
+        <text x="12" y="58" class="text-item-desc">• Prohíbe fallos judiciales 100% por IA.</text>
+        <text x="12" y="74" class="text-item-desc">• Exige firma y responsabilidad de un juez.</text>
+        <text x="12" y="90" class="text-item-desc">• IA como herramienta auxiliar y de control.</text>
+        <text x="12" y="106" class="text-item-desc">• Derecho del justiciable a conocer criterios.</text>
+        <text x="12" y="122" class="text-item-desc">• Trasladado al <tspan font-weight="700" fill="#0050a0">Artículo 25</tspan> de la Ley.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#e0edfb"/>
+        <text x="137" y="159" class="text-tag" fill="#003366" text-anchor="middle">Principio Pro Homine Digital</text>
+      </g>
+
+      <!-- Item 2.4 -->
+      <g transform="translate(0, 588)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#0050a0"/>
+        <text x="12" y="22" class="text-item-title">Eficacia Ejecutiva de DOVs</text>
+        <text x="12" y="38" class="text-tag" fill="#003366">Fuerza Forzosa de Mandatos Técnicos</text>
+        <text x="12" y="58" class="text-item-desc">• Respaldo judicial a las DOVs en 72h.</text>
+        <text x="12" y="74" class="text-item-desc">• El desacato acarrea desacato judicial.</text>
+        <text x="12" y="90" class="text-item-desc">• Habilita medidas cautelares de aislamiento.</text>
+        <text x="12" y="106" class="text-item-desc">• Protección preferente de la evidencia forense.</text>
+        <text x="12" y="122" class="text-item-desc">• Coordinación con DINCIP y CSIRT.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#e0edfb"/>
+        <text x="137" y="159" class="text-tag" fill="#003366" text-anchor="middle">Fuerza Ejecutiva Forzosa</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- PILAR 3: INTEROPERABILIDAD LOCOTA 2026 -->
+  <g transform="translate(674, 134)">
+    <rect x="0" y="0" width="298" height="860" rx="8" fill="url(#colLocotaGrad)" stroke="#fac76f" stroke-width="1.5" filter="url(#nat-shadow-1)"/>
+    <rect x="0" y="0" width="298" height="46" rx="8" fill="#fde4b6"/>
+    <rect x="0" y="30" width="298" height="16" fill="#fde4b6"/>
+
+    <text x="14" y="28" class="text-header-box" fill="#8c3b00">📜 LOCOTA 2026 &amp; LEYES</text>
+    <text x="284" y="28" class="text-tag" fill="#df7e00" text-anchor="end">CELERIDAD</text>
+
+    <!-- Content Items Pillar 3 -->
+    <g transform="translate(12, 58)">
+      <!-- Item 3.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#df7e00"/>
+        <text x="12" y="22" class="text-item-title">Unidades de Celeridad (Art. 11)</text>
+        <text x="12" y="38" class="text-tag" fill="#8c3b00">Articulación con Trámites Públicos</text>
+        <text x="12" y="58" class="text-item-desc">• Interconexión técnica con Unidades LOCOTA.</text>
+        <text x="12" y="74" class="text-item-desc">• Supresión de requisitos redundantes.</text>
+        <text x="12" y="90" class="text-item-desc">• Ventanillas únicas digitales seguras.</text>
+        <text x="12" y="106" class="text-item-desc">• Validación automática de documentos.</text>
+        <text x="12" y="122" class="text-item-desc">• Trazabilidad de tiempos de respuesta.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#fef6e7"/>
+        <text x="137" y="159" class="text-tag" fill="#8c3b00" text-anchor="middle">Art. 11 LOCOTA 2026</text>
+      </g>
+
+      <!-- Item 3.2 -->
+      <g transform="translate(0, 196)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#df7e00"/>
+        <text x="12" y="22" class="text-item-title">Comisión Nacional (Art. 7)</text>
+        <text x="12" y="38" class="text-tag" fill="#8c3b00">Gobernanza de Celeridad Estatal</text>
+        <text x="12" y="58" class="text-item-desc">• Coordinación con DINCIP y Junta.</text>
+        <text x="12" y="74" class="text-item-desc">• Estandarización de trámites digitales.</text>
+        <text x="12" y="90" class="text-item-desc">• Supresión perentoria del retardo procesal.</text>
+        <text x="12" y="106" class="text-item-desc">• Alertas tempranas de paralización de causas.</text>
+        <text x="12" y="122" class="text-item-desc">• Auditoría de celeridad administrativa.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#fef6e7"/>
+        <text x="137" y="159" class="text-tag" fill="#8c3b00" text-anchor="middle">Art. 7 LOCOTA 2026</text>
+      </g>
+
+      <!-- Item 3.3 -->
+      <g transform="translate(0, 392)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#df7e00"/>
+        <text x="12" y="22" class="text-item-title">Ley de Infogobierno &amp; Firmas</text>
+        <text x="12" y="38" class="text-tag" fill="#8c3b00">Soberanía Tecnológica y Firma Digital</text>
+        <text x="12" y="58" class="text-item-desc">• Ley de Infogobierno (G.O. 40.274).</text>
+        <text x="12" y="74" class="text-item-desc">• Uso prioritario de software libre auditado.</text>
+        <text x="12" y="90" class="text-item-desc">• Ley de Mensajes de Datos y Firmas Elect.</text>
+        <text x="12" y="106" class="text-item-desc">• Certificación por SUSCERTE / CNTI.</text>
+        <text x="12" y="122" class="text-item-desc">• Equivalencia funcional de documentos.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#fef6e7"/>
+        <text x="137" y="159" class="text-tag" fill="#8c3b00" text-anchor="middle">Normas Técnicas Nacionales</text>
+      </g>
+
+      <!-- Item 3.4 -->
+      <g transform="translate(0, 588)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#df7e00"/>
+        <text x="12" y="22" class="text-item-title">Manual de Cadena de Custodia</text>
+        <text x="12" y="38" class="text-tag" fill="#8c3b00">Forense Penal &amp; Peritaje Oficial</text>
+        <text x="12" y="58" class="text-item-desc">• Manual Único de Cadena de Custodia (MP).</text>
+        <text x="12" y="74" class="text-item-desc">• Ley contra Delitos Informáticos (G.O. 37.313).</text>
+        <text x="12" y="90" class="text-item-desc">• Protocolos de preservación física y lógica.</text>
+        <text x="12" y="106" class="text-item-desc">• Acreditación oficial de peritos judiciales.</text>
+        <text x="12" y="122" class="text-item-desc">• Integración con <tspan font-weight="700" fill="#8c3b00">Título VI (Art. 20)</tspan>.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#fef6e7"/>
+        <text x="137" y="159" class="text-tag" fill="#8c3b00" text-anchor="middle">Estándar Forense Nacional</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- PILAR 4: RÉGIMEN SANCIONATORIO & GARANTÍAS -->
+  <g transform="translate(986, 134)">
+    <rect x="0" y="0" width="298" height="860" rx="8" fill="url(#colSancionGrad)" stroke="#99cda4" stroke-width="1.5" filter="url(#nat-shadow-1)"/>
+    <rect x="0" y="0" width="298" height="46" rx="8" fill="#d4eed8"/>
+    <rect x="0" y="30" width="298" height="16" fill="#d4eed8"/>
+
+    <text x="14" y="28" class="text-header-box" fill="#154721">⚖️ SANCIONES &amp; GARANTÍAS</text>
+    <text x="284" y="28" class="text-tag" fill="#2e8540" text-anchor="end">TÍTULO VIII</text>
+
+    <!-- Content Items Pillar 4 -->
+    <g transform="translate(12, 58)">
+      <!-- Item 4.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#2e8540"/>
+        <text x="12" y="22" class="text-item-title">Tipicidad Escalonada (Art. 32)</text>
+        <text x="12" y="38" class="text-tag" fill="#154721">Clasificación Rigurosa de Infracciones</text>
+        <text x="12" y="58" class="text-item-desc">• Faltas Leves: Omisión leve de ciberhigiene.</text>
+        <text x="12" y="74" class="text-item-desc">• Faltas Graves: Descuido en contraseñas o</text>
+        <text x="12" y="90" class="text-item-desc">  retraso injustificado en notificar incidente.</text>
+        <text x="12" y="106" class="text-item-desc">• Faltas Muy Graves: Sabotaje, evasión de</text>
+        <text x="12" y="122" class="text-item-desc">  sorteo, falsificación de hash o desacato DOV.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#eaf4ec"/>
+        <text x="137" y="159" class="text-tag" fill="#154721" text-anchor="middle">Catálogo Tipificado Art. 32</text>
+      </g>
+
+      <!-- Item 4.2 -->
+      <g transform="translate(0, 196)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#2e8540"/>
+        <text x="12" y="22" class="text-item-title">Graduación Sancionatoria (Art. 33)</text>
+        <text x="12" y="38" class="text-tag" fill="#154721">Penas Administrativas Proporcionales</text>
+        <text x="12" y="58" class="text-item-desc">• Amonestación escrita y cursos obligatorios.</text>
+        <text x="12" y="74" class="text-item-desc">• Multas en Unidades Tributarias / UT.</text>
+        <text x="12" y="90" class="text-item-desc">• Suspensión temporal de cargo y funciones.</text>
+        <text x="12" y="106" class="text-item-desc">• Destitución e inhabilitación para cargos.</text>
+        <text x="12" y="122" class="text-item-desc">• Remisión penal inmediata al Ministerio Púb.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#eaf4ec"/>
+        <text x="137" y="159" class="text-tag" fill="#154721" text-anchor="middle">Sanciones Proporcionales</text>
+      </g>
+
+      <!-- Item 4.3 -->
+      <g transform="translate(0, 392)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#2e8540"/>
+        <text x="12" y="22" class="text-item-title">Procedimiento Garantista (Art. 34)</text>
+        <text x="12" y="38" class="text-tag" fill="#154721">Plenas Garantías del Art. 49 CRBV</text>
+        <text x="12" y="58" class="text-item-desc">• Notificación formal de cargos con pruebas.</text>
+        <text x="12" y="74" class="text-item-desc">• Lapso probatorio perentorio de 15 días.</text>
+        <text x="12" y="90" class="text-item-desc">• Derecho a peritaje técnico contradictorio.</text>
+        <text x="12" y="106" class="text-item-desc">• Motivación exhaustiva de la resolución.</text>
+        <text x="12" y="122" class="text-item-desc">• Recurso jerárquico y vía contenciosa.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#eaf4ec"/>
+        <text x="137" y="159" class="text-tag" fill="#154721" text-anchor="middle">Debido Proceso Administrativo</text>
+      </g>
+
+      <!-- Item 4.4 -->
+      <g transform="translate(0, 588)">
+        <rect x="0" y="0" width="274" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="180" rx="2" fill="#2e8540"/>
+        <text x="12" y="22" class="text-item-title">Prescripción &amp; Recursos (Arts. 35-37)</text>
+        <text x="12" y="38" class="text-tag" fill="#154721">Seguridad Jurídica y Plazos</text>
+        <text x="12" y="58" class="text-item-desc">• Prescripción: 1 año (leves), 3 años (graves),</text>
+        <text x="12" y="74" class="text-item-desc">  5 años (muy graves). Delitos imprescriptibles.</text>
+        <text x="12" y="90" class="text-item-desc">• Doble instancia administrativa asegurada.</text>
+        <text x="12" y="106" class="text-item-desc">• Control judicial ante Sala Político-Admin.</text>
+        <text x="12" y="122" class="text-item-desc">• Blindaje contra arbitrariedad funcionarial.</text>
+        <rect x="12" y="142" width="250" height="26" rx="4" fill="#eaf4ec"/>
+        <text x="137" y="159" class="text-tag" fill="#154721" text-anchor="middle">Garantías de Doble Instancia</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- WATERMARK FOOTER -->
+  <g transform="translate(50, 1020)">
+    <text x="0" y="15" font-family="'Public Sans', sans-serif" font-size="10.5px" fill="#5c6b7e">
+      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#0050a0">Marco Legal Nacional V-1.2</tspan> • Autor: <a href="https://sha256.us/" target="_blank"><tspan font-weight="700" fill="#0050a0">Jull Ortiz (sha256.us ↗)</tspan></a> • USWDS 3.0 Standard
+    </text>
+    <text x="1260" y="15" font-family="'Roboto Mono', monospace" font-size="10px" fill="#5c6b7e" text-anchor="end">
+      CRBV Art. 203 • TSJ/SC 0406/2026 • LOCOTA 2026 • Ley de Infogobierno
+    </text>
+  </g>
+</svg>

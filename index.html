@@ -62,6 +62,9 @@
       <button class="dc3-nav-tab active" data-view="dashboard">
         <span class="material-symbols-outlined me-1">dashboard</span> Dashboard de Mejoras
       </button>
+      <button class="dc3-nav-tab" data-view="diagrams">
+        <span class="material-symbols-outlined me-1">schema</span> Diagramas
+      </button>
       <button class="dc3-nav-tab" data-view="reader">
         <span class="material-symbols-outlined me-1">article</span> Lector de versiones
       </button>
@@ -1198,6 +1201,146 @@
       </div>
     </section>
 
+    <!-- =======================================================================
+         VIEW E: SUITE DE DIAGRAMAS DE ARQUITECTURA & COMPLIANCE (V-1.2)
+         ======================================================================= -->
+    <section id="view-diagrams" class="py-4 py-lg-5" style="display: none;">
+      <div class="container-xxl px-3">
+
+        <!-- Hero Banner de Diagramas -->
+        <div class="dc3-hero-banner mb-4">
+          <div class="dc3-breadcrumb">
+            <a href="#" onclick="UlpianoDash.switchView('dashboard')">Inicio</a> / 
+            <span>Arquitectura y Modelado</span> / 
+            <span class="text-white" id="diagram-breadcrumb-title">Suite de Diagramas V-1.2</span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <h1 class="dc3-hero-title" id="diagram-hero-title">🏛️ Suite Oficial de Diagramas de Arquitectura &amp; Compliance</h1>
+              <p class="dc3-hero-desc mb-0" id="diagram-hero-desc">
+                Visualización interactiva en alta definición de la arquitectura técnica, el marco legal internacional (UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025), el marco legal nacional (CRBV Art. 203, Sentencia TSJ 0406/2026, LOCOTA 2026) y el aporte original de integridad procesal (Título VII).
+              </p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-warning text-dark fw-bold px-3" onclick="UlpianoDash.downloadActiveDiagram()">
+                <span class="material-symbols-outlined me-1">download</span> Descargar SVG
+              </button>
+              <button class="btn btn-outline-light px-3" onclick="UlpianoDash.switchView('dashboard')">
+                <span class="material-symbols-outlined me-1">dashboard</span> Volver al Dashboard
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Summary Stat Chips -->
+        <div class="d-flex flex-wrap gap-2 mb-4">
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">schema</span>
+            <span><strong>V-1.2 Actualizada</strong> (FISMA &amp; LOCOTA)</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-info" style="font-size:1.1rem;">memory</span>
+            <span><strong>Parte Técnica</strong> (Zero Trust, SHA-256, PSS, DOV 72h)</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-success" style="font-size:1.1rem;">public</span>
+            <span><strong>Legal Internacional</strong> (UE 2023/2841, FISMA, JTC, ISO)</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-danger" style="font-size:1.1rem;">balance</span>
+            <span><strong>Legal Nacional</strong> (CRBV 203, TSJ 0406, LOCOTA)</span>
+          </div>
+          <div class="matrix-summary-chip">
+            <span class="material-symbols-outlined text-warning" style="font-size:1.1rem;">star</span>
+            <span><strong>Aporte Título VII</strong> (Integridad Anticorrupción)</span>
+          </div>
+        </div>
+
+        <!-- Diagram Category Tabs Selector -->
+        <div class="diagram-tabs-nav mb-4" id="diagram-nav-tabs">
+          <button class="diagram-tab-btn active" data-tab="master" onclick="UlpianoDash.switchDiagramTab('master')">
+            <span class="material-symbols-outlined" style="font-size:1.15rem;">account_tree</span>
+            <span>🏛️ Arquitectura Maestra Integral</span>
+            <span class="diagram-badge">Todo-en-Uno V-1.2</span>
+          </button>
+          <button class="diagram-tab-btn" data-tab="technical" onclick="UlpianoDash.switchDiagramTab('technical')">
+            <span class="material-symbols-outlined" style="font-size:1.15rem;">memory</span>
+            <span>⚙️ Arquitectura Técnica &amp; Forense</span>
+            <span class="diagram-badge">Ciberdefensa</span>
+          </button>
+          <button class="diagram-tab-btn" data-tab="international" onclick="UlpianoDash.switchDiagramTab('international')">
+            <span class="material-symbols-outlined" style="font-size:1.15rem;">public</span>
+            <span>🌐 Marco Legal Internacional</span>
+            <span class="diagram-badge">UE • FISMA • JTC</span>
+          </button>
+          <button class="diagram-tab-btn" data-tab="national" onclick="UlpianoDash.switchDiagramTab('national')">
+            <span class="material-symbols-outlined" style="font-size:1.15rem;">balance</span>
+            <span>🇻🇪 Marco Legal Nacional</span>
+            <span class="diagram-badge">CRBV 203 • TSJ 0406</span>
+          </button>
+          <button class="diagram-tab-btn" data-tab="original" onclick="UlpianoDash.switchDiagramTab('original')">
+            <span class="material-symbols-outlined" style="font-size:1.15rem;">star</span>
+            <span>⭐ Aporte Original Título VII</span>
+            <span class="diagram-badge">Anticorrupción</span>
+          </button>
+        </div>
+
+        <!-- Interactive Diagram Viewer Card -->
+        <div class="diagram-viewer-card mb-5" id="main-diagram-viewer-card">
+          <!-- Toolbar Header -->
+          <div class="diagram-toolbar">
+            <div>
+              <h5 class="diagram-toolbar-title" id="diagram-active-title">
+                <span class="material-symbols-outlined text-primary" id="diagram-active-icon">account_tree</span>
+                <span id="diagram-active-name">Arquitectura de Integración V-1.2 (Maestra Integral)</span>
+              </h5>
+              <div class="text-muted small" id="diagram-active-sub">
+                Integración de los 4 grandes bloques: UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025 y Aporte Original Título VII.
+              </div>
+            </div>
+
+            <!-- Action & Zoom Controls -->
+            <div class="diagram-toolbar-actions">
+              <button class="diagram-btn-tool" onclick="UlpianoDash.zoomDiagram(-0.15)" title="Reducir zoom">
+                <span class="material-symbols-outlined" style="font-size:1rem;">zoom_out</span> Zoom -
+              </button>
+              <button class="diagram-btn-tool" id="diagram-zoom-level-btn" onclick="UlpianoDash.resetDiagramZoom()" title="Restablecer zoom al 100%">
+                <span class="material-symbols-outlined" style="font-size:1rem;">restart_alt</span> <span id="diagram-zoom-val">100%</span>
+              </button>
+              <button class="diagram-btn-tool" onclick="UlpianoDash.zoomDiagram(0.15)" title="Aumentar zoom">
+                <span class="material-symbols-outlined" style="font-size:1rem;">zoom_in</span> Zoom +
+              </button>
+              <button class="diagram-btn-tool" onclick="UlpianoDash.toggleDiagramFullscreen()" title="Pantalla completa" id="btn-diagram-fullscreen">
+                <span class="material-symbols-outlined" style="font-size:1rem;">fullscreen</span> Pantalla Completa
+              </button>
+              <button class="diagram-btn-tool" onclick="UlpianoDash.openActiveDiagramNewTab()" title="Abrir archivo SVG en pestaña independiente">
+                <span class="material-symbols-outlined" style="font-size:1rem;">open_in_new</span> Abrir SVG ↗
+              </button>
+              <button class="diagram-btn-tool" onclick="UlpianoDash.downloadActiveDiagram()" title="Descargar archivo vectorial">
+                <span class="material-symbols-outlined" style="font-size:1rem;">download</span> Descargar
+              </button>
+            </div>
+          </div>
+
+          <!-- Viewport Wrapper (Canvas Scroll & Zoom) -->
+          <div class="diagram-viewport-wrapper" id="diagram-viewport-scroll">
+            <div class="diagram-viewport-inner" id="diagram-viewport-content">
+              <div class="text-center py-5 text-muted">
+                <div class="spinner-border text-primary mb-3"></div>
+                <p>Cargando diagrama vectorial...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Breakdown Cards Below Diagram (Dynamic or Contextual) -->
+        <div id="diagram-breakdown-section" class="mb-5">
+          <!-- Populated dynamically based on selected tab -->
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- =========================================================================
@@ -1213,7 +1356,9 @@
         <div class="col-12 col-md-6 text-md-end">
           <div class="dc3-footer-links mb-2">
             <a href="#" onclick="UlpianoDash.switchView('dashboard')">Dashboard</a>
+            <a href="#" onclick="UlpianoDash.switchView('diagrams')">Diagramas</a>
             <a href="#" onclick="UlpianoDash.switchView('reader')">Lector de versiones</a>
+            <a href="#" onclick="UlpianoDash.switchView('compare')">Comparador</a>
             <a href="#" onclick="UlpianoDash.switchView('matrix')">Trazabilidad ISO</a>
             <a href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer" target="_blank">Repositorio GitHub</a>
           </div>

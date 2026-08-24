@@ -1248,6 +1248,298 @@ body {
   color: #0f172a;
 }
 
+/* ==========================================================================
+   DIAGRAMS MODULE (SUITE DE DIAGRAMAS INTERACTIVOS USWDS 3.0 / DC3)
+   ========================================================================== */
+.diagram-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background-color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--dc3-border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
 
+.diagram-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: #f5f6f8;
+  color: #323a45;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
 
+.diagram-tab-btn:hover {
+  background-color: #e7e9ed;
+  color: #162e51;
+  border-color: #cfd4dc;
+}
 
+.diagram-tab-btn.active {
+  background-color: #004987;
+  color: #ffffff;
+  border-color: #003366;
+  box-shadow: 0 2px 6px rgba(0, 73, 135, 0.28);
+}
+
+.diagram-tab-btn .diagram-badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+}
+
+.diagram-tab-btn.active .diagram-badge {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.diagram-viewer-card {
+  background-color: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  position: relative;
+}
+
+.diagram-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+  border-bottom: 1px solid var(--dc3-border-color);
+}
+
+.diagram-toolbar-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #162e51;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.diagram-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.diagram-btn-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.diagram-btn-tool:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.diagram-btn-tool.active {
+  background-color: #004987;
+  color: #ffffff;
+  border-color: #003366;
+}
+
+.diagram-viewport-wrapper {
+  background-color: #fafbfc;
+  padding: 24px;
+  min-height: 520px;
+  max-height: 850px;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.diagram-viewport-inner {
+  transform-origin: top center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+  width: 100%;
+  max-width: 1360px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  padding: 12px;
+}
+
+.diagram-viewport-inner svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Fullscreen Mode for Diagram */
+.diagram-viewer-card.is-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.diagram-viewer-card.is-fullscreen .diagram-viewport-wrapper {
+  flex: 1;
+  max-height: none;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Diagram Details Breakdown Cards */
+.diagram-card-info {
+  background-color: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-radius: 8px;
+  padding: 20px;
+  height: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.diagram-card-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.diagram-card-info-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e7e9ed;
+}
+
+.diagram-card-info-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.diagram-flow-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.diagram-flow-step:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.diagram-flow-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #004987;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.diagram-flow-body {
+  flex: 1;
+}
+
+.diagram-flow-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #162e51;
+  margin-bottom: 3px;
+}
+
+.diagram-flow-text {
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.diagram-legal-ref {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.diagram-legal-ref-eu {
+  background-color: #eff6fb;
+  color: #004987;
+  border: 1px solid #aacdec;
+}
+
+.diagram-legal-ref-fisma {
+  background-color: #e0edfb;
+  color: #003366;
+  border: 1px solid #73b3e7;
+}
+
+.diagram-legal-ref-crbv {
+  background-color: #f9eded;
+  color: #b50909;
+  border: 1px solid #e79c9c;
+}
+
+.diagram-legal-ref-locota {
+  background-color: #fef6e7;
+  color: #8c3b00;
+  border: 1px solid #fac76f;
+}
+
+.diagram-legal-ref-iso {
+  background-color: #eaf4ec;
+  color: #154721;
+  border: 1px solid #99cda4;
+}
