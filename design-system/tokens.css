@@ -185,5 +185,71 @@
   --breakpoint-desktop: 1040px;
   --breakpoint-desktop-lg: 1200px;
   --breakpoint-widescreen: 1400px;
+
+  /* ------------------------------------------------------------------------
+     7. VIOLET / INDIGO PALETTE (Forensic, Crypto, Compliance Layers)
+     ------------------------------------------------------------------------ */
+  --usa-color-violet-5: #f3ebf9;
+  --usa-color-violet-10: #e4d4f0;
+  --usa-color-violet-20: #cfb5e6;
+  --usa-color-violet-30: #b28fd5;
+  --usa-color-violet-40: #9468c3;
+  --usa-color-violet-50: #7832a8;
+  --usa-color-violet-60: #5e2590;
+  --usa-color-violet-70: #4a156d;
+  --usa-color-violet-80: #351049;
+  --usa-color-violet-90: #1f0a2c;
+
+  --usa-color-indigo-5: #ece8f7;
+  --usa-color-indigo-10: #d4c8ef;
+  --usa-color-indigo-20: #ada2e2;
+  --usa-color-indigo-30: #8671d7;
+  --usa-color-indigo-40: #6c4dc4;
+  --usa-color-indigo-50: #5338a4;
+  --usa-color-indigo-60: #3f2a82;
+  --usa-color-indigo-70: #2f1f62;
+
+  /* Semantic: Forensic & Compliance */
+  --theme-color-forensic-light: var(--usa-color-violet-10);
+  --theme-color-forensic: var(--usa-color-violet-50);
+  --theme-color-forensic-dark: var(--usa-color-violet-70);
+
+  --theme-color-compliance-light: var(--usa-color-indigo-10);
+  --theme-color-compliance: var(--usa-color-indigo-50);
+  --theme-color-compliance-dark: var(--usa-color-indigo-70);
+
+  /* ------------------------------------------------------------------------
+     8. FOCUS RING & ACCESSIBILITY TOKENS (Section 508)
+     ------------------------------------------------------------------------ */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--usa-color-blue-40);
+  --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color);
+  --focus-ring-outline: var(--focus-ring-width) solid var(--focus-ring-color);
+
+  /* High-contrast focus for dark backgrounds */
+  --focus-ring-inverse-color: var(--usa-color-gold-20);
+  --focus-ring-inverse: var(--focus-ring-width) solid var(--focus-ring-inverse-color);
+
+  /* ------------------------------------------------------------------------
+     9. MOTION & TRANSITION TOKENS (Prefers-Reduced-Motion Safe)
+     ------------------------------------------------------------------------ */
+  --transition-duration-fast: 150ms;
+  --transition-duration-normal: 250ms;
+  --transition-duration-slow: 400ms;
+  --transition-easing: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --transition-standard: all var(--transition-duration-normal) var(--transition-easing);
+
+  /* ------------------------------------------------------------------------
+     10. Z-INDEX SCALE
+     ------------------------------------------------------------------------ */
+  --z-index-base: 0;
+  --z-index-dropdown: 100;
+  --z-index-sticky: 200;
+  --z-index-fixed: 300;
+  --z-index-modal-backdrop: 400;
+  --z-index-modal: 500;
+  --z-index-popover: 600;
+  --z-index-tooltip: 700;
 }
 

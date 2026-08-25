@@ -1247,6 +1247,82 @@
           desc: 'Alertas en tiempo real vía API para Contraloría e Inspectoría General, detección automática de anomalías y prohibición de fallos 100% autónomos sin juez responsable.'
         }
       ]
+    },
+    workflows: {
+      id: 'workflows',
+      name: 'CMS Compliance Officer: Motor de Workflows & Alertas IA',
+      icon: 'account_tree',
+      badge: 'Code-Based (Sin GUI)',
+      sub: 'Arquitectura modular programática (/workflows/, /triggers/, /actions/, /guards/) para publicación Cuatro Ojos, sorteo, cadena de custodia e IA para alertas tempranas.',
+      file: './svg/cms_compliance_workflows_arquitectura.svg',
+      breakdown: [
+        {
+          title: '1. /triggers/ — Disparadores de Evento',
+          icon: 'bolt',
+          badge: 'Event-Driven',
+          badgeClass: 'diagram-legal-ref-fisma',
+          desc: 'Ingesta mediante Webhooks Next.js, PostgreSQL LISTEN/NOTIFY, colas BullMQ/Redis y cron jobs programados.'
+        },
+        {
+          title: '2. /guards/ — Guardias de Seguridad & RBAC',
+          icon: 'security',
+          badge: 'Cuatro Ojos & MFA',
+          badgeClass: 'diagram-legal-ref-crbv',
+          desc: 'Segregación obligatoria de funciones (Art. 22), validación de elegibilidad de jueces, comprobación MIME y supervisión humana (Art. 25).'
+        },
+        {
+          title: '3. /workflows/ — Orquestación Secuencial',
+          icon: 'schema',
+          badge: 'BPMN 2.0 en Código',
+          badgeClass: 'diagram-legal-ref-locota',
+          desc: 'Pipelines programáticos sin GUI (Temporal.io / TypeScript): publicación Cuatro Ojos, sorteo determinístico, custodia forense y alertas IA.'
+        },
+        {
+          title: '4. /actions/ — Ejecución Criptográfica Atómica',
+          icon: 'fingerprint',
+          badge: 'HSM / SHA3 / TSA',
+          badgeClass: 'diagram-legal-ref-eu',
+          desc: 'Firma PAdES SUSCERTE, Hash dual (SHA-256 + SHA3-512), sellado TSA RFC 3161 y almacenamiento inmutable WORM.'
+        }
+      ]
+    },
+    organigram: {
+      id: 'organigram',
+      name: 'Organigrama Funcional Descendente: CMS Compliance Officer',
+      icon: 'corporate_fare',
+      badge: 'Jerarquía de Control',
+      sub: 'Estructura jerárquica descendente: Dirección Superior -> Bifurcación (Workflows vs IA) -> 4 Estratos (/triggers/, /guards/, /workflows/, /actions/) -> Salidas Judiciales.',
+      file: './svg/cms_compliance_organigrama_descendente.svg',
+      breakdown: [
+        {
+          title: 'Nivel 1: Dirección Nacional de Compliance TSJ',
+          icon: 'corporate_fare',
+          badge: 'Órgano Rector',
+          badgeClass: 'diagram-legal-ref-crbv',
+          desc: 'Supervisión integral, gobernanza tecnológica, marco CRBV 203, doctrina TSJ 0406/2026 y FISMA 2014.'
+        },
+        {
+          title: 'Nivel 2: Dos Pilares (Automatización vs IA)',
+          icon: 'alt_route',
+          badge: 'Doble Rama',
+          badgeClass: 'diagram-legal-ref-fisma',
+          desc: 'Bifurcación clara: Rama A (Workflows code-based sin GUI) vs Rama B (IA exclusivamente para alertas tempranas).'
+        },
+        {
+          title: 'Niveles 3-4: 4 Estratos Funcionales',
+          icon: 'layers',
+          badge: 'Arquitectura Modular',
+          badgeClass: 'diagram-legal-ref-locota',
+          desc: 'Cascada secuencial: /triggers/ (ingesta) -> /guards/ (segregación) -> /workflows/ (pipelines) -> /actions/ (cripto).'
+        },
+        {
+          title: 'Nivel 5: Servicios y Salidas Institucionales',
+          icon: 'verified',
+          badge: 'Impacto Ciudadano',
+          badgeClass: 'diagram-legal-ref-eu',
+          desc: 'Portal público firmado, sorteo imparcial, bóveda forense WORM y alertas en tiempo real a Inspectoría.'
+        }
+      ]
     }
   };
 

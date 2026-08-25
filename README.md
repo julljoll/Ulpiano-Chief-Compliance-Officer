@@ -71,13 +71,15 @@ El portal web de Ulpiano CCO incorpora 5 herramientas de control institucional:
 
 ## 🖼️ Suite Oficial de Diagramas Vectoriales
 
-El módulo de **Diagramas** ofrece visualización interactiva de 5 perspectivas especializadas:
+El módulo de **Diagramas** ofrece visualización interactiva de 7 perspectivas especializadas:
 
 1. [`svg/ciberseguridad_integracion_V1.2.svg`](./svg/ciberseguridad_integracion_V1.2.svg) — **Arquitectura Maestra Integral V-1.2:** Mapeo de los 4 grandes bloques integrados.
-2. [`svg/arquitectura_tecnica_v1.2.svg`](./svg/arquitectura_tecnica_v1.2.svg) — **Arquitectura Técnica & Forense V-1.2:** Capas Zero Trust, CSIRT, Forense ISO 27037, PSS, DOV 72h e IA de Integridad.
-3. [`svg/marco_legal_internacional_v1.2.svg`](./svg/marco_legal_internacional_v1.2.svg) — **Marco Legal Internacional & Derecho Comparado:** Reglamento UE 2023/2841, NIS2, FISMA 2014 (S.2521), JTC NCSC 2025 y Normas ISO/IEC (27001, 27037, 42001).
-4. [`svg/marco_legal_nacional_v1.2.svg`](./svg/marco_legal_nacional_v1.2.svg) — **Marco Legal Nacional & Bloque Constitucional:** CRBV Art. 203 (Rango Orgánico), Sentencia TSJ 0406/2026, LOCOTA 2026 (Unidades de Celeridad Art. 11 y Comisión Nacional Art. 7), SUSCERTE y Régimen Sancionatorio.
-5. [`svg/titulo_vii_idea_de_valor_v1.2.svg`](./svg/titulo_vii_idea_de_valor_v1.2.svg) — **Aporte Original Título VII:** Doble Frente, Sorteo Aleatorio Algorítmico, Segregación "4 Ojos" e IA Anticorrupción.
+2. [`svg/cms_compliance_organigrama_descendente.svg`](./svg/cms_compliance_organigrama_descendente.svg) — **Organigrama Funcional Descendente:** Jerarquía de control, bifurcación de pilares (Workflows vs IA) y 4 estratos (`/triggers/`, `/guards/`, `/workflows/`, `/actions/`).
+3. [`svg/cms_compliance_workflows_arquitectura.svg`](./svg/cms_compliance_workflows_arquitectura.svg) — **CMS Compliance Officer: Workflows & Alertas IA:** Arquitectura programática detallada, automatización code-based (sin GUI) e IA para alertas tempranas.
+4. [`svg/arquitectura_tecnica_v1.2.svg`](./svg/arquitectura_tecnica_v1.2.svg) — **Arquitectura Técnica & Forense V-1.2:** Capas Zero Trust, CSIRT, Forense ISO 27037, PSS, DOV 72h e IA de Integridad.
+5. [`svg/marco_legal_internacional_v1.2.svg`](./svg/marco_legal_internacional_v1.2.svg) — **Marco Legal Internacional & Derecho Comparado:** Reglamento UE 2023/2841, NIS2, FISMA 2014 (S.2521), JTC NCSC 2025 y Normas ISO/IEC (27001, 27037, 42001).
+6. [`svg/marco_legal_nacional_v1.2.svg`](./svg/marco_legal_nacional_v1.2.svg) — **Marco Legal Nacional & Bloque Constitucional:** CRBV Art. 203 (Rango Orgánico), Sentencia TSJ 0406/2026, LOCOTA 2026 (Unidades de Celeridad Art. 11 y Comisión Nacional Art. 7), SUSCERTE y Régimen Sancionatorio.
+7. [`svg/titulo_vii_idea_de_valor_v1.2.svg`](./svg/titulo_vii_idea_de_valor_v1.2.svg) — **Aporte Original Título VII:** Doble Frente, Sorteo Aleatorio Algorítmico, Segregación "4 Ojos" e IA Anticorrupción.
 
 ---
 

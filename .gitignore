@@ -1,0 +1,41 @@
+# =============================================================================
+# .gitignore — Ulpiano Chief Compliance Officer
+# =============================================================================
+
+# 1. Directorios Solicitados para Exclusión
+/RAG/
+RAG/
+/.agents/
+.agents/
+/.agent/
+.agent/
+/design-system/
+design-system/
+
+# 2. Entornos de Desarrollo, IDEs & Logs
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 3. Dependencias y Builds Temporales
+node_modules/
+dist/
+build/
+.cache/
+.next/
+out/
+
+# 4. Archivos Temporales del Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+
+# 5. Archivos Scratch / Borradores de Trabajo
+/scratch/
+scratch/

@@ -32,14 +32,14 @@
    ========================================================================== */
 :root {
   /* DC3 / Federal Navy Palette */
-  --dc3-navy-darkest: #0b1b3d;
-  --dc3-navy-dark: #162e51;
-  --dc3-navy-primary: #004987;
-  --dc3-navy-accent: #0076d6;
-  --dc3-gold-accent: #df7e00;
-  --dc3-gold-light: #fac76f;
-  --dc3-slate-bg: #f5f6f8;
-  --dc3-border-color: #dfe1e2;
+  --dc3-navy-darkest: var(--usa-color-blue-90);
+  --dc3-navy-dark: var(--usa-color-blue-80);
+  --dc3-navy-primary: var(--usa-color-blue-70);
+  --dc3-navy-accent: var(--usa-color-blue-50);
+  --dc3-gold-accent: var(--usa-color-gold-40);
+  --dc3-gold-light: var(--usa-color-gold-20);
+  --dc3-slate-bg: var(--usa-color-gray-cool-5);
+  --dc3-border-color: var(--usa-color-gray-cool-20);
 
   /* Bootstrap Variable Mappings */
   --bs-primary: var(--theme-color-primary-dark);      /* #004987 */
@@ -62,7 +62,7 @@
   /* Typography */
   --bs-body-font-family: var(--font-sans);
   --bs-body-color: var(--theme-color-ink);
-  --bs-body-bg: #f4f6f8;
+  --bs-body-bg: var(--usa-color-gray-cool-5);
 
   /* Elevation & Radii */
   --bs-border-radius: 4px;
@@ -78,8 +78,8 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: #f4f6f8;
-  color: #1b1b1b;
+  background-color: var(--usa-color-gray-cool-5);
+  color: var(--theme-color-ink);
   overflow-x: hidden;
 }
 
@@ -100,7 +100,7 @@ body {
 .dc3-header {
   background: linear-gradient(180deg, var(--dc3-navy-darkest) 0%, var(--dc3-navy-dark) 100%);
   border-bottom: 4px solid var(--dc3-gold-accent);
-  color: #ffffff;
+  color: var(--theme-color-ink-inverse);
   padding: 14px 24px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
@@ -108,7 +108,7 @@ body {
 .dc3-emblem-badge {
   width: 46px;
   height: 46px;
-  background: #ffffff;
+  background: var(--theme-color-base-lightest);
   color: var(--dc3-navy-dark);
   border: 2px solid var(--dc3-gold-accent);
   border-radius: 8px;
@@ -124,7 +124,7 @@ body {
   font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #ffffff;
+  color: var(--theme-color-ink-inverse);
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -174,7 +174,7 @@ body {
 
 .dc3-nav-tab.active {
   background-color: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  color: var(--theme-color-ink-inverse);
   border-bottom-color: var(--dc3-gold-accent);
   font-weight: 700;
 }
@@ -184,7 +184,7 @@ body {
    ========================================================================== */
 .dc3-hero-banner {
   background: linear-gradient(135deg, var(--dc3-navy-dark) 0%, var(--dc3-navy-primary) 100%);
-  color: #ffffff;
+  color: var(--theme-color-ink-inverse);
   padding: 32px 36px;
   border-radius: 4px;
   border-left: 6px solid var(--dc3-gold-accent);
@@ -206,7 +206,7 @@ body {
 }
 .dc3-breadcrumb a:hover {
   text-decoration: underline;
-  color: #ffffff;
+  color: var(--theme-color-ink-inverse);
 }
 
 .dc3-hero-title {
@@ -227,7 +227,7 @@ body {
    5. CARDS & TILES
    ========================================================================== */
 .dc3-card {
-  background-color: #ffffff;
+  background-color: var(--theme-color-base-lightest);
   border: 1px solid var(--dc3-border-color);
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -300,12 +300,12 @@ body {
    6. READER CANVAS (Full Width & Clean Paper)
    ========================================================================== */
 .reader-canvas {
-  background-color: #f4f6f8;
+  background-color: var(--usa-color-gray-cool-5);
   padding: 28px 20px;
 }
 
 .reader-toolbar-top {
-  background: #ffffff;
+  background: var(--theme-color-base-lightest);
   border: 1px solid var(--dc3-border-color);
   border-radius: 4px;
   padding: 12px 20px;
@@ -319,7 +319,7 @@ body {
 }
 
 .reader-paper {
-  background-color: #ffffff;
+  background-color: var(--theme-color-base-lightest);
   border: 1px solid var(--dc3-border-color);
   border-top: 5px solid var(--dc3-navy-primary);
   border-radius: 4px;
@@ -338,7 +338,7 @@ body {
   max-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: var(--theme-color-base-lightest);
   border: 1px solid var(--dc3-border-color);
   border-top: 4px solid var(--dc3-navy-primary);
   border-radius: 4px;
@@ -1542,4 +1542,58 @@ body {
   background-color: #eaf4ec;
   color: #154721;
   border: 1px solid #99cda4;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FOCUS RING & REDUCED MOTION (Section 508 / WCAG 2.1 AAA)
+   ========================================================================== */
+
+/* Global focus ring for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+.dc3-nav-tab:focus-visible,
+.dc3-card:focus-visible {
+  outline: var(--focus-ring-outline);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Inverse focus ring for dark backgrounds */
+.dc3-header a:focus-visible,
+.dc3-navbar .dc3-nav-tab:focus-visible,
+.dc3-hero-banner a:focus-visible {
+  outline: var(--focus-ring-inverse);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip-to-content link for keyboard users */
+.usa-skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-ink-inverse);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.usa-skip-to-content:focus {
+  left: 0;
+  top: 0;
 }
