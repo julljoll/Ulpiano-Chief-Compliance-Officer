@@ -5,13 +5,14 @@
 # 1. Codificación de caracteres estándar UTF-8
 AddDefaultCharset UTF-8
 
-# 2. Tipos MIME para JSON, SVG, CSS, JS y HTML
+# 2. Tipos MIME para JSON, SVG, CSS, JS, HTML y Web App Manifest
 <IfModule mod_mime.c>
   AddType application/json .json
   AddType image/svg+xml .svg .svgz
   AddType text/html .html
   AddType text/css .css
   AddType application/javascript .js
+  AddType application/manifest+json .webmanifest .json
 </IfModule>
 
 # 3. Cache optimizado para carga ultra rápida
@@ -24,6 +25,7 @@ AddDefaultCharset UTF-8
   ExpiresByType image/png                 "access plus 30 days"
   ExpiresByType image/jpeg                "access plus 30 days"
   ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType font/woff                 "access plus 1 year"
   ExpiresByType application/json          "access plus 1 day"
   ExpiresByType text/html                 "access plus 10 minutes"
 </IfModule>
@@ -40,9 +42,19 @@ ServerSignature Off
 # 6. Entrada principal
 DirectoryIndex index.html
 
-# 7. Cabeceras CORS seguras para peticiones internas
+# 7. Cabeceras HTTP de Seguridad y CORS restrictivo
 <IfModule mod_headers.c>
-  <FilesMatch "\.(json|html|svg)$">
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Content Security Policy (permite self, CDNs requeridos y estilos inline en SVGs)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self' data:; frame-ancestors 'none';"
+
+  # CORS restringido para assets de lectura pública (JSON y SVG)
+  <FilesMatch "\.(json|svg)$">
     Header set Access-Control-Allow-Origin "*"
     Header set Access-Control-Allow-Methods "GET, OPTIONS"
     Header set Access-Control-Allow-Headers "Content-Type"

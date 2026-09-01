@@ -71,15 +71,17 @@ El portal web de Ulpiano CCO incorpora 5 herramientas de control institucional:
 
 ## 🖼️ Suite Oficial de Diagramas Vectoriales
 
-El módulo de **Diagramas** ofrece visualización interactiva de 7 perspectivas especializadas:
+El módulo de **Diagramas** ofrece visualización interactiva de 9 perspectivas especializadas (todas en Modo Light Institucional y con iconos vectoriales oficiales):
 
 1. [`svg/ciberseguridad_integracion_V1.2.svg`](./svg/ciberseguridad_integracion_V1.2.svg) — **Arquitectura Maestra Integral V-1.2:** Mapeo de los 4 grandes bloques integrados.
 2. [`svg/cms_compliance_organigrama_descendente.svg`](./svg/cms_compliance_organigrama_descendente.svg) — **Organigrama Funcional Descendente:** Jerarquía de control, bifurcación de pilares (Workflows vs IA) y 4 estratos (`/triggers/`, `/guards/`, `/workflows/`, `/actions/`).
 3. [`svg/cms_compliance_workflows_arquitectura.svg`](./svg/cms_compliance_workflows_arquitectura.svg) — **CMS Compliance Officer: Workflows & Alertas IA:** Arquitectura programática detallada, automatización code-based (sin GUI) e IA para alertas tempranas.
-4. [`svg/arquitectura_tecnica_v1.2.svg`](./svg/arquitectura_tecnica_v1.2.svg) — **Arquitectura Técnica & Forense V-1.2:** Capas Zero Trust, CSIRT, Forense ISO 27037, PSS, DOV 72h e IA de Integridad.
-5. [`svg/marco_legal_internacional_v1.2.svg`](./svg/marco_legal_internacional_v1.2.svg) — **Marco Legal Internacional & Derecho Comparado:** Reglamento UE 2023/2841, NIS2, FISMA 2014 (S.2521), JTC NCSC 2025 y Normas ISO/IEC (27001, 27037, 42001).
-6. [`svg/marco_legal_nacional_v1.2.svg`](./svg/marco_legal_nacional_v1.2.svg) — **Marco Legal Nacional & Bloque Constitucional:** CRBV Art. 203 (Rango Orgánico), Sentencia TSJ 0406/2026, LOCOTA 2026 (Unidades de Celeridad Art. 11 y Comisión Nacional Art. 7), SUSCERTE y Régimen Sancionatorio.
-7. [`svg/titulo_vii_idea_de_valor_v1.2.svg`](./svg/titulo_vii_idea_de_valor_v1.2.svg) — **Aporte Original Título VII:** Doble Frente, Sorteo Aleatorio Algorítmico, Segregación "4 Ojos" e IA Anticorrupción.
+4. [`svg/backend_python_api_arquitectura.svg`](./svg/backend_python_api_arquitectura.svg) — **Arquitectura Servidor Backend API en Python (FastAPI):** Arquitectura desacoplada en Python 3.12, PKI SUSCERTE, Celery/Redis, pgvector RAG y Bóveda WORM (Estilo Eraser.io).
+5. [`svg/tsj_arquitectura_frontend.svg`](./svg/tsj_arquitectura_frontend.svg) — **Portal Judicial TSJ: Frontend Web en Next.js 15:** Visor Forense React-PDF, tokens USWDS 3.0, accesibilidad WCAG 2.1 AAA y conexión API REST / WSS.
+6. [`svg/arquitectura_tecnica_v1.2.svg`](./svg/arquitectura_tecnica_v1.2.svg) — **Arquitectura Técnica & Forense V-1.2:** Capas Zero Trust, CSIRT, Forense ISO 27037, PSS, DOV 72h e IA de Integridad.
+7. [`svg/marco_legal_internacional_v1.2.svg`](./svg/marco_legal_internacional_v1.2.svg) — **Marco Legal Internacional & Derecho Comparado:** Reglamento UE 2023/2841, NIS2, FISMA 2014 (S.2521), JTC NCSC 2025 y Normas ISO/IEC (27001, 27037, 42001).
+8. [`svg/marco_legal_nacional_v1.2.svg`](./svg/marco_legal_nacional_v1.2.svg) — **Marco Legal Nacional & Bloque Constitucional:** CRBV Art. 203 (Rango Orgánico), Sentencia TSJ 0406/2026, LOCOTA 2026 (Unidades de Celeridad Art. 11 y Comisión Nacional Art. 7), SUSCERTE y Régimen Sancionatorio.
+9. [`svg/titulo_vii_idea_de_valor_v1.2.svg`](./svg/titulo_vii_idea_de_valor_v1.2.svg) — **Aporte Original Título VII:** Doble Frente, Sorteo Aleatorio Algorítmico, Segregación "4 Ojos" e IA Anticorrupción.
 
 ---
 
@@ -125,20 +127,28 @@ El módulo de **Diagramas** ofrece visualización interactiva de 7 perspectivas 
 
 ## 📂 Estructura del Repositorio
 
-- [`index.html`](./index.html) — Portal web interactivo principal con los 5 módulos institucionales.
-- [`viewer.js`](./viewer.js) — Motor JavaScript con registro de versiones, suite de diagramas, matriz de trazabilidad y comparador.
-- [`viewer.css`](./viewer.css) — Estilos del portal bajo tokens de diseño USWDS 3.0 / DC3 institucional.
-- [`registry.json`](./registry.json) — Registro modular autodescubrible de versiones normativas y estadísticas.
-- [`svg/`](./svg/) — Colección de diagramas vectoriales en alta resolución:
-  - [`ciberseguridad_integracion_V1.2.svg`](./svg/ciberseguridad_integracion_V1.2.svg) — Arquitectura Maestra Integral V-1.2.
-  - [`arquitectura_tecnica_v1.2.svg`](./svg/arquitectura_tecnica_v1.2.svg) — Arquitectura Técnica y Forense por Capas V-1.2.
-  - [`marco_legal_internacional_v1.2.svg`](./svg/marco_legal_internacional_v1.2.svg) — Marco Legal Internacional y Derecho Comparado.
-  - [`marco_legal_nacional_v1.2.svg`](./svg/marco_legal_nacional_v1.2.svg) — Marco Legal Nacional y Bloque Constitucional.
-  - [`titulo_vii_idea_de_valor_v1.2.svg`](./svg/titulo_vii_idea_de_valor_v1.2.svg) — Aporte Original de Integridad Procesal Anticorrupción.
-- [`docs/`](./docs/) — Documentos fuente en formato Markdown:
-  - [`ciberseguridadprocesal_v1.2.md`](./docs/ciberseguridadprocesal_v1.2.md) — Ley Orgánica V-1.2 (FISMA 2014 + LOCOTA 2026 + Sentencia TSJ 0406/2026).
-  - [`ciberseguridadprocesal_v1.1.md`](./docs/ciberseguridadprocesal_v1.1.md) — Ley Orgánica V-1.1 (Con Reformas).
-  - [`ciberseguridadprocesal_V1.0.md`](./docs/ciberseguridadprocesal_V1.0.md) — Ley Especial V-1.0 (Documento Base).
+- [`index.html`](./index.html) — Portal web interactivo principal con los 6 módulos institucionales.
+- [`viewer.js`](./viewer.js) — Punto de entrada JavaScript modular (ESModule).
+- [`modules/`](./modules/) — Arquitectura modular desacoplada:
+  - `state.js` — Estado global singleton.
+  - `utils.js` — Funciones auxiliares y sanitización XSS.
+  - `registry.js` — Registro central de documentos y catálogo de modificaciones.
+  - `router.js` — Enrutador SPA con soporte para URL hash e historial del navegador.
+  - `dashboard.js` — Renderizado del panel de control, tarjetas de versión y Delta Inspector.
+  - `charts.js` — Gráficos estadísticos dinámicos con Chart.js.
+  - `reader.js` — Visor normativo con TOC flotante interactivo y navegación por reformas.
+  - `diagrams-registry.js` — Registro central de las 9 perspectivas de arquitectura vectorial.
+  - `diagrams.js` — Controlador de la suite de diagramas con zoom, fullscreen y descarga.
+  - `compare.js` — Motor de comparación paralela de versiones normativas.
+  - `matrix.js` — Matriz de trazabilidad normativa y exportación tabular Excel / CSV.
+  - `api-sim.js` — Simuladores interactivos del backend judicial en Python FastAPI (Firma PAdES, Cotejo WORM, Sorteo CSPRNG, Alertas WSS).
+- [`viewer.css`](./viewer.css) — Estilos institucionales bajo tokens USWDS 3.0 / DC3 con skeleton loaders, animaciones y media print.
+- [`registry.json`](./registry.json) — Registro modular autodescubrible de versiones normativas y estadísticas (única fuente de verdad).
+- [`manifest.json`](./manifest.json) — Manifiesto Web App (PWA) para instalación y metadatos del portal.
+- [`.htaccess`](./.htaccess) — Configuración de servidor Apache con cabeceras de seguridad HTTP, CSP y compresión.
+- [`package.json`](./package.json) — Configuración de herramientas, scripts de build, linting y desarrollo.
+- [`svg/`](./svg/) — Colección de diagramas vectoriales en alta resolución.
+- [`docs/`](./docs/) — Documentos fuente en formato Markdown (V-1.0, V-1.1, V-1.2).
 - [`components/docs/`](./components/docs/) — Componentes HTML compilados para lectura ultrarrápida.
 - [`design-system/`](./design-system/) — Tokens de diseño JSON/CSS bajo el estándar USWDS 3.0.
 - [`build.ps1`](./build.ps1) / [`build.js`](./build.js) — Scripts de compilación automática de documentos Markdown a componentes HTML.
@@ -161,10 +171,16 @@ Para visualizar el portal en tu entorno local:
    ```powershell
    powershell -ExecutionPolicy Bypass -File build.ps1
    ```
+   o con Node.js:
+   ```bash
+   node build.js
+   ```
 
 3. **Abrir en el navegador:**
-   - Abre `index.html` con la extensión **Live Server** de VS Code, o con cualquier servidor web estático local (ej. `python -m http.server 8080`).
+   - Abre `index.html` con la extensión **Live Server** de VS Code, o con cualquier servidor web estático local (ej. `python -m http.server 8080` o `npx live-server`).
+   *(Debido al uso de ESModules nativos, se requiere un servidor HTTP local).*
 
 ---
 
 > 💡 **Nota de Investigación:** Este proyecto es un desarrollo técnico e investigativo enfocado en arquitectura de software seguro, informática forense, derecho procesal constitucional y modelos algorítmicos para la integridad, transparencia y celeridad de los sistemas de justicia y de la administración pública.
+

@@ -1,438 +1,687 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1650" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1680" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
   <defs>
     <style><![CDATA[
-      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
-      @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@400;600;700;800&display=swap');
 
-      .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
-      .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
+      .font-sans { font-family: 'Inter', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      .font-mono { font-family: 'Fira Code', 'Roboto Mono', Consolas, Monaco, monospace; }
 
-      .text-title { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 15px; fill: #ffffff; letter-spacing: -0.01em; }
-      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.5px; fill: #f1f5f9; }
-      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.5px; fill: #fde047; }
-      .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 11.5px; fill: #ffffff; letter-spacing: 0.02em; }
-      .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 9.2px; }
+      /* Eraser.io Architecture Styles — Light Theme */
+      .text-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 14.5px; fill: #ffffff; letter-spacing: -0.01em; }
+      .text-subtitle { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10.2px; fill: #f1f5f9; }
+      .text-subcite { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 9.2px; fill: #fde047; }
       
-      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.8px; fill: #0f2d59; }
-      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.8px; fill: #2d3748; line-height: 1.35; }
-      .text-law-cite { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 8.8px; fill: #8a3b00; }
-      .text-tech-cite { font-family: 'Roboto Mono', monospace; font-weight: 600; font-size: 8.5px; fill: #0050a0; }
+      .text-header-box { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 11.2px; fill: #ffffff; letter-spacing: 0.02em; }
+      .text-tag { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 8.8px; }
+      
+      .text-node-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10.5px; fill: #0f172a; }
+      .text-node-desc { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 9.2px; fill: #334155; line-height: 1.35; }
+      .text-law-cite { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 8.5px; fill: #9a3412; }
+      .text-tech-cite { font-family: 'Fira Code', monospace; font-weight: 600; font-size: 8.2px; fill: #0369a1; }
 
-      .text-flow-num { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 10.5px; fill: #ffffff; }
+      .eraser-port { fill: #059669; stroke: #ffffff; stroke-width: 1.5; }
+      .eraser-port-blue { fill: #0284c7; stroke: #ffffff; stroke-width: 1.5; }
+      .eraser-port-purple { fill: #7c3aed; stroke: #ffffff; stroke-width: 1.5; }
+      .eraser-port-gold { fill: #d97706; stroke: #ffffff; stroke-width: 1.5; }
 
-      .flow-arrow-down { stroke: #0066cc; stroke-width: 2.2; fill: none; }
-      .flow-arrow-purple { stroke: #7e22ce; stroke-width: 2.2; fill: none; }
-      .flow-arrow-green { stroke: #15803d; stroke-width: 2.2; fill: none; }
+      .flow-line { stroke: #059669; stroke-width: 1.8; stroke-dasharray: 4,3; fill: none; }
+      .flow-line-blue { stroke: #0284c7; stroke-width: 2; fill: none; }
+      .flow-line-purple { stroke: #7c3aed; stroke-width: 2; fill: none; }
+      .flow-line-gold { stroke: #d97706; stroke-width: 2; fill: none; }
     ]]></style>
 
     <!-- Filters for Cards & Depth -->
     <filter id="f-shadow" x="-3%" y="-3%" width="106%" height="106%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.07"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.08"/>
     </filter>
     <filter id="f-heavy-shadow" x="-4%" y="-4%" width="108%" height="108%">
-      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0b1f3a" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0b1f3a" flood-opacity="0.10"/>
     </filter>
 
     <!-- Gradients -->
     <linearGradient id="fHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06281e"/>
-      <stop offset="50%" stop-color="#0d4233"/>
-      <stop offset="100%" stop-color="#145c47"/>
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="50%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#047857"/>
     </linearGradient>
 
     <linearGradient id="fSec1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#065f46"/>
-      <stop offset="100%" stop-color="#059669"/>
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
     </linearGradient>
 
     <linearGradient id="fSec2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#004c87"/>
-      <stop offset="100%" stop-color="#0284c7"/>
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
     </linearGradient>
 
     <linearGradient id="fSec3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#581c87"/>
-      <stop offset="100%" stop-color="#7e22ce"/>
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
     </linearGradient>
 
     <linearGradient id="fSec4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#854d0e"/>
-      <stop offset="100%" stop-color="#d97706"/>
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
     </linearGradient>
 
     <!-- Markers -->
-    <marker id="f-arrow-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#059669"/>
+    <marker id="f-arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669"/>
     </marker>
-    <marker id="f-arrow-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#0284c7"/>
+    <marker id="f-arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#0284c7"/>
     </marker>
-    <marker id="f-arrow-purple" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#7e22ce"/>
+    <marker id="f-arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="f-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#d97706"/>
     </marker>
 
-    <!-- Grid -->
-    <pattern id="f-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+    <!-- Eraser.io Light Grid Background Pattern -->
+    <pattern id="f-light-grid" width="24" height="24" patternUnits="userSpaceOnUse">
       <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e2e8f0" stroke-width="0.75"/>
     </pattern>
+
+    <!-- ======================================================== -->
+    <!-- EMBEDDED OFFICIAL TECH VECTOR SYMBOLS                    -->
+    <!-- ======================================================== -->
+
+    <!-- Next.js Vector -->
+    <g id="icon-nextjs">
+      <circle cx="15" cy="15" r="14" fill="#000000"/>
+      <path d="M24 25L10.5 7.5H8v15h2.5V11.2l12 15.3c.5-.4 1-.9 1.5-1.5z" fill="#ffffff"/>
+      <path d="M19 7.5h2.5v10H19z" fill="#ffffff"/>
+    </g>
+
+    <!-- React-PDF Vector -->
+    <g id="icon-react-pdf">
+      <rect x="4" y="3" width="22" height="24" rx="3" fill="#e11d48"/>
+      <circle cx="15" cy="15" r="5.5" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+      <circle cx="15" cy="15" r="2.2" fill="#ffffff"/>
+    </g>
+
+    <!-- TypeScript Vector -->
+    <g id="icon-typescript">
+      <rect x="3" y="3" width="24" height="24" rx="4" fill="#3178c6"/>
+      <path d="M13 11h-4v2h1v9h2v-9h1v-2zm8 4c-.7-.7-1.8-1.1-2.9-1.4-1-.3-1.6-.6-1.6-1.1s.4-.8 1.1-.8c.8 0 1.4.3 1.9.8l1.3-1.4c-.8-.8-1.9-1.3-3.2-1.3-2.1 0-3.3 1.2-3.3 2.7 0 1.5 1.1 2.2 2.6 2.6 1.1.3 1.7.6 1.7 1.2 0 .6-.5.9-1.3.9-1 0-1.8-.4-2.4-1.1l-1.3 1.4c.9 1 2.2 1.6 3.7 1.6 2.3 0 3.6-1.2 3.6-2.9 0-1.6-1.1-2.3-2.6-2.8z" fill="#ffffff"/>
+    </g>
+
+    <!-- Tailwind / USWDS Vector -->
+    <g id="icon-tailwind">
+      <circle cx="15" cy="15" r="14" fill="#06b6d4"/>
+      <path d="M15 10.5c-2.4 0-3.9 1.2-4.5 3.6 1.2-.6 2.1-.4 2.7.6.6 1 1.2 1.8 3.3 1.8 2.4 0 3.9-1.2 4.5-3.6-1.2.6-2.1.4-2.7-.6-.6-1-1.2-1.8-3.3-1.8zm-6 6c-2.4 0-3.9 1.2-4.5 3.6 1.2-.6 2.1-.4 2.7.6.6 1 1.2 1.8 3.3 1.8 2.4 0 3.9-1.2 4.5-3.6-1.2.6-2.1.4-2.7-.6-.6-1-1.2-1.8-3.3-1.8z" fill="#ffffff"/>
+    </g>
+
+    <!-- Python Vector -->
+    <g id="icon-python">
+      <path d="M14.77 0C6.62 0 7.13 3.53 7.13 3.53l.01 3.65h7.74v1.1H4.46S0 7.76 0 15.91c0 8.14 3.89 7.86 3.89 7.86h2.32v-3.26s-.13-3.89 3.83-3.89h7.68c3.7 0 3.83-3.76 3.83-3.76V1.88S22.23 0 14.77 0zm-4 2.41c.77 0 1.39.62 1.39 1.39s-.62 1.39-1.39 1.39-1.39-.62-1.39-1.39.62-1.39 1.39-1.39z" fill="#0284c7"/>
+      <path d="M15.23 30c8.14 0 7.64-3.53 7.64-3.53l-.01-3.65h-7.74v-1.1h10.42s4.46.52 4.46-7.63c0-8.14-3.89-7.86-3.89-7.86h-2.32v3.26s.13 3.89-3.83 3.89h-7.68c-3.7 0-3.83 3.76-3.83 3.76v8.23s-.69 1.88 6.77 1.88zm4-2.41c-.77 0-1.39-.62-1.39-1.39s.62-1.39 1.39-1.39 1.39.62 1.39 1.39-.62 1.39-1.39 1.39z" fill="#d97706"/>
+    </g>
+
+    <!-- FastAPI Vector -->
+    <g id="icon-fastapi">
+      <circle cx="15" cy="15" r="15" fill="#009688"/>
+      <path d="M16.1 4.3L8.1 15.1h6L11.2 25.7l10.6-13.1h-5.7l4.3-8.3z" fill="#ffffff"/>
+    </g>
+
+    <!-- WCAG Accessibility Vector -->
+    <g id="icon-wcag">
+      <circle cx="15" cy="15" r="14" fill="#0284c7"/>
+      <circle cx="15" cy="8.5" r="2.5" fill="#ffffff"/>
+      <path d="M7 13h16M15 13v9M11 25l4-5 4 5" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+
+    <!-- FIDO2 / WebAuthn Vector -->
+    <g id="icon-fido2">
+      <rect x="5" y="10" width="20" height="16" rx="3" fill="#4f46e5"/>
+      <path d="M10 10V7c0-2.8 2.2-5 5-5s5 2.2 5 5v3" fill="none" stroke="#4f46e5" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="15" cy="18" r="2" fill="#ffffff"/>
+    </g>
+
+    <!-- REST API Vector -->
+    <g id="icon-rest-api">
+      <circle cx="15" cy="15" r="14" fill="#059669"/>
+      <path d="M8 15h14M16 9l6 6-6 6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- WebSocket Vector -->
+    <g id="icon-websocket">
+      <circle cx="15" cy="15" r="14" fill="#7c3aed"/>
+      <path d="M9 11a7 7 0 0112 0M7 8a11 11 0 0116 0M12 17a3 3 0 016 0" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="15" cy="21" r="1.5" fill="#ffffff"/>
+    </g>
   </defs>
 
-  <!-- LIENZO BASE (HOJA FOLIO VERTICAL 1080 x 1650) -->
-  <rect width="1080" height="1650" fill="#f8fafc"/>
-  <rect width="1080" height="1650" fill="url(#f-grid)" opacity="0.65"/>
+  <!-- LIENZO BASE (1080 x 1680 - Light Theme) -->
+  <rect width="1080" height="1680" fill="#f8fafc"/>
+  <rect width="1080" height="1680" fill="url(#f-light-grid)" opacity="0.75"/>
 
   <!-- ======================================================== -->
-  <!-- 1. CABECERA INSTITUCIONAL FRONTEND TSJ (OPTIMIZADA)      -->
+  <!-- 1. CABECERA INSTITUCIONAL: FRONTEND CLIENT TSJ           -->
   <!-- ======================================================== -->
   <g transform="translate(40, 16)">
     <rect width="1000" height="96" rx="8" fill="url(#fHeaderGrad)" stroke="#047857" stroke-width="1.2" filter="url(#f-heavy-shadow)"/>
     <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#34d399"/>
 
-    <!-- Title & Subtitle (No icon in top header, full width layout from x=24) -->
-    <g transform="translate(24, 0)">
-      <text x="0" y="32" class="text-title">ARQUITECTURA FRONTEND TSJ: UX/UI, REACT-PDF &amp; CCO PRIVADO</text>
-      <text x="0" y="53" class="text-subtitle">
-        Portal Público (Next.js / React-PDF) • Sección Privada de Carga y Firma con Compliance Officer
+    <!-- Left Brand Icon: Next.js Official Vector -->
+    <g transform="translate(22, 18)">
+      <rect width="60" height="60" rx="8" fill="#ffffff" stroke="#34d399" stroke-width="1.2"/>
+      <use href="#icon-nextjs" x="15" y="15" width="30" height="30"/>
+    </g>
+
+    <!-- Title & Subtitle -->
+    <g transform="translate(96, 0)">
+      <text x="0" y="30" class="text-title">ARQUITECTURA FRONTEND TSJ: CLIENTE WEB EN NEXT.JS 15 (APP ROUTER)</text>
+      <text x="0" y="52" class="text-subtitle">
+        Visor Forense React-PDF • Tokens USWDS 3.0 • WCAG 2.1 AAA • Conexión REST a API Python 3.12 (FastAPI)
       </text>
       <text x="0" y="74" class="text-subcite">
-        Garantías Procesales: CRBV (Arts. 26, 49, 143) • Ley Infogobierno (Art. 27) • Título VII Ulpiano
+        Fundamentación Legal: CRBV Arts. 26, 49, 110 • Ley de Infogobierno Arts. 11, 22, 27 • LOCOTA Art. 11
       </text>
     </g>
 
-    <!-- Right Badges (Bounded from x=755 to x=985 - Width 230px, HIGH CONTRAST) -->
+    <!-- Right Badges -->
     <g transform="translate(755, 16)">
       <rect x="0" y="0" width="230" height="28" rx="5" fill="#064e3b" stroke="#34d399" stroke-width="1"/>
-      <text x="115" y="18" class="text-tag" fill="#ffffff" text-anchor="middle">UX/UI DESIGN SYSTEM LIGHT</text>
-      
-      <rect x="0" y="36" width="230" height="28" rx="5" fill="#581c87" stroke="#c084fc" stroke-width="1"/>
-      <text x="115" y="54" class="text-tag" fill="#ffffff" text-anchor="middle">COMPLIANCE OFFICER PRIVADO</text>
+      <use href="#icon-nextjs" x="8" y="2" width="24" height="24"/>
+      <text x="125" y="18" class="text-tag" fill="#34d399" text-anchor="middle">NEXT.JS 15 + REACT-PDF</text>
+
+      <rect x="0" y="36" width="230" height="28" rx="5" fill="#065f46" stroke="#34d399" stroke-width="1"/>
+      <text x="115" y="54" class="text-tag" fill="#ffffff" text-anchor="middle">MODO LIGHT INSTITUCIONAL</text>
     </g>
   </g>
 
   <!-- ======================================================== -->
-  <!-- 2. CAPA 1: PRINCIPIOS UX/UI & ACCESIBILIDAD UNIVERSAL    -->
+  <!-- 2. CAPA 1: EXPERIENCIA CIUDADANA Y ACCESIBILIDAD         -->
   <!-- ======================================================== -->
-  <g transform="translate(40, 124)">
-    <rect width="1000" height="262" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#f-shadow)"/>
+  <g transform="translate(40, 128)">
+    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.2" filter="url(#f-heavy-shadow)"/>
+    
+    <!-- Section Header Bar -->
     <rect width="1000" height="34" rx="8" fill="url(#fSec1Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#fSec1Grad)"/>
+    <rect y="26" width="1000" height="8" fill="url(#fSec1Grad)"/>
     
-    <circle cx="22" cy="17" r="10" fill="#34d399"/>
-    <text x="22" y="21" class="text-flow-num" text-anchor="middle" fill="#064e3b">1</text>
-    <text x="40" y="21" class="text-header-box">CAPA 1: DISEÑO CENTRADO EN EL USUARIO (UX/UI) &amp; ACCESIBILIDAD WCAG 2.1 AAA</text>
-    <text x="980" y="21" class="text-tag" fill="#d1fae5" text-anchor="end">CRBV Art. 26 (Tutela Efectiva y Gratuita)</text>
+    <g transform="translate(16, 8)">
+      <circle cx="9" cy="9" r="8" fill="#065f46"/>
+      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">1</text>
+      <text x="26" y="14" class="text-header-box">CAPA 1: EXPERIENCIA DE USUARIO JUDICIAL, DISEÑO USWDS 3.0 &amp; WCAG 2.1 AAA</text>
+    </g>
+    <rect x="760" y="6" width="225" height="22" rx="4" fill="#064e3b" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">USWDS 3.0 • WCAG 2.1 AAA • ZERO BARRIERS</text>
 
-    <!-- 3 Sub-Cards -->
-    <g transform="translate(14, 46)">
-      <!-- Card 1.1 -->
+    <!-- Sub-Cards in Layer 1 with Tech Icons -->
+    <g transform="translate(16, 46)">
+      
+      <!-- Node 1.1: USWDS Design & Typography -->
       <g transform="translate(0, 0)">
-        <rect width="312" height="200" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#059669"/>
-        <text x="12" y="18" class="text-item-title" fill="#065f46">Tokens USWDS 3.0 &amp; Light-Only</text>
-        <text x="12" y="36" class="text-item-desc">• Paleta semántica clara de alto contraste visual (> 7:1).</text>
-        <text x="12" y="52" class="text-item-desc">• Tipografías accesibles: Public Sans y Roboto Mono.</text>
-        <text x="12" y="68" class="text-item-desc">• Cero distracciones: estética judicial sobria y digna.</text>
-        <text x="12" y="84" class="text-item-desc">• Jerarquía visual predecible para abogados y público.</text>
-        <text x="12" y="100" class="text-item-desc">• Respeto al formato de expediente judicial folio.</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#bbf7d0"/>
-        <text x="156" y="179" class="text-tech-cite" fill="#047857" text-anchor="middle">Design System Tokens Light • WCAG AAA</text>
+        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: WCAG Accessibility -->
+        <g transform="translate(8, 3)">
+          <use href="#icon-wcag" x="0" y="0" width="24" height="24"/>
+        </g>
+        <text x="38" y="19" class="text-node-title">Diseño USWDS 3.0 &amp; Tipografía Dual</text>
+        
+        <!-- Connection Ports -->
+        <circle cx="155" cy="0" r="4" class="eraser-port"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Fuentes Public Sans &amp; Roboto Mono</text>
+          <text x="0" y="32" class="text-node-desc">• Ratio de contraste superior a 7:1 (AAA)</text>
+          <text x="0" y="50" class="text-node-desc">• Diseño responsive mobile-first fluido</text>
+          <text x="0" y="68" class="text-node-desc">• Soporte integral de lectores de pantalla ARIA</text>
+          <text x="0" y="86" class="text-node-desc">• Sin dependencia exclusiva de color para alertas</text>
+          <text x="0" y="104" class="text-tech-cite">• Tokens CSS estándar en tokens.css</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 26: Acceso Universal a la Justicia</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ Ley Infogobierno Art. 22: Accesibilidad Web</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: W3C WCAG 2.1 Level AAA</text>
+        </g>
       </g>
 
-      <!-- Card 1.2 -->
+      <!-- Node 1.2: Next.js App Router Core -->
       <g transform="translate(328, 0)">
-        <rect width="312" height="200" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#059669"/>
-        <text x="12" y="18" class="text-item-title" fill="#065f46">Diseño Responsivo &amp; Carga Instantánea</text>
-        <text x="12" y="36" class="text-item-desc">• Experiencia fluida en móviles, tablets y escritorios.</text>
-        <text x="12" y="52" class="text-item-desc">• Next.js Server-Side Rendering (SSR) ultra-rápido.</text>
-        <text x="12" y="68" class="text-item-desc">• Carga diferida y compresión Brotli en tiempo real.</text>
-        <text x="12" y="84" class="text-item-desc">• Navegación accesible por teclado y lectores de pantalla.</text>
-        <text x="12" y="100" class="text-item-desc">• Feedback interactivo de estado (loaders y tooltips).</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#bbf7d0"/>
-        <text x="156" y="179" class="text-tech-cite" fill="#047857" text-anchor="middle">Section 508 • Mobile-First Responsive</text>
+        <rect width="310" height="252" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="1.2"/>
+        <rect width="310" height="30" rx="6" fill="#dcfce7" stroke="#059669" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#dcfce7"/>
+        
+        <!-- Tech Icon: Next.js Official -->
+        <g transform="translate(8, 3)">
+          <use href="#icon-nextjs" x="0" y="0" width="24" height="24"/>
+        </g>
+        <text x="38" y="19" class="text-node-title">Next.js App Router &amp; RSC Engine</text>
+        
+        <!-- Connection Ports -->
+        <circle cx="155" cy="0" r="4" class="eraser-port"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• React Server Components (RSC)</text>
+          <text x="0" y="32" class="text-node-desc">• Zero Client-Side Secret Exposure</text>
+          <text x="0" y="50" class="text-node-desc">• Edge Middleware de seguridad y routing</text>
+          <text x="0" y="68" class="text-node-desc">• Server Actions validadas con Zod schemas</text>
+          <text x="0" y="86" class="text-node-desc">• Renderizado híbrido SSR/SSG ultrarrápido</text>
+          <text x="0" y="104" class="text-tech-cite">• Cero fugas de tokens en el navegador</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#bbf7d0" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 13: Software Libre</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ LOCOTA Art. 11: Celeridad y Eficiencia</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: OWASP ASVS Level 3 Frontend</text>
+        </g>
       </g>
 
-      <!-- Card 1.3 -->
+      <!-- Node 1.3: FIDO2 WebAuthn Access -->
       <g transform="translate(656, 0)">
-        <rect width="316" height="200" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#059669"/>
-        <text x="12" y="18" class="text-item-title" fill="#065f46">Next.js Edge Middleware &amp; CSP Nonce</text>
-        <text x="12" y="36" class="text-item-desc">• Inyección de Content Security Policy (CSP) con Nonce.</text>
-        <text x="12" y="52" class="text-item-desc">• Bloqueo perimetral de ataques XSS y Clickjacking.</text>
-        <text x="12" y="68" class="text-item-desc">• Strict-Transport-Security (HSTS) en TLS 1.3.</text>
-        <text x="12" y="84" class="text-item-desc">• Sanitización automática de parámetros de búsqueda.</text>
-        <text x="12" y="100" class="text-item-desc">• Subresource Integrity (SRI) en scripts compilados.</text>
-        <rect x="12" y="164" width="292" height="22" rx="3" fill="#ffffff" stroke="#bbf7d0"/>
-        <text x="158" y="179" class="text-law-cite" fill="#047857" text-anchor="middle">Ley Infogobierno Art. 22 (Seguridad Web)</text>
+        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: FIDO2 Key -->
+        <g transform="translate(8, 3)">
+          <use href="#icon-fido2" x="0" y="0" width="24" height="24"/>
+        </g>
+        <text x="38" y="19" class="text-node-title">Acceso FIDO2 &amp; Identidad Digital</text>
+        
+        <!-- Connection Ports -->
+        <circle cx="156" cy="0" r="4" class="eraser-port"/>
+        <circle cx="156" cy="252" r="4" class="eraser-port"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• WebAuthn API biométrica y llaves hardware</text>
+          <text x="0" y="32" class="text-node-desc">• Autenticación sin contraseñas (Passwordless)</text>
+          <text x="0" y="50" class="text-node-desc">• Inmunidad contra ataques de Phishing</text>
+          <text x="0" y="68" class="text-node-desc">• Gestión de sesiones con cookies HttpOnly</text>
+          <text x="0" y="86" class="text-node-desc">• Renovación automática de tokens asíncronos</text>
+          <text x="0" y="104" class="text-tech-cite">• Encriptación local WebCrypto en el cliente</text>
+          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Art. 18: Presunción de Autoría</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ LPCDI Art. 9: Acceso Indebido a Datos</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: FIDO2 / WebAuthn Level 2</text>
+        </g>
       </g>
     </g>
   </g>
 
-  <!-- Connector 1 -> 2 -->
-  <path d="M 540 386 L 540 410" class="flow-arrow-down" marker-end="url(#f-arrow-blue)"/>
+  <!-- Flow Connector 1 to 2 -->
+  <path d="M 540 443 L 540 478" class="flow-line-blue" marker-end="url(#f-arrow-blue)"/>
+  <rect x="420" y="450" width="240" height="18" rx="4" fill="#ffffff" stroke="#0284c7" stroke-width="1"/>
+  <text x="540" y="462" class="text-tag" fill="#0284c7" text-anchor="middle">REACT-PDF &amp; VERIFICATION ENGINE</text>
 
   <!-- ======================================================== -->
-  <!-- 3. CAPA 2: SECCIÓN PÚBLICA (PORTAL & VISOR REACT-PDF)    -->
+  <!-- 3. CAPA 2: VISOR FORENSE REACT-PDF & COTEJO PÚBLICO     -->
   <!-- ======================================================== -->
-  <g transform="translate(40, 420)">
-    <rect width="1000" height="262" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#f-shadow)"/>
+  <g transform="translate(40, 485)">
+    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.2" filter="url(#f-heavy-shadow)"/>
+    
     <rect width="1000" height="34" rx="8" fill="url(#fSec2Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#fSec2Grad)"/>
+    <rect y="26" width="1000" height="8" fill="url(#fSec2Grad)"/>
     
-    <circle cx="22" cy="17" r="10" fill="#38bdf8"/>
-    <text x="22" y="21" class="text-flow-num" text-anchor="middle" fill="#0f172a">2</text>
-    <text x="40" y="21" class="text-header-box">CAPA 2: SECCIÓN PÚBLICA DE CONSULTA &amp; VISOR REACT-PDF EN TIEMPO REAL</text>
-    <text x="980" y="21" class="text-tag" fill="#dbeafe" text-anchor="end">CRBV Art. 143 (Publicidad de Fallos)</text>
+    <g transform="translate(16, 8)">
+      <circle cx="9" cy="9" r="8" fill="#0369a1"/>
+      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">2</text>
+      <text x="26" y="14" class="text-header-box">CAPA 2: VISOR FORENSE REACT-PDF, COTEJO DE SENTENCIAS &amp; VERIFICADOR CSV</text>
+    </g>
+    <rect x="760" y="6" width="225" height="22" rx="4" fill="#0369a1" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">REACT-PDF • CSV &amp; QR • ISO 19005-2</text>
 
-    <!-- 3 Sub-Cards -->
-    <g transform="translate(14, 46)">
-      <!-- Card 2.1 -->
+    <!-- Sub-Cards in Layer 2 with Tech Icons -->
+    <g transform="translate(16, 46)">
+      
+      <!-- Node 2.1: React-PDF / PDF.js Engine -->
       <g transform="translate(0, 0)">
-        <rect width="312" height="200" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#0284c7"/>
-        <text x="12" y="18" class="text-item-title" fill="#004987">Visor React-PDF / PDF.js en Vivo</text>
-        <text x="12" y="36" class="text-item-desc">• Renderizado bit a bit en Canvas HTML5 nativo.</text>
-        <text x="12" y="52" class="text-item-desc">• Inmutabilidad garantizada: el visor no altera bytes.</text>
-        <text x="12" y="68" class="text-item-desc">• Marcadores de Sala, índice y foliado electrónico.</text>
-        <text x="12" y="84" class="text-item-desc">• Búsqueda textual indexada y zoom vectorial.</text>
-        <text x="12" y="100" class="text-item-desc">• Descarga directa del original con firma PAdES.</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#bfdbfe"/>
-        <text x="156" y="179" class="text-tech-cite" text-anchor="middle">@react-pdf-viewer • ISO 19005 PDF/A-2u</text>
+        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: React-PDF -->
+        <g transform="translate(8, 3)">
+          <use href="#icon-react-pdf" x="0" y="0" width="24" height="24"/>
+        </g>
+        <text x="38" y="19" class="text-node-title">Visor PDF/A-2u Nativo (PDF.js)</text>
+        
+        <circle cx="155" cy="0" r="4" class="eraser-port-blue"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port-blue"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Motor de renderizado en Canvas WebGL</text>
+          <text x="0" y="32" class="text-node-desc">• Visualización de capas de firma digital PAdES</text>
+          <text x="0" y="50" class="text-node-desc">• Panel de inspección de metadatos forenses</text>
+          <text x="0" y="68" class="text-node-desc">• Zoom dinámico vectorial sin pérdida</text>
+          <text x="0" y="86" class="text-node-desc">• Búsqueda de texto indexada en tiempo real</text>
+          <text x="0" y="104" class="text-tech-cite">• Descarga segura con marca de agua oficial</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Art. 4: Eficacia Probatoria Plena</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ Ley Infogobierno Art. 11: Acceso Público</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO 19005-2 PDF/A-2u</text>
+        </g>
       </g>
 
-      <!-- Card 2.2 -->
+      <!-- Node 2.2: CSV & QR Verification -->
       <g transform="translate(328, 0)">
-        <rect width="312" height="200" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#0284c7"/>
-        <text x="12" y="18" class="text-item-title" fill="#004987">Inspección de Firma PAdES &amp; TSA</text>
-        <text x="12" y="36" class="text-item-desc">• Panel lateral de validación de firma en tiempo real.</text>
-        <text x="12" y="52" class="text-item-desc">• Consulta en vivo de revocación OCSP de SUSCERTE.</text>
-        <text x="12" y="68" class="text-item-desc">• Datos del firmante: Magistrado Ponente y Sala.</text>
-        <text x="12" y="84" class="text-item-desc">• Certificación de fecha y hora cierta legal TSA.</text>
-        <text x="12" y="100" class="text-item-desc">• Badge verde de integridad: "Fallo Auténtico TSJ".</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#bfdbfe"/>
-        <text x="156" y="179" class="text-law-cite" text-anchor="middle">LMDyFE Art. 18 (Eficacia Probatoria)</text>
+        <rect width="310" height="252" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.2"/>
+        <rect width="310" height="30" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#e0f2fe"/>
+        
+        <!-- Tech Icon: CSV Code -->
+        <g transform="translate(8, 3)">
+          <rect width="24" height="24" rx="4" fill="#0284c7"/>
+          <text x="12" y="16" font-family="'Fira Code', monospace" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">CSV</text>
+        </g>
+        <text x="38" y="19" class="text-node-title">Módulo de Cotejo Público Universal</text>
+        
+        <circle cx="155" cy="0" r="4" class="eraser-port-blue"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port-blue"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Entrada de Código Seguro de Verificación (CSV)</text>
+          <text x="0" y="32" class="text-node-desc">• Escaneo y lectura de código QR por cámara</text>
+          <text x="0" y="50" class="text-node-desc">• Verificación criptográfica instantánea vía API</text>
+          <text x="0" y="68" class="text-node-desc">• Comparación visual del documento original</text>
+          <text x="0" y="86" class="text-node-desc">• Descarga de constancia de validez jurídica</text>
+          <text x="0" y="104" class="text-tech-cite">• Prevención de suplantación de sentencias</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#bae6fd" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 27: Garantía de Cotejo</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ LMDyFE Art. 7: Inalterabilidad del Texto</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: RFC 3161 Time-Stamp Protocol</text>
+        </g>
       </g>
 
-      <!-- Card 2.3 -->
+      <!-- Node 2.3: SUSCERTE Trust Chain -->
       <g transform="translate(656, 0)">
-        <rect width="316" height="200" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#0284c7"/>
-        <text x="12" y="18" class="text-item-title" fill="#004987">Módulo Triple de Verificación</text>
-        <text x="12" y="36" class="text-item-desc">• <tspan font-weight="700">1. Escaneo QR:</tspan> Apertura en smartphone de litigantes.</text>
-        <text x="12" y="52" class="text-item-desc">• <tspan font-weight="700">2. Consulta CSV:</tspan> Cotejo de copia impresa (Art. 27).</text>
-        <text x="12" y="68" class="text-item-desc">• <tspan font-weight="700">3. Validador Upload:</tspan> Hashing en RAM Web Crypto.</text>
-        <text x="12" y="84" class="text-item-desc">• Muestra SHA3-512 copiable en un solo clic.</text>
-        <text x="12" y="100" class="text-item-desc">• Dictamen forense instantáneo de autenticidad.</text>
-        <rect x="12" y="164" width="292" height="22" rx="3" fill="#ffffff" stroke="#bfdbfe"/>
-        <text x="158" y="179" class="text-law-cite" text-anchor="middle">Ley Infogobierno Art. 27 (Cotejo Obligatorio)</text>
+        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: Certificate Chain -->
+        <g transform="translate(8, 3)">
+          <rect width="24" height="24" rx="4" fill="#0284c7"/>
+          <circle cx="12" cy="12" r="6" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+          <path d="M10 12l1.5 1.5 3-3" stroke="#ffffff" stroke-width="1.2" fill="none"/>
+        </g>
+        <text x="38" y="19" class="text-node-title">Inspección de Firmas &amp; Cadena SUSCERTE</text>
+        
+        <circle cx="156" cy="0" r="4" class="eraser-port-blue"/>
+        <circle cx="156" cy="252" r="4" class="eraser-port-blue"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Validación de certificados X.509 de jueces</text>
+          <text x="0" y="32" class="text-node-desc">• Verificación del Sello de Tiempo TSA</text>
+          <text x="0" y="50" class="text-node-desc">• Consulta de estado de revocación CRL / OCSP</text>
+          <text x="0" y="68" class="text-node-desc">• Indicador visual de integridad (Válida / Corrupta)</text>
+          <text x="0" y="86" class="text-node-desc">• Muestra de la Autoridad Certificadora Raíz</text>
+          <text x="0" y="104" class="text-tech-cite">• Detección de cualquier bit alterado post-firma</text>
+          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Arts. 16 y 18: Seguridad Jurídica</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ Normativas SUSCERTE: Jerarquía de Confianza</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ETSI TS 102 778 PAdES</text>
+        </g>
       </g>
     </g>
   </g>
 
-  <!-- Connector 2 -> 3 -->
-  <path d="M 540 682 L 540 706" class="flow-arrow-purple" marker-end="url(#f-arrow-purple)"/>
+  <!-- Flow Connector 2 to 3 -->
+  <path d="M 540 800 L 540 835" class="flow-line-purple" marker-end="url(#f-arrow-purple)"/>
+  <rect x="420" y="807" width="240" height="18" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1"/>
+  <text x="540" y="819" class="text-tag" fill="#7c3aed" text-anchor="middle">COMPLIANCE &amp; FORENSIC WORKFLOWS</text>
 
   <!-- ======================================================== -->
-  <!-- 4. CAPA 3: SECCIÓN PRIVADA (CHIEF COMPLIANCE OFFICER)    -->
+  <!-- 4. CAPA 3: PANEL COMPLIANCE OFFICER & TRÁMITES           -->
   <!-- ======================================================== -->
-  <g transform="translate(40, 716)">
-    <rect width="1000" height="262" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#f-shadow)"/>
+  <g transform="translate(40, 842)">
+    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2" filter="url(#f-heavy-shadow)"/>
+    
     <rect width="1000" height="34" rx="8" fill="url(#fSec3Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#fSec3Grad)"/>
+    <rect y="26" width="1000" height="8" fill="url(#fSec3Grad)"/>
     
-    <circle cx="22" cy="17" r="10" fill="#c084fc"/>
-    <text x="22" y="21" class="text-flow-num" text-anchor="middle" fill="#3b0764">3</text>
-    <text x="40" y="21" class="text-header-box">CAPA 3: SECCIÓN PRIVADA DE CARGA Y FIRMA — COMPLIANCE OFFICER ULPIANO</text>
-    <text x="980" y="21" class="text-tag" fill="#f3e8ff" text-anchor="end">Título VII (Integridad Procesal y Escudo Anticorrupción)</text>
+    <g transform="translate(16, 8)">
+      <circle cx="9" cy="9" r="8" fill="#5b21b6"/>
+      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">3</text>
+      <text x="26" y="14" class="text-header-box">CAPA 3: TABLERO DE CONTROL CCO, ALERTAS TEMPRANAS &amp; INTERFAZ DE AUDITORÍA</text>
+    </g>
+    <rect x="760" y="6" width="225" height="22" rx="4" fill="#5b21b6" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">CCO DASHBOARD • AUDIT LOGS • LOCOTA</text>
 
-    <!-- 3 Sub-Cards -->
-    <g transform="translate(14, 46)">
-      <!-- Card 3.1 -->
+    <!-- Sub-Cards in Layer 3 with Tech Icons -->
+    <g transform="translate(16, 46)">
+      
+      <!-- Node 3.1: CCO Dashboard -->
       <g transform="translate(0, 0)">
-        <rect width="312" height="200" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#9333ea"/>
-        <text x="12" y="18" class="text-item-title" fill="#581c87">Mecanismo "Cuatro Ojos Digital"</text>
-        <text x="12" y="36" class="text-item-desc">• Segregación obligatoria de funciones (Art. 27 Ulpiano).</text>
-        <text x="12" y="52" class="text-item-desc">• Firma concurrente: Magistrado Ponente + Secretario.</text>
-        <text x="12" y="68" class="text-item-desc">• Bloqueo de emisión unilateral sin refrendo secretarial.</text>
-        <text x="12" y="84" class="text-item-desc">• Token HSM FIPS 140-2 obligatorio para cada firma.</text>
-        <text x="12" y="100" class="text-item-desc">• Inmutabilidad instantánea tras la firma dual.</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#e9d5ff"/>
-        <text x="156" y="179" class="text-law-cite" fill="#7e22ce" text-anchor="middle">Art. 27 Ulpiano (Control Dual de Fe Pública)</text>
+        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: CCO Badge -->
+        <g transform="translate(8, 3)">
+          <rect width="24" height="24" rx="4" fill="#7c3aed"/>
+          <text x="12" y="16" font-family="'Fira Code', monospace" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">CCO</text>
+        </g>
+        <text x="38" y="19" class="text-node-title">Tablero del Compliance Officer</text>
+        
+        <circle cx="155" cy="0" r="4" class="eraser-port-purple"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port-purple"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Monitoreo en tiempo real de causas judiciales</text>
+          <text x="0" y="32" class="text-node-desc">• Semaforización de plazos procesales legales</text>
+          <text x="0" y="50" class="text-node-desc">• Alertas de retardo dirigidas a inspectores</text>
+          <text x="0" y="68" class="text-node-desc">• Auditoría de accesos a expedientes reservados</text>
+          <text x="0" y="86" class="text-node-desc">• Mapeo de riesgos conforme a ISO 37301</text>
+          <text x="0" y="104" class="text-tech-cite">• Generación de reportes de cumplimiento CGR</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 257: Celeridad y Eficacia</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ LOCOTA Art. 11: Unidades de Celeridad</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO 37301 Compliance Systems</text>
+        </g>
       </g>
 
-      <!-- Card 3.2 -->
+      <!-- Node 3.2: 4-Eyes Dual Authorization -->
       <g transform="translate(328, 0)">
-        <rect width="312" height="200" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#9333ea"/>
-        <text x="12" y="18" class="text-item-title" fill="#581c87">Sorteo Determinístico de Ponencias</text>
-        <text x="12" y="36" class="text-item-desc">• Algoritmo criptográfico determinístico (Art. 26).</text>
-        <text x="12" y="52" class="text-item-desc">• Asignación aleatoria auditada sin mano humana.</text>
-        <text x="12" y="68" class="text-item-desc">• Eliminación de la "asignación dirigida" de causas.</text>
-        <text x="12" y="84" class="text-item-desc">• Registro inmutable en base de datos PostgreSQL.</text>
-        <text x="12" y="100" class="text-item-desc">• Transparencia total ante el justiciable y las partes.</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#e9d5ff"/>
-        <text x="156" y="179" class="text-law-cite" fill="#7e22ce" text-anchor="middle">Art. 26 Ulpiano (Imparcialidad Algorítmica)</text>
+        <rect width="310" height="252" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.2"/>
+        <rect width="310" height="30" rx="6" fill="#f3e8ff" stroke="#7c3aed" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#f3e8ff"/>
+        
+        <!-- Tech Icon: 4-Eyes -->
+        <g transform="translate(8, 3)">
+          <rect width="24" height="24" rx="4" fill="#7c3aed"/>
+          <circle cx="12" cy="12" r="6" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+          <text x="12" y="15" font-family="'Inter', sans-serif" font-size="8" font-weight="800" fill="#ffffff" text-anchor="middle">4O</text>
+        </g>
+        <text x="38" y="19" class="text-node-title">Segregación "4 Ojos" Digital (Art. 27)</text>
+        
+        <circle cx="155" cy="0" r="4" class="eraser-port-purple"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port-purple"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Flujo de doble autorización para decisiones críticas</text>
+          <text x="0" y="32" class="text-node-desc">• Firma concurrente obligatoria Juez + Secretario</text>
+          <text x="0" y="50" class="text-node-desc">• Prohibición de firma solitaria en sentencias</text>
+          <text x="0" y="68" class="text-node-desc">• Registro criptográfico dual en cada actuación</text>
+          <text x="0" y="86" class="text-node-desc">• Validación de no conflicto de interés</text>
+          <text x="0" y="104" class="text-tech-cite">• Trazabilidad forense punto a punto</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#e9d5ff" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ Título VII Art. 27: Doble Aprobación Forzosa</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ CRBV Art. 49: Garantía del Debido Proceso</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: NIST SP 800-53 AC-5 Separation</text>
+        </g>
       </g>
 
-      <!-- Card 3.3 -->
+      <!-- Node 3.3: Merkle Logs Viewer -->
       <g transform="translate(656, 0)">
-        <rect width="316" height="200" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#9333ea"/>
-        <text x="12" y="18" class="text-item-title" fill="#581c87">Supervisión de IA &amp; Alertas de Retardo</text>
-        <text x="12" y="36" class="text-item-desc">• Asistente IA con supervisión humana (Art. 25 / ISO 42001).</text>
-        <text x="12" y="52" class="text-item-desc">• Prohibición de fallos generados 100% por IA.</text>
-        <text x="12" y="68" class="text-item-desc">• Alertas en tiempo real ante vencimiento de lapsos.</text>
-        <text x="12" y="84" class="text-item-desc">• Notificación directa a Inspectoría General y DINCIP.</text>
-        <text x="12" y="100" class="text-item-desc">• Celeridad procesal garantizada (CRBV Art. 26).</text>
-        <rect x="12" y="164" width="292" height="22" rx="3" fill="#ffffff" stroke="#e9d5ff"/>
-        <text x="158" y="179" class="text-law-cite" fill="#7e22ce" text-anchor="middle">Arts. 25, 29-31 Ulpiano (Celeridad Procesal)</text>
+        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: Forensics Log -->
+        <g transform="translate(8, 3)">
+          <rect width="24" height="24" rx="4" fill="#7c3aed"/>
+          <text x="12" y="16" font-family="'Fira Code', monospace" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">LOG</text>
+        </g>
+        <text x="38" y="19" class="text-node-title">Visor de Bitácora Forense &amp; Merkle Logs</text>
+        
+        <circle cx="156" cy="0" r="4" class="eraser-port-purple"/>
+        <circle cx="156" cy="252" r="4" class="eraser-port-purple"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Visualización de registros de auditoría inmutables</text>
+          <text x="0" y="32" class="text-node-desc">• Verificación del encadenamiento criptográfico</text>
+          <text x="0" y="50" class="text-node-desc">• Exportación de reportes probatorios sellados</text>
+          <text x="0" y="68" class="text-node-desc">• Filtrado por usuario, tribunal, fecha y tipo</text>
+          <text x="0" y="86" class="text-node-desc">• Integración con herramientas periciales</text>
+          <text x="0" y="104" class="text-tech-cite">• Cumplimiento de cadena de custodia digital</text>
+          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ Título VII Art. 28: Bitácora Inalterable</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ Manual MP 2017: Cadena de Custodia</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO/IEC 27037 Evidencia Digital</text>
+        </g>
       </g>
     </g>
   </g>
 
-  <!-- Connector 3 -> 4 -->
-  <path d="M 540 978 L 540 1002" class="flow-arrow-down" stroke="#d97706" marker-end="url(#f-arrow-green)"/>
+  <!-- Flow Connector 3 to 4 -->
+  <path d="M 540 1157 L 540 1192" class="flow-line-gold" marker-end="url(#f-arrow-gold)"/>
+  <rect x="420" y="1164" width="240" height="18" rx="4" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+  <text x="540" y="1176" class="text-tag" fill="#d97706" text-anchor="middle">REST / OPENAPI 3.1 &amp; WEBSOCKETS</text>
 
   <!-- ======================================================== -->
-  <!-- 5. CAPA 4: GOBERNANZA FISMA & AUDITORÍA FORENSE          -->
+  <!-- 5. CAPA 4: CONEXIÓN API REST & WEBSOCKETS (HACIA PYTHON) -->
   <!-- ======================================================== -->
-  <g transform="translate(40, 1012)">
-    <rect width="1000" height="262" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#f-shadow)"/>
+  <g transform="translate(40, 1199)">
+    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.2" filter="url(#f-heavy-shadow)"/>
+    
     <rect width="1000" height="34" rx="8" fill="url(#fSec4Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#fSec4Grad)"/>
+    <rect y="26" width="1000" height="8" fill="url(#fSec4Grad)"/>
     
-    <circle cx="22" cy="17" r="10" fill="#fde047"/>
-    <text x="22" y="21" class="text-flow-num" text-anchor="middle" fill="#78350f">4</text>
-    <text x="40" y="21" class="text-header-box">CAPA 4: GOBERNANZA FISMA 2014, AUDITORÍA ANUAL &amp; RÉGIMEN SANCIONATORIO</text>
-    <text x="980" y="21" class="text-tag" fill="#fef08a" text-anchor="end">Doctrina Art. 203 CRBV / TSJ 0406/2026</text>
+    <g transform="translate(16, 8)">
+      <circle cx="9" cy="9" r="8" fill="#92400e"/>
+      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">4</text>
+      <text x="26" y="14" class="text-header-box">CAPA 4: COMUNICACIÓN API CON SERVIDOR BACKEND EN PYTHON 3.12 (FASTAPI)</text>
+    </g>
+    <rect x="760" y="6" width="225" height="22" rx="4" fill="#b45309" stroke="#ffffff" stroke-width="0.8"/>
+    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">REST OPENAPI • WSS • PYTHON FASTAPI</text>
 
-    <!-- 3 Sub-Cards -->
-    <g transform="translate(14, 46)">
-      <!-- Card 4.1 -->
+    <!-- Sub-Cards in Layer 4 with Tech Icons -->
+    <g transform="translate(16, 46)">
+      
+      <!-- Node 4.1: REST API / OpenAPI Client -->
       <g transform="translate(0, 0)">
-        <rect width="312" height="200" rx="6" fill="#fefce8" stroke="#fef08a" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#d97706"/>
-        <text x="12" y="18" class="text-item-title" fill="#854d0e">Auditoría Anual Independiente</text>
-        <text x="12" y="36" class="text-item-desc">• Inspirado en FISMA 2014 44 U.S.C. § 3555.</text>
-        <text x="12" y="52" class="text-item-desc">• Incorporado en el Art. 10-bis de la Ley Orgánica.</text>
-        <text x="12" y="68" class="text-item-desc">• Evaluación externa por órgano de control fiscal.</text>
-        <text x="12" y="84" class="text-item-desc">• Pruebas de intrusión éticas y revisión de código.</text>
-        <text x="12" y="100" class="text-item-desc">• Informe preceptivo ante la Asamblea Nacional.</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#fef08a"/>
-        <text x="156" y="179" class="text-tech-cite" fill="#b45309" text-anchor="middle">Art. 10-bis Ulpiano • FISMA 2014 § 3555</text>
+        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: REST API -->
+        <g transform="translate(8, 3)">
+          <use href="#icon-rest-api" x="0" y="0" width="24" height="24"/>
+        </g>
+        <text x="38" y="19" class="text-node-title">Cliente REST API / OpenAPI 3.1</text>
+        
+        <circle cx="155" cy="0" r="4" class="eraser-port-gold"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port-gold"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Tipado estricto generado desde OpenAPI</text>
+          <text x="0" y="32" class="text-node-desc">• Peticiones HTTPS autenticadas con Bearer JWT</text>
+          <text x="0" y="50" class="text-node-desc">• Manejo automático de reintentos y fallover</text>
+          <text x="0" y="68" class="text-node-desc">• Caché inteligente con React Query / SWR</text>
+          <text x="0" y="86" class="text-node-desc">• Cero exposición de lógica de negocio en cliente</text>
+          <text x="0" y="104" class="text-tech-cite">• Desacoplamiento total Frontend ⇄ Backend</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 13: Interoperabilidad</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ CRBV Art. 110: Estándares Abiertos</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: OpenAPI 3.1 &amp; RESTful Best Practices</text>
+        </g>
       </g>
 
-      <!-- Card 4.2 -->
+      <!-- Node 4.2: WebSocket WSS Secure Channel -->
       <g transform="translate(328, 0)">
-        <rect width="312" height="200" rx="6" fill="#fefce8" stroke="#fef08a" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#d97706"/>
-        <text x="12" y="18" class="text-item-title" fill="#854d0e">Planes de Seguridad (PSS Art. 13-bis)</text>
-        <text x="12" y="36" class="text-item-desc">• Documentación técnica de controles por sede judicial.</text>
-        <text x="12" y="52" class="text-item-desc">• Homologado y supervisado directamente por DINCIP.</text>
-        <text x="12" y="68" class="text-item-desc">• Requisito habilitante para el despacho digital.</text>
-        <text x="12" y="84" class="text-item-desc">• Cumplimiento de Directivas Operativas (DOV 72h).</text>
-        <text x="12" y="100" class="text-item-desc">• Articulación expresa con LOCOTA 2026 (Art. 11).</text>
-        <rect x="12" y="164" width="288" height="22" rx="3" fill="#ffffff" stroke="#fef08a"/>
-        <text x="156" y="179" class="text-law-cite" fill="#b45309" text-anchor="middle">Art. 13-bis PSS • Art. 19-bis DOV DINCIP</text>
+        <rect width="310" height="252" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
+        <rect width="310" height="30" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="0.8"/>
+        <rect y="22" width="310" height="8" fill="#fef3c7"/>
+        
+        <!-- Tech Icon: WebSockets -->
+        <g transform="translate(8, 3)">
+          <use href="#icon-websocket" x="0" y="0" width="24" height="24"/>
+        </g>
+        <text x="38" y="19" class="text-node-title">Canal WebSockets Seguro (WSS)</text>
+        
+        <circle cx="155" cy="0" r="4" class="eraser-port-gold"/>
+        <circle cx="155" cy="252" r="4" class="eraser-port-gold"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Conexión bidireccional en tiempo real</text>
+          <text x="0" y="32" class="text-node-desc">• Recepción instantánea de alertas del CCO</text>
+          <text x="0" y="50" class="text-node-desc">• Notificaciones push de sentencias firmadas</text>
+          <text x="0" y="68" class="text-node-desc">• Actualización en vivo del estado de causas</text>
+          <text x="0" y="86" class="text-node-desc">• Cifrado de transporte TLS 1.3 garantizado</text>
+          <text x="0" y="104" class="text-tech-cite">• Heartbeat y reconexión automática</text>
+          <line x1="0" y1="118" x2="286" y2="118" stroke="#fde68a" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 26: Tutela Judicial Oportuna</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ LOCOTA Art. 11: Notificación Electrónica</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: RFC 6455 WebSocket Protocol</text>
+        </g>
       </g>
 
-      <!-- Card 4.3 -->
+      <!-- Node 4.3: Security Headers & CSP Nonce -->
       <g transform="translate(656, 0)">
-        <rect width="316" height="200" rx="6" fill="#fefce8" stroke="#fef08a" stroke-width="1.2"/>
-        <rect width="4" height="200" rx="2" fill="#d97706"/>
-        <text x="12" y="18" class="text-item-title" fill="#854d0e">Régimen Sancionatorio &amp; Doble Instancia</text>
-        <text x="12" y="36" class="text-item-desc">• Tipificación precisa: Leves, Graves y Muy Graves.</text>
-        <text x="12" y="52" class="text-item-desc">• Responsabilidad civil, administrativa y penal de jueces.</text>
-        <text x="12" y="68" class="text-item-desc">• Garantías plenas del debido proceso (CRBV Art. 49).</text>
-        <text x="12" y="84" class="text-item-desc">• Derecho a la contradicción pericial informática.</text>
-        <text x="12" y="100" class="text-item-desc">• Bitácora inalterable admisible en sede penal.</text>
-        <rect x="12" y="164" width="292" height="22" rx="3" fill="#ffffff" stroke="#fef08a"/>
-        <text x="158" y="179" class="text-law-cite" fill="#b45309" text-anchor="middle">Título VIII Ulpiano • CRBV Art. 49 (Debido Proceso)</text>
+        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
+        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
+        
+        <!-- Tech Icon: CSP Security -->
+        <g transform="translate(8, 3)">
+          <rect width="24" height="24" rx="4" fill="#d97706"/>
+          <text x="12" y="16" font-family="'Fira Code', monospace" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">CSP</text>
+        </g>
+        <text x="38" y="19" class="text-node-title">Cabeceras de Seguridad &amp; CSP Nonce</text>
+        
+        <circle cx="156" cy="0" r="4" class="eraser-port-gold"/>
+        <circle cx="156" cy="252" r="4" class="eraser-port-gold"/>
+
+        <g transform="translate(12, 40)">
+          <text x="0" y="14" class="text-tech-cite">• Content Security Policy con nonce criptográfico</text>
+          <text x="0" y="32" class="text-node-desc">• HSTS max-age=63072000; includeSubDomains</text>
+          <text x="0" y="50" class="text-node-desc">• X-Frame-Options: DENY (anti-clickjacking)</text>
+          <text x="0" y="68" class="text-node-desc">• X-Content-Type-Options: nosniff</text>
+          <text x="0" y="86" class="text-node-desc">• Permissions-Policy restringida al mínimo</text>
+          <text x="0" y="104" class="text-tech-cite">• Blindaje contra Cross-Site Scripting (XSS)</text>
+          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
+          <text x="0" y="136" class="text-law-cite">⚖️ LPCDI Art. 6: Blindaje ante Intrusiones</text>
+          <text x="0" y="152" class="text-law-cite">⚖️ CRBV Art. 110: Seguridad de la Información</text>
+          <text x="0" y="168" class="text-tech-cite">🔒 Standard: W3C CSP Level 3 &amp; OWASP Top 10</text>
+        </g>
       </g>
     </g>
   </g>
 
   <!-- ======================================================== -->
-  <!-- 6. MATRIZ NORMATIVA FRONTEND TSJ                         -->
+  <!-- 6. PIE DE PÁGINA: MATRIZ DE INTEGRACIÓN FRONTEND          -->
   <!-- ======================================================== -->
-  <g transform="translate(40, 1285)">
-    <rect width="1000" height="320" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#f-shadow)"/>
+  <g transform="translate(40, 1545)">
+    <rect width="1000" height="105" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#f-shadow)"/>
     
-    <rect width="1000" height="30" rx="8" fill="url(#fHeaderGrad)"/>
-    <rect y="20" width="1000" height="10" fill="url(#fHeaderGrad)"/>
-    <text x="20" y="20" class="text-header-box" font-size="11.5px">MATRIZ LEGAL &amp; ESTÁNDARES TÉCNICOS DEL FRONTEND Y COMPLIANCE TSJ</text>
-    <text x="980" y="20" class="text-tag" fill="#6ee7b7" text-anchor="end">ACCESIBILIDAD, TRANSPARENCIA Y CONTROL INTERNO</text>
-
-    <!-- 4 Columns -->
-    <g transform="translate(14, 40)">
-      <!-- Col 1 -->
-      <g transform="translate(0, 0)">
-        <rect width="232" height="215" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-        <text x="10" y="18" class="text-item-title" fill="#047857">Garantías Ciudadanas</text>
-        <text x="10" y="34" class="text-item-desc"><tspan font-weight="700">CRBV Art. 26:</tspan> Tutela accesible.</text>
-        <text x="10" y="49" class="text-item-desc"><tspan font-weight="700">CRBV Art. 49:</tspan> Debido proceso.</text>
-        <text x="10" y="64" class="text-item-desc"><tspan font-weight="700">CRBV Art. 143:</tspan> Consulta pública.</text>
-        <text x="10" y="79" class="text-item-desc"><tspan font-weight="700">CRBV Art. 257:</tspan> Cero dilaciones.</text>
-        <text x="10" y="94" class="text-item-desc"><tspan font-weight="700">Infogobierno 27:</tspan> Cotejo público.</text>
-        <text x="10" y="109" class="text-item-desc"><tspan font-weight="700">LMDyFE 4:</tspan> Eficacia probatoria.</text>
-        <rect x="10" y="182" width="212" height="22" rx="3" fill="#dcfce7"/>
-        <text x="116" y="196" class="text-tag" fill="#16a34a" text-anchor="middle">Constitución &amp; Leyes Clave</text>
-      </g>
-
-      <!-- Col 2 -->
-      <g transform="translate(244, 0)">
-        <rect width="232" height="215" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-        <text x="10" y="18" class="text-item-title" fill="#0284c7">UX/UI &amp; Visor React-PDF</text>
-        <text x="10" y="34" class="text-item-desc"><tspan font-weight="700">WCAG 2.1 AAA:</tspan> Contraste > 7:1.</text>
-        <text x="10" y="49" class="text-item-desc"><tspan font-weight="700">Section 508:</tspan> Accesibilidad total.</text>
-        <text x="10" y="64" class="text-item-desc"><tspan font-weight="700">USWDS 3.0:</tspan> Tokens Light oficiales.</text>
-        <text x="10" y="79" class="text-item-desc"><tspan font-weight="700">PDF.js:</tspan> Renderizado Canvas HTML5.</text>
-        <text x="10" y="94" class="text-item-desc"><tspan font-weight="700">Web Crypto:</tspan> Hash SHA3 en RAM.</text>
-        <text x="10" y="109" class="text-item-desc"><tspan font-weight="700">PAdES LTV:</tspan> Validación en vivo.</text>
-        <rect x="10" y="182" width="212" height="22" rx="3" fill="#e0f2fe"/>
-        <text x="116" y="196" class="text-tag" fill="#0284c7" text-anchor="middle">Estándares Web e Interfaz</text>
-      </g>
-
-      <!-- Col 3 -->
-      <g transform="translate(488, 0)">
-        <rect width="232" height="215" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-        <text x="10" y="18" class="text-item-title" fill="#7e22ce">Compliance Ulpiano</text>
-        <text x="10" y="34" class="text-item-desc"><tspan font-weight="700">Art. 27:</tspan> Cuatro Ojos Digital.</text>
-        <text x="10" y="49" class="text-item-desc"><tspan font-weight="700">Art. 26:</tspan> Sorteo criptográfico.</text>
-        <text x="10" y="64" class="text-item-desc"><tspan font-weight="700">Art. 25:</tspan> Supervisión de IA.</text>
-        <text x="10" y="79" class="text-item-desc"><tspan font-weight="700">Art. 29:</tspan> Alertas contra retardo.</text>
-        <text x="10" y="94" class="text-item-desc"><tspan font-weight="700">Art. 12:</tspan> Zero Trust y MFA.</text>
-        <text x="10" y="109" class="text-item-desc"><tspan font-weight="700">ISO 37001:</tspan> Control antisoborno.</text>
-        <rect x="10" y="182" width="212" height="22" rx="3" fill="#f3e8ff"/>
-        <text x="116" y="196" class="text-tag" fill="#7e22ce" text-anchor="middle">Propuesta Ulpiano CCO</text>
-      </g>
-
-      <!-- Col 4 -->
-      <g transform="translate(732, 0)">
-        <rect width="240" height="215" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-        <text x="10" y="18" class="text-item-title" fill="#b45309">Gobernanza &amp; Control</text>
-        <text x="10" y="34" class="text-item-desc"><tspan font-weight="700">CRBV 203:</tspan> Rango Ley Orgánica.</text>
-        <text x="10" y="49" class="text-item-desc"><tspan font-weight="700">TSJ 0406/26:</tspan> Doctrina vinculante.</text>
-        <text x="10" y="64" class="text-item-desc"><tspan font-weight="700">FISMA 3555:</tspan> Auditoría anual.</text>
-        <text x="10" y="79" class="text-item-desc"><tspan font-weight="700">DOV 19-bis:</tspan> Directivas DINCIP.</text>
-        <text x="10" y="94" class="text-item-desc"><tspan font-weight="700">LOCOTA 11:</tspan> Celeridad trámites.</text>
-        <text x="10" y="109" class="text-item-desc"><tspan font-weight="700">ISO 27037:</tspan> Evidencia forense.</text>
-        <rect x="10" y="182" width="220" height="22" rx="3" fill="#fef9c3"/>
-        <text x="120" y="196" class="text-tag" fill="#b45309" text-anchor="middle">FISMA / LOCOTA / DINCIP</text>
-      </g>
+    <g transform="translate(20, 16)">
+      <text x="0" y="18" class="text-header-box" fill="#047857">CONTRATO DE INTEGRACIÓN FRONTEND (NEXT.JS 15 ⇄ SERVIDOR PYTHON FASTAPI)</text>
+      <text x="0" y="40" class="text-node-desc" fill="#334155">
+        El portal web en <strong style="fill:#047857;">Next.js 15</strong> provee una experiencia accesible (WCAG 2.1 AAA), segura y sin fricción para el ciudadano y los operadores de justicia.
+      </text>
+      <text x="0" y="58" class="text-node-desc" fill="#334155">
+        Se conecta de forma exclusiva mediante <strong style="fill:#0284c7;">REST / OpenAPI 3.1 y WebSockets (WSS)</strong> al backend soberano en <strong style="fill:#0284c7;">Python 3.12 (FastAPI)</strong>.
+      </text>
+      <text x="0" y="76" class="text-law-cite">
+        Cumplimiento Pleno: CRBV Arts. 26, 49, 110 • Sentencia TSJ 0406/2026 • LMDyFE G.O. 37.148 • Infogobierno G.O. 40.274 • LOCOTA 2026
+      </text>
     </g>
 
-    <!-- Watermark Footer inside matrix -->
-    <g transform="translate(14, 275)">
-      <text x="10" y="24" font-family="'Public Sans', sans-serif" font-size="10px" fill="#5c6b7e">
-        Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#0050a0">Arquitectura Frontend TSJ (UX/UI, React-PDF &amp; CCO Privado)</tspan> • Hoja Folio Vertical
-      </text>
-      <text x="960" y="24" font-family="'Roboto Mono', monospace" font-size="9.5px" fill="#5c6b7e" text-anchor="end">
-        Next.js Portal • React-PDF • Ulpiano CCO • WCAG 2.1 AAA • TSJ 0406/2026
-      </text>
+    <!-- Right Badge -->
+    <g transform="translate(780, 26)">
+      <rect width="200" height="52" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="1"/>
+      <use href="#icon-nextjs" x="12" y="13" width="26" height="26"/>
+      <text x="115" y="22" class="text-tag" fill="#047857" text-anchor="middle">CLIENT LAYER READY</text>
+      <text x="115" y="40" class="text-tech-cite" fill="#0f172a" text-anchor="middle">Next.js ⇄ Python API</text>
     </g>
   </g>
 </svg>

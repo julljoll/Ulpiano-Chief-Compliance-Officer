@@ -1597,3 +1597,239 @@ textarea:focus-visible,
   left: 0;
   top: 0;
 }
+
+/* ==========================================================================
+   10. PYTHON 3.12 BACKEND API CONSOLE & TELEMETRY STYLES (LIGHT MODE)
+   ========================================================================== */
+.api-telemetry-bar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--dc3-border-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.82rem;
+}
+
+.api-service-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  background: var(--usa-color-gray-cool-5);
+  border: 1px solid var(--dc3-border-color);
+  font-weight: 600;
+  color: var(--theme-color-ink);
+}
+
+.api-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.75; }
+}
+
+.api-method-get {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  border: 1px solid #bae6fd;
+}
+
+.api-method-post {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  border: 1px solid #bbf7d0;
+}
+
+.api-method-ws {
+  background-color: #f3e8ff;
+  color: #7e22ce;
+  font-weight: 700;
+  font-family: 'Roboto Mono', monospace;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  border: 1px solid #e9d5ff;
+}
+
+.api-endpoint-card {
+  background: #ffffff;
+  border: 1px solid var(--dc3-border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.api-endpoint-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--dc3-navy-accent);
+}
+
+.api-endpoint-header {
+  padding: 0.85rem 1.25rem;
+  background: #ffffff;
+  border-bottom: 1px solid var(--dc3-border-color);
+  cursor: pointer;
+}
+
+.api-endpoint-body {
+  padding: 1.25rem;
+  background: var(--usa-color-gray-cool-5);
+  border-top: 1px solid var(--dc3-border-color);
+}
+
+.api-code-box {
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  overflow-x: auto;
+  border: 1px solid #334155;
+}
+
+.api-response-viewer {
+  background: #020617;
+  color: #38bdf8;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.82rem;
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid #1e293b;
+}
+
+/* ==========================================================================
+   7. SKELETON LOADERS (Reemplaza spinners genéricos)
+   ========================================================================== */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--usa-color-gray-cool-10) 25%,
+    var(--usa-color-gray-cool-5) 50%,
+    var(--usa-color-gray-cool-10) 75%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: 4px;
+  display: block;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.6em;
+}
+
+.skeleton-title {
+  height: 1.6em;
+  width: 55%;
+  margin-bottom: 1.25em;
+}
+
+.skeleton-card {
+  height: 220px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   8. MICRO-ANIMACIONES DE ENTRADA CON PERSPECTIVA
+   ========================================================================== */
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.row > [class*="col-"] .dc3-card {
+  animation: fade-slide-up 0.35s ease both;
+}
+
+.row > [class*="col-"]:nth-child(1) .dc3-card { animation-delay: 0.00s; }
+.row > [class*="col-"]:nth-child(2) .dc3-card { animation-delay: 0.06s; }
+.row > [class*="col-"]:nth-child(3) .dc3-card { animation-delay: 0.12s; }
+.row > [class*="col-"]:nth-child(4) .dc3-card { animation-delay: 0.18s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dc3-card, .skeleton {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   9. ACCESIBILIDAD UNIVERSAL: FOCUS VISIBLE (WCAG 2.1 AAA)
+   ========================================================================== */
+:focus-visible {
+  outline: 3px solid var(--usa-color-gold-30);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--dc3-gold-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* ==========================================================================
+   10. ESTILOS DE IMPRESIÓN OFICIAL (MEDIA PRINT)
+   ========================================================================== */
+@media print {
+  .dc3-header, .usa-gov-banner, .dc3-navbar,
+  .reader-toolbar-top, .floating-toc-card,
+  .excel-ribbon-bar, .excel-formula-bar,
+  .excel-bottom-sheet-bar, .no-print,
+  .dc3-hero-banner, nav, .btn,
+  .diagram-toolbar-actions, #diagram-nav-tabs {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  .reader-paper {
+    max-width: 100% !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .excel-grid-table {
+    font-size: 8pt !important;
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  .excel-grid-table th, .excel-grid-table td {
+    border: 1px solid #777777 !important;
+    padding: 4px 6px !important;
+  }
+}
+

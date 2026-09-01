@@ -1,0 +1,21 @@
+{
+  "name": "ulpiano-cco",
+  "version": "1.2.0",
+  "description": "Portal de ciberseguridad procesal e integridad digital - Ulpiano CCO",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "build:prod": "node build.js --prod",
+    "watch": "node build.js --watch",
+    "lint": "eslint viewer.js modules/*.js",
+    "format": "prettier --write \"**/*.{js,css,html,json}\" --ignore-path .gitignore",
+    "serve": "npx live-server --port=8080 --host=localhost"
+  },
+  "devDependencies": {
+    "marked": "^14.0.0",
+    "terser": "^5.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0"
+  }
+}

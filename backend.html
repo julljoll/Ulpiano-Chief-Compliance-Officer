@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es" class="light-theme">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Arquitectura Backend Python 3.12 (FastAPI) | Ulpiano Chief Compliance Officer</title>
+  <meta name="description" content="Diagrama y especificación técnica de la arquitectura de servidor API en Python 3.12 (FastAPI, PyKCS11 HSM, Celery, PostgreSQL 16 pgvector y MinIO S3 WORM) para el sistema judicial venezolano.">
+
+  <!-- Devicon & Simple Icons CDNs -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css" />
+
+  <!-- Bootstrap 5.3.3 & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./viewer.css">
+  <link rel="stylesheet" href="./design-system/tokens.css">
+  <link rel="stylesheet" href="./design-system/components.css">
+
+  <style>
+    .viewer-standalone-wrapper {
+      background: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .svg-container-card {
+      background: #ffffff;
+      border: 1px solid var(--dc3-border-color);
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .svg-canvas-box {
+      background: #f8fafc;
+      overflow: auto;
+      text-align: center;
+      padding: 1.5rem;
+      max-height: 85vh;
+      transition: transform 0.2s ease;
+    }
+    .svg-canvas-box img, .svg-canvas-box object, .svg-canvas-box svg {
+      max-width: 1000px;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      border-radius: 8px;
+    }
+    .layer-badge-python {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body class="viewer-standalone-wrapper">
+
+  <!-- =========================================================================
+       1. TOP HEADER & BREADCRUMB
+       ========================================================================= -->
+  <header class="dc3-header py-3">
+    <div class="container-xxl d-flex flex-wrap align-items-center justify-content-between gap-3 px-3">
+      <div class="d-flex align-items-center gap-3">
+        <a href="index.html" class="text-decoration-none d-flex align-items-center gap-3">
+          <div>
+            <div class="dc3-header-title text-white">Ulpiano — Chief Compliance Officer</div>
+            <div class="dc3-header-subtitle text-white-50">Dirección Nacional de Ciberseguridad Procesal e Integridad Digital</div>
+          </div>
+        </a>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <a href="index.html" class="btn btn-outline-light btn-sm">
+          <span class="material-symbols-outlined me-1">arrow_back</span> Volver al Portal
+        </a>
+        <a href="frontend.html" class="btn btn-warning btn-sm text-dark fw-bold">
+          <i class="devicon-nextjs-plain colored me-1"></i> Ver Arquitectura Frontend Next.js 15 →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. MAIN CONTENT
+       ========================================================================= -->
+  <main class="container-xxl py-4 px-3 flex-grow-1">
+
+    <!-- Hero Banner -->
+    <div class="dc3-hero-banner mb-4" style="background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%);">
+      <div class="dc3-breadcrumb mb-2">
+        <a href="index.html">Inicio</a> / 
+        <span>Arquitectura Técnica</span> / 
+        <span class="text-white">Servidor API en Python 3.12 (FastAPI)</span>
+      </div>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-primary px-3 py-2"><i class="devicon-python-plain colored me-1"></i> Python 3.12 Core</span>
+            <span class="badge bg-teal px-3 py-2" style="background-color: #009688;"><i class="devicon-fastapi-plain colored me-1"></i> FastAPI + uvloop</span>
+            <span class="badge bg-dark px-3 py-2 border border-secondary">OpenAPI 3.1 REST &amp; WSS</span>
+          </div>
+          <h1 class="dc3-hero-title mb-2">Arquitectura del Servidor API Backend en Python 3.12</h1>
+          <p class="dc3-hero-desc mb-0">
+            Diagrama técnico y flujo de datos del núcleo de procesamiento judicial: gestión asíncrona, firma criptográfica SUSCERTE con PyKCS11, tareas de fondo Celery/Redis, persistencia pgvector y bóveda inmutable WORM conforme a la LMDyFE y la Ley de Infogobierno.
+          </p>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="./svg/backend_python_api_arquitectura.svg" target="_blank" class="btn btn-warning text-dark fw-bold px-3">
+            <span class="material-symbols-outlined me-1">open_in_new</span> Abrir SVG Directo ↗
+          </a>
+          <a href="./svg/backend_python_api_arquitectura.svg" download="backend_python_api_arquitectura.svg" class="btn btn-outline-light px-3">
+            <span class="material-symbols-outlined me-1">download</span> Descargar SVG
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Diagram Card -->
+    <div class="svg-container-card mb-5">
+      
+      <!-- Toolbar -->
+      <div class="diagram-viewer-toolbar">
+        <div class="d-flex align-items-center gap-2">
+          <span class="badge bg-primary"><i class="devicon-python-plain colored me-1"></i> Backend Core</span>
+          <strong class="text-dark">Diagrama Oficial de Arquitectura Backend (Python 3.12 FastAPI)</strong>
+        </div>
+        <div class="diagram-toolbar-actions">
+          <button class="diagram-btn-tool" onclick="zoomSvg(-0.15)" title="Reducir Zoom">
+            <span class="material-symbols-outlined" style="font-size:1rem;">zoom_out</span> Zoom -
+          </button>
+          <button class="diagram-btn-tool" onclick="resetZoom()" title="Restablecer">
+            <span class="material-symbols-outlined" style="font-size:1rem;">restart_alt</span> <span id="zoom-val">100%</span>
+          </button>
+          <button class="diagram-btn-tool" onclick="zoomSvg(0.15)" title="Aumentar Zoom">
+            <span class="material-symbols-outlined" style="font-size:1rem;">zoom_in</span> Zoom +
+          </button>
+          <button class="diagram-btn-tool" onclick="toggleFullscreen()" title="Pantalla Completa" id="btn-fullscreen">
+            <span class="material-symbols-outlined" style="font-size:1rem;">fullscreen</span> Pantalla Completa
+          </button>
+          <a href="./svg/backend_python_api_arquitectura.svg" target="_blank" class="diagram-btn-tool text-decoration-none">
+            <span class="material-symbols-outlined" style="font-size:1rem;">open_in_new</span> Pestaña Nueva ↗
+          </a>
+          <a href="./svg/backend_python_api_arquitectura.svg" download="backend_python_api_arquitectura.svg" class="diagram-btn-tool text-decoration-none">
+            <span class="material-symbols-outlined" style="font-size:1rem;">download</span> Descargar
+          </a>
+        </div>
+      </div>
+
+      <!-- SVG Viewport -->
+      <div class="svg-canvas-box" id="svg-viewport">
+        <object data="./svg/backend_python_api_arquitectura.svg" type="image/svg+xml" id="svg-object" style="width: 100%; max-width: 1080px;">
+          <img src="./svg/backend_python_api_arquitectura.svg" alt="Diagrama de Arquitectura Backend Python" style="width: 100%;">
+        </object>
+      </div>
+    </div>
+
+    <!-- Architectural Breakdown Cards -->
+    <h4 class="fw-bold text-dark d-flex align-items-center gap-2 mb-3">
+      <span class="material-symbols-outlined text-primary">layers</span> Desglose por Capas de la Arquitectura Backend
+    </h4>
+
+    <div class="row g-4 mb-5">
+      
+      <!-- Layer 1 -->
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="dc3-card dc3-card-accent-top h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="layer-badge-python">CAPA 1: INGRESS</span>
+            <span class="text-muted small">uvicorn / uvloop</span>
+          </div>
+          <h5 class="fw-bold text-dark">Ingress API &amp; Autenticación</h5>
+          <p class="text-muted small mb-3">
+            FastAPI ASGI con servidor uvicorn de alto rendimiento, terminación TLS 1.3, autenticación OAuth2 + JWT (FIDO2) y limitación de tasa por IP.
+          </p>
+          <div class="border-top pt-2 small text-primary fw-semibold">
+            ⚖️ LPCDI Art. 9 • ISO/IEC 27001
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 2 -->
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="dc3-card dc3-card-accent-green h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="dc3-tag dc3-tag-green">CAPA 2: LÓGICA FORENSE</span>
+            <span class="text-muted small">PyKCS11 + pyHanko</span>
+          </div>
+          <h5 class="fw-bold text-dark">Firma &amp; Sorteo Criptoseguro</h5>
+          <p class="text-muted small mb-3">
+            Firma digital PAdES-B-LTA con token HSM PKCS#11 FIPS 140-2 L3, sellado TSA RFC 3161 y sorteo aleatorio imparcial vía <code>secrets.SystemRandom</code>.
+          </p>
+          <div class="border-top pt-2 small text-success fw-semibold">
+            ⚖️ LMDyFE Arts. 4, 6, 8 • Título VII Art. 26
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 3 -->
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="dc3-card dc3-card-accent-red h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="dc3-tag dc3-tag-red">CAPA 3: ASÍNCRONA</span>
+            <span class="text-muted small">Celery + Redis 7</span>
+          </div>
+          <h5 class="fw-bold text-dark">Colas &amp; IA Ética (ISO 42001)</h5>
+          <p class="text-muted small mb-3">
+            Workers distribuidos en Celery para procesamiento de sentencias, motor RAG sobre PostgreSQL pgvector y alertas tempranas del CCO hacia Contraloría/SUNAI.
+          </p>
+          <div class="border-top pt-2 small text-danger fw-semibold">
+            ⚖️ LOCOTA Art. 11 • ISO/IEC 42001
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 4 -->
+      <div class="col-12 col-md-6 col-xl-3">
+        <div class="dc3-card dc3-card-accent-gold h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="dc3-tag dc3-tag-gold">CAPA 4: PERSISTENCIA</span>
+            <span class="text-muted small">Postgres + MinIO WORM</span>
+          </div>
+          <h5 class="fw-bold text-dark">Bóveda WORM &amp; Árbol de Merkle</h5>
+          <p class="text-muted small mb-3">
+            Almacenamiento inmutable S3 Object Lock (WORM) con hash dual SHA-256/SHA3-512 y bitácora forense estructurada en Árbol de Merkle.
+          </p>
+          <div class="border-top pt-2 small text-warning text-dark fw-semibold">
+            ⚖️ Infogobierno Art. 27 • Título VII Art. 28
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       3. INSTITUTIONAL FOOTER
+       ========================================================================= -->
+  <footer class="dc3-footer">
+    <div class="container-xxl px-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          <div class="fw-bold text-white mb-1">ULPIANO — CHIEF COMPLIANCE OFFICER</div>
+          <div>Dirección de Ciberseguridad Procesal, Informática Forense e Integridad Digital</div>
+        </div>
+        <div class="col-12 col-md-6 text-md-end">
+          <div class="dc3-footer-links mb-2">
+            <a href="index.html">Portal Principal</a>
+            <a href="backend.html" class="fw-bold text-white">Arquitectura Backend</a>
+            <a href="frontend.html">Arquitectura Frontend</a>
+            <a href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer" target="_blank">GitHub</a>
+          </div>
+          <div class="text-white-50" style="font-size: 0.75rem;">
+            Diseñado bajo estándares <strong>USWDS 3.x</strong> | Cumplimiento <strong>Section 508 &amp; WCAG 2.1 AAA</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentZoom = 1.0;
+    function applyZoom() {
+      const obj = document.getElementById('svg-object');
+      const valEl = document.getElementById('zoom-val');
+      if (obj) obj.style.transform = `scale(${currentZoom})`;
+      if (valEl) valEl.textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+    function zoomSvg(delta) {
+      currentZoom = Math.max(0.5, Math.min(2.5, currentZoom + delta));
+      applyZoom();
+    }
+    function resetZoom() {
+      currentZoom = 1.0;
+      applyZoom();
+    }
+    function toggleFullscreen() {
+      const el = document.getElementById('svg-viewport');
+      if (!document.fullscreenElement) {
+        el.requestFullscreen().catch(err => alert(`Error al entrar en pantalla completa: ${err.message}`));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
