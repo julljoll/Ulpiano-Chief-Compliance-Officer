@@ -42,23 +42,22 @@
 La respuesta es este modelo técnico-jurídico que traduce los tres axiomas del jurista romano **Domicio Ulpiano (Siglo III d.C.)** en algoritmos, protocolos criptográficos y controles de software inmutables:
 
 ```mermaid
-graph LR
-    subgraph Axiomas["⚖️ Axiomas de Ulpiano"]
-        A["Honeste Vivere<br><i>(Vivir Honestamente)</i>"]
-        B["Alterum Non Laedere<br><i>(No Dañar a Otro)</i>"]
-        C["Suum Cuique Tribuere<br><i>(Dar a Cada Quien lo Suyo)</i>"]
+flowchart LR
+    subgraph Axiomas["Axiomas de Ulpiano"]
+        A["Honeste Vivere<br/>(Vivir Honestamente)"]
+        B["Alterum Non Laedere<br/>(No Dañar a Otro)"]
+        C["Suum Cuique Tribuere<br/>(Dar a Cada Quien lo Suyo)"]
     end
 
-    subgraph Modulos["🔒 Implementación CCO"]
-        A --> M1["<b>Segregación '4 Ojos Digital'</b><br>Doble firma indivisible y bitácoras WORM inalterables."]
-        B --> M2["<b>Ciberdefensa Activa & Zero Trust</b><br>CSIRT-Ulpiano 24/7, MFA FIDO2 y DOVs en 72h."]
-        C --> M3["<b>Sorteo Criptográfico CSPRNG</b><br>Distribución aleatoria pública e indexada en Merkle Tree."]
+    subgraph Modulos["Implementación CCO"]
+        M1["Segregación '4 Ojos Digital'<br/>Doble firma indivisible y bitácoras WORM"]
+        M2["Ciberdefensa Activa & Zero Trust<br/>CSIRT-Ulpiano 24/7, MFA FIDO2 y DOVs 72h"]
+        M3["Sorteo Criptográfico CSPRNG<br/>Distribución aleatoria pública e indexada en Merkle Tree"]
     end
 
-    classDef axioma fill:#004987,stroke:#0b1b3d,stroke-width:2px,color:#ffffff;
-    classDef tech fill:#f5f6f8,stroke:#2e8540,stroke-width:2px,color:#13171b;
-    class A,B,C axioma;
-    class M1,M2,M3 tech;
+    A --> M1
+    B --> M2
+    C --> M3
 ```
 
 > [!IMPORTANT]
@@ -97,10 +96,10 @@ La innovación central de Ulpiano CCO es su **Tesis del Doble Frente**: una arqu
 
 ```mermaid
 flowchart TD
-    DINCIP["⚖️ Dirección Nacional de Ciberseguridad Procesal (DINCIP)<br><b>Chief Compliance Officer (CCO)</b>"]
+    DINCIP["Dirección Nacional de Ciberseguridad Procesal (DINCIP)<br/>Chief Compliance Officer (CCO)"]
     
-    DINCIP --> F1["🛡️ FRENTE 1: Ciberdefensa Perimetral<br><i>(Amenazas Externas)</i>"]
-    DINCIP --> F2["⚖️ FRENTE 2: Integridad Procesal<br><i>(Riesgos Internos y Anticorrupción)</i>"]
+    DINCIP --> F1["FRENTE 1: Ciberdefensa Perimetral<br/>(Amenazas Externas)"]
+    DINCIP --> F2["FRENTE 2: Integridad Procesal<br/>(Riesgos Internos y Anticorrupción)"]
     
     F1 --> A1["CSIRT-Ulpiano 24/7 (Arts. 8-9)"]
     F1 --> A2["Zero Trust & MFA FIDO2 (Art. 12)"]
@@ -111,13 +110,6 @@ flowchart TD
     F2 --> B2["Segregación '4 Ojos Digital' (Art. 27)"]
     F2 --> B3["Bóveda Inmutable WORM S3 (Art. 28)"]
     F2 --> B4["Alertas IA hacia CGR / SUNAI (Arts. 29-31)"]
-
-    classDef cco fill:#004987,stroke:#0b1b3d,stroke-width:2px,color:#ffffff;
-    classDef frente1 fill:#eaf2f8,stroke:#004987,stroke-width:2px,color:#0b1b3d;
-    classDef frente2 fill:#eaf4ec,stroke:#2e8540,stroke-width:2px,color:#154721;
-    class DINCIP cco;
-    class F1,A1,A2,A3,A4 frente1;
-    class F2,B1,B2,B3,B4 frente2;
 ```
 
 ### 📊 Comparativa Operativa de los Dos Frentes
@@ -260,28 +252,32 @@ Todos los diagramas del proyecto son archivos SVG vectoriales puros, editables, 
 ## 📐 8. Marcos Normativos y Estándares Internacionales
 
 ```mermaid
-mindmap
-  root((<b>⚖️ ULPIANO CCO<br>V-1.2</b>))
-    (<b>🏛️ Bloque Constitucional</b>)
-      CRBV Art. 203 - Rango Orgánico Transversal
-      Sentencia TSJ/SC 0406/2026 - Doctrina Vinculante
-      CRBV Arts. 26, 28, 49, 110, 141, 257
-      LOCOTA 2026 - Celeridad y Cero Dilaciones
-    (<b>🌐 Derecho Comparado</b>)
-      Reglamento UE 2023/2841 - CERT-EU & IICB
-      FISMA 2014 S.2521 - PSS, DOV y Auditoría Anual
-      Directiva NIS2 UE 2022/2555
-      JTC COSCA/NCSC Courts 2025 - Zero Trust
-    (<b>🔬 Informática Forense</b>)
-      ISO/IEC 27037 - Evidencia Digital
-      ISO/IEC 27042 - Análisis Forense
-      RFC 3227 & NIST 800-86 - Volatilidad
-      Manual Único de Cadena de Custodia 2017
-    (<b>🛡️ Seguridad & Compliance</b>)
-      ISO/IEC 27001 - SGSI
-      ISO 37001 / 37301 - Antisoborno & Compliance
-      ISO/IEC 42001 - IA Ética & Supervisión Humana
-      NIST SP 800-53 Rev. 5 - Controles Técnicos
+flowchart TD
+    ROOT["ULPIANO CCO (V-1.2)"]
+    
+    ROOT --> C1["Bloque Constitucional"]
+    C1 --> C1_1["CRBV Art. 203 (Rango Orgánico Transversal)"]
+    C1 --> C1_2["Sentencia TSJ/SC 0406/2026 (Doctrina Vinculante)"]
+    C1 --> C1_3["CRBV Arts. 26, 28, 49, 110, 141, 257"]
+    C1 --> C1_4["LOCOTA 2026 (Celeridad y Cero Dilaciones)"]
+    
+    ROOT --> C2["Derecho Comparado"]
+    C2 --> C2_1["Reglamento UE 2023/2841 (CERT-EU & IICB)"]
+    C2 --> C2_2["FISMA 2014 S.2521 (PSS, DOV, Auditoría Anual)"]
+    C2 --> C2_3["Directiva NIS2 (UE 2022/2555)"]
+    C2 --> C2_4["JTC COSCA/NCSC Courts 2025 (Zero Trust)"]
+    
+    ROOT --> C3["Informática Forense"]
+    C3 --> C3_1["ISO/IEC 27037 (Evidencia Digital)"]
+    C3 --> C3_2["ISO/IEC 27042 (Análisis Forense)"]
+    C3 --> C3_3["RFC 3227 & NIST 800-86 (Volatilidad)"]
+    C3 --> C3_4["Manual Único de Cadena de Custodia 2017"]
+    
+    ROOT --> C4["Seguridad & Compliance"]
+    C4 --> C4_1["ISO/IEC 27001 (SGSI)"]
+    C4 --> C4_2["ISO 37001 / 37301 (Antisoborno & Compliance)"]
+    C4 --> C4_3["ISO/IEC 42001 (IA Ética & Supervisión Humana)"]
+    C4 --> C4_4["NIST SP 800-53 Rev. 5 (Controles Técnicos)"]
 ```
 
 ---
