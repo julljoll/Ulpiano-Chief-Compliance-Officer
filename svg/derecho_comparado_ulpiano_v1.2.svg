@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 2200" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <defs>
+    <style><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;600;700&display=swap');
+
+      .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+      .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
+
+      .text-title { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 15px; fill: #ffffff; letter-spacing: -0.01em; }
+      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.5px; fill: #f1f5f9; }
+      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.5px; fill: #fde047; }
+      .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 11.5px; fill: #ffffff; letter-spacing: 0.02em; }
+      .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 9.2px; }
+
+      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.8px; fill: #162e51; }
+      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.8px; fill: #2d3748; line-height: 1.35; }
+      .text-item-sub { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.2px; fill: #5c6b7e; }
+
+      .text-flow-num { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 10.5px; fill: #ffffff; }
+      .flow-arrow-down { stroke: #004987; stroke-width: 2.2; fill: none; }
+    ]]></style>
+
+    <filter id="dc-shadow-1" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+    <filter id="dc-shadow-2" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.12"/>
+    </filter>
+
+    <linearGradient id="dcHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#071426"/>
+      <stop offset="50%" stop-color="#0f2647"/>
+      <stop offset="100%" stop-color="#163866"/>
+    </linearGradient>
+
+    <linearGradient id="dcEuGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#003366"/>
+      <stop offset="100%" stop-color="#0050a0"/>
+    </linearGradient>
+    <linearGradient id="dcUsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#004987"/>
+      <stop offset="100%" stop-color="#0076d6"/>
+    </linearGradient>
+    <linearGradient id="dcVeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b50909"/>
+      <stop offset="100%" stop-color="#c62828"/>
+    </linearGradient>
+    <linearGradient id="dcIsoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8c3b00"/>
+      <stop offset="100%" stop-color="#df7e00"/>
+    </linearGradient>
+    <linearGradient id="dcJtcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#154721"/>
+      <stop offset="100%" stop-color="#2e8540"/>
+    </linearGradient>
+
+    <marker id="arrow-down-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#0050a0"/>
+    </marker>
+    <marker id="arrow-down-red" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#c62828"/>
+    </marker>
+    <marker id="arrow-down-gold" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#df7e00"/>
+    </marker>
+
+    <pattern id="dc-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e2e8f0" stroke-width="0.75"/>
+    </pattern>
+  </defs>
+
+  <!-- CANVAS BACKGROUND -->
+  <rect width="1080" height="2200" fill="#ffffff"/>
+  <rect width="1080" height="2200" fill="url(#dc-grid)" opacity="0.65"/>
+
+  <!-- ================= 1. HEADER HERO ================= -->
+  <g transform="translate(40, 16)">
+    <rect x="0" y="0" width="1000" height="88" rx="8" fill="url(#dcHeaderGrad)" stroke="#1e3a8a" stroke-width="1.2" filter="url(#dc-shadow-2)"/>
+    <rect x="0" y="0" width="7" height="88" rx="3.5" fill="#38bdf8"/>
+
+    <g transform="translate(24, 0)">
+      <text x="0" y="30" class="text-title">DERECHO COMPARADO: FUNDAMENTOS NORMATIVOS INTERNACIONALES (V-1.2)</text>
+      <text x="0" y="51" class="text-subtitle">
+        Análisis Comparado: UE 2023/2841 | FISMA 2014 S.2521 | CRBV Venezuela | ISO/IEC | JTC Courts 2025 | AI Act 2024/1689
+      </text>
+      <text x="0" y="71" class="text-subcite">
+        6 Sistemas Jurídicos Integrados → Ley Orgánica de Ciberseguridad Procesal y Administrativa
+      </text>
+    </g>
+
+    <g transform="translate(755, 14)">
+      <rect x="0" y="0" width="230" height="26" rx="5" fill="#004987" stroke="#38bdf8" stroke-width="1"/>
+      <text x="115" y="17" class="text-tag" fill="#ffffff" text-anchor="middle">DERECHO COMPARADO</text>
+
+      <rect x="0" y="32" width="230" height="26" rx="5" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+      <text x="115" y="49" class="text-tag" fill="#38bdf8" text-anchor="middle">6 JURISDICCIONES</text>
+    </g>
+  </g>
+
+  <!-- ================= 2. PILAR 1: UNIÓN EUROPEA ================= -->
+  <g transform="translate(40, 114)">
+    <rect x="0" y="0" width="1000" height="440" rx="8" fill="#f8fafc" stroke="#aacdec" stroke-width="1.5" filter="url(#dc-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#dcEuGrad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#dcEuGrad)"/>
+
+    <circle cx="22" cy="17" r="10" fill="#ffffff"/>
+    <text x="22" y="21" class="text-flow-num" fill="#003366" text-anchor="middle">1</text>
+    <text x="40" y="21" class="text-header-box">PILAR 1: UNIÓN EUROPEA — Reglamento (UE) 2023/2841 &amp; Directiva NIS2 &amp; AI Act 2024/1689</text>
+    <text x="980" y="21" class="text-tag" fill="#d9e8f6" text-anchor="end">Ciberseguridad Institucional UE</text>
+
+    <!-- 6 Sub-boxes in 2x3 Grid -->
+    <g transform="translate(14, 44)">
+      <!-- Box 1.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#004987"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">Reglamento (UE) 2023/2841 — CERT-EU &amp; CSIRTs</text>
+        <text x="14" y="38" class="text-item-desc">• Arts. 8-9: Creación y mandato del equipo de respuesta a incidentes (CSIRT).</text>
+        <text x="14" y="54" class="text-item-desc">• Art. 10: Junta Interinstitucional de Ciberseguridad (IICB) con poder ejecutivo.</text>
+        <text x="14" y="70" class="text-item-desc">• Inspiración directa del CSIRT-Ulpiano judicial venezolano (Art. 7 Ulpiano).</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="103" class="text-tag" fill="#004987" text-anchor="middle">Adoptado → Art. 7 &amp; 8 Anteproyecto Ulpiano V-1.2</text>
+      </g>
+
+      <!-- Box 1.2 -->
+      <g transform="translate(496, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#004987"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">Directiva NIS2 (UE 2022/2555) — Entidades Esenciales</text>
+        <text x="14" y="38" class="text-item-desc">• Gestión de riesgos de seguridad en entidades de importancia esencial.</text>
+        <text x="14" y="54" class="text-item-desc">• Notificación de incidentes en menos de 24 horas (Art. 23 NIS2).</text>
+        <text x="14" y="70" class="text-item-desc">• Seguridad de la cadena de suministro tecnológica del Poder Judicial.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="103" class="text-tag" fill="#004987" text-anchor="middle">Adoptado → Art. 18 &amp; 19-bis (Notificación 24h y DOVs)</text>
+      </g>
+
+      <!-- Box 1.3 -->
+      <g transform="translate(0, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#7b1fa2"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">AI Act (UE 2024/1689) — IA de Alto Riesgo en Justicia</text>
+        <text x="14" y="38" class="text-item-desc">• Clasifica los sistemas de IA usados en procesos judiciales como "Alto Riesgo".</text>
+        <text x="14" y="54" class="text-item-desc">• Obliga a supervisión humana obligatoria y explicabilidad de decisiones.</text>
+        <text x="14" y="70" class="text-item-desc">• Prohíbe sesgos discriminatorios en la evaluación y resolución de causas.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#f3e8ff"/>
+        <text x="238" y="103" class="text-tag" fill="#7b1fa2" text-anchor="middle">Adoptado → Art. 25 (Supervisión Humana) &amp; Arts. 29-31</text>
+      </g>
+
+      <!-- Box 1.4 -->
+      <g transform="translate(496, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#004987"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">RGPD (UE 2016/679) — Privacidad en Expedientes</text>
+        <text x="14" y="38" class="text-item-desc">• Privacy by Design &amp; by Default en todos los sistemas procesales.</text>
+        <text x="14" y="54" class="text-item-desc">• Protección de datos personales en expedientes y registros judiciales.</text>
+        <text x="14" y="70" class="text-item-desc">• Notificación mandatoria de brechas a la autoridad de control (72h).</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="103" class="text-tag" fill="#004987" text-anchor="middle">Adoptado → Art. 14 (Clasificación LPCDI) &amp; Art. 20</text>
+      </g>
+
+      <!-- Box 1.5 -->
+      <g transform="translate(0, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#003366"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">Directiva (UE) 2016/680 — Datos en Materia Penal</text>
+        <text x="14" y="38" class="text-item-desc">• Regulación específica del tratamiento de datos por autoridades policiales.</text>
+        <text x="14" y="54" class="text-item-desc">• Garantías reforzadas para imputados, víctimas y testigos en sistemas.</text>
+        <text x="14" y="70" class="text-item-desc">• Derecho de acceso a registros procesales automatizados.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="103" class="text-tag" fill="#003366" text-anchor="middle">Adoptado → Art. 22 (Segregación de Roles) &amp; Art. 14</text>
+      </g>
+
+      <!-- Box 1.6 -->
+      <g transform="translate(496, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#c62828"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">Esquema Nacional de Seguridad (ENS - España)</text>
+        <text x="14" y="38" class="text-item-desc">• Certificación de sistemas de información del Poder Judicial.</text>
+        <text x="14" y="54" class="text-item-desc">• Categorización de sistemas en Básico, Medio y Alto según impacto.</text>
+        <text x="14" y="70" class="text-item-desc">• Referente regional de habla hispana para implementación de controles.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#fff5f5"/>
+        <text x="238" y="103" class="text-tag" fill="#c62828" text-anchor="middle">Referencia Comparada → Categorización de sistemas (Art. 13-bis)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Flow Arrow 1 to 2 -->
+  <path d="M 540 558 L 540 580" class="flow-arrow-down" marker-end="url(#arrow-down-blue)"/>
+
+  <!-- ================= 3. PILAR 2: EE.UU. FEDERAL FISMA & NIST ================= -->
+  <g transform="translate(40, 584)">
+    <rect x="0" y="0" width="1000" height="440" rx="8" fill="#f8fafc" stroke="#0050a0" stroke-width="2" filter="url(#dc-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#dcUsGrad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#dcUsGrad)"/>
+
+    <circle cx="22" cy="17" r="10" fill="#ffffff"/>
+    <text x="22" y="21" class="text-flow-num" fill="#004987" text-anchor="middle">2</text>
+    <text x="40" y="21" class="text-header-box">PILAR 2: ESTADOS UNIDOS — FISMA 2014 (S.2521) &amp; Estándares NIST</text>
+    <text x="980" y="21" class="text-tag" fill="#ffffff" text-anchor="end">Ley Federal de Gestión de Seguridad</text>
+
+    <!-- 6 Sub-boxes in 2x3 Grid -->
+    <g transform="translate(14, 44)">
+      <!-- Box 2.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#0050a0"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">FISMA 2014 — Auditoría Anual Independiente</text>
+        <text x="14" y="38" class="text-item-desc">• 44 U.S.C. § 3555: Evaluación externa por Inspector General o auditor.</text>
+        <text x="14" y="54" class="text-item-desc">• Pruebas de intrusión (pentest), revisión de controles y análisis de riesgos.</text>
+        <text x="14" y="70" class="text-item-desc">• Informe anual vinculante al OMB, Congreso y órgano de supervisión.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#e0edfb"/>
+        <text x="238" y="103" class="text-tag" fill="#003366" text-anchor="middle">Adoptado → Art. 10-bis: Auditoría Anual Independiente</text>
+      </g>
+
+      <!-- Box 2.2 -->
+      <g transform="translate(496, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#0050a0"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">FISMA 2014 — Plan de Seguridad del Sistema (PSS)</text>
+        <text x="14" y="38" class="text-item-desc">• 44 U.S.C. § 3554(b)(1): Documentación técnica mandatoria por sistema.</text>
+        <text x="14" y="54" class="text-item-desc">• Inventario de activos, propietario técnico y controles aplicados.</text>
+        <text x="14" y="70" class="text-item-desc">• Actualización anual y validación por DINCIP con cronograma.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#e0edfb"/>
+        <text x="238" y="103" class="text-tag" fill="#003366" text-anchor="middle">Adoptado → Art. 13-bis: PSS obligatorio por activo crítico</text>
+      </g>
+
+      <!-- Box 2.3 -->
+      <g transform="translate(0, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#0050a0"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">FISMA 2014 — Directivas Operativas Vinculantes (BOD)</text>
+        <text x="14" y="38" class="text-item-desc">• 44 U.S.C. § 3553: Directivas ejecutivas de cumplimiento obligatorio.</text>
+        <text x="14" y="54" class="text-item-desc">• Análogo a las Binding Operational Directives emitidas por CISA.</text>
+        <text x="14" y="70" class="text-item-desc">• Plazo perentorio: 72h para contención, 30 días para remediación.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#e0edfb"/>
+        <text x="238" y="103" class="text-tag" fill="#003366" text-anchor="middle">Adoptado → Art. 19-bis: DOVs vinculantes en 72 horas</text>
+      </g>
+
+      <!-- Box 2.4 -->
+      <g transform="translate(496, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#0076d6"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">NIST SP 800-53 Rev. 5 — Catálogo de Controles</text>
+        <text x="14" y="38" class="text-item-desc">• Catálogo de 1,000+ controles técnicos en 20 familias de control.</text>
+        <text x="14" y="54" class="text-item-desc">• Líneas base (Low/Moderate/High) según criticidad institucional.</text>
+        <text x="14" y="70" class="text-item-desc">• Marco de referencia técnico para la arquitectura Zero Trust.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#e0edfb"/>
+        <text x="238" y="103" class="text-tag" fill="#0076d6" text-anchor="middle">Adoptado → Arts. 11 &amp; 12: Controles técnicos y Zero Trust</text>
+      </g>
+
+      <!-- Box 2.5 -->
+      <g transform="translate(0, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#0076d6"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">NIST SP 800-37 Rev. 2 — Risk Management Framework</text>
+        <text x="14" y="38" class="text-item-desc">• 6 pasos del RMF: Categorize, Select, Implement, Assess, Authorize, Monitor.</text>
+        <text x="14" y="54" class="text-item-desc">• Ciclo de vida continuo de gestión del riesgo en sistemas procesales.</text>
+        <text x="14" y="70" class="text-item-desc">• Armonización con ISO/IEC 27001 para sistemas judiciales críticos.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#e0edfb"/>
+        <text x="238" y="103" class="text-tag" fill="#0076d6" text-anchor="middle">Adoptado → Art. 13-bis (PSS) &amp; Art. 10-bis (Evaluación)</text>
+      </g>
+
+      <!-- Box 2.6 -->
+      <g transform="translate(496, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#7b1fa2"/>
+        <text x="14" y="20" class="text-item-title" fill="#003366">NIST AI RMF 1.0 — Gestión de Riesgos en IA</text>
+        <text x="14" y="38" class="text-item-desc">• Funciones clave: GOVERN, MAP, MEASURE, MANAGE en IA judicial.</text>
+        <text x="14" y="54" class="text-item-desc">• Evaluación de confiabilidad, equidad y seguridad algorítmica.</text>
+        <text x="14" y="70" class="text-item-desc">• Mandato de supervisión humana y prevención de fallos sesgados.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#f3e8ff"/>
+        <text x="238" y="103" class="text-tag" fill="#7b1fa2" text-anchor="middle">Adoptado → Arts. 25, 29-31: IA ética y supervisión humana</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Flow Arrow 2 to 3 -->
+  <path d="M 540 1028 L 540 1050" class="flow-arrow-down" stroke="#b50909" marker-end="url(#arrow-down-red)"/>
+
+  <!-- ================= 4. PILAR 3: VENEZUELA / CRBV & MARCO NACIONAL ================= -->
+  <g transform="translate(40, 1054)">
+    <rect x="0" y="0" width="1000" height="440" rx="8" fill="#fffbfb" stroke="#b50909" stroke-width="2" filter="url(#dc-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#dcVeGrad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#dcVeGrad)"/>
+
+    <circle cx="22" cy="17" r="10" fill="#ffffff"/>
+    <text x="22" y="21" class="text-flow-num" fill="#b50909" text-anchor="middle">3</text>
+    <text x="40" y="21" class="text-header-box">PILAR 3: VENEZUELA — CRBV | Sentencia TSJ 0406/2026 | LOCOTA 2026</text>
+    <text x="980" y="21" class="text-tag" fill="#ffffff" text-anchor="end">Bloque Constitucional (Art. 203 CRBV)</text>
+
+    <!-- 6 Sub-boxes in 2x3 Grid -->
+    <g transform="translate(14, 44)">
+      <!-- Box 3.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#f5c2c7" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#b50909"/>
+        <text x="14" y="20" class="text-item-title" fill="#721c24">CRBV Arts. 26 &amp; 49 — Tutela y Debido Proceso</text>
+        <text x="14" y="38" class="text-item-desc">• Art. 26: Acceso a una justicia rápida, transparente e imparcial.</text>
+        <text x="14" y="54" class="text-item-desc">• Art. 49: Garantías del debido proceso (juez natural y defensa).</text>
+        <text x="14" y="70" class="text-item-desc">• Fundamento directo para el sorteo determinístico CSPRNG.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#f8d7da"/>
+        <text x="238" y="103" class="text-tag" fill="#721c24" text-anchor="middle">Base Constitucional → Arts. 26 &amp; 27 (Sorteo &amp; 4 Ojos)</text>
+      </g>
+
+      <!-- Box 3.2 -->
+      <g transform="translate(496, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#f5c2c7" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#b50909"/>
+        <text x="14" y="20" class="text-item-title" fill="#721c24">CRBV Art. 110 — Tecnología de Interés Público</text>
+        <text x="14" y="38" class="text-item-desc">• Reconoce la tecnología de la información como interés público.</text>
+        <text x="14" y="54" class="text-item-desc">• Mandato constitucional de modernización digital segura del Estado.</text>
+        <text x="14" y="70" class="text-item-desc">• Exigencia de soberanía tecnológica e integridad en redes públicas.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#f8d7da"/>
+        <text x="238" y="103" class="text-tag" fill="#721c24" text-anchor="middle">Base Constitucional → Art. 2 (Modernización Digital)</text>
+      </g>
+
+      <!-- Box 3.3 -->
+      <g transform="translate(0, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#f5c2c7" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#c62828"/>
+        <text x="14" y="20" class="text-item-title" fill="#721c24">CRBV Art. 141 — Transparencia y Rendición de Cuentas</text>
+        <text x="14" y="38" class="text-item-desc">• Principios: honestidad, participación, celeridad y transparencia.</text>
+        <text x="14" y="54" class="text-item-desc">• Obligación de rendir cuentas ciudadanas en tiempo real.</text>
+        <text x="14" y="70" class="text-item-desc">• Base doctrinaria para la Bóveda WORM de sentencias inalterables.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#f8d7da"/>
+        <text x="238" y="103" class="text-tag" fill="#721c24" text-anchor="middle">Base Constitucional → Art. 28 (WORM) &amp; Arts. 29-31</text>
+      </g>
+
+      <!-- Box 3.4 -->
+      <g transform="translate(496, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#f5c2c7" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#df7e00"/>
+        <text x="14" y="20" class="text-item-title" fill="#721c24">Sentencia TSJ/SC N° 0406/2026 — Doctrina Vinculante</text>
+        <text x="14" y="38" class="text-item-desc">• Interpreta los Arts. 141 y 257 CRBV en materia procesal digital.</text>
+        <text x="14" y="54" class="text-item-desc">• Reconoce rango orgánico a la ley de ciberseguridad (Art. 203 CRBV).</text>
+        <text x="14" y="70" class="text-item-desc">• Declara la plena validez probatoria del sorteo digital auditable.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#fff3cd"/>
+        <text x="238" y="103" class="text-tag" fill="#856404" text-anchor="middle">Doctrina Vinculante → Art. 26 &amp; Rango Orgánico</text>
+      </g>
+
+      <!-- Box 3.5 -->
+      <g transform="translate(0, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#f5c2c7" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#2e8540"/>
+        <text x="14" y="20" class="text-item-title" fill="#721c24">LOCOTA 2026 — Celeridad y Cero Dilaciones</text>
+        <text x="14" y="38" class="text-item-desc">• Art. 7: Comisión Nacional para la Celeridad de Trámites.</text>
+        <text x="14" y="54" class="text-item-desc">• Art. 11: Unidades de Celeridad en cada órgano del Poder Público.</text>
+        <text x="14" y="70" class="text-item-desc">• Eliminación de dilaciones indebidas con alertas automáticas.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#d4edda"/>
+        <text x="238" y="103" class="text-tag" fill="#155724" text-anchor="middle">Articulación → Arts. 3, 4 &amp; 11 (Celeridad Procesal)</text>
+      </g>
+
+      <!-- Box 3.6 -->
+      <g transform="translate(496, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#f5c2c7" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#004987"/>
+        <text x="14" y="20" class="text-item-title" fill="#721c24">LMDyFE (G.O. 37.148) — Firmas Electrónicas</text>
+        <text x="14" y="38" class="text-item-desc">• Arts. 4, 6 &amp; 8: Validez jurídica plena de mensajes y firmas.</text>
+        <text x="14" y="54" class="text-item-desc">• Art. 18: Presunción de integridad de datos certificados.</text>
+        <text x="14" y="70" class="text-item-desc">• Base legal para la firma PAdES y el Código Seguro de Cotejo.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="103" class="text-tag" fill="#004987" text-anchor="middle">Base Legal → Arts. 27 &amp; 28 (Firma PAdES y CSV)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Flow Arrow 3 to 4 -->
+  <path d="M 540 1498 L 540 1520" class="flow-arrow-down" stroke="#df7e00" marker-end="url(#arrow-down-gold)"/>
+
+  <!-- ================= 5. PILAR 4: ISO/IEC & NORMAS TÉCNICAS ================= -->
+  <g transform="translate(40, 1524)">
+    <rect x="0" y="0" width="1000" height="440" rx="8" fill="#fdfbf5" stroke="#df7e00" stroke-width="2" filter="url(#dc-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#dcIsoGrad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#dcIsoGrad)"/>
+
+    <circle cx="22" cy="17" r="10" fill="#ffffff"/>
+    <text x="22" y="21" class="text-flow-num" fill="#8c3b00" text-anchor="middle">4</text>
+    <text x="40" y="21" class="text-header-box">PILAR 4: ISO/IEC &amp; NIST — Normas Técnicas de Aplicación Global</text>
+    <text x="980" y="21" class="text-tag" fill="#ffffff" text-anchor="end">SGSI • Forense • IA • Compliance</text>
+
+    <!-- 6 Sub-boxes in 2x3 Grid -->
+    <g transform="translate(14, 44)">
+      <!-- Box 4.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#df7e00"/>
+        <text x="14" y="20" class="text-item-title" fill="#78350f">ISO/IEC 27001:2022 — SGSI Institucional</text>
+        <text x="14" y="38" class="text-item-desc">• Marco integral de gestión de riesgos con certificación internacional.</text>
+        <text x="14" y="54" class="text-item-desc">• 93 controles del Anexo A organizados en 4 temas de seguridad.</text>
+        <text x="14" y="70" class="text-item-desc">• Obligatorio para sistemas judiciales de clasificación Medio y Alto.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#fef3c7"/>
+        <text x="238" y="103" class="text-tag" fill="#92400e" text-anchor="middle">Adoptado → Art. 11 &amp; 13-bis (PSS bajo ISO 27001)</text>
+      </g>
+
+      <!-- Box 4.2 -->
+      <g transform="translate(496, 0)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#df7e00"/>
+        <text x="14" y="20" class="text-item-title" fill="#78350f">ISO/IEC 27037 &amp; 27042 — Evidencia Digital</text>
+        <text x="14" y="38" class="text-item-desc">• ISO 27037: Identificación, recolección y preservación digital.</text>
+        <text x="14" y="54" class="text-item-desc">• ISO 27042: Análisis e interpretación pericial para litigios.</text>
+        <text x="14" y="70" class="text-item-desc">• Establece el estándar riguroso de cadena de custodia judicial.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#fef3c7"/>
+        <text x="238" y="103" class="text-tag" fill="#92400e" text-anchor="middle">Adoptado → Arts. 20 &amp; 21 (Cadena de Custodia ISO 27037)</text>
+      </g>
+
+      <!-- Box 4.3 -->
+      <g transform="translate(0, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#7b1fa2"/>
+        <text x="14" y="20" class="text-item-title" fill="#78350f">ISO/IEC 42001:2023 — Gestión de Sistemas de IA</text>
+        <text x="14" y="38" class="text-item-desc">• Marco de gobernanza para IA en contextos de alto impacto procesal.</text>
+        <text x="14" y="54" class="text-item-desc">• Principios: supervisión humana, equidad y explicabilidad.</text>
+        <text x="14" y="70" class="text-item-desc">• Auditoría algorítmica obligatoria para detección de retardos.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#f3e8ff"/>
+        <text x="238" y="103" class="text-tag" fill="#7b1fa2" text-anchor="middle">Adoptado → Art. 25 (Supervisión IA) &amp; Arts. 29-31</text>
+      </g>
+
+      <!-- Box 4.4 -->
+      <g transform="translate(496, 128)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#154721"/>
+        <text x="14" y="20" class="text-item-title" fill="#78350f">ISO 37001 &amp; 37301 — Antisoborno &amp; Compliance</text>
+        <text x="14" y="38" class="text-item-desc">• ISO 37001: Prevención y detección activa de soborno institucional.</text>
+        <text x="14" y="54" class="text-item-desc">• ISO 37301: Marco integral de gestión de cumplimiento legal.</text>
+        <text x="14" y="70" class="text-item-desc">• Base del modelo de Doble Frente anticorrupción y auditoría.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#dcfce7"/>
+        <text x="238" y="103" class="text-tag" fill="#15803d" text-anchor="middle">Adoptado → Arts. 27 &amp; 32-37 (Segregación y Régimen)</text>
+      </g>
+
+      <!-- Box 4.5 -->
+      <g transform="translate(0, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#2e8540"/>
+        <text x="14" y="20" class="text-item-title" fill="#78350f">ISO 22301:2019 — Continuidad del Negocio (COOP)</text>
+        <text x="14" y="38" class="text-item-desc">• Planes de Continuidad de Operaciones Judiciales ante desastres.</text>
+        <text x="14" y="54" class="text-item-desc">• RTO y RPO definidos para disponibilidad de causas urgentes.</text>
+        <text x="14" y="70" class="text-item-desc">• Obligatorio para tribunales de flagrancias y amparos constitucionales.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#dcfce7"/>
+        <text x="238" y="103" class="text-tag" fill="#15803d" text-anchor="middle">Adoptado → Art. 13 (Plan COOP Judicial Urgente)</text>
+      </g>
+
+      <!-- Box 4.6 -->
+      <g transform="translate(496, 256)">
+        <rect x="0" y="0" width="476" height="120" rx="6" fill="#ffffff" stroke="#fcd34d" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="120" rx="2" fill="#df7e00"/>
+        <text x="14" y="20" class="text-item-title" fill="#78350f">ISO/IEC 27035 &amp; RFC 3227 — Volatilidad Forense</text>
+        <text x="14" y="38" class="text-item-desc">• ISO 27035: Fases de respuesta: Preparar, Detectar y Contener.</text>
+        <text x="14" y="54" class="text-item-desc">• RFC 3227: Orden estricto de volatilidad para recolección pericial.</text>
+        <text x="14" y="70" class="text-item-desc">• Manual Único de Cadena de Custodia 2017 como norma nacional.</text>
+        <rect x="14" y="88" width="448" height="22" rx="3" fill="#fef3c7"/>
+        <text x="238" y="103" class="text-tag" fill="#92400e" text-anchor="middle">Adoptado → Arts. 20 &amp; 21 (Forense) &amp; Art. 19-bis</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= 6. PILAR 5: JTC COURTS RESILIENCIA ================= -->
+  <g transform="translate(40, 1980)">
+    <rect x="0" y="0" width="1000" height="135" rx="8" fill="#f0faf2" stroke="#2e8540" stroke-width="1.5" filter="url(#dc-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="30" rx="8" fill="url(#dcJtcGrad)"/>
+    <rect y="20" width="1000" height="10" fill="url(#dcJtcGrad)"/>
+
+    <circle cx="22" cy="15" r="9" fill="#ffffff"/>
+    <text x="22" y="19" class="text-flow-num" fill="#154721" text-anchor="middle">5</text>
+    <text x="40" y="19" class="text-header-box">PILAR 5: JTC NCSC — Cybersecurity Basics for Courts (COSCA / NCSC 2025)</text>
+    <text x="980" y="19" class="text-tag" fill="#dcfce7" text-anchor="end">Resiliencia en Sedes Judiciales</text>
+
+    <!-- 4 Sub-boxes in Horizontal Line -->
+    <g transform="translate(14, 38)">
+      <!-- Box 5.1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="232" height="84" rx="5" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+        <rect x="0" y="0" width="3" height="84" rx="1.5" fill="#154721"/>
+        <text x="10" y="16" class="text-item-title" fill="#154721">Zero Trust Judicial</text>
+        <text x="10" y="32" class="text-item-desc">• Microsegmentación.</text>
+        <text x="10" y="46" class="text-item-desc">• Verificación continua.</text>
+        <rect x="8" y="58" width="216" height="18" rx="2" fill="#dcfce7"/>
+        <text x="116" y="71" class="text-tag" fill="#15803d" text-anchor="middle">Art. 12 (Zero Trust)</text>
+      </g>
+
+      <!-- Box 5.2 -->
+      <g transform="translate(246, 0)">
+        <rect x="0" y="0" width="232" height="84" rx="5" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+        <rect x="0" y="0" width="3" height="84" rx="1.5" fill="#2e8540"/>
+        <text x="10" y="16" class="text-item-title" fill="#154721">MFA FIDO2 Hardware</text>
+        <text x="10" y="32" class="text-item-desc">• Tokens FIPS 140-2.</text>
+        <text x="10" y="46" class="text-item-desc">• Cero phishing interno.</text>
+        <rect x="8" y="58" width="216" height="18" rx="2" fill="#dcfce7"/>
+        <text x="116" y="71" class="text-tag" fill="#15803d" text-anchor="middle">Art. 12 (MFA FIDO2)</text>
+      </g>
+
+      <!-- Box 5.3 -->
+      <g transform="translate(492, 0)">
+        <rect x="0" y="0" width="232" height="84" rx="5" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+        <rect x="0" y="0" width="3" height="84" rx="1.5" fill="#154721"/>
+        <text x="10" y="16" class="text-item-title" fill="#154721">COOP para Amparos</text>
+        <text x="10" y="32" class="text-item-desc">• Causas de flagrancia.</text>
+        <text x="10" y="46" class="text-item-desc">• Backups desconectados.</text>
+        <rect x="8" y="58" width="216" height="18" rx="2" fill="#dcfce7"/>
+        <text x="116" y="71" class="text-tag" fill="#15803d" text-anchor="middle">Art. 13 (COOP Urgente)</text>
+      </g>
+
+      <!-- Box 5.4 -->
+      <g transform="translate(738, 0)">
+        <rect x="0" y="0" width="232" height="84" rx="5" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+        <rect x="0" y="0" width="3" height="84" rx="1.5" fill="#2e8540"/>
+        <text x="10" y="16" class="text-item-title" fill="#154721">Capacitación Judicial</text>
+        <text x="10" y="32" class="text-item-desc">• Cultura de seguridad.</text>
+        <text x="10" y="46" class="text-item-desc">• Simulacros mensuales.</text>
+        <rect x="8" y="58" width="216" height="18" rx="2" fill="#dcfce7"/>
+        <text x="116" y="71" class="text-tag" fill="#15803d" text-anchor="middle">Art. 7 (Formación)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= 7. FOOTER / WATERMARK ================= -->
+  <g transform="translate(40, 2145)">
+    <text class="text-item-sub" x="0" y="15" font-size="10.5px" fill="#5c6b7e">
+      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#0050a0">Derecho Comparado V-1.2</tspan> • Autor: <tspan font-weight="700" fill="#0050a0">Jull Ortiz (sha256.us)</tspan> • USWDS 3.0 Light Institutional
+    </text>
+    <text x="1000" y="15" font-family="'Roboto Mono', monospace" font-size="9.5px" fill="#5c6b7e" text-anchor="end">
+      UE 2023/2841 • FISMA 2014 S.2521 • CRBV 203 • ISO 27001/27037/42001 • JTC 2025
+    </text>
+  </g>
+</svg>
