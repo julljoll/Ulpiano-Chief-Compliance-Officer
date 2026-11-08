@@ -59,9 +59,9 @@ export async function runCompare() {
       const rightShort = rightMeta ? rightMeta.shortLabel : rightKey;
       statusMsg.innerHTML = `<span class="text-success"><span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:-3px;">check_circle</span>Mostrando: <strong>${escapeHtml(leftShort)}</strong> vs <strong>${escapeHtml(rightShort)}</strong></span>`;
     }
-  } catch (err) {
+  } catch {
     if (statusMsg) {
-      statusMsg.innerHTML = `<span class="text-danger"><span class="material-symbols-outlined me-1">error</span>Error al cargar los documentos. Verifica Live Server.</span>`;
+      statusMsg.innerHTML = `<span class="text-danger"><span class="material-symbols-outlined me-1">error</span>Error al cargar los documentos incluidos en el sitio.</span>`;
     }
   }
 }

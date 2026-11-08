@@ -1,0 +1,11 @@
+---
+import LegacyLayout from '../layouts/LegacyLayout.astro';
+import { readLegacyPage } from '../lib/legacy-page.js';
+
+const page = readLegacyPage('frontend.html');
+---
+<LegacyLayout
+  title="Arquitectura Frontend Next.js 15 | Ulpiano Chief Compliance Officer"
+  head={page.head}
+  body={page.body}
+/>

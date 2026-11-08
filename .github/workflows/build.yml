@@ -1,4 +1,4 @@
-name: Build & Deploy Ulpiano CCO
+name: Validate and build Astro site
 on:
   push:
     branches: [main]
@@ -11,12 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Verificar archivos del portal
-        run: |
-          echo "Verificando estructura del portal..."
-          test -f index.html || exit 1
-          test -f registry.json || exit 1
-          test -f viewer.js || exit 1
-          test -f viewer.css || exit 1
-          echo "Todos los archivos requeridos están presentes."
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm test

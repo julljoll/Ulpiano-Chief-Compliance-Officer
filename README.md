@@ -139,8 +139,8 @@ A continuación se describe el ciclo de vida completo de una actuación judicial
 ```
 
 ### 🔹 Paso 1: Inicialización Segura del Portal SPA
-* **Qué ocurre:** El usuario abre [`index.html`](./index.html). El archivo [`viewer.js`](./viewer.js) carga los 12 módulos de [`modules/`](./modules/) como ESModules nativos.
-* **Técnica:** [`modules/registry.js`](./modules/registry.js) descarga [`registry.json`](./registry.json) (fuente única de verdad). [`modules/router.js`](./modules/router.js) detecta el hash de la URL (`#dashboard`, `#reader`, etc.) y aplica transiciones fluidas con **Skeleton Loaders**.
+* **Qué ocurre:** El usuario abre [`index.html`](./index.html), generado como salida estática por Astro. [`src/scripts/viewer.js`](./src/scripts/viewer.js) carga los módulos del portal.
+* **Técnica:** [`src/modules/registry.js`](./src/modules/registry.js) importa [`registry.json`](./registry.json) como fuente única de metadata y empaqueta las tres fuentes Markdown al compilar. [`src/modules/router.js`](./src/modules/router.js) conserva los seis hashes y el historial de navegación.
 
 ### 🔹 Paso 2: Sorteo Determinístico de la Causa (Art. 26)
 * **Qué ocurre:** Al ingresar una causa, el sistema asigna el magistrado o juez de forma matemáticamente inalterable.
@@ -317,76 +317,25 @@ flowchart TD
 
 ```
 Ulpiano-Chief-Compliance-Officer/
-├── index.html                  # Portal SPA interactivo (6 módulos institucionales)
-├── viewer.js                   # Punto de entrada JavaScript (ESModule desacoplado)
-├── viewer.css                  # Estilos USWDS 3.0 / Skeleton loaders / Media print
-├── registry.json               # Fuente única de verdad: metadatos, versiones y KPIs
-├── manifest.json               # Manifiesto Web App (PWA) para soporte móvil y desktop
-├── package.json                # Metadata, scripts de compilación, linting y formateo
-├── .htaccess                   # Cabeceras de seguridad HTTP, Content Security Policy y caché
-├── .eslintrc.json              # Reglas de control estático de código JavaScript (ES2022)
-├── .prettierrc                 # Estándar de formato de código
-│
-├── modules/                    # 🧩 Arquitectura Modular Desacoplada (ESModules)
-│   ├── state.js                # Singleton reactivo del estado de la aplicación
-│   ├── utils.js                # Funciones de escape XSS y control tipográfico
-│   ├── registry.js             # Gestor dinámico de registry.json y catálogo de reformas
-│   ├── router.js               # Enrutador SPA con soporte de URL Hash e historial
-│   ├── dashboard.js            # KPIs ejecutivos, tarjetas de versión y Delta Explorer
-│   ├── charts.js               # Gráficos dinámicos con Chart.js
-│   ├── reader.js               # Visor documental con TOC flotante e IntersectionObserver
-│   ├── diagrams-registry.js    # Metadatos y desglose de las 9 perspectivas vectoriales
-│   ├── diagrams.js             # Controlador SVG con zoom (50%-250%), fullscreen y descarga
-│   ├── compare.js              # Comparador split-screen paralelo entre versiones
-│   ├── matrix.js               # Matriz tipo Excel con filtros y exportación CSV UTF-8
-│   └── api-sim.js              # Simuladores interactivos con CSPRNG Web Crypto real
-│
-├── svg/                        # 🖼️ Suite de 9 Diagramas Vectoriales en Alta Resolución
-│   ├── ciberseguridad_integracion_V1.2.svg
-│   ├── cms_compliance_organigrama_descendente.svg
-│   ├── cms_compliance_workflows_arquitectura.svg
-│   ├── backend_python_api_arquitectura.svg
-│   ├── tsj_arquitectura_frontend.svg
-│   ├── arquitectura_tecnica_v1.2.svg
-│   ├── marco_legal_internacional_v1.2.svg
-│   ├── marco_legal_nacional_v1.2.svg
-│   └── titulo_vii_idea_de_valor_v1.2.svg
-│
-├── design-system/              # 🎨 Tokens de Diseño USWDS 3.0 / DC3
-│   ├── tokens.css              # Variables de color, elevación y espaciado
-│   ├── tokens.json             # Design Tokens en formato estructurado JSON
-│   ├── components.css          # Componentes de interfaz judicial
-│   └── tech_icons_defs.svg     # Definiciones de iconos vectoriales
-│
-├── docs/                       # 📜 Fuentes Normativas Originales en Markdown
-│   ├── ciberseguridadprocesal_v1.2.md  # Versión 1.2 Orgánica (FISMA + LOCOTA)
-│   ├── ciberseguridadprocesal_v1.1.md  # Versión 1.1 Orgánica (Con Reformas)
-│   └── ciberseguridadprocesal_V1.0.md  # Versión 1.0 Especial (Documento Base)
-│
-├── components/docs/            # ⚡ Componentes HTML precompilados para lectura instantánea
-│   ├── v1.2.html
-│   ├── v1.1.html
-│   └── v1.0.html
-│
-├── .github/workflows/          # 🤖 Pipeline de Integración Continua (CI/CD)
-│   └── build.yml
-│
-├── build.js                    # Compilador Markdown -> HTML en Node.js (con modo --watch)
-├── build.ps1                   # Compilador Markdown -> HTML en PowerShell
-├── RAG/                        # Base de conocimiento normativo para pipelines de IA
-└── LICENSE                     # Licencia Apache 2.0
+├── index.html, frontend.html, backend.html # Rutas públicas preservadas
+├── src/pages/                  # Páginas Astro; conservan el contenido HTML existente
+├── src/layouts/                 # Envoltorio de las rutas y carga compartida de estilos
+├── src/scripts/, src/modules/  # Aplicación nativa, router hash y módulos existentes
+├── src/styles/                  # CSS de la aplicación y tokens de compatibilidad
+├── docs/                        # Fuentes Markdown incluidas en el build estático
+├── registry.json                # Fuente única de metadata de versiones
+├── public/svg/                  # Diagramas publicados en sus rutas originales
+├── public/manifest.json         # Manifiesto PWA
+├── tests/                       # Pruebas de rutas y navegación
+├── astro.config.mjs             # Build estático
+└── vercel.json                  # Comando y salida Vercel; no define dominio
 ```
 
 ---
 
 ## ⚡ 11. Guía de Instalación y Ejecución Local
 
-> [!WARNING]
-> **Requisito de Servidor Web:** Debido a que el portal utiliza **ESModules nativos** y llamadas `fetch()` para consultar los componentes y diagramas SVG, **no debe abrirse mediante doble clic (`file:///`)**, sino a través de un servidor HTTP local.
-
-### Prerrequisitos:
-* Navegador web moderno compatible con ESModules (Chrome 61+, Firefox 60+, Edge 79+, Safari 10.1+).
-* Servidor web estático local (VS Code Live Server, Python o Node.js).
+Node.js 22.23.4 o superior y npm son necesarios para Astro. Los deploys producen un sitio estático, sin funciones de servidor ni un dominio predefinido.
 
 ### Paso a Paso:
 
@@ -396,31 +345,20 @@ Ulpiano-Chief-Compliance-Officer/
    cd Ulpiano-Chief-Compliance-Officer
    ```
 
-2. **Compilar componentes normativos (opcional al editar los `.md`):**
-   * Con Node.js:
-     ```bash
-     node build.js
-     # O activar el observador de cambios:
-     node build.js --watch
-     ```
-   * Con PowerShell (Windows):
-     ```powershell
-     powershell -ExecutionPolicy Bypass -File build.ps1
-     ```
+2. **Instalar dependencias y arrancar Astro:**
+   ```bash
+   npm ci
+   npm run dev
+   ```
+3. **Compilar y validar:**
+   ```bash
+   npm run lint
+   npm run build
+   npm test
+   ```
+   El directorio `dist/` contiene las páginas estáticas de producción.
 
-3. **Iniciar el servidor local (elige una opción):**
-   * **Opción A (VS Code):** Clic derecho en `index.html` → **Open with Live Server**.
-   * **Opción B (Python 3):**
-     ```bash
-     python -m http.server 8080
-     ```
-   * **Opción C (Node.js / npx):**
-     ```bash
-     npx live-server --port=8080
-     ```
-
-4. **Explorar el portal:**
-   * Abre tu navegador en `http://localhost:8080` para navegar por los 6 módulos institucionales.
+> **Estilos:** se recuperó la última versión rastreada de `design-system/tokens.css` desde Git a `src/styles/tokens.css`. `design-system/components.css` no aparece en el checkout ni en el historial; la vista conserva los estilos disponibles en `viewer.css` y usa solo algunos alias CSS en `src/styles/compat-tokens.css`. No es posible garantizar paridad exacta con el archivo de componentes faltante.
 
 ---
 

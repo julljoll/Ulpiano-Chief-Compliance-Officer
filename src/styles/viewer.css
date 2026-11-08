@@ -4,7 +4,8 @@
    Accessibility: WCAG 2.1 AAA & Section 508 Compliant (Institutional Light Mode)
    ========================================================================== */
 
-@import url("./design-system/tokens.css");
+@import url("./tokens.css");
+@import url("./compat-tokens.css");
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto+Mono:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 
@@ -1832,4 +1833,3 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
     padding: 4px 6px !important;
   }
 }
-

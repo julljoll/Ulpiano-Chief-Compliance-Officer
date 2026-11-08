@@ -50,38 +50,15 @@ export async function getDocContent(key) {
   const docMeta = DocRegistry.get(key);
   if (!docMeta) return '<div class="alert alert-warning my-4">Documento no registrado.</div>';
 
-  // 1. Try precompiled HTML component
-  if (docMeta.file) {
-    try {
-      const res = await fetch(docMeta.file);
-      if (res.ok) {
-        const html = await res.text();
-        docCache[key] = html;
-        try { sessionStorage.setItem(sessionKey, html); } catch {}
-        return html;
-      }
-    } catch (e) {
-      console.warn(`No se pudo cargar el componente HTML ${docMeta.file}, intentando Markdown.`, e);
-    }
+  const rawMarkdown = docMeta.sourceFile ? DocRegistry.getSource(docMeta.sourceFile) : null;
+  if (rawMarkdown) {
+    const parsed = parseMarkdown(rawMarkdown);
+    docCache[key] = parsed;
+    try { sessionStorage.setItem(sessionKey, parsed); } catch {}
+    return parsed;
   }
 
-  // 2. Fallback: Try raw Markdown source
-  if (docMeta.sourceFile) {
-    try {
-      const res = await fetch(docMeta.sourceFile);
-      if (res.ok) {
-        const rawMd = await res.text();
-        const parsed = parseMarkdown(rawMd);
-        docCache[key] = parsed;
-        try { sessionStorage.setItem(sessionKey, parsed); } catch {}
-        return parsed;
-      }
-    } catch (e) {
-      console.warn(`No se pudo cargar el Markdown ${docMeta.sourceFile}.`, e);
-    }
-  }
-
-  // 3. Fallback: Embedded element if present
+  // Fallback: embedded source for local integrations that supply one.
   const embeddedEl = document.getElementById(`doc-content-${key}`);
   if (embeddedEl && embeddedEl.textContent.trim().length > 0) {
     const parsed = parseMarkdown(embeddedEl.textContent.trim());
@@ -89,7 +66,7 @@ export async function getDocContent(key) {
     return parsed;
   }
 
-  return '<div class="alert alert-warning my-4"><span class="material-symbols-outlined me-1">warning</span> No se pudo cargar el contenido del documento. Verifique la conexión o abra el proyecto con Live Server.</div>';
+  return '<div class="alert alert-warning my-4"><span class="material-symbols-outlined me-1">warning</span> No se pudo cargar el contenido del documento incluido durante la compilación.</div>';
 }
 
 /**

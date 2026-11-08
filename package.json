@@ -4,18 +4,24 @@
   "description": "Portal de ciberseguridad procesal e integridad digital - Ulpiano CCO",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
   "scripts": {
-    "build": "node build.js",
-    "build:prod": "node build.js --prod",
-    "watch": "node build.js --watch",
-    "lint": "eslint viewer.js modules/*.js",
-    "format": "prettier --write \"**/*.{js,css,html,json}\" --ignore-path .gitignore",
-    "serve": "npx live-server --port=8080 --host=localhost"
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "lint": "eslint src/scripts/viewer.js \"src/modules/*.js\" src/lib/*.js tests/*.js",
+    "test": "node --test",
+    "format": "prettier --write \"**/*.{js,css,html,json,astro}\" --ignore-path .gitignore"
   },
   "devDependencies": {
-    "marked": "^14.0.0",
-    "terser": "^5.0.0",
-    "eslint": "^9.0.0",
+    "astro": "^7.4.7",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
     "prettier": "^3.0.0"
+  },
+  "overrides": {
+    "minimatch": "^11.0.5"
   }
 }
