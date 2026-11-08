@@ -1,0 +1,11 @@
+---
+import LegacyLayout from '../layouts/LegacyLayout.astro';
+import { readLegacyPage } from '../lib/legacy-page.js';
+
+const page = readLegacyPage('backend.html');
+---
+<LegacyLayout
+  title="Arquitectura Backend Python 3.12 (FastAPI) | Ulpiano Chief Compliance Officer"
+  head={page.head}
+  body={page.body}
+/>

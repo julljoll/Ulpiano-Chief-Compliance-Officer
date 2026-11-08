@@ -27,6 +27,8 @@ dist/
 build/
 .cache/
 .next/
+.astro/
+.vercel/
 out/
 
 # 4. Archivos Temporales del Sistema Operativo

@@ -1,0 +1,13 @@
+---
+import LegacyLayout from '../layouts/LegacyLayout.astro';
+import { readLegacyPage } from '../lib/legacy-page.js';
+
+const page = readLegacyPage('index.html');
+---
+<LegacyLayout
+  title="Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital"
+  head={page.head}
+  body={page.body}
+>
+  <script src="../scripts/viewer.js"></script>
+</LegacyLayout>

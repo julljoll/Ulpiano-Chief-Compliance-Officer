@@ -2,9 +2,9 @@
  * ULPIANO CCO — CYBER FORENSICS & COMPLIANCE PORTAL ENGINE
  * Modular ESModule Architecture with Single Top Navigation Website Style
  */
-import { state } from './modules/state.js';
-import { DocRegistry, REFORMS_CATALOG } from './modules/registry.js';
-import { switchView, viewInitCallbacks, initFromHash, VIEW_TITLES } from './modules/router.js';
+import { state } from '../modules/state.js';
+import { DocRegistry, REFORMS_CATALOG } from '../modules/registry.js';
+import { switchView, viewInitCallbacks, initFromHash } from '../modules/router.js';
 import {
   updateDashboardStats,
   renderCoreReforms,
@@ -12,19 +12,17 @@ import {
   buildVersionSelectors,
   renderDashboardDiagram,
   renderDeltaExplorer
-} from './modules/dashboard.js';
-import { initDashboardCharts } from './modules/charts.js';
+} from '../modules/dashboard.js';
+import { initDashboardCharts } from '../modules/charts.js';
 import {
   renderReaderDoc,
   jumpToNextRedHighlight,
-  buildFloatingLeftTOC,
-  setupRedHighlights
-} from './modules/reader.js';
+} from '../modules/reader.js';
 import {
   renderCompareView,
   runCompare,
   swapComparePanels
-} from './modules/compare.js';
+} from '../modules/compare.js';
 import {
   renderDiagramsView,
   switchDiagramTab,
@@ -33,18 +31,18 @@ import {
   toggleDiagramFullscreen,
   downloadActiveDiagram,
   openActiveDiagramNewTab
-} from './modules/diagrams.js';
+} from '../modules/diagrams.js';
 import {
   exportMatrixCSV,
   copyMatrixTable,
   filterMatrixBySheet
-} from './modules/matrix.js';
+} from '../modules/matrix.js';
 import {
   simulateSignDocument,
   simulateCotejo,
   simulateSorteo,
   simulateTriggerAnomaly
-} from './modules/api-sim.js';
+} from '../modules/api-sim.js';
 
 // Setup view initialization callbacks
 viewInitCallbacks.dashboard = () => {
@@ -68,6 +66,8 @@ viewInitCallbacks.diagrams = () => {
 
 // Global App Initialization
 document.addEventListener('DOMContentLoaded', async () => {
+  if (!document.getElementById('view-dashboard')) return;
+
   // 1. Load document registry
   await DocRegistry.load();
 

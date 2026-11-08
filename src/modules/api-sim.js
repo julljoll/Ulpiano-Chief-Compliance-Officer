@@ -124,7 +124,7 @@ export function simulateSorteo() {
     const payload = {
       status: "SORTEO_COMPLETADO_EXITOSO",
       causa_distribuida: causa,
-      materia: materia,
+      materia,
       resultado_sorteo: {
         magistrado_ponente_asignado: selected,
         metodo_sorteo: "CSPRNG Criptoseguro (secrets.SystemRandom / WebCrypto)",

@@ -1,0 +1,10 @@
+/*
+ * Small aliases for legacy references; the complete token source is recovered
+ * in tokens.css. The former design-system/components.css was never tracked.
+ */
+:root {
+  --border-radius-md: var(--radius-md);
+  --border-radius-sm: var(--radius-sm);
+  --shadow-md: var(--shadow-2);
+  --shadow-sm: var(--shadow-1);
+}

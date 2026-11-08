@@ -2,6 +2,13 @@
  * ULPIANO CCO — Document Registry & Reforms Catalog Module
  * The single source of truth is registry.json.
  */
+import registry from '../../registry.json';
+
+const documentSources = import.meta.glob('../../docs/*.md', {
+  eager: true,
+  import: 'default',
+  query: '?raw'
+});
 
 export const REFORMS_CATALOG = [
   {
@@ -175,33 +182,19 @@ export const REFORMS_CATALOG = [
 ];
 
 export const DocRegistry = {
-  docs: [],
+  docs: registry,
 
   async load() {
-    try {
-      const res = await fetch('./registry.json');
-      if (res.ok) {
-        const remoteDocs = await res.json();
-        if (Array.isArray(remoteDocs) && remoteDocs.length > 0) {
-          this.docs = remoteDocs;
-          return this.docs;
-        }
-      }
-    } catch (e) {
-      console.info('DocRegistry: error cargando registry.json.', e);
-    }
     return this.docs;
   },
 
-  get(id) {
-    return this.docs.find(d => d.id === id) || this.docs[0] || null;
-  },
-
-  getLatest() {
-    return this.docs[0] || null;
+  getSource(sourceFile) {
+    return documentSources[`../../${sourceFile}`] || null;
   },
 
   getAll() {
     return this.docs;
-  }
+  },
+  get(id) { return this.docs.find(d => d.id === id) || this.docs[0] || null; },
+  getLatest() { return this.docs[0] || null; }
 };
