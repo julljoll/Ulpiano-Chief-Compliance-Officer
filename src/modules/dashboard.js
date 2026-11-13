@@ -16,7 +16,8 @@ export function updateDashboardStats() {
   const heroBtnLabel = document.getElementById('kpi-hero-btn-label');
   const heroBreadcrumb = document.getElementById('kpi-hero-breadcrumb');
 
-  if (heroTitle) heroTitle.textContent = `Auditoría de Integridad y Control de ${latest.shortLabel || latest.label}`;
+  if (heroTitle)
+    heroTitle.textContent = `Auditoría de Integridad y Control de ${latest.shortLabel || latest.label}`;
   if (heroDesc) heroDesc.textContent = latest.description || '';
   if (heroBtnLabel) heroBtnLabel.textContent = `Abrir Texto ${latest.shortLabel || latest.label}`;
   if (heroBreadcrumb) heroBreadcrumb.textContent = latest.label;
@@ -35,15 +36,20 @@ export function updateDashboardStats() {
   if (articlesNum) articlesNum.textContent = latest.articlesCount || 47;
   if (articlesTag) articlesTag.textContent = latest.titlesCount || '11 Títulos + Anexo';
 
-  if (reformsLabel) reformsLabel.textContent = latest.changesLabel || `Cláusulas Mejoradas (${latest.shortLabel || latest.id})`;
+  if (reformsLabel)
+    reformsLabel.textContent =
+      latest.changesLabel || `Cláusulas Mejoradas (${latest.shortLabel || latest.id})`;
   if (reformsNum) reformsNum.textContent = latest.changes !== undefined ? latest.changes : 14;
-  if (reformsTag) reformsTag.textContent = latest.changesTag || (latest.changes > 0 ? 'Marcadas en Azul y Rojo' : 'Texto Base');
+  if (reformsTag)
+    reformsTag.textContent =
+      latest.changesTag || (latest.changes > 0 ? 'Marcadas en Azul y Rojo' : 'Texto Base');
 
   if (hierarchyNum) hierarchyNum.textContent = latest.hierarchy || latest.type || 'Orgánica';
   if (hierarchyTag) hierarchyTag.textContent = latest.hierarchySub || 'Art. 203 CRBV';
 
   if (coverageNum) coverageNum.textContent = latest.coverage || '100% Pleno';
-  if (coverageTag) coverageTag.textContent = latest.coverageSub || 'Judicial + Adm. Pública + LOCOTA';
+  if (coverageTag)
+    coverageTag.textContent = latest.coverageSub || 'Judicial + Adm. Pública + LOCOTA';
 
   // 3. Chart version tag
   const chartTag = document.getElementById('chart-reforms-version-tag');
@@ -72,10 +78,15 @@ export function renderCoreReforms() {
     return;
   }
 
-  const colClass = reforms.length === 3 ? 'col-12 col-lg-4' : (reforms.length === 2 ? 'col-12 col-md-6' : 'col-12 col-lg-4');
+  const colClass =
+    reforms.length === 3
+      ? 'col-12 col-lg-4'
+      : reforms.length === 2
+        ? 'col-12 col-md-6'
+        : 'col-12 col-lg-4';
 
   let html = '';
-  reforms.forEach(ref => {
+  reforms.forEach((ref) => {
     html += `
       <div class="${colClass}">
         <div class="dc3-card ${ref.accentClass || 'dc3-card-accent-top'} h-100 d-flex flex-column justify-content-between">
@@ -111,14 +122,14 @@ export function buildDashboardVersionCards() {
   const docs = DocRegistry.getAll();
   let html = '';
 
-  docs.forEach(doc => {
+  docs.forEach((doc) => {
     const isRed = doc.changes > 0;
     const accentClass = isRed ? 'dc3-card-accent-top' : 'dc3-card-accent-top';
     const badgeClass = doc.badgeClass || 'dc3-tag';
 
-    const highlightsHtml = (doc.highlights || []).map(h => 
-      `<span class="dc3-tag me-1 mb-1">${escapeHtml(h)}</span>`
-    ).join('');
+    const highlightsHtml = (doc.highlights || [])
+      .map((h) => `<span class="dc3-tag me-1 mb-1">${escapeHtml(h)}</span>`)
+      .join('');
 
     html += `
       <div class="col-12 col-md-6 col-xl-4">
@@ -153,19 +164,21 @@ export function buildDashboardVersionCards() {
 
 export function buildVersionSelectors() {
   const docs = DocRegistry.getAll();
-  const allSelects = document.querySelectorAll('.version-select-auto, #reader-version-select, #compare-select-left, #compare-select-right');
+  const allSelects = document.querySelectorAll(
+    '.version-select-auto, #reader-version-select, #compare-select-left, #compare-select-right'
+  );
 
-  allSelects.forEach(select => {
+  allSelects.forEach((select) => {
     const currentVal = select.value;
-    select.innerHTML = docs.map(doc =>
-      `<option value="${doc.id}">${escapeHtml(doc.badgeText || doc.label)}</option>`
-    ).join('');
+    select.innerHTML = docs
+      .map((doc) => `<option value="${doc.id}">${escapeHtml(doc.badgeText || doc.label)}</option>`)
+      .join('');
 
-    if (currentVal && docs.find(d => d.id === currentVal)) {
+    if (currentVal && docs.find((d) => d.id === currentVal)) {
       select.value = currentVal;
     } else if (select.id === 'compare-select-left') {
       const oldest = docs[docs.length - 1];
-      select.value = oldest ? oldest.id : (docs[0] ? docs[0].id : '');
+      select.value = oldest ? oldest.id : docs[0] ? docs[0].id : '';
     } else if (select.id === 'compare-select-right') {
       select.value = docs[0] ? docs[0].id : '';
     } else {
@@ -200,7 +213,7 @@ export function renderDeltaExplorer() {
   if (!tbody) return;
 
   let html = '';
-  REFORMS_CATALOG.forEach(item => {
+  REFORMS_CATALOG.forEach((item) => {
     const beforeTag = item.beforeTag || 'V1.0';
     const afterTag = item.afterTag || 'V1.2';
     html += `
@@ -227,7 +240,7 @@ export function renderDeltaExplorer() {
   });
   tbody.innerHTML = html;
 
-  tbody.querySelectorAll('.btn-jump-article').forEach(btn => {
+  tbody.querySelectorAll('.btn-jump-article').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetDoc = btn.getAttribute('data-doc') || 'v1.2';
       state.currentDocKey = targetDoc;

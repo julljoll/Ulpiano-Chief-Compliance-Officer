@@ -4,24 +4,28 @@
 
 /**
  * Escapes special HTML characters to prevent XSS.
- * @param {string} str 
+ * @param {string} str
  * @returns {string}
  */
 export function escapeHtml(str) {
   if (!str) return '';
-  return String(str).replace(/[&<>"']/g, m => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  }[m]));
+  return String(str).replace(
+    /[&<>"']/g,
+    (m) =>
+      ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;',
+      })[m]
+  );
 }
 
 /**
  * Applies typography styles (font family and font size) to the reader paper sheet.
- * @param {string} fontFamily 
- * @param {number} fontSize 
+ * @param {string} fontFamily
+ * @param {number} fontSize
  */
 export function applyTypography(fontFamily = 'serif', fontSize = 17) {
   const paper = document.getElementById('paper-sheet');

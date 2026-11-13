@@ -11,13 +11,18 @@ export function initDashboardCharts() {
 
   const latest = DocRegistry.getLatest() || {};
   const defaultLabels = [
-    'Título I (Gral)', 'Título II (Institucional)', 'Título III (Técnico)',
-    'Título IV (Garantías)', 'Título VII (Integridad)', 'Título VIII (Sanciones)',
-    'Título XI (Supremacía)'
+    'Título I (Gral)',
+    'Título II (Institucional)',
+    'Título III (Técnico)',
+    'Título IV (Garantías)',
+    'Título VII (Integridad)',
+    'Título VIII (Sanciones)',
+    'Título XI (Supremacía)',
   ];
   const defaultData = [6, 4, 3, 2, 4, 8, 5];
 
-  const chartLabels = (latest.reformsDistribution && latest.reformsDistribution.labels) || defaultLabels;
+  const chartLabels =
+    (latest.reformsDistribution && latest.reformsDistribution.labels) || defaultLabels;
   const chartData = (latest.reformsDistribution && latest.reformsDistribution.data) || defaultData;
   const chartDatasetLabel = `Modificaciones Introducidas (${latest.shortLabel || latest.id || 'V1.1'})`;
 
@@ -29,26 +34,28 @@ export function initDashboardCharts() {
       type: 'bar',
       data: {
         labels: chartLabels,
-        datasets: [{
-          label: chartDatasetLabel,
-          data: chartData,
-          backgroundColor: '#004987',
-          borderColor: '#0b1b3d',
-          borderWidth: 1,
-          borderRadius: 2
-        }]
+        datasets: [
+          {
+            label: chartDatasetLabel,
+            data: chartData,
+            backgroundColor: '#004987',
+            borderColor: '#0b1b3d',
+            borderWidth: 1,
+            borderRadius: 2,
+          },
+        ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { display: false }
+          legend: { display: false },
         },
         scales: {
           y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.06)' } },
-          x: { grid: { display: false } }
-        }
-      }
+          x: { grid: { display: false } },
+        },
+      },
     });
   }
 
@@ -64,14 +71,16 @@ export function initDashboardCharts() {
           'Administración Pública Nacional/Estadal',
           'Ministerio Público',
           'Defensa Pública',
-          'Auxiliares y Forenses'
+          'Auxiliares y Forenses',
         ],
-        datasets: [{
-          data: [35, 30, 15, 10, 10],
-          backgroundColor: ['#004987', '#2e8540', '#df7e00', '#28a0e0', '#5c6b7e'],
-          borderWidth: 2,
-          borderColor: '#ffffff'
-        }]
+        datasets: [
+          {
+            data: [35, 30, 15, 10, 10],
+            backgroundColor: ['#004987', '#2e8540', '#df7e00', '#28a0e0', '#5c6b7e'],
+            borderWidth: 2,
+            borderColor: '#ffffff',
+          },
+        ],
       },
       options: {
         responsive: true,
@@ -79,10 +88,10 @@ export function initDashboardCharts() {
         plugins: {
           legend: {
             position: 'bottom',
-            labels: { boxWidth: 12, font: { size: 11 } }
-          }
-        }
-      }
+            labels: { boxWidth: 12, font: { size: 11 } },
+          },
+        },
+      },
     });
   }
 }

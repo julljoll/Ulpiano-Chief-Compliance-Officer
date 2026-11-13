@@ -1,13 +1,32 @@
 ---
-import LegacyLayout from '../layouts/LegacyLayout.astro';
-import { readLegacyPage } from '../lib/legacy-page.js';
-
-const page = readLegacyPage('index.html');
+import LegalLayout from '../layouts/LegalLayout.astro';
+import DashboardView from '../components/views/DashboardView.astro';
+import DiagramsView from '../components/views/DiagramsView.astro';
+import ApiConsoleView from '../components/views/ApiConsoleView.astro';
+import ReaderView from '../components/views/ReaderView.astro';
+import CompareView from '../components/views/CompareView.astro';
+import MatrixView from '../components/views/MatrixView.astro';
 ---
-<LegacyLayout
-  title="Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital"
-  head={page.head}
-  body={page.body}
+
+<LegalLayout
+  title="⚖️ Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital"
+  description="Portal oficial de ciberseguridad procesal, informática forense e integridad digital del sistema de justicia y de la administración pública. Integra FISMA 2014, UE 2023/2841, LOCOTA 2026 y TSJ/SC 0406/2026."
 >
-  <script src="../scripts/viewer.js"></script>
-</LegacyLayout>
+  <!-- View A: Dashboard de Control y Mejoras -->
+  <DashboardView />
+
+  <!-- View B: Lector de Versiones y Expediente Normativo -->
+  <ReaderView />
+
+  <!-- View C: Comparador Paralelo de Versiones -->
+  <CompareView />
+
+  <!-- View D: Matriz de Trazabilidad Normativa -->
+  <MatrixView />
+
+  <!-- View E: Suite de Diagramas de Arquitectura & Compliance -->
+  <DiagramsView />
+
+  <!-- View F: Consola del Servidor API Backend Python 3.12 (FastAPI) -->
+  <ApiConsoleView />
+</LegalLayout>

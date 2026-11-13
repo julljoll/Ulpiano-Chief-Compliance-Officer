@@ -1,0 +1,313 @@
+---
+/**
+ * Ulpiano CCO — Vector Diagrams View
+ * Interactive high-definition architectural suite with 9 specialized views
+ */
+---
+
+<section id="view-diagrams" class="py-4 py-lg-5" style="display: none;">
+  <div class="container-xxl px-3">
+    <!-- Hero Banner -->
+    <div class="legal-hero-card mb-4">
+      <div class="legal-breadcrumb">
+        <a href="#" onclick="window.UlpianoDash?.switchView('dashboard')">
+          Portal CCO
+        </a>
+        <span class="mx-1 text-muted">/</span>
+        <span>Modelado Arquitectónico</span>
+        <span class="mx-1 text-muted">/</span>
+        <span class="fw-semibold text-dark" id="diagram-breadcrumb-title">
+          Suite de Diagramas V-1.2
+        </span>
+      </div>
+
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-4">
+        <div style="max-width: 860px;">
+          <h1 class="legal-hero-title mb-2" id="diagram-hero-title">
+            🏛️ Suite Oficial de Diagramas de Arquitectura &amp; Compliance
+          </h1>
+          <p class="legal-hero-desc mb-0" id="diagram-hero-desc">
+            Visualización interactiva en alta definición de la arquitectura técnica, el marco legal
+            internacional (UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025), el marco legal
+            nacional (CRBV Art. 203, Sentencia TSJ 0406/2026, LOCOTA 2026) y el aporte original de
+            integridad procesal (Título VII).
+          </p>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row gap-2 align-self-start">
+          <button
+            class="btn btn-dark fw-bold px-3 py-2 d-inline-flex align-items-center gap-2"
+            onclick="window.UlpianoDash?.downloadActiveDiagram()"
+          >
+            <span class="material-symbols-outlined" style="font-size: 1.15rem;">
+              download
+            </span>
+            <span>Descargar SVG</span>
+          </button>
+          <button
+            class="btn btn-outline-secondary px-3 py-2 d-inline-flex align-items-center gap-2"
+            onclick="window.UlpianoDash?.switchView('dashboard')"
+          >
+            <span class="material-symbols-outlined" style="font-size: 1.15rem;">
+              dashboard
+            </span>
+            <span>Dashboard</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 Summary Stat Chips -->
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">
+          schema
+        </span>
+        <span>
+          <strong>V-1.2 Actualizada</strong> (FISMA &amp; LOCOTA)
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-info" style="font-size:1.1rem;">
+          memory
+        </span>
+        <span>
+          <strong>Ciberdefensa</strong> (Zero Trust, SHA-256, PSS, DOV 72h)
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-success" style="font-size:1.1rem;">
+          public
+        </span>
+        <span>
+          <strong>Legal Internacional</strong> (UE 2023/2841, FISMA, JTC, ISO)
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-danger" style="font-size:1.1rem;">
+          balance
+        </span>
+        <span>
+          <strong>Legal Nacional</strong> (CRBV 203, TSJ 0406, LOCOTA)
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-warning" style="font-size:1.1rem;">
+          star
+        </span>
+        <span>
+          <strong>Aporte Título VII</strong> (Anticorrupción)
+        </span>
+      </div>
+    </div>
+
+    <!-- Category Tabs Selector (9 Perspectives) -->
+    <div class="diagram-tabs-nav mb-4" id="diagram-nav-tabs">
+      <button
+        class="diagram-tab-btn active"
+        data-tab="master"
+        onclick="window.UlpianoDash?.switchDiagramTab('master')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          account_tree
+        </span>
+        <span>🏛️ Arquitectura Maestra</span>
+        <span class="diagram-badge">Todo-en-Uno V-1.2</span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="technical"
+        onclick="window.UlpianoDash?.switchDiagramTab('technical')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          memory
+        </span>
+        <span>⚙️ Arquitectura Técnica</span>
+        <span class="diagram-badge">Ciberdefensa</span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="international"
+        onclick="window.UlpianoDash?.switchDiagramTab('international')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          public
+        </span>
+        <span>🌐 Marco Internacional</span>
+        <span class="diagram-badge">UE • FISMA • JTC</span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="national"
+        onclick="window.UlpianoDash?.switchDiagramTab('national')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          balance
+        </span>
+        <span>🇻🇪 Marco Nacional</span>
+        <span class="diagram-badge">CRBV 203 • TSJ 0406</span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="original"
+        onclick="window.UlpianoDash?.switchDiagramTab('original')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          star
+        </span>
+        <span>⭐ Aporte Título VII</span>
+        <span class="diagram-badge">Anticorrupción</span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="workflows"
+        onclick="window.UlpianoDash?.switchDiagramTab('workflows')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          account_tree
+        </span>
+        <span>⚙️ Workflows &amp; Alertas IA</span>
+        <span class="diagram-badge">CMS Compliance</span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="organigram"
+        onclick="window.UlpianoDash?.switchDiagramTab('organigram')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          corporate_fare
+        </span>
+        <span>📊 Organigrama Descendente</span>
+        <span class="diagram-badge">Jerarquía de Control</span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="backend_python"
+        onclick="window.UlpianoDash?.switchDiagramTab('backend_python')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          terminal
+        </span>
+        <span>🐍 Backend Python</span>
+        <span class="diagram-badge" style="background:#0284c7;color:#fff;">
+          FastAPI ASGI
+        </span>
+      </button>
+      <button
+        class="diagram-tab-btn"
+        data-tab="frontend_nextjs"
+        onclick="window.UlpianoDash?.switchDiagramTab('frontend_nextjs')"
+      >
+        <span class="material-symbols-outlined" style="font-size:1.15rem;">
+          web
+        </span>
+        <span>🌐 Frontend Next.js</span>
+        <span class="diagram-badge" style="background:#059669;color:#fff;">
+          React-PDF
+        </span>
+      </button>
+    </div>
+
+    <!-- Interactive Diagram Viewport Card -->
+    <div class="diagram-viewer-card mb-5" id="main-diagram-viewer-card">
+      <!-- Toolbar Header -->
+      <div class="diagram-toolbar">
+        <div>
+          <h5 class="diagram-toolbar-title" id="diagram-active-title">
+            <span class="material-symbols-outlined text-primary" id="diagram-active-icon">
+              account_tree
+            </span>
+            <span id="diagram-active-name">
+              Arquitectura de Integración V-1.2 (Maestra Integral)
+            </span>
+          </h5>
+          <div class="text-muted small mt-1" id="diagram-active-sub">
+            Integración de los 4 grandes bloques: UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025 y
+            Aporte Original Título VII.
+          </div>
+        </div>
+
+        <!-- Action & Zoom Controls -->
+        <div class="diagram-toolbar-actions">
+          <button
+            class="diagram-btn-tool"
+            onclick="window.UlpianoDash?.zoomDiagram(-0.15)"
+            title="Reducir zoom"
+          >
+            <span class="material-symbols-outlined" style="font-size:1rem;">
+              zoom_out
+            </span>{' '}
+            Zoom -
+          </button>
+          <button
+            class="diagram-btn-tool"
+            id="diagram-zoom-level-btn"
+            onclick="window.UlpianoDash?.resetDiagramZoom()"
+            title="Restablecer zoom al 100%"
+          >
+            <span class="material-symbols-outlined" style="font-size:1rem;">
+              restart_alt
+            </span>{' '}
+            <span id="diagram-zoom-val">100%</span>
+          </button>
+          <button
+            class="diagram-btn-tool"
+            onclick="window.UlpianoDash?.zoomDiagram(0.15)"
+            title="Aumentar zoom"
+          >
+            <span class="material-symbols-outlined" style="font-size:1rem;">
+              zoom_in
+            </span>{' '}
+            Zoom +
+          </button>
+          <button
+            class="diagram-btn-tool"
+            onclick="window.UlpianoDash?.toggleDiagramFullscreen()"
+            title="Pantalla completa"
+            id="btn-diagram-fullscreen"
+          >
+            <span class="material-symbols-outlined" style="font-size:1rem;">
+              fullscreen
+            </span>{' '}
+            Pantalla Completa
+          </button>
+          <button
+            class="diagram-btn-tool"
+            onclick="window.UlpianoDash?.openActiveDiagramNewTab()"
+            title="Abrir archivo SVG en pestaña independiente"
+          >
+            <span class="material-symbols-outlined" style="font-size:1rem;">
+              open_in_new
+            </span>{' '}
+            Abrir SVG ↗
+          </button>
+          <button
+            class="diagram-btn-tool"
+            onclick="window.UlpianoDash?.downloadActiveDiagram()"
+            title="Descargar archivo vectorial"
+          >
+            <span class="material-symbols-outlined" style="font-size:1rem;">
+              download
+            </span>{' '}
+            Descargar
+          </button>
+        </div>
+      </div>
+
+      <!-- Viewport Canvas -->
+      <div class="diagram-viewport-wrapper" id="diagram-viewport-scroll">
+        <div class="diagram-viewport-inner" id="diagram-viewport-content">
+          <div class="text-center py-5 text-muted">
+            <div class="spinner-border text-primary mb-3"></div>
+            <p>Cargando diagrama vectorial en alta resolución...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Breakdown Section -->
+    <div id="diagram-breakdown-section" class="mb-5">
+      <!-- Populated dynamically based on selected tab by diagrams.js -->
+    </div>
+  </div>
+</section>

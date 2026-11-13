@@ -7,10 +7,12 @@ const outputDirectory = path.resolve('dist');
 
 async function findFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
-  const nested = await Promise.all(entries.map(entry => {
-    const entryPath = path.join(directory, entry.name);
-    return entry.isDirectory() ? findFiles(entryPath) : [entryPath];
-  }));
+  const nested = await Promise.all(
+    entries.map((entry) => {
+      const entryPath = path.join(directory, entry.name);
+      return entry.isDirectory() ? findFiles(entryPath) : [entryPath];
+    })
+  );
   return nested.flat();
 }
 
@@ -44,7 +46,7 @@ test('Astro build preserves all HTML entry URLs and application views', async ()
     'sim-sign-result',
     'sim-cotejo-result',
     'sim-sorteo-result',
-    'sim-ws-feed'
+    'sim-ws-feed',
   ]) {
     assert.ok(index.includes(`id="${control}"`), `Missing interaction target ${control}`);
   }
@@ -57,19 +59,36 @@ test('Astro build preserves all HTML entry URLs and application views', async ()
 
 test('static assets, app bundles, and all document sources ship in the production build', async () => {
   const files = await findFiles(outputDirectory);
-  for (const asset of ['manifest.json', 'svg/ciberseguridad_integracion_V1.2.svg', 'svg/backend_python_api_arquitectura.svg']) {
+  for (const asset of [
+    'manifest.json',
+    'svg/ciberseguridad_integracion_V1.2.svg',
+    'svg/backend_python_api_arquitectura.svg',
+  ]) {
     assert.ok(files.includes(path.join(outputDirectory, asset)), `Missing ${asset}`);
   }
 
   const index = await readFile(path.join(outputDirectory, 'index.html'), 'utf8');
-  const assetReferences = [...index.matchAll(/(?:src|href)="([^"]*_astro\/[^"]+)"/g)].map(match => match[1]);
-  assert.ok(assetReferences.some(asset => asset.endsWith('.js')), 'Missing bundled application script');
-  assert.ok(assetReferences.some(asset => asset.endsWith('.css')), 'Missing bundled application styles');
+  const assetReferences = [...index.matchAll(/(?:src|href)="([^"]*_astro\/[^"]+)"/g)].map(
+    (match) => match[1]
+  );
+  assert.ok(
+    assetReferences.some((asset) => asset.endsWith('.js')),
+    'Missing bundled application script'
+  );
+  assert.ok(
+    assetReferences.some((asset) => asset.endsWith('.css')),
+    'Missing bundled application styles'
+  );
   for (const asset of assetReferences) {
-    assert.ok(files.includes(path.join(outputDirectory, asset.replace(/^\//, ''))), `Broken bundle reference ${asset}`);
+    assert.ok(
+      files.includes(path.join(outputDirectory, asset.replace(/^\//, ''))),
+      `Broken bundle reference ${asset}`
+    );
   }
 
-  const bundles = await Promise.all(files.filter(file => file.endsWith('.js')).map(file => readFile(file, 'utf8')));
+  const bundles = await Promise.all(
+    files.filter((file) => file.endsWith('.js')).map((file) => readFile(file, 'utf8'))
+  );
   const documentBundle = bundles.join('\n');
   for (const phrase of ['LOCOTA 2026', 'EXPOSICIÓN DE MOTIVOS', 'ANTEPROYECTO DE LEY ORGÁNICA']) {
     assert.ok(documentBundle.includes(phrase), `Missing Markdown source content: ${phrase}`);

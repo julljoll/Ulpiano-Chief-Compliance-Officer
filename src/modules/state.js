@@ -10,5 +10,5 @@ export const state = {
   fontSize: 17,
   searchQuery: '',
   currentRedIndex: -1,
-  redSpans: []
+  redSpans: [],
 };

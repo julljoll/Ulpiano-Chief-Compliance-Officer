@@ -9,7 +9,7 @@ const docCache = {};
 
 /**
  * Parses markdown into HTML with inline SVG diagram support.
- * @param {string} md 
+ * @param {string} md
  * @returns {string}
  */
 export function parseMarkdown(md) {
@@ -27,14 +27,17 @@ export function parseMarkdown(md) {
   }
 
   // Convert inline style red to .reforma-rojo
-  html = html.replace(/<span style="color:\s*red">([\s\S]*?)<\/span>/gi, '<span class="reforma-rojo">$1</span>');
+  html = html.replace(
+    /<span style="color:\s*red">([\s\S]*?)<\/span>/gi,
+    '<span class="reforma-rojo">$1</span>'
+  );
 
   return html;
 }
 
 /**
  * Loads document content from precompiled HTML or markdown source with sessionStorage caching.
- * @param {string} key 
+ * @param {string} key
  * @returns {Promise<string>}
  */
 export async function getDocContent(key) {
@@ -54,7 +57,9 @@ export async function getDocContent(key) {
   if (rawMarkdown) {
     const parsed = parseMarkdown(rawMarkdown);
     docCache[key] = parsed;
-    try { sessionStorage.setItem(sessionKey, parsed); } catch {}
+    try {
+      sessionStorage.setItem(sessionKey, parsed);
+    } catch {}
     return parsed;
   }
 
@@ -142,8 +147,8 @@ export function buildFloatingLeftTOC() {
     h.id = id;
     const tag = h.tagName.toLowerCase();
     const text = h.textContent.replace(/^#+\s*/, '').trim();
-    const level = tag === 'h1' ? '1' : tag === 'h2' ? '2' : (tag === 'h3' ? '3' : '4');
-    const icon = tag === 'h1' ? '🏛️ ' : tag === 'h2' ? '📌 ' : (tag === 'h3' ? '▪️ ' : '▫️ ');
+    const level = tag === 'h1' ? '1' : tag === 'h2' ? '2' : tag === 'h3' ? '3' : '4';
+    const icon = tag === 'h1' ? '🏛️ ' : tag === 'h2' ? '📌 ' : tag === 'h3' ? '▪️ ' : '▫️ ';
 
     html += `
       <a href="#${id}" class="floating-toc-item toc-level-${level}" data-target="${id}">
@@ -155,13 +160,13 @@ export function buildFloatingLeftTOC() {
   tocList.innerHTML = html;
 
   // Smooth scroll listener
-  tocList.querySelectorAll('.floating-toc-item').forEach(link => {
-    link.addEventListener('click', e => {
+  tocList.querySelectorAll('.floating-toc-item').forEach((link) => {
+    link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('data-target');
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
-        tocList.querySelectorAll('.floating-toc-item').forEach(l => l.classList.remove('active'));
+        tocList.querySelectorAll('.floating-toc-item').forEach((l) => l.classList.remove('active'));
         link.classList.add('active');
         targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -169,18 +174,21 @@ export function buildFloatingLeftTOC() {
   });
 
   // IntersectionObserver for active heading on scroll
-  activeTocObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        document.querySelectorAll('#floating-toc-list .floating-toc-item').forEach(l => {
-          l.classList.toggle('active', l.getAttribute('data-target') === id);
-        });
-      }
-    });
-  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  activeTocObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          document.querySelectorAll('#floating-toc-list .floating-toc-item').forEach((l) => {
+            l.classList.toggle('active', l.getAttribute('data-target') === id);
+          });
+        }
+      });
+    },
+    { rootMargin: '-10% 0px -75% 0px', threshold: 0 }
+  );
 
-  headings.forEach(h => activeTocObserver.observe(h));
+  headings.forEach((h) => activeTocObserver.observe(h));
 }
 
 /**
@@ -191,7 +199,9 @@ export function setupRedHighlights() {
   const counterEl = document.getElementById('red-badge-counter');
   if (!paper) return;
 
-  state.redSpans = Array.from(paper.querySelectorAll('.reforma-rojo, span[style*="color:red"], span[style*="color: red"]'));
+  state.redSpans = Array.from(
+    paper.querySelectorAll('.reforma-rojo, span[style*="color:red"], span[style*="color: red"]')
+  );
   state.currentRedIndex = -1;
 
   if (counterEl) {
@@ -211,7 +221,7 @@ export function jumpToNextRedHighlight() {
     target.style.transition = 'all 0.3s ease';
     target.style.outline = '3px solid #df7e00';
     target.style.backgroundColor = 'rgba(223, 126, 0, 0.25)';
-    setTimeout(() => { 
+    setTimeout(() => {
       target.style.outline = 'none';
       target.style.backgroundColor = '';
     }, 1600);

@@ -317,18 +317,19 @@ flowchart TD
 
 ```
 Ulpiano-Chief-Compliance-Officer/
-├── index.html, frontend.html, backend.html # Rutas públicas preservadas
-├── src/pages/                  # Páginas Astro; conservan el contenido HTML existente
-├── src/layouts/                 # Envoltorio de las rutas y carga compartida de estilos
-├── src/scripts/, src/modules/  # Aplicación nativa, router hash y módulos existentes
-├── src/styles/                  # CSS de la aplicación y tokens de compatibilidad
-├── docs/                        # Fuentes Markdown incluidas en el build estático
-├── registry.json                # Fuente única de metadata de versiones
-├── public/svg/                  # Diagramas publicados en sus rutas originales
-├── public/manifest.json         # Manifiesto PWA
-├── tests/                       # Pruebas de rutas y navegación
-├── astro.config.mjs             # Build estático
-└── vercel.json                  # Comando y salida Vercel; no define dominio
+├── src/pages/                  # Páginas Astro nativas (index.astro, frontend.astro, backend.astro)
+├── src/layouts/                # LegalLayout.astro (Layout institucional legal-tech)
+├── src/components/views/       # Vistas modulares Astro (Dashboard, Diagrams, Api, Reader, Compare, Matrix)
+├── src/scripts/, src/modules/  # Motor SPA reactivo, router hash y módulos forenses
+├── src/styles/                 # Design System legal (legal-theme.css, tokens.css, viewer.css)
+├── src/lib/                    # Constantes del marco normativo y estándares
+├── docs/                       # Fuentes Markdown incluidas en el build estático
+├── registry.json               # Fuente única de metadata de versiones
+├── public/svg/                 # Suite de 9 diagramas vectoriales de alta resolución
+├── public/manifest.json        # Manifiesto PWA
+├── tests/                      # Suite de pruebas automatizadas (build y router)
+├── astro.config.mjs            # Configuración de compilación estática de Astro
+└── vercel.json                 # Configuración de despliegue estático
 ```
 
 ---

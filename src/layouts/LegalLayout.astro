@@ -1,0 +1,561 @@
+---
+import '../styles/tokens.css';
+import '../styles/compat-tokens.css';
+import '../styles/legal-theme.css';
+import '../styles/viewer.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentSection?: string;
+}
+
+const {
+  title = '⚖️ Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital',
+  description = 'Portal oficial de ciberseguridad procesal, informática forense e integridad digital del sistema de justicia y de la administración pública.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:title" content="Ulpiano CCO — Ciberseguridad Procesal V-1.2" />
+    <meta
+      property="og:description"
+      content="Portal oficial de investigación técnica sobre ciberseguridad procesal, informática forense e integridad digital del sistema de justicia venezolano. Integra FISMA 2014, UE 2023/2841, LOCOTA 2026 y TSJ/SC 0406/2026."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_VE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ulpiano CCO — Ciberseguridad Procesal V-1.2" />
+    <meta
+      name="twitter:description"
+      content="Portal de ciberseguridad procesal e integridad digital."
+    />
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Preconnect CDNs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <!-- Bootstrap 5.3 CSS, Google Material Symbols & Modern Tech Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simple-icons-font@v14/font/simple-icons.min.css"
+    />
+
+    <!-- Chart.js & Marked.js con defer -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GovernmentService",
+        "name": "Ulpiano CCO — Chief Compliance Officer",
+        "description": "Investigación técnica de ciberseguridad procesal e integridad digital del sistema de justicia venezolano",
+        "provider": {
+          "@type": "Organization",
+          "name": "Jull Ortiz",
+          "url": "https://sha256.us/"
+        },
+        "areaServed": "VE",
+        "serviceType": "Investigación Jurídico-Técnica e Informática Forense"
+      }
+    </script>
+  </head>
+  <body>
+    <!-- 1. TOP OFFICIAL GOVERNMENT BANNER -->
+    <div class="legal-top-banner">
+      <div class="container-xxl d-flex flex-wrap align-items-center justify-content-between px-3 gap-2">
+        <div class="d-flex align-items-center gap-2">
+          <span>🏛️</span>
+          <span class="fw-semibold">República Bolivariana de Venezuela</span>
+          <span class="text-muted d-none d-sm-inline">|</span>
+          <span class="d-none d-sm-inline">
+            Iniciativa de Ciberseguridad Procesal, Informática Forense y Cumplimiento Digital
+          </span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <span class="badge bg-light text-dark border">
+            <span class="material-symbols-outlined text-success me-1" style="font-size: 0.95rem;">
+              lock
+            </span>
+            Auditoría Segura · ISO/IEC 27001
+          </span>
+          <a
+            href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer"
+            target="_blank"
+            class="text-muted text-decoration-none d-none d-md-inline"
+            title="Repositorio de Código Abierto"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PRIMARY INSTITUTIONAL HEADER -->
+    <header class="legal-masthead">
+      <div class="container-xxl d-flex flex-wrap align-items-center justify-content-between gap-3 px-3">
+        <div class="masthead-brand">
+          <a href="index.html" class="text-decoration-none d-flex align-items-center gap-3">
+            <div class="masthead-seal">⚖️</div>
+            <div>
+              <div class="masthead-title">Ulpiano — Chief Compliance Officer</div>
+              <div class="masthead-subtitle">
+                Dirección Nacional de Ciberseguridad Procesal e Integridad Digital
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <div class="masthead-badge">
+            <span class="material-symbols-outlined" style="font-size: 1rem;">
+              gavel
+            </span>
+            Rango de Ley Orgánica · Art. 203 CRBV · TSJ/SC N° 0406/2026
+          </div>
+          <a
+            href="backend.html"
+            class="btn btn-sm btn-outline-light d-none d-lg-inline-flex align-items-center gap-1"
+          >
+            <i class="devicon-python-plain colored"></i> Backend Python
+          </a>
+          <a
+            href="frontend.html"
+            class="btn btn-sm btn-outline-light d-none d-lg-inline-flex align-items-center gap-1"
+          >
+            <i class="devicon-nextjs-plain colored"></i> Frontend Next.js
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. TOP NAVIGATION BAR (SPA VIEWS) -->
+    <nav class="legal-navbar" role="navigation" aria-label="Navegación principal">
+      <div class="container-xxl d-flex flex-wrap align-items-center justify-content-between gap-2 px-3">
+        <div class="legal-nav-tabs" role="tablist" aria-label="Módulos del portal">
+          <button
+            class="dc3-nav-tab active"
+            data-view="dashboard"
+            role="tab"
+            aria-selected="true"
+            aria-controls="view-dashboard"
+          >
+            <span class="material-symbols-outlined">dashboard</span>
+            <span>Dashboard de Mejoras</span>
+          </button>
+          <button
+            class="dc3-nav-tab"
+            data-view="diagrams"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-diagrams"
+          >
+            <span class="material-symbols-outlined">account_tree</span>
+            <span>Diagramas (9 Vistas)</span>
+          </button>
+          <button
+            class="dc3-nav-tab"
+            data-view="api"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-api"
+          >
+            <span class="material-symbols-outlined">terminal</span>
+            <span>Consola API Python (FastAPI)</span>
+          </button>
+          <button
+            class="dc3-nav-tab"
+            data-view="reader"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-reader"
+          >
+            <span class="material-symbols-outlined">menu_book</span>
+            <span>Lector de versiones</span>
+          </button>
+          <button
+            class="dc3-nav-tab"
+            data-view="compare"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-compare"
+          >
+            <span class="material-symbols-outlined">compare_arrows</span>
+            <span>Comparador de versiones</span>
+          </button>
+          <button
+            class="dc3-nav-tab"
+            data-view="matrix"
+            role="tab"
+            aria-selected="false"
+            aria-controls="view-matrix"
+          >
+            <span class="material-symbols-outlined">table_chart</span>
+            <span>Matriz de Trazabilidad Normativa</span>
+          </button>
+        </div>
+        <div class="d-none d-xl-flex align-items-center text-muted small">
+          <span class="badge bg-light text-secondary border">V-1.2 FISMA &amp; LOCOTA</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 4. MAIN CONTENT CONTAINER -->
+    <main class="w-100 flex-grow-1">
+      <slot />
+    </main>
+
+    <!-- 5. INSTITUTIONAL LEGAL FOOTER -->
+    <footer class="legal-footer">
+      <div class="container-xxl px-3">
+        <div class="row align-items-center gy-3">
+          <div class="col-12 col-md-6">
+            <div class="legal-footer-title">ULPIANO — CHIEF COMPLIANCE OFFICER</div>
+            <div class="text-white-50 small mb-2">
+              Dirección de Ciberseguridad Procesal, Informática Forense e Integridad Digital
+            </div>
+            <div class="text-muted small">
+              Fundamentado en los tres axiomas de Domicio Ulpiano (<em>Honeste Vivere</em>,{' '}
+              <em>Alterum Non Laedere</em>, <em>Suum Cuique Tribuere</em>) traducidos a protocolos
+              de software determinísticos, inmutables y auditables.
+            </div>
+          </div>
+          <div class="col-12 col-md-6 text-md-end">
+            <div class="legal-footer-links justify-content-md-end">
+              <a href="#" onclick="window.UlpianoDash?.switchView('dashboard')">
+                Dashboard
+              </a>
+              <a href="#" onclick="window.UlpianoDash?.switchView('diagrams')">
+                Diagramas
+              </a>
+              <a href="#" onclick="window.UlpianoDash?.switchView('api')">
+                Consola API
+              </a>
+              <a href="#" onclick="window.UlpianoDash?.switchView('reader')">
+                Lector Normativo
+              </a>
+              <a href="#" onclick="window.UlpianoDash?.switchView('compare')">
+                Comparador
+              </a>
+              <a href="#" onclick="window.UlpianoDash?.switchView('matrix')">
+                Trazabilidad ISO
+              </a>
+              <a href="backend.html">Backend Python</a>
+              <a href="frontend.html">Frontend Next.js</a>
+              <a
+                href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer"
+                target="_blank"
+              >
+                GitHub
+              </a>
+            </div>
+            <div class="text-white-50 small">
+              Marco Regulatorio: <strong>CRBV Art. 203</strong> ·{' '}
+              <strong>TSJ/SC N° 0406/2026</strong> · <strong>FISMA 2014</strong> ·{' '}
+              <strong>LOCOTA 2026</strong> · <strong>ISO/IEC 27001 / 27037 / 42001</strong> · WCAG
+              2.1 AAA
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 6. MASTER SVG ARCHITECTURE VECTOR TEMPLATE (FALLBACK) -->
+    <template id="svg-architecture-diagram">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1360 1080"
+        width="100%"
+        height="100%"
+        style="max-width: 1200px; margin: 0 auto; display: block;"
+      >
+        <defs>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+            .font-sans {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+            }
+            .font-mono {
+              font-family: 'JetBrains Mono', monospace;
+            }
+            .text-ink {
+              fill: #0f172a;
+            }
+            .text-primary-dark {
+              fill: #0f172a;
+            }
+            .text-card-title {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+              font-weight: 700;
+              font-size: 13px;
+              fill: #0f172a;
+            }
+            .text-card-sub {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+              font-weight: 600;
+              font-size: 11px;
+            }
+            .text-card-body {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+              font-weight: 400;
+              font-size: 11.2px;
+              fill: #334155;
+            }
+            .text-item-title {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+              font-weight: 700;
+              font-size: 11.5px;
+              fill: #0f172a;
+            }
+            .text-pill {
+              font-family: 'Plus Jakarta Sans', sans-serif;
+              font-weight: 700;
+              font-size: 10.5px;
+            }
+          </style>
+        </defs>
+
+        <!-- Header Box -->
+        <rect x="50" y="30" width="1260" height="90" rx="8" fill="#0f172a" />
+        <text x="80" y="70" class="font-sans" font-size="20px" font-weight="700" fill="#ffffff">
+          ⚖️ ULPIANO CCO — ARQUITECTURA MAESTRA DE INTEGRACIÓN V-1.2
+        </text>
+        <text x="80" y="98" class="font-sans" font-size="13px" fill="#94a3b8">
+          Dirección Nacional de Ciberseguridad Procesal e Integridad Digital • Rango de Ley Orgánica
+          (Art. 203 CRBV / TSJ 0406/2026)
+        </text>
+
+        <!-- 4 Value Pillar Cards -->
+        <g transform="translate(50, 150)">
+          <!-- Card 1 -->
+          <g transform="translate(0, 0)">
+            <rect
+              x="0"
+              y="0"
+              width="292"
+              height="305"
+              rx="6"
+              fill="#ffffff"
+              stroke="#cbd5e1"
+              stroke-width="1.2"
+            />
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#b91c1c" />
+            <text x="18" y="32" class="text-card-title" fill="#b91c1c">
+              Doble Frente
+            </text>
+            <text x="18" y="48" class="text-card-sub" fill="#64748b">
+              Judicial &amp; Administrativo
+            </text>
+            <line x1="18" y1="62" x2="274" y2="62" stroke="#e2e8f0" stroke-width="1" />
+            <text x="18" y="86" class="text-item-title">
+              Defensa Externa + Interna
+            </text>
+            <text x="18" y="108" class="text-card-body">
+              No solo protege de ataques externos;
+            </text>
+            <text x="18" y="126" class="text-card-body">
+              audita determinísticamente a operadores
+            </text>
+            <text x="18" y="144" class="text-card-body">
+              internos que alteren causas o causen
+            </text>
+            <text x="18" y="162" class="text-card-body">
+              retardo procesal injustificado.
+            </text>
+            <rect
+              x="18"
+              y="255"
+              width="256"
+              height="32"
+              rx="16"
+              fill="#fef2f2"
+              stroke="#b91c1c"
+              stroke-width="1"
+            />
+            <text x="146" y="275" class="text-pill" fill="#b91c1c" text-anchor="middle">
+              Principio: Honeste Vivere
+            </text>
+          </g>
+
+          <!-- Card 2 -->
+          <g transform="translate(322, 0)">
+            <rect
+              x="0"
+              y="0"
+              width="292"
+              height="305"
+              rx="6"
+              fill="#ffffff"
+              stroke="#cbd5e1"
+              stroke-width="1.2"
+            />
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#2563eb" />
+            <text x="18" y="32" class="text-card-title" fill="#1e40af">
+              Distribución Aleatoria
+            </text>
+            <text x="18" y="48" class="text-card-sub" fill="#2563eb">
+              Causas y Trámites (Art. 26)
+            </text>
+            <line x1="18" y1="62" x2="274" y2="62" stroke="#e2e8f0" stroke-width="1" />
+            <text x="18" y="86" class="text-item-title">
+              Algoritmo CSPRNG Auditable
+            </text>
+            <text x="18" y="108" class="text-card-body">
+              Elimina la asignación manual en cortes,
+            </text>
+            <text x="18" y="126" class="text-card-body">
+              fiscalías y procedimientos del Estado.
+            </text>
+            <text x="18" y="144" class="text-card-body">
+              Genera bitácora inmutable en Árbol
+            </text>
+            <text x="18" y="162" class="text-card-body">
+              de Merkle inmune a manipulaciones.
+            </text>
+            <rect
+              x="18"
+              y="255"
+              width="256"
+              height="32"
+              rx="16"
+              fill="#eff6ff"
+              stroke="#2563eb"
+              stroke-width="1"
+            />
+            <text x="146" y="275" class="text-pill" fill="#1e40af" text-anchor="middle">
+              Principio: Suum Cuique Tribuere
+            </text>
+          </g>
+
+          <!-- Card 3 -->
+          <g transform="translate(644, 0)">
+            <rect
+              x="0"
+              y="0"
+              width="292"
+              height="305"
+              rx="6"
+              fill="#ffffff"
+              stroke="#cbd5e1"
+              stroke-width="1.2"
+            />
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#9a7b38" />
+            <text x="18" y="32" class="text-card-title" fill="#785e25">
+              Segregación "4 Ojos"
+            </text>
+            <text x="18" y="48" class="text-card-sub" fill="#9a7b38">
+              &amp; Hashes (Arts. 27-28)
+            </text>
+            <line x1="18" y1="62" x2="274" y2="62" stroke="#e2e8f0" stroke-width="1" />
+            <text x="18" y="86" class="text-item-title">
+              Doble Firma Indivisible
+            </text>
+            <text x="18" y="108" class="text-card-body">
+              Ningún servidor público puede aprobar
+            </text>
+            <text x="18" y="126" class="text-card-body">
+              unilateralmente actos críticos. Bóveda
+            </text>
+            <text x="18" y="144" class="text-card-body">
+              WORM inalterable incluso por los
+            </text>
+            <text x="18" y="162" class="text-card-body">
+              administradores de bases de datos.
+            </text>
+            <rect
+              x="18"
+              y="255"
+              width="256"
+              height="32"
+              rx="16"
+              fill="#fef9ee"
+              stroke="#9a7b38"
+              stroke-width="1"
+            />
+            <text x="146" y="275" class="text-pill" fill="#785e25" text-anchor="middle">
+              Principio: Alterum Non Laedere
+            </text>
+          </g>
+
+          <!-- Card 4 -->
+          <g transform="translate(966, 0)">
+            <rect
+              x="0"
+              y="0"
+              width="292"
+              height="305"
+              rx="6"
+              fill="#ffffff"
+              stroke="#cbd5e1"
+              stroke-width="1.2"
+            />
+            <rect x="0" y="0" width="292" height="4" rx="2" fill="#059669" />
+            <text x="18" y="32" class="text-card-title" fill="#047857">
+              IA Ética &amp; Auditoría
+            </text>
+            <text x="18" y="48" class="text-card-sub" fill="#059669">
+              Compliance (Arts. 25, 29-31)
+            </text>
+            <line x1="18" y1="62" x2="274" y2="62" stroke="#e2e8f0" stroke-width="1" />
+            <text x="18" y="86" class="text-item-title">
+              Alertas en Tiempo Real
+            </text>
+            <text x="18" y="108" class="text-card-body">
+              Oficina de Cumplimiento con canal WSS
+            </text>
+            <text x="18" y="126" class="text-card-body">
+              hacia Contraloría e Inspectoría.
+            </text>
+            <text x="18" y="144" class="text-card-body">
+              Prohíbe sentencias automáticas y
+            </text>
+            <text x="18" y="162" class="text-card-body">
+              garantiza supervisión humana ISO 42001.
+            </text>
+            <rect
+              x="18"
+              y="255"
+              width="256"
+              height="32"
+              rx="16"
+              fill="#ecfdf5"
+              stroke="#059669"
+              stroke-width="1"
+            />
+            <text x="146" y="275" class="text-pill" fill="#047857" text-anchor="middle">
+              Compliance ISO 37001 / 42001
+            </text>
+          </g>
+        </g>
+      </svg>
+    </template>
+
+    <!-- Bootstrap Bundle & Client Engine Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/viewer.js"></script>
+  </body>
+</html>

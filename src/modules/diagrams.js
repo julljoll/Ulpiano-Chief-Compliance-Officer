@@ -24,7 +24,9 @@ export async function loadDiagramSvg(tabKey) {
       if (res.ok) {
         const svgContent = await res.text();
         svgDiagramCache[diag.id] = svgContent;
-        try { sessionStorage.setItem(sessionKey, svgContent); } catch {}
+        try {
+          sessionStorage.setItem(sessionKey, svgContent);
+        } catch {}
         return svgContent;
       }
     } catch (e) {
@@ -49,7 +51,7 @@ export async function renderDiagramsView(tabKey) {
   const diag = DIAGRAMS_REGISTRY[activeKey] || DIAGRAMS_REGISTRY.master;
 
   // 1. Update sub-nav tabs active state
-  document.querySelectorAll('#diagram-nav-tabs .diagram-tab-btn').forEach(btn => {
+  document.querySelectorAll('#diagram-nav-tabs .diagram-tab-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.getAttribute('data-tab') === activeKey);
   });
 
@@ -67,7 +69,8 @@ export async function renderDiagramsView(tabKey) {
   // 3. Render SVG viewport content
   const viewportContent = document.getElementById('diagram-viewport-content');
   if (viewportContent) {
-    viewportContent.innerHTML = '<div class="text-center py-5 text-muted"><div class="spinner-border text-primary mb-3"></div><p>Cargando diagrama vectorial en alta resolución...</p></div>';
+    viewportContent.innerHTML =
+      '<div class="text-center py-5 text-muted"><div class="spinner-border text-primary mb-3"></div><p>Cargando diagrama vectorial en alta resolución...</p></div>';
     const svgText = await loadDiagramSvg(activeKey);
     viewportContent.innerHTML = svgText;
     applyDiagramZoom();
@@ -77,7 +80,7 @@ export async function renderDiagramsView(tabKey) {
   const breakdownContainer = document.getElementById('diagram-breakdown-section');
   if (breakdownContainer && Array.isArray(diag.breakdown)) {
     let html = '<div class="row g-4">';
-    diag.breakdown.forEach(item => {
+    diag.breakdown.forEach((item) => {
       html += `
         <div class="col-12 col-md-6 col-xl-3">
           <div class="diagram-card-info">
@@ -136,14 +139,14 @@ export function toggleDiagramFullscreen() {
 
   const isFull = card.classList.toggle('is-fullscreen');
   if (btn) {
-    btn.innerHTML = isFull 
+    btn.innerHTML = isFull
       ? '<span class="material-symbols-outlined" style="font-size:1rem;">fullscreen_exit</span> Salir de Pantalla Completa'
       : '<span class="material-symbols-outlined" style="font-size:1rem;">fullscreen</span> Pantalla Completa';
     btn.setAttribute('aria-pressed', String(isFull));
   }
 
   if (isFull) {
-    escapeFullscreenListener = e => {
+    escapeFullscreenListener = (e) => {
       if (e.key === 'Escape') toggleDiagramFullscreen();
     };
     document.addEventListener('keydown', escapeFullscreenListener);

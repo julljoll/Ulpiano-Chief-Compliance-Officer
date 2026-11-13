@@ -10,7 +10,7 @@
      Rule: Grade difference >= 50 ensures WCAG AA contrast (4.5:1)
            Grade difference >= 70 ensures WCAG AAA contrast (7:1)
      ------------------------------------------------------------------------ */
-  
+
   /* Blue */
   --usa-color-blue-5: #eff6fb;
   --usa-color-blue-10: #d9e8f6;
@@ -115,22 +115,24 @@
   /* ------------------------------------------------------------------------
      3. TYPOGRAPHY TOKENS
      ------------------------------------------------------------------------ */
-  --font-sans: 'Public Sans Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans:
+    'Public Sans Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
   --font-serif: 'Merriweather Web', Georgia, Cambria, 'Times New Roman', Times, serif;
   --font-mono: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace;
 
   /* Scale */
   --size-font-3xs: 0.6875rem; /* 11px */
-  --size-font-2xs: 0.75rem;   /* 12px */
-  --size-font-xs: 0.8125rem;  /* 13px */
-  --size-font-sm: 0.875rem;   /* 14px */
-  --size-font-md: 1rem;       /* 16px (Base) */
-  --size-font-lg: 1.125rem;   /* 18px */
-  --size-font-xl: 1.25rem;    /* 20px */
-  --size-font-2xl: 1.5rem;    /* 24px */
-  --size-font-3xl: 1.875rem;  /* 30px */
-  --size-font-4xl: 2.25rem;   /* 36px */
-  --size-font-5xl: 3rem;      /* 48px */
+  --size-font-2xs: 0.75rem; /* 12px */
+  --size-font-xs: 0.8125rem; /* 13px */
+  --size-font-sm: 0.875rem; /* 14px */
+  --size-font-md: 1rem; /* 16px (Base) */
+  --size-font-lg: 1.125rem; /* 18px */
+  --size-font-xl: 1.25rem; /* 20px */
+  --size-font-2xl: 1.5rem; /* 24px */
+  --size-font-3xl: 1.875rem; /* 30px */
+  --size-font-4xl: 2.25rem; /* 36px */
+  --size-font-5xl: 3rem; /* 48px */
 
   --font-weight-light: 300;
   --font-weight-normal: 400;
@@ -146,30 +148,30 @@
      4. SPACING TOKENS (USWDS 8px Modular Scale)
      ------------------------------------------------------------------------ */
   --space-05: 0.25rem; /* 4px (USWDS 0.5) */
-  --space-1: 0.5rem;   /* 8px (USWDS 1) */
+  --space-1: 0.5rem; /* 8px (USWDS 1) */
   --space-15: 0.75rem; /* 12px (USWDS 1.5) */
-  --space-2: 1rem;     /* 16px (USWDS 2) */
+  --space-2: 1rem; /* 16px (USWDS 2) */
   --space-25: 1.25rem; /* 20px (USWDS 2.5) */
-  --space-3: 1.5rem;   /* 24px (USWDS 3) */
-  --space-4: 2rem;     /* 32px (USWDS 4) */
-  --space-5: 2.5rem;   /* 40px (USWDS 5) */
-  --space-6: 3rem;     /* 48px (USWDS 6) */
-  --space-8: 4rem;     /* 64px (USWDS 8) */
-  --space-10: 5rem;    /* 80px (USWDS 10) */
+  --space-3: 1.5rem; /* 24px (USWDS 3) */
+  --space-4: 2rem; /* 32px (USWDS 4) */
+  --space-5: 2.5rem; /* 40px (USWDS 5) */
+  --space-6: 3rem; /* 48px (USWDS 6) */
+  --space-8: 4rem; /* 64px (USWDS 8) */
+  --space-10: 5rem; /* 80px (USWDS 10) */
 
   /* ------------------------------------------------------------------------
      5. RADIUS & ELEVATION TOKENS
      ------------------------------------------------------------------------ */
   --radius-none: 0px;
   --radius-sm: 0.125rem; /* 2px */
-  --radius-md: 0.25rem;  /* 4px */
-  --radius-lg: 0.5rem;   /* 8px */
-  --radius-xl: 1rem;     /* 16px */
+  --radius-md: 0.25rem; /* 4px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 1rem; /* 16px */
   --radius-pill: 9999px;
 
   --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-  --shadow-3: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
+  --shadow-3: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
   --shadow-4: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
   --shadow-5: 0 20px 40px rgba(0, 0, 0, 0.2);
 

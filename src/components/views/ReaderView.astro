@@ -1,0 +1,116 @@
+---
+/**
+ * Ulpiano CCO — Normative Reader View
+ * Supreme Court Gazette / White Paper Reading Experience
+ */
+---
+
+<section id="view-reader" class="reader-canvas" style="display: none;">
+  <div class="container-xxl px-3">
+    <!-- Top Action Toolbar -->
+    <div class="reader-toolbar-top no-print">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span id="reader-doc-badge" class="dc3-tag">
+          <span class="material-symbols-outlined me-1" style="font-size: 1rem;">
+            article
+          </span>
+          Versión 1.2 FISMA &amp; LOCOTA
+        </span>
+        <strong class="text-dark fs-6" id="reader-doc-title">
+          Ley Orgánica de Ciberseguridad Procesal
+        </strong>
+      </div>
+
+      <!-- Version Switcher & Toolbar Actions -->
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <div style="min-width: 240px;">
+          <select
+            id="reader-version-select"
+            class="form-select form-select-sm border-secondary fw-semibold bg-white text-dark version-select-auto"
+            title="Seleccionar versión para leer"
+          >
+            <!-- Populated dynamically by JavaScript -->
+          </select>
+        </div>
+
+        <button
+          class="btn btn-sm btn-outline-secondary fw-semibold d-inline-flex align-items-center gap-1"
+          id="btn-toggle-floating-toc"
+          title="Mostrar u ocultar índice flotante"
+        >
+          <span class="material-symbols-outlined" style="font-size: 1.1rem;">
+            vertical_split
+          </span>
+          <span id="btn-toc-label">Índice Flotante</span>
+        </button>
+
+        <button
+          class="btn btn-sm btn-danger px-3 fw-bold d-inline-flex align-items-center gap-1"
+          id="btn-jump-red-highlight"
+          title="Saltar a la siguiente modificación resaltada"
+        >
+          <span class="material-symbols-outlined" style="font-size: 1.1rem;">
+            arrow_circle_down
+          </span>
+          <span id="red-badge-counter">Reformas en Rojo</span>
+          <span>⏩</span>
+        </button>
+
+        <button
+          class="btn btn-sm btn-outline-dark px-3 d-inline-flex align-items-center gap-1"
+          onclick="window.UlpianoDash?.switchView('dashboard')"
+        >
+          <span class="material-symbols-outlined" style="font-size: 1.1rem;">
+            dashboard
+          </span>
+          <span>Dashboard</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Reader Main Grid: Floating TOC Left + Document Paper Center/Right -->
+    <div class="row g-4 position-relative">
+      <!-- Floating Index Component (Left Column) -->
+      <div class="col-12 col-lg-4 col-xl-3" id="floating-toc-col">
+        <div class="floating-toc-card">
+          <div class="floating-toc-header">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="fw-bold text-dark small text-uppercase d-flex align-items-center gap-1">
+                <span class="material-symbols-outlined text-primary" style="font-size: 1.1rem;">
+                  format_list_bulleted
+                </span>
+                <span>Índice del Documento</span>
+              </div>
+              <span class="badge bg-dark rounded-pill" id="toc-count-badge">
+                0
+              </span>
+            </div>
+            <div class="input-group input-group-sm">
+              <span class="input-group-text bg-white border-end-0">
+                <span class="material-symbols-outlined" style="font-size: 0.95rem;">
+                  search
+                </span>
+              </span>
+              <input
+                type="text"
+                id="floating-toc-filter"
+                class="form-control border-start-0"
+                placeholder="Filtrar artículo..."
+              />
+            </div>
+          </div>
+          <div class="floating-toc-body" id="floating-toc-list">
+            <!-- Populated dynamically by reader.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Paper Sheet Column -->
+      <div class="col-12 col-lg-8 col-xl-9" id="reader-paper-col">
+        <article class="reader-paper markdown-body" id="paper-sheet">
+          <!-- Populated dynamically by reader.js -->
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

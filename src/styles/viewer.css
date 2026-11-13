@@ -4,10 +4,11 @@
    Accessibility: WCAG 2.1 AAA & Section 508 Compliant (Institutional Light Mode)
    ========================================================================== */
 
-@import url("./tokens.css");
-@import url("./compat-tokens.css");
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto+Mono:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+@import url('./tokens.css');
+@import url('./compat-tokens.css');
+@import url('./legal-theme.css');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 /* Google Material Symbols Helper */
 .material-symbols-outlined {
@@ -43,21 +44,21 @@
   --dc3-border-color: var(--usa-color-gray-cool-20);
 
   /* Bootstrap Variable Mappings */
-  --bs-primary: var(--theme-color-primary-dark);      /* #004987 */
+  --bs-primary: var(--theme-color-primary-dark); /* #004987 */
   --bs-primary-rgb: 0, 73, 135;
-  --bs-secondary: var(--theme-color-secondary);       /* #df7e00 */
+  --bs-secondary: var(--theme-color-secondary); /* #df7e00 */
   --bs-secondary-rgb: 223, 126, 0;
-  --bs-success: var(--theme-color-success);           /* #2e8540 */
+  --bs-success: var(--theme-color-success); /* #2e8540 */
   --bs-success-rgb: 46, 133, 64;
-  --bs-danger: var(--theme-color-error);              /* #b50909 */
+  --bs-danger: var(--theme-color-error); /* #b50909 */
   --bs-danger-rgb: 181, 9, 9;
-  --bs-warning: var(--theme-color-warning);           /* #f3a534 */
+  --bs-warning: var(--theme-color-warning); /* #f3a534 */
   --bs-warning-rgb: 243, 165, 52;
-  --bs-info: var(--theme-color-accent-cool);          /* #0076d6 */
+  --bs-info: var(--theme-color-accent-cool); /* #0076d6 */
   --bs-info-rgb: 0, 118, 214;
-  --bs-dark: var(--dc3-navy-darkest);                 /* #0b1b3d */
+  --bs-dark: var(--dc3-navy-darkest); /* #0b1b3d */
   --bs-dark-rgb: 11, 27, 61;
-  --bs-light: var(--dc3-slate-bg);                    /* #f5f6f8 */
+  --bs-light: var(--dc3-slate-bg); /* #f5f6f8 */
   --bs-light-rgb: 245, 246, 248;
 
   /* Typography */
@@ -235,7 +236,9 @@ body {
   padding: 24px;
   height: 100%;
   position: relative;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .dc3-card:hover {
@@ -243,10 +246,18 @@ body {
   transform: translateY(-2px);
 }
 
-.dc3-card-accent-top { border-top: 4px solid var(--dc3-navy-primary); }
-.dc3-card-accent-gold { border-top: 4px solid var(--dc3-gold-accent); }
-.dc3-card-accent-red { border-top: 4px solid var(--theme-color-error); }
-.dc3-card-accent-green { border-top: 4px solid var(--theme-color-success); }
+.dc3-card-accent-top {
+  border-top: 4px solid var(--dc3-navy-primary);
+}
+.dc3-card-accent-gold {
+  border-top: 4px solid var(--dc3-gold-accent);
+}
+.dc3-card-accent-red {
+  border-top: 4px solid var(--theme-color-error);
+}
+.dc3-card-accent-green {
+  border-top: 4px solid var(--theme-color-success);
+}
 
 .dc3-stat-num {
   font-size: 2.25rem;
@@ -310,7 +321,7 @@ body {
   border: 1px solid var(--dc3-border-color);
   border-radius: 4px;
   padding: 12px 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   margin-bottom: 24px;
   display: flex;
   flex-wrap: wrap;
@@ -466,8 +477,8 @@ body {
 }
 
 /* Red Highlights (Version 1.1 Modifications) */
-.markdown-body span[style*="color:red"],
-.markdown-body span[style*="color: red"] {
+.markdown-body span[style*='color:red'],
+.markdown-body span[style*='color: red'] {
   background-color: #fee2e2 !important;
   color: #991b1b !important;
   border-bottom: 2px solid #dc2626 !important;
@@ -613,7 +624,9 @@ body {
   background-color: rgba(181, 9, 9, 0.05);
   border-radius: 2px;
   padding: 0.1em 0.25em;
-  transition: background-color 0.3s ease, outline 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    outline 0.3s ease;
 }
 
 .reforma-rojo:hover {
@@ -625,15 +638,23 @@ body {
 }
 
 @keyframes fadeInDoc {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .version-card {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  transition:
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s ease;
 }
 
 .version-card:hover {
@@ -699,7 +720,7 @@ body {
 
 /* V-1.2 FISMA 2014 additions — DC3 Institutional Blue */
 .reforma-v12 {
-  color: #0050a0;                           /* DC3 Navy Blue — readable on white */
+  color: #0050a0; /* DC3 Navy Blue — readable on white */
   font-weight: 500;
   position: relative;
 }
@@ -754,9 +775,15 @@ body {
   flex-shrink: 0;
 }
 
-.legend-dot--red   { background-color: #b50909; }
-.legend-dot--blue  { background-color: #0050a0; }
-.legend-dot--black { background-color: #1b1b1b; }
+.legend-dot--red {
+  background-color: #b50909;
+}
+.legend-dot--blue {
+  background-color: #0050a0;
+}
+.legend-dot--black {
+  background-color: #1b1b1b;
+}
 
 /* ==========================================================================
    MATRIZ DE TRAZABILIDAD NORMATIVA — EXCEL SPREADSHEET GRID SYSTEM
@@ -767,7 +794,8 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   margin-bottom: 2rem;
 }
 
@@ -847,26 +875,26 @@ body {
   border: 1px solid #cbd5e1;
   border-radius: 3px;
   padding: 2px 8px;
-  font-family: "Consolas", "Courier New", monospace;
+  font-family: 'Consolas', 'Courier New', monospace;
   font-weight: 700;
   color: #0f172a;
   min-width: 65px;
   text-align: center;
   font-size: 0.78rem;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .excel-fx {
   color: #475569;
   font-weight: 800;
   font-style: italic;
-  font-family: "Georgia", serif;
+  font-family: 'Georgia', serif;
   font-size: 0.95rem;
 }
 
 .excel-formula-text {
   flex-grow: 1;
-  font-family: "Consolas", monospace;
+  font-family: 'Consolas', monospace;
   font-size: 0.78rem;
   color: #1e293b;
   white-space: nowrap;
@@ -914,7 +942,7 @@ body {
   color: #64748b;
   font-weight: 800;
   margin-bottom: 2px;
-  font-family: "Consolas", monospace;
+  font-family: 'Consolas', monospace;
 }
 
 /* Row Numbering Left Column */
@@ -930,7 +958,7 @@ body {
   vertical-align: middle !important;
   border: 1px solid #cbd5e1 !important;
   user-select: none;
-  font-family: "Consolas", monospace;
+  font-family: 'Consolas', monospace;
 }
 
 /* Excel Grid Cells */
@@ -974,7 +1002,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: "Consolas", monospace;
+  font-family: 'Consolas', monospace;
   font-size: 0.72rem;
   font-weight: 800;
   color: #0284c7;
@@ -1033,7 +1061,7 @@ body {
   border-radius: 3px;
   font-size: 0.68rem;
   font-weight: 700;
-  font-family: "Consolas", monospace;
+  font-family: 'Consolas', monospace;
   white-space: nowrap;
 }
 
@@ -1115,7 +1143,7 @@ body {
   font-weight: 700;
   margin-bottom: -1px;
   padding-bottom: 7px;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.04);
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.04);
 }
 
 .excel-sheet-tab-dot {
@@ -1432,7 +1460,9 @@ body {
   padding: 20px;
   height: 100%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .diagram-card-info:hover {
@@ -1631,8 +1661,15 @@ textarea:focus-visible,
 }
 
 @keyframes pulse-green {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.75; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.75;
+  }
 }
 
 .api-method-get {
@@ -1722,10 +1759,12 @@ textarea:focus-visible,
    7. SKELETON LOADERS (Reemplaza spinners genéricos)
    ========================================================================== */
 .skeleton {
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     var(--usa-color-gray-cool-10) 25%,
     var(--usa-color-gray-cool-5) 50%,
-    var(--usa-color-gray-cool-10) 75%);
+    var(--usa-color-gray-cool-10) 75%
+  );
   background-size: 400% 100%;
   animation: skeleton-shimmer 1.4s ease infinite;
   border-radius: 4px;
@@ -1733,8 +1772,12 @@ textarea:focus-visible,
 }
 
 @keyframes skeleton-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .skeleton-text {
@@ -1767,17 +1810,26 @@ textarea:focus-visible,
   }
 }
 
-.row > [class*="col-"] .dc3-card {
+.row > [class*='col-'] .dc3-card {
   animation: fade-slide-up 0.35s ease both;
 }
 
-.row > [class*="col-"]:nth-child(1) .dc3-card { animation-delay: 0.00s; }
-.row > [class*="col-"]:nth-child(2) .dc3-card { animation-delay: 0.06s; }
-.row > [class*="col-"]:nth-child(3) .dc3-card { animation-delay: 0.12s; }
-.row > [class*="col-"]:nth-child(4) .dc3-card { animation-delay: 0.18s; }
+.row > [class*='col-']:nth-child(1) .dc3-card {
+  animation-delay: 0s;
+}
+.row > [class*='col-']:nth-child(2) .dc3-card {
+  animation-delay: 0.06s;
+}
+.row > [class*='col-']:nth-child(3) .dc3-card {
+  animation-delay: 0.12s;
+}
+.row > [class*='col-']:nth-child(4) .dc3-card {
+  animation-delay: 0.18s;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .dc3-card, .skeleton {
+  .dc3-card,
+  .skeleton {
     animation: none !important;
   }
 }
@@ -1791,7 +1843,10 @@ textarea:focus-visible,
   border-radius: 2px;
 }
 
-button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
   outline: 3px solid var(--dc3-gold-accent) !important;
   outline-offset: 2px !important;
 }
@@ -1800,12 +1855,20 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
    10. ESTILOS DE IMPRESIÓN OFICIAL (MEDIA PRINT)
    ========================================================================== */
 @media print {
-  .dc3-header, .usa-gov-banner, .dc3-navbar,
-  .reader-toolbar-top, .floating-toc-card,
-  .excel-ribbon-bar, .excel-formula-bar,
-  .excel-bottom-sheet-bar, .no-print,
-  .dc3-hero-banner, nav, .btn,
-  .diagram-toolbar-actions, #diagram-nav-tabs {
+  .dc3-header,
+  .usa-gov-banner,
+  .dc3-navbar,
+  .reader-toolbar-top,
+  .floating-toc-card,
+  .excel-ribbon-bar,
+  .excel-formula-bar,
+  .excel-bottom-sheet-bar,
+  .no-print,
+  .dc3-hero-banner,
+  nav,
+  .btn,
+  .diagram-toolbar-actions,
+  #diagram-nav-tabs {
     display: none !important;
   }
 
@@ -1828,7 +1891,8 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
     width: 100% !important;
   }
 
-  .excel-grid-table th, .excel-grid-table td {
+  .excel-grid-table th,
+  .excel-grid-table td {
     border: 1px solid #777777 !important;
     padding: 4px 6px !important;
   }

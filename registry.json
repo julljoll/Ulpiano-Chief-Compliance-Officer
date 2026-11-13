@@ -69,7 +69,15 @@
       }
     ],
     "reformsDistribution": {
-      "labels": ["Título I (Principios+Def.)", "Título II (DINCIP+Auditoría)", "Título III (Estándares+PSS)", "Título V (Incidentes+DOV)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Títulos IX-XI (Coop/Form/Trans.)"],
+      "labels": [
+        "Título I (Principios+Def.)",
+        "Título II (DINCIP+Auditoría)",
+        "Título III (Estándares+PSS)",
+        "Título V (Incidentes+DOV)",
+        "Título VII (Integridad)",
+        "Título VIII (Sanciones)",
+        "Títulos IX-XI (Coop/Form/Trans.)"
+      ],
       "data": [3, 3, 2, 2, 1, 3, 2]
     }
   },
@@ -142,7 +150,15 @@
       }
     ],
     "reformsDistribution": {
-      "labels": ["Título I (Gral)", "Título II (Institucional)", "Título III (Técnico)", "Título IV (Garantías)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Título XI (Supremacía)"],
+      "labels": [
+        "Título I (Gral)",
+        "Título II (Institucional)",
+        "Título III (Técnico)",
+        "Título IV (Garantías)",
+        "Título VII (Integridad)",
+        "Título VIII (Sanciones)",
+        "Título XI (Supremacía)"
+      ],
       "data": [6, 4, 3, 2, 4, 8, 5]
     }
   },
@@ -166,11 +182,7 @@
     "changesLabel": "Cláusulas Base (v1.0)",
     "changesTag": "Texto Original",
     "description": "Versión base de investigación técnica preliminar orientada al sistema de justicia y tribunales.",
-    "highlights": [
-      "CSIRT-Ulpiano",
-      "ISO 27037 Forense",
-      "Zero Trust en Cortes"
-    ],
+    "highlights": ["CSIRT-Ulpiano", "ISO 27037 Forense", "Zero Trust en Cortes"],
     "icon": "article",
     "coreReforms": [
       {
@@ -188,7 +200,15 @@
       }
     ],
     "reformsDistribution": {
-      "labels": ["Título I (Gral)", "Título II (Institucional)", "Título III (Técnico)", "Título IV (Garantías)", "Título VII (Integridad)", "Título VIII (Sanciones)", "Título XI (Supremacía)"],
+      "labels": [
+        "Título I (Gral)",
+        "Título II (Institucional)",
+        "Título III (Técnico)",
+        "Título IV (Garantías)",
+        "Título VII (Integridad)",
+        "Título VIII (Sanciones)",
+        "Título XI (Supremacía)"
+      ],
       "data": [0, 0, 0, 0, 0, 0, 0]
     }
   }

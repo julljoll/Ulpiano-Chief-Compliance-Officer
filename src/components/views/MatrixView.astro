@@ -1,0 +1,927 @@
+---
+/**
+ * Ulpiano CCO — Normative Traceability Matrix View
+ * Comprehensive mapping between 11 Titles, International Standards and Venezuelan Constitutional Framework
+ */
+---
+
+<section id="view-matrix" class="py-4 py-lg-5" style="display: none;">
+  <div class="container-xxl px-3">
+    <!-- Header -->
+    <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+      <div>
+        <h4 class="fw-bold mb-1 text-dark d-flex align-items-center gap-2">
+          <span class="material-symbols-outlined text-success">table_chart</span>
+          <span>Matriz de Trazabilidad Normativa &amp; Estándares Forenses</span>
+        </h4>
+        <div class="text-muted small">
+          Mapeo sistemático y auditable entre los 11 Títulos del Anteproyecto, el derecho comparado
+          (UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025), estándares internacionales ISO/IEC y
+          el bloque constitucional venezolano (CRBV Art. 203 y Sentencia TSJ 0406/2026).
+        </div>
+      </div>
+      <button
+        class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-1"
+        onclick="window.UlpianoDash?.switchView('dashboard')"
+      >
+        <span class="material-symbols-outlined" style="font-size: 1rem;">
+          arrow_back
+        </span>
+        <span>Volver al Dashboard</span>
+      </button>
+    </div>
+
+    <!-- Summary Standard Chips -->
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">
+          account_tree
+        </span>
+        <span>
+          <strong>11 Títulos</strong> + Disposiciones
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-info" style="font-size:1.1rem;">
+          public
+        </span>
+        <span>
+          <strong>UE 2023/2841</strong> (CERT-EU)
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-success" style="font-size:1.1rem;">
+          gavel
+        </span>
+        <span>
+          <strong>JTC NCSC 2025</strong> (Cortes)
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">
+          verified_user
+        </span>
+        <span>
+          <strong>FISMA 2014</strong> S.2521 (PSS &amp; DOV)
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-danger" style="font-size:1.1rem;">
+          balance
+        </span>
+        <span>
+          <strong>TSJ Sentencia 0406/2026</strong> &amp; <strong>LOCOTA 2026</strong>
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-warning" style="font-size:1.1rem;">
+          shield
+        </span>
+        <span>
+          <strong>ISO/IEC 27001 / 27037 / 42001</strong>
+        </span>
+      </div>
+      <div class="matrix-summary-chip">
+        <span class="material-symbols-outlined text-danger" style="font-size:1.1rem;">
+          gavel
+        </span>
+        <span>
+          <strong>CRBV Art. 203</strong> (Rango Orgánico)
+        </span>
+      </div>
+    </div>
+
+    <!-- Toolbar: Search Bar, Category Sheets & Actions -->
+    <div class="dc3-card p-3 mb-4">
+      <div class="row g-3 align-items-center justify-content-between">
+        <div class="col-12 col-lg-5">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text bg-white border-end-0">
+              <span class="material-symbols-outlined" style="font-size: 1rem;">
+                search
+              </span>
+            </span>
+            <input
+              type="text"
+              id="matrix-search-input"
+              class="form-control border-start-0"
+              placeholder="Filtrar por término (ej. LOCOTA, FISMA, ISO, 0406, 203)..."
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-7 d-flex flex-wrap align-items-center justify-content-lg-end gap-2">
+          <span class="text-muted small me-2" id="matrix-filter-count">
+            Mostrando <strong>12</strong> filas normativas en cuadrícula
+          </span>
+          <button
+            class="btn btn-sm btn-outline-dark fw-semibold d-inline-flex align-items-center gap-1"
+            onclick="window.UlpianoDash?.exportMatrixCSV()"
+            title="Descargar como archivo CSV compatible con Excel"
+          >
+            <span class="material-symbols-outlined" style="font-size: 1rem;">
+              download
+            </span>
+            <span>Exportar CSV</span>
+          </button>
+          <button
+            class="btn btn-sm btn-outline-secondary fw-semibold d-inline-flex align-items-center gap-1"
+            onclick="window.UlpianoDash?.copyMatrixTable()"
+            title="Copiar al portapapeles en formato TSV"
+          >
+            <span class="material-symbols-outlined" style="font-size: 1rem;">
+              content_copy
+            </span>
+            <span>Copiar Tabla</span>
+          </button>
+          <button
+            class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"
+            onclick="window.print()"
+            title="Imprimir Matriz"
+          >
+            <span class="material-symbols-outlined" style="font-size: 1rem;">
+              print
+            </span>
+            <span>Imprimir</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="d-flex flex-wrap gap-2 mt-3 pt-3 border-top">
+        <button
+          class="excel-sheet-tab active"
+          data-sheet="all"
+          onclick="window.UlpianoDash?.filterMatrixBySheet('all')"
+        >
+          📋 Todas las Secciones
+        </button>
+        <button
+          class="excel-sheet-tab"
+          data-sheet="organica"
+          onclick="window.UlpianoDash?.filterMatrixBySheet('organica')"
+        >
+          ⚖️ Ley Orgánica &amp; Constitucional (Art. 203)
+        </button>
+        <button
+          class="excel-sheet-tab"
+          data-sheet="fisma"
+          onclick="window.UlpianoDash?.filterMatrixBySheet('fisma')"
+        >
+          🏛️ Gobernanza FISMA 2014 &amp; UE
+        </button>
+        <button
+          class="excel-sheet-tab"
+          data-sheet="original"
+          onclick="window.UlpianoDash?.filterMatrixBySheet('original')"
+        >
+          ⭐ Aporte Original Título VII (Anticorrupción)
+        </button>
+        <button
+          class="excel-sheet-tab"
+          data-sheet="forense"
+          onclick="window.UlpianoDash?.filterMatrixBySheet('forense')"
+        >
+          🔬 Forense Digital ISO 27037 &amp; Sanciones
+        </button>
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="matrix-container mb-5">
+      <div class="table-responsive">
+        <table class="matrix-table" id="matrix-table-main">
+          <thead>
+            <tr>
+              <th style="width: 50px; text-align: center;">Fila</th>
+              <th style="width: 22%;">Título &amp; Artículos</th>
+              <th style="width: 26%;">Materia Regulada &amp; Alcance</th>
+              <th style="width: 22%;">Derecho Comparado / Estándares</th>
+              <th style="width: 22%;">Bloque Constitucional &amp; Nacional</th>
+              <th style="width: 80px; text-align: center;">Jerarquía</th>
+            </tr>
+          </thead>
+          <tbody id="matrix-tbody">
+            <!-- Fila 01: Título I -->
+            <tr data-category="organica fisma">
+              <td class="excel-cell-row-num">01</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO I</span>
+                  <strong class="text-dark">Disposiciones Generales</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 1° al 7°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Objeto, Ámbito Pleno y Principios</div>
+                <div class="excel-desc-box">
+                  Regula ciberseguridad procesal con rango orgánico. Extiende el ámbito a
+                  tribunales, fiscalía, defensa pública y a la totalidad de la administración
+                  pública generadora de actos vinculantes.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">UE 2023/2841</span>
+                    <span>Arts. 1-4 (Ámbito y definiciones)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-fisma">FISMA 2014</span>
+                    <span>44 U.S.C. § 3552 (Definiciones de seguridad)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 27000</span>
+                    <span>Vocabulario internacional de seguridad</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 203</span>
+                    <strong class="text-danger">Ley Orgánica Transversal</strong>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">TSJ SC 0406/2026</span>
+                    <span>Doctrina Vinculante de Rango Orgánico</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">LOCOTA 2026</span>
+                    <span>Celeridad y Trámites Administrativos</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV</span>
+                    <span>Arts. 26, 28, 49, 110, 141</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-organica">Orgánica</span>
+              </td>
+            </tr>
+
+            <!-- Fila 02: Título II -->
+            <tr data-category="fisma institucional">
+              <td class="excel-cell-row-num">02</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO II</span>
+                  <strong class="text-dark">Institucionalidad Sectorial</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 8° al 11-bis°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">DINCIP, CSIRT-Ulpiano y Junta</div>
+                <div class="excel-desc-box">
+                  Crea la Dirección Nacional, el CSIRT especializado de justicia, la Junta de
+                  Integridad y la <strong>Evaluación Independiente Anual</strong> obligatoria con
+                  reporte a la AN y CGR.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">UE 2023/2841</span>
+                    <span>CERT-EU &amp; Junta IICB (Arts. 9-11)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-fisma">FISMA 2014</span>
+                    <span>§ 3555 (Evaluación Independiente Anual)</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV</span>
+                    <span>Arts. 253, 254 (Autonomía TSJ)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">LOCOTA Art. 7</span>
+                    <span>Comisión Nacional de Celeridad</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV</span>
+                    <span>Art. 284 (Ministerio Público)</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-institucional">Institucional</span>
+              </td>
+            </tr>
+
+            <!-- Fila 03: Título III -->
+            <tr data-category="fisma tecnico">
+              <td class="excel-cell-row-num">03</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO III</span>
+                  <strong class="text-dark">Estándares y Planes (PSS)</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 12°, 13°, 13-bis°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Zero Trust, COOP y Planes de Seguridad</div>
+                <div class="excel-desc-box">
+                  Segmentación de redes procesales, MFA obligatorio, continuidad operativa judicial
+                  y <strong>Plan de Seguridad del Sistema (PSS)</strong> por cada activo crítico
+                  institucional.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">JTC Courts 2025</span>
+                    <span>Zero Trust, MFA y COOP Judicial</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-fisma">FISMA 2014</span>
+                    <span>§ 3554(b)(1) (System Security Plan / PSS)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">NIST SP 800-53</span>
+                    <span>Risk Management Framework &amp; Controls</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO 27001 / 22301</span>
+                    <span>Gestión de Seguridad y Continuidad</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 110</span>
+                    <span>Interés público en TIC y ciencia</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">LOCOTA Arts. 5, 10</span>
+                    <span>Interoperabilidad Digital del Estado</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">SUSCERTE / CNTI</span>
+                    <span>Normas Técnicas y Certificación</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-tecnico">Técnico</span>
+              </td>
+            </tr>
+
+            <!-- Fila 04: Título IV -->
+            <tr data-category="organica garantias">
+              <td class="excel-cell-row-num">04</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO IV</span>
+                  <strong class="text-dark">Debido Proceso Digital</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 14° al 16°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Garantías Constitucionales Digitales</div>
+                <div class="excel-desc-box">
+                  Prohibición de indefensión por falla técnica, trazabilidad inalterable de
+                  notificaciones y derecho a prueba en contrario ante sistemas automatizados o IA.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">Directiva UE 2016/680</span>
+                    <span>Protección de datos en materia penal</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">OCDE 2023</span>
+                    <span>Principios de Inteligencia Artificial Confiable</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 49</span>
+                    <strong class="text-dark">Debido Proceso y Defensa Plena</strong>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 28</span>
+                    <span>Habeas Data &amp; Autodeterminación</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 257</span>
+                    <span>Justicia Material sobre formalismos</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-garantias">Garantías</span>
+              </td>
+            </tr>
+
+            <!-- Fila 05: Título V -->
+            <tr data-category="fisma operativo">
+              <td class="excel-cell-row-num">05</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO V</span>
+                  <strong class="text-dark">Incidentes &amp; DOV</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 17°, 18°, 19-bis°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Notificación 24h y Directivas Vinculantes</div>
+                <div class="excel-desc-box">
+                  Taxonomía unificada de severidad, reporte obligatorio en 24h y régimen de{' '}
+                  <strong>Directivas Operativas Vinculantes (DOV)</strong> con contención en 72h y
+                  remediación en 30 días.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">UE 2023/2841</span>
+                    <span>Arts. 18-23 (Taxonomía y Gestión de Crisis)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-fisma">FISMA 2014</span>
+                    <span>§ 3553(b) (Binding Operational Directives / CISA)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 27035</span>
+                    <span>Gestión de Incidentes de Ciberseguridad</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 55</span>
+                    <span>Seguridad ciudadana y orden público</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">Ley Delitos Inf.</span>
+                    <span>Arts. 6, 7 (Acceso indebido y sabotaje)</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-operativo">Operativo</span>
+              </td>
+            </tr>
+
+            <!-- Fila 06: Título VI -->
+            <tr data-category="forense">
+              <td class="excel-cell-row-num">06</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO VI</span>
+                  <strong class="text-dark">Régimen Probatorio Forense</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 19° al 23°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Cadena de Custodia Digital &amp; Peritaje</div>
+                <div class="excel-desc-box">
+                  Estándares internacionales de recolección de evidencia digital, orden de
+                  volatilidad, Registro Nacional de Peritos y preparación forense continua
+                  (*forensic readiness*).
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 27037</span>
+                    <span>Adquisición, preservación y embalaje</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO 27041 / 27042</span>
+                    <span>Idoneidad de métodos y análisis forense</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 27043</span>
+                    <span>Preparación forense continua</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">RFC 3227 / NIST 800-86</span>
+                    <span>Orden de volatilidad y análisis</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">Manual Único</span>
+                    <span>Cadena de Custodia de Evidencias (2017)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">COPP</span>
+                    <span>Arts. 181-187 (Licitud probatoria)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">Ley Mensajes Datos</span>
+                    <span>Arts. 4-8 (Eficacia legal y firma electrónica)</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-forense">Forense</span>
+              </td>
+            </tr>
+
+            <!-- Fila 07: Título VII (Aporte Original Destacado) -->
+            <tr class="excel-row-star" data-category="original organica">
+              <td
+                class="excel-cell-row-num"
+                style="background-color: #fef3c7 !important; color: #92400e !important; font-weight: 800;"
+              >
+                07★
+              </td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span
+                    class="excel-title-id"
+                    style="background-color: #fef3c7; color: #92400e; border-color: #fcd34d;"
+                  >
+                    TÍTULO VII ★
+                  </span>
+                  <strong class="text-dark">Integridad Procesal y Administrativa</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 24° al 32°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">
+                  Aporte Original: Justicia &amp; Toda la Administración Pública
+                </div>
+                <div
+                  class="excel-desc-box"
+                  style="background-color: #fffefb; border-color: #fcd34d;"
+                >
+                  <strong>Tesis Central Jull Ortiz:</strong> Ciberseguridad activa y automatización
+                  anticorrupción transversal (CRBV Art. 203): sorteo aleatorio inmutable de causas y
+                  expedientes administrativos, 4 ojos digital en el Poder Público, articulación con
+                  Unidades de Celeridad (LOCOTA Art. 11) y alertas en tiempo real a Contraloría y
+                  Comisión Nacional (LOCOTA Art. 7).
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div
+                    class="excel-data-item"
+                    style="background-color: #fffbeb; border-color: #fde68a;"
+                  >
+                    <span class="excel-pill-tag excel-pill-original">★ Aporte Original</span>
+                    <strong class="text-dark">Ulpiano CCO (Jull Ortiz)</strong>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO 37001 / 37301</span>
+                    <span>Gestión Antisoborno y Compliance</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 42001</span>
+                    <span>Gestión de Inteligencia Artificial Ética</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 203</span>
+                    <strong class="text-danger">Ley Orgánica Transversal</strong>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 141</span>
+                    <span>Honestidad, celeridad y rendición de cuentas</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">LOCOTA Arts. 7, 11</span>
+                    <span>Comisión &amp; Unidades de Celeridad</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">Ley Anticorrupción</span>
+                    <span>Auditoría continua de procesos reglados</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-innovacion">Innovación</span>
+              </td>
+            </tr>
+
+            <!-- Fila 08: Título VIII -->
+            <tr data-category="punitivo organica">
+              <td class="excel-cell-row-num">08</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO VIII</span>
+                  <strong class="text-dark">Régimen Sancionatorio</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 33° al 36°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Catálogo Escalonado y Garantías</div>
+                <div class="excel-desc-box">
+                  Sanciones clasificadas en leves, graves y muy graves (destitución e inhabilitación
+                  de 3 a 10 años). Agravante específica por manipulación interna del sistema y
+                  responsabilidad funcionarial por dilación procesal.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">UE Ciberseguridad</span>
+                    <span>Régimen de proporcionalidad de sanciones</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-fisma">FISMA 2014</span>
+                    <span>§§ 3553-3554 (Responsabilidad directa del titular)</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 49</span>
+                    <span>Tipicidad, proporcionalidad y doble instancia</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">LOCOTA Art. 11</span>
+                    <span>Responsabilidad administrativa por dilación</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">Código Ética Judicial</span>
+                    <span>Inhabilitación y destitución disciplinaria</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-punitivo">Punitivo</span>
+              </td>
+            </tr>
+
+            <!-- Fila 09: Título IX -->
+            <tr data-category="formacion">
+              <td class="excel-cell-row-num">09</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO IX</span>
+                  <strong class="text-dark">Cooperación y Formación</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 37° y 38°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Capacitación y Ciberdefensa Judicial</div>
+                <div class="excel-desc-box">
+                  Programa anual obligatorio de entrenamiento en higiene cibernética judicial, IA y
+                  cooperación técnica internacional para operadores de justicia y funcionarios
+                  públicos.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">JTC Courts 2025</span>
+                    <span>Annual Cybersecurity Training for Staff</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">CERT-EU</span>
+                    <span>Simulacros y ejercicios interinstitucionales</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 153</span>
+                    <span>Integración y cooperación técnica</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">Escuela Magistratura</span>
+                    <span>Capacitación judicial obligatoria</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-formacion">Formación</span>
+              </td>
+            </tr>
+
+            <!-- Fila 10: Título X -->
+            <tr data-category="tecnico etica">
+              <td class="excel-cell-row-num">10</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">TÍTULO X</span>
+                  <strong class="text-dark">Auditoría Algorítmica</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 39° y 40°
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Transparencia y Evaluación de IA</div>
+                <div class="excel-desc-box">
+                  Registro público de algoritmos empleados en justicia y administración pública,
+                  auditoría continua de sesgos e impacto en derechos fundamentales.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 23894</span>
+                    <span>Gestión de Riesgos en Inteligencia Artificial</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 42001</span>
+                    <span>Gobernanza de Sistemas de IA</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">AI Act (UE)</span>
+                    <span>Sistemas de alto riesgo en justicia</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 143</span>
+                    <span>Acceso a información pública y rendición</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 60</span>
+                    <span>Protección del honor y datos personales</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-etica">IA Ética</span>
+              </td>
+            </tr>
+
+            <!-- Fila 11: Título XI & Disposiciones -->
+            <tr data-category="organica cierre">
+              <td class="excel-cell-row-num">11</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span
+                    class="excel-title-id"
+                    style="background-color: #fee2e2; color: #b91c1c; border-color: #fca5a5;"
+                  >
+                    TÍTULO XI
+                  </span>
+                  <strong class="text-dark">Supremacía y Disposiciones</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    Arts. 41°, 42° + Disp.
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Supremacía Orgánica y Régimen Transitorio</div>
+                <div class="excel-desc-box">
+                  Cláusula formal de supremacía de Ley Orgánica solo subordinada a la CRBV. Plazos
+                  de adecuación progresiva (6 a 18 meses) y derogatoria expresa de normas
+                  incompatibles.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-eu">UE 2023/2841</span>
+                    <span>Arts. 24-26 (Entrada en vigor y revisión periódica)</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-fisma">FISMA 2014</span>
+                    <span>Régimen transitorio de adecuación y reporte</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">CRBV Art. 203</span>
+                    <strong class="text-danger">Supremacía Ley Orgánica Transversal</strong>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-crbv">TSJ SC 0406/2026</span>
+                    <span>Doctrina Vinculante Constitucional</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">LOCOTA Disp. Derog.</span>
+                    <span>Derogatoria Expresa de normas incompatibles</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-cierre">Cierre</span>
+              </td>
+            </tr>
+
+            <!-- Fila 12: Anexo Técnico -->
+            <tr data-category="tecnico">
+              <td class="excel-cell-row-num">12</td>
+              <td>
+                <div class="excel-title-cell-box">
+                  <span class="excel-title-id">ANEXO</span>
+                  <strong class="text-dark">Glosario y Taxonomía</strong>
+                  <span class="excel-art-range">
+                    <span class="material-symbols-outlined" style="font-size:0.85rem;">
+                      tag
+                    </span>{' '}
+                    40 Definiciones
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="fw-bold text-dark mb-1">Glosario Técnico-Jurídico Forense</div>
+                <div class="excel-desc-box">
+                  Definiciones legales uniformes de Hash Criptográfico, Cadena de Custodia, Zero
+                  Trust, DOV, PSS, Auditoría Algorítmica y Evidencia Digital.
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-iso">ISO/IEC 27000</span>
+                    <span>Vocabulario internacional de seguridad</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-fisma">FISMA 2014</span>
+                    <span>NIST SP 800-53 / 800-37 Glossaries</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="excel-data-grid-list">
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">SUSCERTE</span>
+                    <span>Vocabulario Forense Digital Nacional</span>
+                  </div>
+                  <div class="excel-data-item">
+                    <span class="excel-pill-tag excel-pill-law">CNTI</span>
+                    <span>Interoperabilidad y Datos Abiertos</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center align-middle">
+                <span class="excel-status-badge excel-status-forense">Glosario</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

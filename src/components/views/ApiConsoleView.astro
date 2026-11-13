@@ -1,0 +1,421 @@
+---
+/**
+ * Ulpiano CCO — Judicial Backend API Console View (FastAPI Python 3.12)
+ * Interactive Cryptographic Simulator for Legal Tech Compliance
+ */
+---
+
+<section id="view-api" class="py-4 py-lg-5" style="display: none;">
+  <div class="container-xxl px-3">
+    <!-- Hero Banner -->
+    <div
+      class="legal-hero-card mb-4"
+      style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0369a1 100%); color: #ffffff;"
+    >
+      <div class="legal-breadcrumb text-white-50">
+        <a href="#" onclick="window.UlpianoDash?.switchView('dashboard')" class="text-white-50">
+          Portal CCO
+        </a>
+        <span class="mx-1">/</span>
+        <span class="text-white-50">Arquitectura Desacoplada</span>
+        <span class="mx-1">/</span>
+        <span class="text-white">Servidor API en Python 3.12 (FastAPI)</span>
+      </div>
+
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-4">
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge bg-primary px-3 py-1">
+              <i class="devicon-python-plain colored me-1"></i> Python 3.12 Core
+            </span>
+            <span class="badge bg-teal px-3 py-1" style="background-color: #009688;">
+              <i class="devicon-fastapi-plain colored me-1"></i> FastAPI + uvloop
+            </span>
+            <span class="badge bg-dark px-3 py-1 border border-secondary">
+              OpenAPI 3.1 REST &amp; WSS
+            </span>
+          </div>
+          <h1 class="legal-hero-title text-white mb-2">
+            Consola Interactiva del Backend Judicial en Python
+          </h1>
+          <p class="legal-hero-desc text-white-50 mb-0">
+            El servidor en <strong>Python 3.12 (FastAPI ASGI)</strong> gestiona la lógica
+            criptográfica forense, firma digital avanzada SUSCERTE (PyKCS11 HSM FIPS 140-2 L3 y
+            pyHanko), tareas Celery/Redis, persistencia pgvector y almacenamiento inmutable en
+            Bóveda WORM de MinIO conforme a la LMDyFE y la Ley de Infogobierno.
+          </p>
+        </div>
+
+        <div class="d-flex gap-2 align-self-start">
+          <button
+            class="btn btn-warning text-dark fw-bold px-3 py-2 d-inline-flex align-items-center gap-2"
+            onclick="window.UlpianoDash?.switchDiagramTab('backend_python'); window.UlpianoDash?.switchView('diagrams');"
+          >
+            <span class="material-symbols-outlined" style="font-size: 1.15rem;">
+              schema
+            </span>
+            <span>Ver Diagrama Backend</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Interactive Simulators Grid -->
+    <div class="row g-4 mb-5">
+      <!-- Sim 1: Firma Digital PAdES-B-LTA -->
+      <div class="col-12 col-lg-6">
+        <div class="dc3-card dc3-card-accent-top h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="d-flex align-items-center gap-2">
+                <span class="api-method-post">POST</span>
+                <span class="fw-bold font-monospace text-primary">
+                  /api/v1/sentencias/firmar-pades
+                </span>
+              </div>
+              <span class="dc3-tag dc3-tag-gold">LMDyFE Arts. 4, 6, 8</span>
+            </div>
+            <p class="text-muted small mb-3">
+              Simula la firma electrónica avanzada mancomunada de una resolución judicial mediante{' '}
+              <code>pyHanko</code>, token criptográfico HSM PKCS#11 FIPS 140-2 Nivel 3 y sellado de
+              tiempo TSA RFC 3161.
+            </p>
+            <div class="row g-2 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Número de Causa / Expediente:</label>
+                <input
+                  type="text"
+                  id="sim-sign-exp"
+                  class="form-control form-control-sm"
+                  value="EXP-TSJ-SC-2026-0406"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Tribunal / Sala:</label>
+                <select id="sim-sign-court" class="form-select form-select-sm">
+                  <option value="Sala Constitucional TSJ">Sala Constitucional TSJ</option>
+                  <option value="Sala Político-Administrativa">Sala Político-Administrativa</option>
+                  <option value="Sala de Casación Penal">Sala de Casación Penal</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Magistrado / Juez Ponente:</label>
+                <input
+                  type="text"
+                  id="sim-sign-judge"
+                  class="form-control form-control-sm"
+                  value="Dr. Jull Ortiz — Magistrado"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Algoritmo Criptográfico:</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm bg-light"
+                  value="RSA-4096 / SHA3-512 (HSM L3)"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <button
+              class="btn btn-dark btn-sm fw-semibold w-100 mb-2 d-inline-flex align-items-center justify-content-center gap-1"
+              onclick="window.UlpianoDash?.simulateSignDocument()"
+            >
+              <span class="material-symbols-outlined" style="font-size: 1rem;">
+                draw
+              </span>
+              <span>Firmar Electrónicamente con PyKCS11 &amp; pyHanko</span>
+            </button>
+            <div id="sim-sign-result" class="api-response-viewer" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sim 2: Cotejo Universal CSV / QR -->
+      <div class="col-12 col-lg-6">
+        <div class="dc3-card dc3-card-accent-green h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="d-flex align-items-center gap-2">
+                <span class="api-method-get">GET</span>
+                <span class="fw-bold font-monospace text-success">
+                  /api/v1/sentencias/cotejo/{`{csv}`}
+                </span>
+              </div>
+              <span class="dc3-tag dc3-tag-green">Infogobierno Art. 27</span>
+            </div>
+            <p class="text-muted small mb-3">
+              Verifica la autenticidad e integridad inmutable de una sentencia en la Bóveda WORM de
+              MinIO S3 mediante su Código Seguro de Verificación (CSV) y cotejo de hash dual.
+            </p>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Código Seguro de Verificación (CSV):</label>
+              <div class="input-group input-group-sm">
+                <input
+                  type="text"
+                  id="sim-cotejo-input"
+                  class="form-control font-monospace"
+                  value="TSJ-2026-SC-0406-V12-F9A7"
+                />
+                <button class="btn btn-success" onclick="window.UlpianoDash?.simulateCotejo()">
+                  <span class="material-symbols-outlined me-1" style="font-size:1rem;">
+                    verified
+                  </span>{' '}
+                  Cotejar en Bóveda
+                </button>
+              </div>
+            </div>
+            <div class="d-flex gap-2 mb-3">
+              <button
+                class="btn btn-outline-secondary btn-sm"
+                onclick="document.getElementById('sim-cotejo-input').value='TSJ-2026-SC-0406-V12-F9A7'; window.UlpianoDash?.simulateCotejo();"
+              >
+                Ejemplo Válido (WORM Locked)
+              </button>
+              <button
+                class="btn btn-outline-secondary btn-sm"
+                onclick="document.getElementById('sim-cotejo-input').value='TSJ-2026-INVALID-0000'; window.UlpianoDash?.simulateCotejo();"
+              >
+                Ejemplo Alterado/Inválido
+              </button>
+            </div>
+          </div>
+          <div id="sim-cotejo-result" class="api-response-viewer" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Sim 3: Sorteo Criptográfico Imparcial de Causas -->
+      <div class="col-12 col-lg-6">
+        <div class="dc3-card dc3-card-accent-gold h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="d-flex align-items-center gap-2">
+                <span class="api-method-post">POST</span>
+                <span class="fw-bold font-monospace text-dark">
+                  /api/v1/sorteo/distribuir-causa
+                </span>
+              </div>
+              <span class="dc3-tag dc3-tag-red">Título VII Art. 26</span>
+            </div>
+            <p class="text-muted small mb-3">
+              Asignación determinística e imparcial de ponencia judicial mediante CSPRNG
+              criptoseguro (<code>secrets.SystemRandom</code>) con registro inmutable en Árbol de
+              Merkle.
+            </p>
+            <div class="row g-2 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Número de Causa:</label>
+                <input
+                  type="text"
+                  id="sim-sorteo-causa"
+                  class="form-control form-control-sm"
+                  value="CAUSA-ADM-2026-8841"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Materia de la Causa:</label>
+                <select id="sim-sorteo-materia" class="form-select form-select-sm">
+                  <option value="Amparo Constitucional Ciberseguridad">
+                    Amparo Constitucional Ciberseguridad
+                  </option>
+                  <option value="Demanda Nulidad Acto Administrativo">
+                    Demanda Nulidad Acto Administrativo
+                  </option>
+                  <option value="Delitos Informáticos y Fraude Procesal">
+                    Delitos Informáticos y Fraude Procesal
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button
+              class="btn btn-warning text-dark fw-bold btn-sm w-100 mb-2 d-inline-flex align-items-center justify-content-center gap-1"
+              onclick="window.UlpianoDash?.simulateSorteo()"
+            >
+              <span class="material-symbols-outlined" style="font-size: 1rem;">
+                casino
+              </span>
+              <span>Ejecutar Sorteo Criptoseguro Imparcial</span>
+            </button>
+            <div id="sim-sorteo-result" class="api-response-viewer" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sim 4: Feed de Alertas Tempranas IA Ética (ISO 42001) -->
+      <div class="col-12 col-lg-6">
+        <div class="dc3-card dc3-card-accent-red h-100 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="d-flex align-items-center gap-2">
+                <span class="api-method-ws">WSS</span>
+                <span class="fw-bold font-monospace" style="color: #7c3aed;">
+                  /api/v1/compliance/stream
+                </span>
+              </div>
+              <span class="dc3-tag dc3-tag-gold">ISO 42001 &amp; CGR</span>
+            </div>
+            <p class="text-muted small mb-3">
+              Canal WebSocket bidireccional que emite telemetría y alertas procesales en tiempo real
+              hacia la Oficina CCO y los órganos de control (CGR/SUNAI/Inspectoría).
+            </p>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="small fw-bold text-dark">Canal de Alertas en Vivo:</span>
+              <span class="badge bg-success">
+                <span
+                  class="spinner-grow spinner-grow-sm me-1"
+                  style="width: 0.5rem; height: 0.5rem;"
+                ></span>{' '}
+                WSS Conectado
+              </span>
+            </div>
+            <div id="sim-ws-feed" class="api-response-viewer mb-3" style="max-height: 160px;">
+              <div class="text-white-50 small">
+                [SYS] Conexión WSS establecida con Python ASGI uvloop...
+              </div>
+              <div class="text-success small">
+                [INFO 14:32:01] Token HSM verificado: Certificado Raíz SUSCERTE válido.
+              </div>
+              <div class="text-warning small">
+                [ALERT 14:33:14] Causa EXP-2026-0112 próxima al límite legal del Art. 257 CRBV.
+              </div>
+            </div>
+          </div>
+          <div>
+            <button
+              class="btn btn-outline-danger btn-sm w-100 d-inline-flex align-items-center justify-content-center gap-1"
+              onclick="window.UlpianoDash?.simulateTriggerAnomaly()"
+            >
+              <span class="material-symbols-outlined" style="font-size: 1rem;">
+                notification_important
+              </span>
+              <span>Simular Detección de Anomalía Procesal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OpenAPI 3.1 Endpoint Catalog -->
+    <div class="dc3-card p-4">
+      <h5 class="fw-bold text-dark d-flex align-items-center gap-2 mb-2">
+        <span class="material-symbols-outlined text-primary">menu_book</span>
+        <span>Catálogo de Endpoints OpenAPI 3.1 (Swagger REST Contract)</span>
+      </h5>
+      <p class="text-muted small mb-4">
+        Contrato oficial de comunicación tipada entre el cliente <strong>Next.js 15</strong> y el
+        servidor backend en <strong>Python 3.12 (FastAPI)</strong>:
+      </p>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th style="width: 90px;">Método</th>
+              <th>Ruta del Endpoint</th>
+              <th>Módulo Backend Python</th>
+              <th>Fundamento Jurídico</th>
+              <th>Autenticación &amp; Autorización</th>
+            </tr>
+          </thead>
+          <tbody class="small font-monospace">
+            <tr>
+              <td>
+                <span class="api-method-post">POST</span>
+              </td>
+              <td>
+                <strong>/api/v1/auth/token</strong>
+              </td>
+              <td class="font-sans">FastAPI OAuth2 + WebAuthn FIDO2</td>
+              <td class="font-sans text-danger">LPCDI Art. 9</td>
+              <td>
+                <span class="badge bg-secondary">Público / PKCE</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="api-method-post">POST</span>
+              </td>
+              <td>
+                <strong>/api/v1/sentencias/firmar-pades</strong>
+              </td>
+              <td class="font-sans">PyKCS11 HSM + pyHanko PDF/A-2u</td>
+              <td class="font-sans text-primary">LMDyFE Arts. 4, 6, 8</td>
+              <td>
+                <span class="badge bg-primary">Bearer JWT (Juez/Secretario)</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="api-method-get">GET</span>
+              </td>
+              <td>
+                <strong>/api/v1/sentencias/cotejo/{`{csv}`}</strong>
+              </td>
+              <td class="font-sans">Bóveda WORM S3 + Hash Dual SHA-256</td>
+              <td class="font-sans text-success">Infogobierno Art. 27</td>
+              <td>
+                <span class="badge bg-success">Acceso Público Universal</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="api-method-post">POST</span>
+              </td>
+              <td>
+                <strong>/api/v1/sorteo/distribuir-causa</strong>
+              </td>
+              <td class="font-sans">secrets.SystemRandom + Merkle Log</td>
+              <td class="font-sans text-danger">Título VII Art. 26</td>
+              <td>
+                <span class="badge bg-primary">Doble Firma 4-Ojos</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="api-method-get">GET</span>
+              </td>
+              <td>
+                <strong>/api/v1/compliance/alertas-tempranas</strong>
+              </td>
+              <td class="font-sans">Motor IA Ética CCO (ISO 42001)</td>
+              <td class="font-sans text-warning text-dark">LOCOTA Art. 11 &amp; CGR</td>
+              <td>
+                <span class="badge bg-dark">Oficial CCO / Inspectoría</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="api-method-get">GET</span>
+              </td>
+              <td>
+                <strong>/api/v1/rag/buscar-normativa</strong>
+              </td>
+              <td class="font-sans">LlamaIndex + pgvector (Postgres 16)</td>
+              <td class="font-sans text-info text-dark">CRBV Art. 28 (Habeas Data)</td>
+              <td>
+                <span class="badge bg-primary">Bearer JWT</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="api-method-ws">WSS</span>
+              </td>
+              <td>
+                <strong>/api/v1/compliance/stream</strong>
+              </td>
+              <td class="font-sans">FastAPI WebSockets + Redis 7 Pub/Sub</td>
+              <td class="font-sans text-primary">FISMA § 3554 Live DOV</td>
+              <td>
+                <span class="badge bg-primary">WSS Auth Token</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

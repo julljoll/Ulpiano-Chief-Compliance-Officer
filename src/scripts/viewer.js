@@ -11,18 +11,11 @@ import {
   buildDashboardVersionCards,
   buildVersionSelectors,
   renderDashboardDiagram,
-  renderDeltaExplorer
+  renderDeltaExplorer,
 } from '../modules/dashboard.js';
 import { initDashboardCharts } from '../modules/charts.js';
-import {
-  renderReaderDoc,
-  jumpToNextRedHighlight,
-} from '../modules/reader.js';
-import {
-  renderCompareView,
-  runCompare,
-  swapComparePanels
-} from '../modules/compare.js';
+import { renderReaderDoc, jumpToNextRedHighlight } from '../modules/reader.js';
+import { renderCompareView, runCompare, swapComparePanels } from '../modules/compare.js';
 import {
   renderDiagramsView,
   switchDiagramTab,
@@ -30,18 +23,14 @@ import {
   resetDiagramZoom,
   toggleDiagramFullscreen,
   downloadActiveDiagram,
-  openActiveDiagramNewTab
+  openActiveDiagramNewTab,
 } from '../modules/diagrams.js';
-import {
-  exportMatrixCSV,
-  copyMatrixTable,
-  filterMatrixBySheet
-} from '../modules/matrix.js';
+import { exportMatrixCSV, copyMatrixTable, filterMatrixBySheet } from '../modules/matrix.js';
 import {
   simulateSignDocument,
   simulateCotejo,
   simulateSorteo,
-  simulateTriggerAnomaly
+  simulateTriggerAnomaly,
 } from '../modules/api-sim.js';
 
 // Setup view initialization callbacks
@@ -84,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderDashboardDiagram();
 
   // 2. Navigation tab click handlers
-  document.querySelectorAll('.dc3-nav-tab').forEach(btn => {
+  document.querySelectorAll('.dc3-nav-tab').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetView = btn.getAttribute('data-view');
       if (targetView) switchView(targetView);
@@ -94,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 3. Reader version selector change listener
   const versionSelect = document.getElementById('reader-version-select');
   if (versionSelect) {
-    versionSelect.addEventListener('change', e => {
+    versionSelect.addEventListener('change', (e) => {
       state.currentDocKey = e.target.value;
       renderReaderDoc();
     });
@@ -103,9 +92,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 4. Floating Index (TOC) filter search
   const tocFilter = document.getElementById('floating-toc-filter');
   if (tocFilter) {
-    tocFilter.addEventListener('input', e => {
+    tocFilter.addEventListener('input', (e) => {
       const q = e.target.value.toLowerCase();
-      document.querySelectorAll('#floating-toc-list .floating-toc-item').forEach(item => {
+      document.querySelectorAll('#floating-toc-list .floating-toc-item').forEach((item) => {
         const text = item.textContent.toLowerCase();
         if (text.includes(q)) {
           item.removeAttribute('hidden');
@@ -148,9 +137,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 7. Quick filter search in Delta Explorer
   const deltaSearch = document.getElementById('delta-search-input');
   if (deltaSearch) {
-    deltaSearch.addEventListener('input', e => {
+    deltaSearch.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase();
-      document.querySelectorAll('#delta-explorer-tbody tr').forEach(row => {
+      document.querySelectorAll('#delta-explorer-tbody tr').forEach((row) => {
         const text = row.textContent.toLowerCase();
         if (text.includes(query)) {
           row.removeAttribute('hidden');
@@ -167,11 +156,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const matrixSearch = document.getElementById('matrix-search-input');
   const matrixFilterCount = document.getElementById('matrix-filter-count');
   if (matrixSearch) {
-    matrixSearch.addEventListener('input', e => {
+    matrixSearch.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase().trim();
       const rows = document.querySelectorAll('#matrix-tbody tr');
       let visibleCount = 0;
-      rows.forEach(row => {
+      rows.forEach((row) => {
         const text = row.textContent.toLowerCase();
         const matches = !query || text.includes(query);
         if (matches) {
@@ -184,7 +173,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
       if (matrixFilterCount) {
-        matrixFilterCount.innerHTML = query 
+        matrixFilterCount.innerHTML = query
           ? `Encontradas <strong>${visibleCount}</strong> de <strong>${rows.length}</strong> secciones`
           : `Mostrando <strong>${rows.length}</strong> filas normativas en cuadrícula`;
       }
@@ -200,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Global API Object (ensures 100% backwards-compatibility with HTML onclick handlers)
 window.UlpianoDash = {
   switchView,
-  loadDoc: key => {
+  loadDoc: (key) => {
     state.currentDocKey = key;
     switchView('reader');
   },
@@ -226,5 +215,5 @@ window.UlpianoDash = {
   simulateSorteo,
   simulateTriggerAnomaly,
   DocRegistry,
-  REFORMS_CATALOG
+  REFORMS_CATALOG,
 };
