@@ -3,6 +3,7 @@ import '../styles/tokens.css';
 import '../styles/compat-tokens.css';
 import '../styles/legal-theme.css';
 import '../styles/viewer.css';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -230,59 +231,7 @@ const {
     </main>
 
     <!-- 5. INSTITUTIONAL LEGAL FOOTER -->
-    <footer class="legal-footer">
-      <div class="container-xxl px-3">
-        <div class="row align-items-center gy-3">
-          <div class="col-12 col-md-6">
-            <div class="legal-footer-title">ULPIANO — CHIEF COMPLIANCE OFFICER</div>
-            <div class="text-white-50 small mb-2">
-              Dirección de Ciberseguridad Procesal, Informática Forense e Integridad Digital
-            </div>
-            <div class="text-muted small">
-              Fundamentado en los tres axiomas de Domicio Ulpiano (<em>Honeste Vivere</em>,{' '}
-              <em>Alterum Non Laedere</em>, <em>Suum Cuique Tribuere</em>) traducidos a protocolos
-              de software determinísticos, inmutables y auditables.
-            </div>
-          </div>
-          <div class="col-12 col-md-6 text-md-end">
-            <div class="legal-footer-links justify-content-md-end">
-              <a href="#" onclick="window.UlpianoDash?.switchView('dashboard')">
-                Dashboard
-              </a>
-              <a href="#" onclick="window.UlpianoDash?.switchView('diagrams')">
-                Diagramas
-              </a>
-              <a href="#" onclick="window.UlpianoDash?.switchView('api')">
-                Consola API
-              </a>
-              <a href="#" onclick="window.UlpianoDash?.switchView('reader')">
-                Lector Normativo
-              </a>
-              <a href="#" onclick="window.UlpianoDash?.switchView('compare')">
-                Comparador
-              </a>
-              <a href="#" onclick="window.UlpianoDash?.switchView('matrix')">
-                Trazabilidad ISO
-              </a>
-              <a href="backend.html">Backend Python</a>
-              <a href="frontend.html">Frontend Next.js</a>
-              <a
-                href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer"
-                target="_blank"
-              >
-                GitHub
-              </a>
-            </div>
-            <div class="text-white-50 small">
-              Marco Regulatorio: <strong>CRBV Art. 203</strong> ·{' '}
-              <strong>TSJ/SC N° 0406/2026</strong> · <strong>FISMA 2014</strong> ·{' '}
-              <strong>LOCOTA 2026</strong> · <strong>ISO/IEC 27001 / 27037 / 42001</strong> · WCAG
-              2.1 AAA
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <Footer activePage="index" />
 
     <!-- 6. MASTER SVG ARCHITECTURE VECTOR TEMPLATE (FALLBACK) -->
     <template id="svg-architecture-diagram">

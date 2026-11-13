@@ -3,6 +3,7 @@ import '../styles/tokens.css';
 import '../styles/compat-tokens.css';
 import '../styles/legal-theme.css';
 import '../styles/viewer.css';
+import Footer from '../components/Footer.astro';
 ---
 
 <!doctype html>
@@ -362,38 +363,8 @@ import '../styles/viewer.css';
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="legal-footer">
-      <div class="container-xxl px-3">
-        <div class="row align-items-center">
-          <div class="col-12 col-md-6 mb-3 mb-md-0">
-            <div class="legal-footer-title">ULPIANO — CHIEF COMPLIANCE OFFICER</div>
-            <div>
-              Dirección de Ciberseguridad Procesal, Informática Forense e Integridad Digital
-            </div>
-          </div>
-          <div class="col-12 col-md-6 text-md-end">
-            <div class="legal-footer-links justify-content-md-end mb-2">
-              <a href="index.html">Portal Principal</a>
-              <a href="backend.html" class="fw-bold text-white">
-                Arquitectura Backend
-              </a>
-              <a href="frontend.html">Arquitectura Frontend</a>
-              <a
-                href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer"
-                target="_blank"
-              >
-                GitHub
-              </a>
-            </div>
-            <div class="text-white-50 small">
-              Diseñado bajo estándares <strong>USWDS 3.x</strong> | Cumplimiento{' '}
-              <strong>Section 508 &amp; WCAG 2.1 AAA</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- Institutional Legal Footer -->
+    <Footer activePage="backend" />
 
     <script is:inline>
       let currentZoom = 1.0;
