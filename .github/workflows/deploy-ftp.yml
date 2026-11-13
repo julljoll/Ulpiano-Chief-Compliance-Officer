@@ -28,11 +28,11 @@ jobs:
       - name: 🔍 Lint source code
         run: npm run lint
 
-      - name: 🧪 Run automated test suite
-        run: npm test
-
       - name: 🚀 Build static production assets
         run: npm run build
+
+      - name: 🧪 Run automated test suite
+        run: npm test
 
       - name: 📤 Deploy via FTPS (Explicit TLS Port 21)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
