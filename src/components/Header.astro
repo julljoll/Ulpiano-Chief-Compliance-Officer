@@ -1,0 +1,87 @@
+---
+/**
+ * USWDS Component: Header (Basic)
+ * Fuente oficial: https://designsystem.digital.gov/components/header/
+ */
+interface Props {
+  activePage?: 'index' | 'backend' | 'frontend';
+}
+
+const { activePage = 'index' } = Astro.props;
+---
+
+<header class="usa-header usa-header--basic">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <div class="usa-logo" id="basic-logo">
+        <em class="usa-logo__text">
+          <a href="index.html" title="Inicio — Ulpiano CCO">
+            Ulpiano — Chief Compliance Officer
+          </a>
+        </em>
+      </div>
+      <button type="button" class="usa-menu-btn">
+        Menú
+      </button>
+    </div>
+    <nav aria-label="Navegación principal" class="usa-nav">
+      <button type="button" class="usa-nav__close">
+        <svg class="usa-icon" aria-hidden="true" focusable="false" role="img">
+          <use href="/assets/uswds/img/sprite.svg#close"></use>
+        </svg>
+      </button>
+      <ul class="usa-nav__primary usa-accordion">
+        <li class="usa-nav__primary-item">
+          <a
+            href="index.html#dashboard"
+            class={`usa-nav__link dc3-nav-tab ${activePage === 'index' ? 'usa-current' : ''}`}
+            data-view="dashboard"
+          >
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="usa-nav__primary-item">
+          <a href="index.html#diagrams" class="usa-nav__link dc3-nav-tab" data-view="diagrams">
+            <span>Diagramas</span>
+          </a>
+        </li>
+        <li class="usa-nav__primary-item">
+          <a href="index.html#api" class="usa-nav__link dc3-nav-tab" data-view="api">
+            <span>Consola API</span>
+          </a>
+        </li>
+        <li class="usa-nav__primary-item">
+          <a href="index.html#reader" class="usa-nav__link dc3-nav-tab" data-view="reader">
+            <span>Lector Normativo</span>
+          </a>
+        </li>
+        <li class="usa-nav__primary-item">
+          <a href="index.html#compare" class="usa-nav__link dc3-nav-tab" data-view="compare">
+            <span>Comparador</span>
+          </a>
+        </li>
+        <li class="usa-nav__primary-item">
+          <a href="index.html#matrix" class="usa-nav__link dc3-nav-tab" data-view="matrix">
+            <span>Trazabilidad ISO</span>
+          </a>
+        </li>
+        <li class="usa-nav__primary-item">
+          <a
+            href="backend.html"
+            class={`usa-nav__link ${activePage === 'backend' ? 'usa-current' : ''}`}
+          >
+            <span>Backend Python</span>
+          </a>
+        </li>
+        <li class="usa-nav__primary-item">
+          <a
+            href="frontend.html"
+            class={`usa-nav__link ${activePage === 'frontend' ? 'usa-current' : ''}`}
+          >
+            <span>Frontend Next.js</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

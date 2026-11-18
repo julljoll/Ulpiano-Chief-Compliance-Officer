@@ -69,46 +69,46 @@ export function renderCoreReforms() {
 
   if (titleEl) {
     const count = (latest.coreReforms && latest.coreReforms.length) || 3;
-    titleEl.innerHTML = `<span class="material-symbols-outlined text-primary">shield</span> Desglose de las ${count} Grandes Reformas Estructurales (${escapeHtml(latest.shortLabel || latest.label)})`;
+    titleEl.textContent = `Desglose de las ${count} Grandes Reformas Estructurales (${latest.shortLabel || latest.label})`;
   }
+
+  // If already rendered by Astro SSR, preserve the USWDS markup
+  if (grid.children.length > 0) return;
 
   const reforms = latest.coreReforms || [];
   if (reforms.length === 0) {
-    grid.innerHTML = `<div class="col-12"><div class="alert alert-info">No hay desglose de reformas configurado para esta versión.</div></div>`;
+    grid.innerHTML = `<li class="usa-card"><div class="usa-card__container padding-3"><p class="usa-intro font-sans-xs">No hay desglose de reformas configurado para esta versión.</p></div></li>`;
     return;
   }
-
-  const colClass =
-    reforms.length === 3
-      ? 'col-12 col-lg-4'
-      : reforms.length === 2
-        ? 'col-12 col-md-6'
-        : 'col-12 col-lg-4';
 
   let html = '';
   reforms.forEach((ref) => {
     html += `
-      <div class="${colClass}">
-        <div class="dc3-card ${ref.accentClass || 'dc3-card-accent-top'} h-100 d-flex flex-column justify-content-between">
-          <div>
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <span class="${ref.tagClass || 'dc3-tag'}">${escapeHtml(ref.tag)}</span>
-              <span class="text-muted small">${escapeHtml(ref.articles)}</span>
+      <li class="usa-card tablet:grid-col-4">
+        <div class="usa-card__container">
+          <header class="usa-card__header">
+            <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+              <span class="usa-tag">${escapeHtml(ref.tag)}</span>
+              <span class="font-sans-2xs text-base">${escapeHtml(ref.articles)}</span>
             </div>
-            <h5 class="fw-bold text-dark">${escapeHtml(ref.title)}</h5>
-            <p class="text-muted small mb-3">
-              ${escapeHtml(ref.desc)}
-            </p>
-            <div class="p-3 bg-light border rounded mb-3">
-              <div class="small mb-1"><strong class="text-danger">❌ Antes:</strong> ${escapeHtml(ref.before)}</div>
-              <div class="small"><strong class="text-success">✅ Ahora:</strong> ${escapeHtml(ref.after)}</div>
+            <h3 class="usa-card__heading font-sans-md">${escapeHtml(ref.title)}</h3>
+          </header>
+          <div class="usa-card__body">
+            <p class="font-sans-xs text-base margin-bottom-2">${escapeHtml(ref.desc)}</p>
+            <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2">
+              <p class="font-sans-2xs margin-0 margin-bottom-1">
+                <strong>Antes:</strong> ${escapeHtml(ref.before)}
+              </p>
+              <p class="font-sans-2xs margin-0">
+                <strong>Ahora:</strong> ${escapeHtml(ref.after)}
+              </p>
             </div>
           </div>
-          <div class="small ${ref.benefitClass || 'text-primary'} fw-bold pt-2 border-top">
-            <span class="material-symbols-outlined me-1" style="font-size: 1.1rem; vertical-align: -2px;">${ref.benefitIcon || 'check_circle'}</span> ${escapeHtml(ref.benefit)}
+          <div class="usa-card__footer">
+            <span class="font-sans-2xs text-bold text-primary">${escapeHtml(ref.benefit)}</span>
           </div>
         </div>
-      </div>
+      </li>
     `;
   });
 
@@ -119,43 +119,42 @@ export function buildDashboardVersionCards() {
   const grid = document.getElementById('version-cards-grid');
   if (!grid) return;
 
+  // If already rendered by Astro SSR, preserve the USWDS markup
+  if (grid.children.length > 0) return;
+
   const docs = DocRegistry.getAll();
   let html = '';
 
   docs.forEach((doc) => {
     const isRed = doc.changes > 0;
-    const accentClass = isRed ? 'dc3-card-accent-top' : 'dc3-card-accent-top';
-    const badgeClass = doc.badgeClass || 'dc3-tag';
-
     const highlightsHtml = (doc.highlights || [])
-      .map((h) => `<span class="dc3-tag me-1 mb-1">${escapeHtml(h)}</span>`)
+      .map((h) => `<span class="usa-tag margin-right-05 margin-bottom-05">${escapeHtml(h)}</span>`)
       .join('');
 
     html += `
-      <div class="col-12 col-md-6 col-xl-4">
-        <div class="dc3-card version-card ${accentClass}">
-          <div class="version-card-header">
-            <span class="${badgeClass}"><span class="material-symbols-outlined me-1" style="font-size: 0.95rem;">article</span> ${escapeHtml(doc.shortLabel || doc.label)}</span>
-            <span class="text-muted small">${doc.date || ''}</span>
+      <li class="usa-card tablet:grid-col-4">
+        <div class="usa-card__container">
+          <header class="usa-card__header">
+            <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+              <span class="usa-tag">${escapeHtml(doc.shortLabel || doc.label)}</span>
+              <span class="font-sans-2xs text-base">${doc.date || ''}</span>
+            </div>
+            <h3 class="usa-card__heading font-sans-md">${escapeHtml(doc.label)}</h3>
+          </header>
+          <div class="usa-card__body">
+            <p class="font-sans-xs text-base">${escapeHtml(doc.description || '')}</p>
+            <div class="display-flex flex-wrap margin-top-2">
+              ${highlightsHtml}
+            </div>
           </div>
-          <div class="version-card-title mb-2">
-            <span class="material-symbols-outlined text-primary me-1">${doc.icon || 'article'}</span>
-            ${escapeHtml(doc.label)}
-          </div>
-          <div class="version-card-desc mb-3">
-            ${escapeHtml(doc.description || '')}
-          </div>
-          <div class="d-flex flex-wrap mb-3">
-            ${highlightsHtml}
-          </div>
-          <div class="version-card-footer">
-            <button class="btn btn-sm btn-primary fw-semibold px-3" onclick="UlpianoDash.loadDoc('${doc.id}')">
-              <span class="material-symbols-outlined me-1">menu_book</span> Abrir en Lector
+          <div class="usa-card__footer display-flex flex-justify flex-align-center">
+            <button type="button" class="usa-button usa-button--small" onclick="window.UlpianoDash?.loadDoc('${doc.id}')">
+              Abrir en Lector
             </button>
-            ${isRed ? `<span class="badge bg-danger text-white">${doc.changes} Reformas</span>` : '<span class="text-muted small">Texto Oficial</span>'}
+            ${isRed ? `<span class="usa-tag">${doc.changes} Reformas</span>` : '<span class="font-sans-2xs text-base">Texto Base</span>'}
           </div>
         </div>
-      </div>
+      </li>
     `;
   });
 
@@ -212,6 +211,18 @@ export function renderDeltaExplorer() {
   const tbody = document.getElementById('delta-explorer-tbody');
   if (!tbody) return;
 
+  const existingButtons = tbody.querySelectorAll('.btn-jump-article');
+  if (existingButtons.length > 0) {
+    existingButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetDoc = btn.getAttribute('data-doc') || 'v1.2';
+        state.currentDocKey = targetDoc;
+        switchView('reader');
+      });
+    });
+    return;
+  }
+
   let html = '';
   REFORMS_CATALOG.forEach((item) => {
     const beforeTag = item.beforeTag || 'V1.0';
@@ -219,20 +230,33 @@ export function renderDeltaExplorer() {
     html += `
       <tr>
         <td>
-          <strong class="text-dark">${escapeHtml(item.article)}</strong>
-          <div class="mt-1"><span class="${item.badgeClass}">${escapeHtml(item.type)}</span></div>
+          <span class="text-bold text-ink">${escapeHtml(item.article)}</span>
+          <div class="margin-top-05">
+            <span class="usa-tag">${escapeHtml(item.type)}</span>
+          </div>
         </td>
         <td>
-          <div class="fw-bold text-dark">${escapeHtml(item.summary)}</div>
-          <div class="small text-muted mt-1">${escapeHtml(item.impact)}</div>
+          <div class="text-bold text-ink margin-bottom-05">${escapeHtml(item.summary)}</div>
+          <div class="font-sans-2xs text-base-dark">${escapeHtml(item.impact)}</div>
         </td>
         <td>
-          <div class="mb-1"><span class="diff-tag-before">${beforeTag}:</span> <small class="text-muted">${escapeHtml(item.before)}</small></div>
-          <div><span class="diff-tag-after">${afterTag}:</span> <small class="text-dark">${escapeHtml(item.after)}</small></div>
+          <div class="margin-bottom-05 font-sans-2xs">
+            <span class="usa-tag bg-secondary-lighter text-secondary-darker margin-right-05">${beforeTag}</span>
+            <span class="text-base-dark">${escapeHtml(item.before)}</span>
+          </div>
+          <div class="font-sans-2xs">
+            <span class="usa-tag bg-primary-lighter text-primary-darker margin-right-05">${afterTag}</span>
+            <span class="text-ink text-bold">${escapeHtml(item.after)}</span>
+          </div>
         </td>
-        <td class="text-end">
-          <button class="btn btn-sm btn-outline-primary btn-jump-article" data-article="${item.article}" data-doc="${item.targetDoc || 'v1.2'}">
-            <span class="material-symbols-outlined me-1" style="font-size: 1rem;">open_in_new</span> Ver en Texto
+        <td class="text-right">
+          <button
+            type="button"
+            class="usa-button usa-button--outline usa-button--small btn-jump-article"
+            data-article="${item.article}"
+            data-doc="${item.targetDoc || 'v1.2'}"
+          >
+            Ver en Texto
           </button>
         </td>
       </tr>

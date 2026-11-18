@@ -1,114 +1,151 @@
 ---
 /**
- * Ulpiano CCO — Normative Reader View
- * Supreme Court Gazette / White Paper Reading Experience
+ * USWDS Component: Reader Sheet (Planilla del Lector Normativo y Gaceta Judicial)
+ * Fuente oficial: https://designsystem.digital.gov/components/prose/
+ * Fuente oficial: https://designsystem.digital.gov/components/side-navigation/
  */
+import registryData from '../../../registry.json';
+
+const allDocs = Array.isArray(registryData) ? registryData : [];
+const initialDoc = allDocs[0] || {};
 ---
 
-<section id="view-reader" class="reader-canvas" style="display: none;">
-  <div class="container-xxl px-3">
-    <!-- Top Action Toolbar -->
-    <div class="reader-toolbar-top no-print">
-      <div class="d-flex flex-wrap align-items-center gap-2">
-        <span id="reader-doc-badge" class="dc3-tag">
-          <span class="material-symbols-outlined me-1" style="font-size: 1rem;">
-            article
+<section id="view-reader" class="usa-section" data-view="reader" hidden>
+  <div class="grid-container">
+    <!-- 1. TOOLBAR SUPERIOR DEL LECTOR -->
+    <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-4">
+      <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
+        <div>
+          <span id="reader-doc-badge" class="usa-tag">
+            {initialDoc.shortLabel || initialDoc.label}
           </span>
-          Versión 1.2 FISMA &amp; LOCOTA
-        </span>
-        <strong class="text-dark fs-6" id="reader-doc-title">
-          Ley Orgánica de Ciberseguridad Procesal
-        </strong>
-      </div>
-
-      <!-- Version Switcher & Toolbar Actions -->
-      <div class="d-flex flex-wrap align-items-center gap-2">
-        <div style="min-width: 240px;">
-          <select
-            id="reader-version-select"
-            class="form-select form-select-sm border-secondary fw-semibold bg-white text-dark version-select-auto"
-            title="Seleccionar versión para leer"
-          >
-            <!-- Populated dynamically by JavaScript -->
-          </select>
+          <strong class="font-sans-sm margin-left-1" id="reader-doc-title">
+            {initialDoc.label}
+          </strong>
         </div>
 
-        <button
-          class="btn btn-sm btn-outline-secondary fw-semibold d-inline-flex align-items-center gap-1"
-          id="btn-toggle-floating-toc"
-          title="Mostrar u ocultar índice flotante"
-        >
-          <span class="material-symbols-outlined" style="font-size: 1.1rem;">
-            vertical_split
-          </span>
-          <span id="btn-toc-label">Índice Flotante</span>
-        </button>
+        <div class="display-flex flex-wrap flex-align-center flex-gap-1">
+          <div style="min-width: 220px;">
+            <label class="usa-sr-only" for="reader-version-select">
+              Seleccionar versión
+            </label>
+            <select
+              id="reader-version-select"
+              class="usa-select margin-0 version-select-auto"
+              title="Seleccionar versión para leer"
+            >
+              {allDocs.map((doc) => (
+                <option value={doc.id}>{doc.badgeText || doc.label}</option>
+              ))}
+            </select>
+          </div>
 
-        <button
-          class="btn btn-sm btn-danger px-3 fw-bold d-inline-flex align-items-center gap-1"
-          id="btn-jump-red-highlight"
-          title="Saltar a la siguiente modificación resaltada"
-        >
-          <span class="material-symbols-outlined" style="font-size: 1.1rem;">
-            arrow_circle_down
-          </span>
-          <span id="red-badge-counter">Reformas en Rojo</span>
-          <span>⏩</span>
-        </button>
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline"
+            id="btn-toggle-floating-toc"
+            title="Alternar visibilidad del índice"
+          >
+            <span id="btn-toc-label">Índice Flotante</span>
+          </button>
 
-        <button
-          class="btn btn-sm btn-outline-dark px-3 d-inline-flex align-items-center gap-1"
-          onclick="window.UlpianoDash?.switchView('dashboard')"
-        >
-          <span class="material-symbols-outlined" style="font-size: 1.1rem;">
-            dashboard
-          </span>
-          <span>Dashboard</span>
-        </button>
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--secondary"
+            id="btn-jump-red-highlight"
+            title="Saltar a la siguiente modificación resaltada"
+          >
+            <span id="red-badge-counter">Reformas</span> ⏩
+          </button>
+
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline"
+            onclick="window.UlpianoDash?.switchView('dashboard')"
+          >
+            Dashboard
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Reader Main Grid: Floating TOC Left + Document Paper Center/Right -->
-    <div class="row g-4 position-relative">
-      <!-- Floating Index Component (Left Column) -->
-      <div class="col-12 col-lg-4 col-xl-3" id="floating-toc-col">
-        <div class="floating-toc-card">
-          <div class="floating-toc-header">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <div class="fw-bold text-dark small text-uppercase d-flex align-items-center gap-1">
-                <span class="material-symbols-outlined text-primary" style="font-size: 1.1rem;">
-                  format_list_bulleted
-                </span>
-                <span>Índice del Documento</span>
-              </div>
-              <span class="badge bg-dark rounded-pill" id="toc-count-badge">
-                0
-              </span>
-            </div>
-            <div class="input-group input-group-sm">
-              <span class="input-group-text bg-white border-end-0">
-                <span class="material-symbols-outlined" style="font-size: 0.95rem;">
-                  search
-                </span>
-              </span>
-              <input
-                type="text"
-                id="floating-toc-filter"
-                class="form-control border-start-0"
-                placeholder="Filtrar artículo..."
-              />
-            </div>
+    <!-- 2. CONTENEDOR PRINCIPAL: ÍNDICE SIDENAV + PROSA LEGISLATIVA -->
+    <div class="grid-row grid-gap-4">
+      <!-- ÍNDICE LATERAL (USWDS Sidenav) -->
+      <div class="tablet:grid-col-4 desktop:grid-col-3" id="floating-toc-col">
+        <div class="padding-2 border-1px border-base-lighter bg-white">
+          <div class="display-flex flex-justify flex-align-center margin-bottom-2">
+            <h3 class="font-sans-xs text-uppercase text-bold margin-0">Índice Normativo</h3>
+            <span class="usa-tag" id="toc-count-badge">
+              0
+            </span>
           </div>
-          <div class="floating-toc-body" id="floating-toc-list">
-            <!-- Populated dynamically by reader.js -->
+
+          <div class="margin-bottom-2">
+            <label class="usa-sr-only" for="floating-toc-filter">
+              Filtrar artículos
+            </label>
+            <input
+              class="usa-input"
+              id="floating-toc-filter"
+              type="search"
+              placeholder="Filtrar artículo..."
+            />
           </div>
+
+          <nav aria-label="Índice del documento normativo">
+            <ul class="usa-sidenav" id="floating-toc-list">
+              <li class="usa-sidenav__item">
+                <a href="#tit-exposicion" class="usa-current">
+                  EXPOSICIÓN DE MOTIVOS
+                </a>
+              </li>
+              <li class="usa-sidenav__item">
+                <a href="#tit-anteproyecto">ANTEPROYECTO DE LEY ORGÁNICA</a>
+              </li>
+              <li class="usa-sidenav__item">
+                <a href="#tit-locota">LOCOTA 2026</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
 
-      <!-- Document Paper Sheet Column -->
-      <div class="col-12 col-lg-8 col-xl-9" id="reader-paper-col">
-        <article class="reader-paper markdown-body" id="paper-sheet">
-          <!-- Populated dynamically by reader.js -->
+      <!-- TEXTO DEL EXPEDIENTE LEGISLATIVO (USWDS Prose) -->
+      <div class="tablet:grid-col-8 desktop:grid-col-9" id="reader-paper-col">
+        <article
+          class="usa-prose padding-4 bg-white border-1px border-base-lighter shadow-1"
+          id="paper-sheet"
+        >
+          <div class="text-center padding-bottom-3 border-bottom-1px border-base-lighter margin-bottom-3">
+            <p class="font-sans-xs text-uppercase text-base margin-0">
+              REPÚBLICA BOLIVARIANA DE VENEZUELA
+            </p>
+            <h1 class="font-serif-xl margin-top-1 margin-bottom-1">
+              ANTEPROYECTO DE LEY ORGÁNICA DE CIBERSEGURIDAD PROCESAL E INTEGRIDAD DIGITAL
+            </h1>
+            <p class="font-sans-xs text-base">
+              Gaceta Judicial Especializada • Conforme al Art. 203 CRBV, Sentencia TSJ/SC N°
+              0406/2026 y LOCOTA 2026
+            </p>
+          </div>
+
+          <h2>EXPOSICIÓN DE MOTIVOS</h2>
+          <p>
+            El presente instrumento legislativo tiene por objeto regular, blindar y auditar la
+            integridad digital de las actuaciones judiciales y administrativas en todo el territorio
+            de la República. Fundamentado en los principios inmutables de justicia y verdad material
+            consagrados en los artículos 26, 49 y 257 de la Constitución de la República Bolivariana
+            de Venezuela.
+          </p>
+
+          <h2>TÍTULO I: DISPOSICIONES FUNDAMENTALES</h2>
+          <p>
+            <strong>Artículo 1° (Objeto):</strong> La presente Ley Orgánica establece el régimen
+            jurídico, procesal y forense aplicable a la preservación de la cadena de custodia
+            electrónica, la inmutabilidad de las bitácoras y la fe pública criptográfica en los
+            sistemas de justicia.
+          </p>
         </article>
       </div>
     </div>

@@ -1,0 +1,4 @@
+public/assets/uswds/**
+dist/**
+node_modules/**
+.astro/**

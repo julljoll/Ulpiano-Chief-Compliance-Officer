@@ -1,313 +1,193 @@
 ---
 /**
- * Ulpiano CCO — Vector Diagrams View
- * Interactive high-definition architectural suite with 9 specialized views
+ * USWDS Component: Diagrams Sheet (Planilla de Modelado Arquitectónico)
+ * Fuente oficial: https://designsystem.digital.gov/components/button-group/
+ * Fuente oficial: https://designsystem.digital.gov/components/card/
  */
+import { DIAGRAMS_REGISTRY } from '../../modules/diagrams-registry.js';
+
+const diagramsList = Object.values(DIAGRAMS_REGISTRY);
+const activeDiagram = DIAGRAMS_REGISTRY.master || diagramsList[0] || {};
 ---
 
-<section id="view-diagrams" class="py-4 py-lg-5" style="display: none;">
-  <div class="container-xxl px-3">
-    <!-- Hero Banner -->
-    <div class="legal-hero-card mb-4">
-      <div class="legal-breadcrumb">
-        <a href="#" onclick="window.UlpianoDash?.switchView('dashboard')">
-          Portal CCO
-        </a>
-        <span class="mx-1 text-muted">/</span>
-        <span>Modelado Arquitectónico</span>
-        <span class="mx-1 text-muted">/</span>
-        <span class="fw-semibold text-dark" id="diagram-breadcrumb-title">
-          Suite de Diagramas V-1.2
-        </span>
-      </div>
+<section id="view-diagrams" class="usa-section" data-view="diagrams" hidden>
+  <div class="grid-container">
+    <!-- 1. INTRODUCCIÓN Y ENCABEZADO (Hero Pattern) -->
+    <div class="usa-hero margin-bottom-4" aria-label="Introducción a la Suite de Diagramas">
+      <div class="grid-container">
+        <div class="usa-hero__callout">
+          <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
+            <ol class="usa-breadcrumb__list">
+              <li class="usa-breadcrumb__list-item">
+                <a href="index.html#dashboard" class="usa-breadcrumb__link">
+                  Portal CCO
+                </a>
+              </li>
+              <li class="usa-breadcrumb__list-item">
+                <span class="usa-breadcrumb__link">Modelado Arquitectónico</span>
+              </li>
+              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                <span id="diagram-breadcrumb-title">Suite de Diagramas V-1.2</span>
+              </li>
+            </ol>
+          </nav>
 
-      <div class="d-flex flex-wrap align-items-center justify-content-between gap-4">
-        <div style="max-width: 860px;">
-          <h1 class="legal-hero-title mb-2" id="diagram-hero-title">
-            🏛️ Suite Oficial de Diagramas de Arquitectura &amp; Compliance
+          <span class="usa-tag margin-bottom-1">INGENIERÍA JUDICIAL FORENSE</span>
+          <h1 class="usa-hero__heading" id="diagram-hero-title">
+            Suite Oficial de Diagramas de Arquitectura &amp; Compliance
           </h1>
-          <p class="legal-hero-desc mb-0" id="diagram-hero-desc">
+          <p id="diagram-hero-desc">
             Visualización interactiva en alta definición de la arquitectura técnica, el marco legal
             internacional (UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025), el marco legal
-            nacional (CRBV Art. 203, Sentencia TSJ 0406/2026, LOCOTA 2026) y el aporte original de
-            integridad procesal (Título VII).
+            nacional (CRBV Art. 203, Sentencia TSJ N° 0406/2026, LOCOTA 2026) y el aporte original
+            de integridad procesal (Título VII).
           </p>
-        </div>
 
-        <div class="d-flex flex-column flex-sm-row gap-2 align-self-start">
-          <button
-            class="btn btn-dark fw-bold px-3 py-2 d-inline-flex align-items-center gap-2"
-            onclick="window.UlpianoDash?.downloadActiveDiagram()"
-          >
-            <span class="material-symbols-outlined" style="font-size: 1.15rem;">
-              download
-            </span>
-            <span>Descargar SVG</span>
-          </button>
-          <button
-            class="btn btn-outline-secondary px-3 py-2 d-inline-flex align-items-center gap-2"
-            onclick="window.UlpianoDash?.switchView('dashboard')"
-          >
-            <span class="material-symbols-outlined" style="font-size: 1.15rem;">
-              dashboard
-            </span>
-            <span>Dashboard</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5 Summary Stat Chips -->
-    <div class="d-flex flex-wrap gap-2 mb-4">
-      <div class="matrix-summary-chip">
-        <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">
-          schema
-        </span>
-        <span>
-          <strong>V-1.2 Actualizada</strong> (FISMA &amp; LOCOTA)
-        </span>
-      </div>
-      <div class="matrix-summary-chip">
-        <span class="material-symbols-outlined text-info" style="font-size:1.1rem;">
-          memory
-        </span>
-        <span>
-          <strong>Ciberdefensa</strong> (Zero Trust, SHA-256, PSS, DOV 72h)
-        </span>
-      </div>
-      <div class="matrix-summary-chip">
-        <span class="material-symbols-outlined text-success" style="font-size:1.1rem;">
-          public
-        </span>
-        <span>
-          <strong>Legal Internacional</strong> (UE 2023/2841, FISMA, JTC, ISO)
-        </span>
-      </div>
-      <div class="matrix-summary-chip">
-        <span class="material-symbols-outlined text-danger" style="font-size:1.1rem;">
-          balance
-        </span>
-        <span>
-          <strong>Legal Nacional</strong> (CRBV 203, TSJ 0406, LOCOTA)
-        </span>
-      </div>
-      <div class="matrix-summary-chip">
-        <span class="material-symbols-outlined text-warning" style="font-size:1.1rem;">
-          star
-        </span>
-        <span>
-          <strong>Aporte Título VII</strong> (Anticorrupción)
-        </span>
-      </div>
-    </div>
-
-    <!-- Category Tabs Selector (9 Perspectives) -->
-    <div class="diagram-tabs-nav mb-4" id="diagram-nav-tabs">
-      <button
-        class="diagram-tab-btn active"
-        data-tab="master"
-        onclick="window.UlpianoDash?.switchDiagramTab('master')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          account_tree
-        </span>
-        <span>🏛️ Arquitectura Maestra</span>
-        <span class="diagram-badge">Todo-en-Uno V-1.2</span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="technical"
-        onclick="window.UlpianoDash?.switchDiagramTab('technical')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          memory
-        </span>
-        <span>⚙️ Arquitectura Técnica</span>
-        <span class="diagram-badge">Ciberdefensa</span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="international"
-        onclick="window.UlpianoDash?.switchDiagramTab('international')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          public
-        </span>
-        <span>🌐 Marco Internacional</span>
-        <span class="diagram-badge">UE • FISMA • JTC</span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="national"
-        onclick="window.UlpianoDash?.switchDiagramTab('national')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          balance
-        </span>
-        <span>🇻🇪 Marco Nacional</span>
-        <span class="diagram-badge">CRBV 203 • TSJ 0406</span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="original"
-        onclick="window.UlpianoDash?.switchDiagramTab('original')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          star
-        </span>
-        <span>⭐ Aporte Título VII</span>
-        <span class="diagram-badge">Anticorrupción</span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="workflows"
-        onclick="window.UlpianoDash?.switchDiagramTab('workflows')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          account_tree
-        </span>
-        <span>⚙️ Workflows &amp; Alertas IA</span>
-        <span class="diagram-badge">CMS Compliance</span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="organigram"
-        onclick="window.UlpianoDash?.switchDiagramTab('organigram')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          corporate_fare
-        </span>
-        <span>📊 Organigrama Descendente</span>
-        <span class="diagram-badge">Jerarquía de Control</span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="backend_python"
-        onclick="window.UlpianoDash?.switchDiagramTab('backend_python')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          terminal
-        </span>
-        <span>🐍 Backend Python</span>
-        <span class="diagram-badge" style="background:#0284c7;color:#fff;">
-          FastAPI ASGI
-        </span>
-      </button>
-      <button
-        class="diagram-tab-btn"
-        data-tab="frontend_nextjs"
-        onclick="window.UlpianoDash?.switchDiagramTab('frontend_nextjs')"
-      >
-        <span class="material-symbols-outlined" style="font-size:1.15rem;">
-          web
-        </span>
-        <span>🌐 Frontend Next.js</span>
-        <span class="diagram-badge" style="background:#059669;color:#fff;">
-          React-PDF
-        </span>
-      </button>
-    </div>
-
-    <!-- Interactive Diagram Viewport Card -->
-    <div class="diagram-viewer-card mb-5" id="main-diagram-viewer-card">
-      <!-- Toolbar Header -->
-      <div class="diagram-toolbar">
-        <div>
-          <h5 class="diagram-toolbar-title" id="diagram-active-title">
-            <span class="material-symbols-outlined text-primary" id="diagram-active-icon">
-              account_tree
-            </span>
-            <span id="diagram-active-name">
-              Arquitectura de Integración V-1.2 (Maestra Integral)
-            </span>
-          </h5>
-          <div class="text-muted small mt-1" id="diagram-active-sub">
-            Integración de los 4 grandes bloques: UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025 y
-            Aporte Original Título VII.
-          </div>
-        </div>
-
-        <!-- Action & Zoom Controls -->
-        <div class="diagram-toolbar-actions">
-          <button
-            class="diagram-btn-tool"
-            onclick="window.UlpianoDash?.zoomDiagram(-0.15)"
-            title="Reducir zoom"
-          >
-            <span class="material-symbols-outlined" style="font-size:1rem;">
-              zoom_out
-            </span>{' '}
-            Zoom -
-          </button>
-          <button
-            class="diagram-btn-tool"
-            id="diagram-zoom-level-btn"
-            onclick="window.UlpianoDash?.resetDiagramZoom()"
-            title="Restablecer zoom al 100%"
-          >
-            <span class="material-symbols-outlined" style="font-size:1rem;">
-              restart_alt
-            </span>{' '}
-            <span id="diagram-zoom-val">100%</span>
-          </button>
-          <button
-            class="diagram-btn-tool"
-            onclick="window.UlpianoDash?.zoomDiagram(0.15)"
-            title="Aumentar zoom"
-          >
-            <span class="material-symbols-outlined" style="font-size:1rem;">
-              zoom_in
-            </span>{' '}
-            Zoom +
-          </button>
-          <button
-            class="diagram-btn-tool"
-            onclick="window.UlpianoDash?.toggleDiagramFullscreen()"
-            title="Pantalla completa"
-            id="btn-diagram-fullscreen"
-          >
-            <span class="material-symbols-outlined" style="font-size:1rem;">
-              fullscreen
-            </span>{' '}
-            Pantalla Completa
-          </button>
-          <button
-            class="diagram-btn-tool"
-            onclick="window.UlpianoDash?.openActiveDiagramNewTab()"
-            title="Abrir archivo SVG en pestaña independiente"
-          >
-            <span class="material-symbols-outlined" style="font-size:1rem;">
-              open_in_new
-            </span>{' '}
-            Abrir SVG ↗
-          </button>
-          <button
-            class="diagram-btn-tool"
-            onclick="window.UlpianoDash?.downloadActiveDiagram()"
-            title="Descargar archivo vectorial"
-          >
-            <span class="material-symbols-outlined" style="font-size:1rem;">
-              download
-            </span>{' '}
-            Descargar
-          </button>
-        </div>
-      </div>
-
-      <!-- Viewport Canvas -->
-      <div class="diagram-viewport-wrapper" id="diagram-viewport-scroll">
-        <div class="diagram-viewport-inner" id="diagram-viewport-content">
-          <div class="text-center py-5 text-muted">
-            <div class="spinner-border text-primary mb-3"></div>
-            <p>Cargando diagrama vectorial en alta resolución...</p>
+          <div class="margin-top-3 display-flex flex-wrap flex-gap-2">
+            <button
+              type="button"
+              class="usa-button"
+              onclick="window.UlpianoDash?.downloadActiveDiagram()"
+            >
+              Descargar SVG
+            </button>
+            <button
+              type="button"
+              class="usa-button usa-button--outline"
+              onclick="window.UlpianoDash?.switchView('dashboard')"
+            >
+              Volver al Dashboard
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Detailed Breakdown Section -->
-    <div id="diagram-breakdown-section" class="mb-5">
-      <!-- Populated dynamically based on selected tab by diagrams.js -->
+    <!-- 2. RESUMEN DE PERSPECTIVAS Y ESTÁNDARES -->
+    <div class="display-flex flex-wrap flex-gap-1 margin-bottom-4">
+      <span class="usa-tag">V-1.2 Actualizada (FISMA &amp; LOCOTA)</span>
+      <span class="usa-tag">Zero Trust &amp; WORM SHA-256</span>
+      <span class="usa-tag">UE 2023/2841 &amp; JTC NCSC 2025</span>
+      <span class="usa-tag">CRBV 203 &amp; TSJ 0406/2026</span>
+      <span class="usa-tag">ISO/IEC 27001 / 27037 / 42001</span>
+    </div>
+
+    <!-- 3. SELECTOR DE PERSPECTIVAS (9 PESTAÑAS) -->
+    <div class="margin-bottom-4" id="diagram-nav-tabs">
+      <p class="font-sans-xs text-bold text-uppercase text-base margin-bottom-1">
+        Seleccionar Perspectiva Arquitectónica:
+      </p>
+      <ul class="usa-button-group usa-button-group--segmented">
+        {diagramsList.map((diag, index) => (
+          <li class="usa-button-group__item">
+            <button
+              type="button"
+              class={`usa-button ${index === 0 ? '' : 'usa-button--outline'} diagram-tab-btn`}
+              data-tab={diag.id}
+              onclick={`window.UlpianoDash?.switchDiagramTab('${diag.id}')`}
+            >
+              <span>{diag.name}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- 4. VISOR INTERACTIVO Y CONTROLES DE HERRAMIENTAS -->
+    <div class="usa-card margin-bottom-5">
+      <div class="usa-card__container">
+        <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
+          <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
+            <div>
+              <h2 class="font-sans-md margin-0" id="diagram-active-name">
+                {activeDiagram.name}
+              </h2>
+              <p
+                class="font-sans-2xs text-base margin-top-05 margin-bottom-0"
+                id="diagram-active-sub"
+              >
+                {activeDiagram.sub}
+              </p>
+            </div>
+            <div class="display-flex flex-wrap flex-gap-1">
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                onclick="window.UlpianoDash?.zoomDiagram(-0.15)"
+                title="Reducir zoom"
+              >
+                Zoom -
+              </button>
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                id="diagram-zoom-level-btn"
+                onclick="window.UlpianoDash?.resetDiagramZoom()"
+                title="Restablecer zoom al 100%"
+              >
+                <span id="diagram-zoom-val">100%</span>
+              </button>
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                onclick="window.UlpianoDash?.zoomDiagram(0.15)"
+                title="Aumentar zoom"
+              >
+                Zoom +
+              </button>
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                id="btn-diagram-fullscreen"
+                onclick="window.UlpianoDash?.toggleDiagramFullscreen()"
+                title="Pantalla completa"
+              >
+                Pantalla Completa
+              </button>
+              <button
+                type="button"
+                class="usa-button usa-button--small"
+                onclick="window.UlpianoDash?.openActiveDiagramNewTab()"
+                title="Abrir en pestaña independiente"
+              >
+                Abrir SVG ↗
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <div class="usa-card__body padding-2">
+          <div
+            id="diagram-viewport-content"
+            class="padding-3 bg-base-lightest border-1px border-base-lighter text-center overflow-auto"
+          >
+            <p class="font-sans-sm text-base">Cargando diagrama vectorial en alta resolución...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. DESGLOSE DE CAPAS DEL DIAGRAMA ACTIVO -->
+    <div id="diagram-breakdown-section" class="margin-bottom-5">
+      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+        <h2 class="font-sans-lg margin-0">Desglose por Capas y Especificación Técnica</h2>
+      </div>
+
+      <ul class="usa-card-group">
+        {activeDiagram.breakdown?.map((item) => (
+          <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <span class="usa-tag margin-bottom-1">{item.badge}</span>
+                <h3 class="usa-card__heading font-sans-sm">{item.title}</h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-2xs text-base">{item.desc}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </section>

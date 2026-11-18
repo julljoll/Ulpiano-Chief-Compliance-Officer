@@ -1,397 +1,264 @@
 ---
-import '../styles/tokens.css';
-import '../styles/compat-tokens.css';
-import '../styles/legal-theme.css';
-import '../styles/viewer.css';
-import Footer from '../components/Footer.astro';
+/**
+ * USWDS Technical Architecture Page: Backend Python 3.12 (FastAPI)
+ * Fuente oficial: https://designsystem.digital.gov/page-templates/
+ */
+import LegalLayout from '../layouts/LegalLayout.astro';
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arquitectura Backend Python 3.12 (FastAPI) | Ulpiano Chief Compliance Officer</title>
-    <meta
-      name="description"
-      content="Diagrama y especificación técnica de la arquitectura de servidor API en Python 3.12 (FastAPI, PyKCS11 HSM, Celery, PostgreSQL 16 pgvector y MinIO S3 WORM) para el sistema judicial."
-    />
+<LegalLayout
+  title="Arquitectura Backend Python 3.12 (FastAPI) | Ulpiano Chief Compliance Officer"
+  description="Diagrama y especificación técnica de la arquitectura de servidor API en Python 3.12 (FastAPI, PyKCS11 HSM, Celery, PostgreSQL 16 pgvector y MinIO S3 WORM) para el sistema judicial."
+  activePage="backend"
+>
+  <div class="grid-container padding-y-4">
+    <!-- Hero Banner -->
+    <div class="usa-hero margin-bottom-4" aria-label="Arquitectura Backend">
+      <div class="grid-container">
+        <div class="usa-hero__callout">
+          <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
+            <ol class="usa-breadcrumb__list">
+              <li class="usa-breadcrumb__list-item">
+                <a href="index.html" class="usa-breadcrumb__link">
+                  Portal CCO
+                </a>
+              </li>
+              <li class="usa-breadcrumb__list-item">
+                <span class="usa-breadcrumb__link">Arquitectura Técnica</span>
+              </li>
+              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                <span>Servidor API Python 3.12 (FastAPI)</span>
+              </li>
+            </ol>
+          </nav>
 
-    <!-- Devicon & Simple Icons CDNs -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <link rel="manifest" href="manifest.json" />
-
-    <style>
-      .viewer-standalone-wrapper {
-        background: #f8fafc;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-      .svg-container-card {
-        background: #ffffff;
-        border: 1px solid var(--legal-border);
-        border-radius: var(--legal-radius-md);
-        box-shadow: var(--legal-shadow-md);
-        overflow: hidden;
-      }
-      .svg-canvas-box {
-        background: #f8fafc;
-        overflow: auto;
-        text-align: center;
-        padding: 2rem 1.5rem;
-        max-height: 85vh;
-        transition: transform 0.2s ease;
-      }
-      .svg-canvas-box img,
-      .svg-canvas-box object,
-      .svg-canvas-box svg {
-        max-width: 1050px;
-        width: 100%;
-        height: auto;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        border-radius: 8px;
-        background: #ffffff;
-      }
-      .layer-badge-python {
-        background: #e0f2fe;
-        color: #0369a1;
-        border: 1px solid #bae6fd;
-        font-weight: 700;
-        padding: 0.25rem 0.6rem;
-        border-radius: 4px;
-        font-size: 0.78rem;
-      }
-    </style>
-  </head>
-  <body class="viewer-standalone-wrapper">
-    <!-- Top Official Banner -->
-    <div class="legal-top-banner">
-      <div class="container-xxl d-flex flex-wrap align-items-center justify-content-between px-3 gap-2">
-        <div class="d-flex align-items-center gap-2">
-          <span>🏛️</span>
-          <span class="fw-semibold">República Bolivariana de Venezuela</span>
-          <span class="text-muted">|</span>
-          <span>Arquitectura de Backend Criptográfico Judicial</span>
-        </div>
-        <div class="d-flex align-items-center gap-3">
-          <span class="badge bg-light text-dark border">
-            <span class="material-symbols-outlined text-success me-1" style="font-size: 0.95rem;">
-              lock
-            </span>
-            FIPS 140-2 Level 3
+          <span class="usa-tag margin-bottom-1">
+            PYTHON 3.12 CORE • FASTAPI + UVLOOP • OPENAPI 3.1
           </span>
+          <h1 class="usa-hero__heading">Arquitectura del Servidor API Backend en Python 3.12</h1>
+          <p>
+            Diagrama técnico y flujo de datos del núcleo de procesamiento judicial: gestión
+            asíncrona, firma criptográfica SUSCERTE con PyKCS11, tareas de fondo Celery/Redis,
+            persistencia pgvector y bóveda inmutable WORM conforme a la LMDyFE y la Ley de
+            Infogobierno.
+          </p>
+
+          <div class="margin-top-3 display-flex flex-wrap flex-gap-2">
+            <a
+              href="./svg/backend_python_api_arquitectura.svg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="usa-button"
+            >
+              Abrir SVG Directo ↗
+            </a>
+            <a
+              href="./svg/backend_python_api_arquitectura.svg"
+              download="backend_python_api_arquitectura.svg"
+              class="usa-button usa-button--outline"
+            >
+              Descargar SVG
+            </a>
+            <a href="frontend.html" class="usa-button usa-button--outline">
+              Ver Arquitectura Frontend Next.js
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Header & Navigation -->
-    <header class="legal-masthead py-3">
-      <div class="container-xxl d-flex flex-wrap align-items-center justify-content-between gap-3 px-3">
-        <div class="masthead-brand">
-          <a href="index.html" class="text-decoration-none d-flex align-items-center gap-3">
-            <div class="masthead-seal">⚖️</div>
+    <!-- Visor de Diagrama SVG con Controles USWDS -->
+    <div class="usa-card margin-bottom-5">
+      <div class="usa-card__container">
+        <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
+          <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
             <div>
-              <div class="masthead-title">Ulpiano — Chief Compliance Officer</div>
-              <div class="masthead-subtitle">
-                Dirección Nacional de Ciberseguridad Procesal e Integridad Digital
-              </div>
+              <span class="usa-tag margin-bottom-05">BACKEND CORE</span>
+              <h2 class="font-sans-md margin-0">
+                Diagrama Oficial de Arquitectura Backend (Python 3.12 FastAPI)
+              </h2>
             </div>
-          </a>
-        </div>
-        <div class="d-flex align-items-center gap-2">
-          <a
-            href="index.html"
-            class="btn btn-outline-light btn-sm d-inline-flex align-items-center gap-1"
+            <div class="display-flex flex-wrap flex-gap-1">
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                onclick="zoomSvg(-0.15)"
+                title="Reducir Zoom"
+              >
+                Zoom -
+              </button>
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                onclick="resetZoom()"
+                title="Restablecer"
+              >
+                <span id="zoom-val">100%</span>
+              </button>
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                onclick="zoomSvg(0.15)"
+                title="Aumentar Zoom"
+              >
+                Zoom +
+              </button>
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                onclick="toggleFullscreen()"
+                title="Pantalla Completa"
+                id="btn-fullscreen"
+              >
+                Pantalla Completa
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <div class="usa-card__body padding-2">
+          <div
+            id="svg-viewport"
+            class="padding-3 bg-base-lightest border-1px border-base-lighter text-center overflow-auto"
           >
-            <span class="material-symbols-outlined" style="font-size: 1rem;">
-              arrow_back
-            </span>
-            <span>Volver al Portal</span>
-          </a>
-          <a
-            href="frontend.html"
-            class="btn btn-warning btn-sm text-dark fw-bold d-inline-flex align-items-center gap-1"
-          >
-            <i class="devicon-nextjs-plain colored"></i>
-            <span>Ver Arquitectura Frontend Next.js 15 →</span>
-          </a>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container-xxl py-4 px-3 flex-grow-1">
-      <!-- Hero Banner -->
-      <div
-        class="legal-hero-card mb-4"
-        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0369a1 100%); color: #ffffff;"
-      >
-        <div class="legal-breadcrumb text-white-50">
-          <a href="index.html" class="text-white-50">
-            Inicio
-          </a>
-          <span class="mx-1">/</span>
-          <span class="text-white-50">Arquitectura Técnica</span>
-          <span class="mx-1">/</span>
-          <span class="text-white">Servidor API en Python 3.12 (FastAPI)</span>
-        </div>
-
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-4">
-          <div style="max-width: 860px;">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <span class="badge bg-primary px-3 py-1">
-                <i class="devicon-python-plain colored me-1"></i> Python 3.12 Core
-              </span>
-              <span class="badge bg-teal px-3 py-1" style="background-color: #009688;">
-                <i class="devicon-fastapi-plain colored me-1"></i> FastAPI + uvloop
-              </span>
-              <span class="badge bg-dark px-3 py-1 border border-secondary">
-                OpenAPI 3.1 REST &amp; WSS
-              </span>
-            </div>
-            <h1 class="legal-hero-title text-white mb-2">
-              Arquitectura del Servidor API Backend en Python 3.12
-            </h1>
-            <p class="legal-hero-desc text-white-50 mb-0">
-              Diagrama técnico y flujo de datos del núcleo de procesamiento judicial: gestión
-              asíncrona, firma criptográfica SUSCERTE con PyKCS11, tareas de fondo Celery/Redis,
-              persistencia pgvector y bóveda inmutable WORM conforme a la LMDyFE y la Ley de
-              Infogobierno.
-            </p>
-          </div>
-
-          <div class="d-flex gap-2 align-self-start">
-            <a
-              href="./svg/backend_python_api_arquitectura.svg"
-              target="_blank"
-              class="btn btn-warning text-dark fw-bold px-3 d-inline-flex align-items-center gap-1"
+            <object
+              data="./svg/backend_python_api_arquitectura.svg"
+              type="image/svg+xml"
+              id="svg-object"
+              class="width-full maxw-full"
             >
-              <span class="material-symbols-outlined" style="font-size: 1rem;">
-                open_in_new
-              </span>
-              <span>Abrir SVG Directo ↗</span>
-            </a>
-            <a
-              href="./svg/backend_python_api_arquitectura.svg"
-              download="backend_python_api_arquitectura.svg"
-              class="btn btn-outline-light px-3 d-inline-flex align-items-center gap-1"
-            >
-              <span class="material-symbols-outlined" style="font-size: 1rem;">
-                download
-              </span>
-              <span>Descargar SVG</span>
-            </a>
+              <img
+                src="./svg/backend_python_api_arquitectura.svg"
+                alt="Diagrama de Arquitectura Backend Python"
+                class="width-full"
+              />
+            </object>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Interactive Diagram Card -->
-      <div class="svg-container-card mb-5">
-        <div class="diagram-toolbar">
-          <div class="d-flex align-items-center gap-2">
-            <span class="badge bg-primary">
-              <i class="devicon-python-plain colored me-1"></i> Backend Core
-            </span>
-            <strong class="text-dark">
-              Diagrama Oficial de Arquitectura Backend (Python 3.12 FastAPI)
-            </strong>
-          </div>
-          <div class="diagram-toolbar-actions">
-            <button class="diagram-btn-tool" onclick="zoomSvg(-0.15)" title="Reducir Zoom">
-              <span class="material-symbols-outlined" style="font-size:1rem;">
-                zoom_out
-              </span>{' '}
-              Zoom -
-            </button>
-            <button class="diagram-btn-tool" onclick="resetZoom()" title="Restablecer">
-              <span class="material-symbols-outlined" style="font-size:1rem;">
-                restart_alt
-              </span>{' '}
-              <span id="zoom-val">100%</span>
-            </button>
-            <button class="diagram-btn-tool" onclick="zoomSvg(0.15)" title="Aumentar Zoom">
-              <span class="material-symbols-outlined" style="font-size:1rem;">
-                zoom_in
-              </span>{' '}
-              Zoom +
-            </button>
-            <button
-              class="diagram-btn-tool"
-              onclick="toggleFullscreen()"
-              title="Pantalla Completa"
-              id="btn-fullscreen"
-            >
-              <span class="material-symbols-outlined" style="font-size:1rem;">
-                fullscreen
-              </span>{' '}
-              Pantalla Completa
-            </button>
-            <a
-              href="./svg/backend_python_api_arquitectura.svg"
-              target="_blank"
-              class="diagram-btn-tool text-decoration-none"
-            >
-              <span class="material-symbols-outlined" style="font-size:1rem;">
-                open_in_new
-              </span>{' '}
-              Pestaña Nueva ↗
-            </a>
-            <a
-              href="./svg/backend_python_api_arquitectura.svg"
-              download="backend_python_api_arquitectura.svg"
-              class="diagram-btn-tool text-decoration-none"
-            >
-              <span class="material-symbols-outlined" style="font-size:1rem;">
-                download
-              </span>{' '}
-              Descargar
-            </a>
-          </div>
-        </div>
-
-        <div class="svg-canvas-box" id="svg-viewport">
-          <object
-            data="./svg/backend_python_api_arquitectura.svg"
-            type="image/svg+xml"
-            id="svg-object"
-            style="width: 100%; max-width: 1080px;"
-          >
-            <img
-              src="./svg/backend_python_api_arquitectura.svg"
-              alt="Diagrama de Arquitectura Backend Python"
-              style="width: 100%;"
-            />
-          </object>
-        </div>
+    <!-- Desglose por Capas de la Arquitectura Backend -->
+    <div class="margin-bottom-5">
+      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+        <h2 class="font-sans-lg margin-0">Desglose por Capas de la Arquitectura Backend</h2>
       </div>
 
-      <!-- Architectural Breakdown Cards -->
-      <h4 class="fw-bold text-dark d-flex align-items-center gap-2 mb-3">
-        <span class="material-symbols-outlined text-primary">layers</span>
-        <span>Desglose por Capas de la Arquitectura Backend</span>
-      </h4>
-
-      <div class="row g-4 mb-5">
-        <!-- Layer 1 -->
-        <div class="col-12 col-md-6 col-xl-3">
-          <div class="dc3-card dc3-card-accent-top h-100">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="layer-badge-python">CAPA 1: INGRESS</span>
-              <span class="text-muted small">uvicorn / uvloop</span>
+      <ul class="usa-card-group">
+        <!-- Capa 1 -->
+        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <span class="usa-tag margin-bottom-1">Capa 1: Ingress</span>
+              <h3 class="usa-card__heading font-sans-sm">Ingress API &amp; Autenticación</h3>
+              <p class="font-sans-2xs text-base margin-top-05">uvicorn / uvloop</p>
+            </header>
+            <div class="usa-card__body">
+              <p class="font-sans-2xs text-base">
+                FastAPI ASGI de alto rendimiento, terminación TLS 1.3, autenticación OAuth2 + JWT
+                (FIDO2) y limitación estricta de tasa por IP.
+              </p>
             </div>
-            <h5 class="fw-bold text-dark">Ingress API &amp; Autenticación</h5>
-            <p class="text-muted small mb-3">
-              FastAPI ASGI con servidor uvicorn de alto rendimiento, terminación TLS 1.3,
-              autenticación OAuth2 + JWT (FIDO2) y limitación de tasa por IP.
-            </p>
-            <div class="border-top pt-2 small text-primary fw-semibold">
-              ⚖️ LPCDI Art. 9 • ISO/IEC 27001
+            <div class="usa-card__footer">
+              <span class="font-sans-2xs text-bold text-primary">LPCDI Art. 9 • ISO/IEC 27001</span>
             </div>
           </div>
-        </div>
+        </li>
 
-        <!-- Layer 2 -->
-        <div class="col-12 col-md-6 col-xl-3">
-          <div class="dc3-card dc3-card-accent-green h-100">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="dc3-tag dc3-tag-green">CAPA 2: LÓGICA FORENSE</span>
-              <span class="text-muted small">PyKCS11 + pyHanko</span>
+        <!-- Capa 2 -->
+        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <span class="usa-tag margin-bottom-1">Capa 2: Lógica Forense</span>
+              <h3 class="usa-card__heading font-sans-sm">Firma &amp; Sorteo Criptoseguro</h3>
+              <p class="font-sans-2xs text-base margin-top-05">PyKCS11 + pyHanko</p>
+            </header>
+            <div class="usa-card__body">
+              <p class="font-sans-2xs text-base">
+                Firma PAdES-B-LTA con token HSM PKCS#11 FIPS 140-2 L3, sellado TSA RFC 3161 y sorteo
+                aleatorio imparcial con CSPRNG.
+              </p>
             </div>
-            <h5 class="fw-bold text-dark">Firma &amp; Sorteo Criptoseguro</h5>
-            <p class="text-muted small mb-3">
-              Firma digital PAdES-B-LTA con token HSM PKCS#11 FIPS 140-2 L3, sellado TSA RFC 3161 y
-              sorteo aleatorio imparcial vía <code>secrets.SystemRandom</code>.
-            </p>
-            <div class="border-top pt-2 small text-success fw-semibold">
-              ⚖️ LMDyFE Arts. 4, 6, 8 • Título VII Art. 26
+            <div class="usa-card__footer">
+              <span class="font-sans-2xs text-bold text-primary">
+                LMDyFE Arts. 4, 6, 8 • Art. 26
+              </span>
             </div>
           </div>
-        </div>
+        </li>
 
-        <!-- Layer 3 -->
-        <div class="col-12 col-md-6 col-xl-3">
-          <div class="dc3-card dc3-card-accent-red h-100">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="dc3-tag dc3-tag-red">CAPA 3: ASÍNCRONA</span>
-              <span class="text-muted small">Celery + Redis 7</span>
+        <!-- Capa 3 -->
+        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <span class="usa-tag margin-bottom-1">Capa 3: Asíncrona</span>
+              <h3 class="usa-card__heading font-sans-sm">Colas &amp; IA Ética (ISO 42001)</h3>
+              <p class="font-sans-2xs text-base margin-top-05">Celery + Redis 7</p>
+            </header>
+            <div class="usa-card__body">
+              <p class="font-sans-2xs text-base">
+                Workers en Celery para análisis de resoluciones, motor RAG sobre PostgreSQL pgvector
+                y alertas tempranas hacia la Contraloría.
+              </p>
             </div>
-            <h5 class="fw-bold text-dark">Colas &amp; IA Ética (ISO 42001)</h5>
-            <p class="text-muted small mb-3">
-              Workers distribuidos en Celery para procesamiento de sentencias, motor RAG sobre
-              PostgreSQL pgvector y alertas tempranas del CCO hacia Contraloría/SUNAI.
-            </p>
-            <div class="border-top pt-2 small text-danger fw-semibold">
-              ⚖️ LOCOTA Art. 11 • ISO/IEC 42001
-            </div>
-          </div>
-        </div>
-
-        <!-- Layer 4 -->
-        <div class="col-12 col-md-6 col-xl-3">
-          <div class="dc3-card dc3-card-accent-gold h-100">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="dc3-tag dc3-tag-gold">CAPA 4: PERSISTENCIA</span>
-              <span class="text-muted small">Postgres + MinIO WORM</span>
-            </div>
-            <h5 class="fw-bold text-dark">Bóveda WORM &amp; Árbol de Merkle</h5>
-            <p class="text-muted small mb-3">
-              Almacenamiento inmutable S3 Object Lock (WORM) con hash dual SHA-256/SHA3-512 y
-              bitácora forense estructurada en Árbol de Merkle.
-            </p>
-            <div class="border-top pt-2 small text-warning text-dark fw-semibold">
-              ⚖️ Infogobierno Art. 27 • Título VII Art. 28
+            <div class="usa-card__footer">
+              <span class="font-sans-2xs text-bold text-primary">
+                LOCOTA Art. 11 • ISO/IEC 42001
+              </span>
             </div>
           </div>
-        </div>
-      </div>
-    </main>
+        </li>
 
-    <!-- Institutional Legal Footer -->
-    <Footer activePage="backend" />
+        <!-- Capa 4 -->
+        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <span class="usa-tag margin-bottom-1">Capa 4: Persistencia</span>
+              <h3 class="usa-card__heading font-sans-sm">Bóveda WORM &amp; Árbol Merkle</h3>
+              <p class="font-sans-2xs text-base margin-top-05">PostgreSQL + MinIO WORM</p>
+            </header>
+            <div class="usa-card__body">
+              <p class="font-sans-2xs text-base">
+                Almacenamiento inmutable S3 Object Lock (WORM) con hash dual SHA-256/SHA3-512 y
+                bitácora forense verificable.
+              </p>
+            </div>
+            <div class="usa-card__footer">
+              <span class="font-sans-2xs text-bold text-primary">
+                Infogobierno Art. 27 • Art. 28
+              </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-    <script is:inline>
-      let currentZoom = 1.0;
-      function applyZoom() {
-        const obj = document.getElementById('svg-object');
-        const valEl = document.getElementById('zoom-val');
-        if (obj) obj.style.transform = `scale(${currentZoom})`;
-        if (valEl) valEl.textContent = `${Math.round(currentZoom * 100)}%`;
+  <script is:inline>
+    let currentZoom = 1.0;
+    function applyZoom() {
+      const obj = document.getElementById('svg-object');
+      const valEl = document.getElementById('zoom-val');
+      if (obj) obj.style.transform = `scale(${currentZoom})`;
+      if (valEl) valEl.textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+    function zoomSvg(delta) {
+      currentZoom = Math.max(0.5, Math.min(2.5, currentZoom + delta));
+      applyZoom();
+    }
+    function resetZoom() {
+      currentZoom = 1.0;
+      applyZoom();
+    }
+    function toggleFullscreen() {
+      const el = document.getElementById('svg-viewport');
+      if (!document.fullscreenElement) {
+        el.requestFullscreen().catch((err) =>
+          alert(`Error al entrar en pantalla completa: ${err.message}`)
+        );
+      } else {
+        document.exitFullscreen();
       }
-      function zoomSvg(delta) {
-        currentZoom = Math.max(0.5, Math.min(2.5, currentZoom + delta));
-        applyZoom();
-      }
-      function resetZoom() {
-        currentZoom = 1.0;
-        applyZoom();
-      }
-      function toggleFullscreen() {
-        const el = document.getElementById('svg-viewport');
-        if (!document.fullscreenElement) {
-          el.requestFullscreen().catch((err) =>
-            alert(`Error al entrar en pantalla completa: ${err.message}`)
-          );
-        } else {
-          document.exitFullscreen();
-        }
-      }
-    </script>
-  </body>
-</html>
+    }
+  </script>
+</LegalLayout>

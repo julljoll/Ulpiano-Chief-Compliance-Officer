@@ -1,194 +1,137 @@
 ---
 /**
- * Ulpiano CCO — Version Comparison Module
- * Side-by-side legal text diff with addition/deletion indicators
+ * USWDS Component: Compare Sheet (Planilla de Comparador Diferencial de Versiones)
+ * Fuente oficial: https://designsystem.digital.gov/components/prose/
+ * Fuente oficial: https://designsystem.digital.gov/components/select/
  */
+import registryData from '../../../registry.json';
+
+const allDocs = Array.isArray(registryData) ? registryData : [];
 ---
 
-<section id="view-compare" class="py-4 py-lg-5" style="display: none;">
-  <div class="container-xxl px-3">
-    <!-- Header & Controls -->
-    <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+<section id="view-compare" class="usa-section" data-view="compare" hidden>
+  <div class="grid-container">
+    <!-- 1. ENCABEZADO Y CONTROLES -->
+    <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2 margin-bottom-4">
       <div>
-        <h4 class="fw-bold mb-1 text-dark d-flex align-items-center gap-2">
-          <span class="material-symbols-outlined text-primary">compare_arrows</span>
-          <span>Comparador de Versiones &amp; Trazabilidad Legislativa</span>
-        </h4>
-        <div class="text-muted small">
+        <h1 class="font-sans-xl margin-0">
+          Comparador de Versiones &amp; Trazabilidad Legislativa
+        </h1>
+        <p class="font-sans-sm text-base margin-top-05 margin-bottom-0">
           Contraste simultáneo entre versiones del anteproyecto. Resaltados en rojo indican reformas
-          procesales V-1.1; en azul, integraciones federales FISMA y celeridad LOCOTA V-1.2.
-        </div>
+          V-1.1; en azul, integraciones federales FISMA y celeridad LOCOTA V-1.2.
+        </p>
       </div>
       <button
-        class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-1"
+        type="button"
+        class="usa-button usa-button--outline usa-button--small"
         onclick="window.UlpianoDash?.switchView('dashboard')"
       >
-        <span class="material-symbols-outlined" style="font-size: 1rem;">
-          arrow_back
-        </span>
-        <span>Volver al Dashboard</span>
+        Volver al Dashboard
       </button>
     </div>
 
-    <!-- Version Pickers & Swap Action -->
-    <div class="dc3-card p-4 mb-4" id="compare-version-picker">
-      <div class="row g-3 align-items-end">
-        <!-- Left Picker -->
-        <div class="col-12 col-md-5">
-          <label
-            for="compare-select-left"
-            class="form-label fw-bold text-dark small text-uppercase mb-1 d-flex align-items-center gap-1"
-          >
-            <span class="material-symbols-outlined" style="font-size: 1rem;">
-              left_panel_open
-            </span>
-            <span>Panel Izquierdo (Base)</span>
+    <!-- 2. SELECTORES DE VERSIÓN Y BOTÓN INVERTIR -->
+    <div
+      class="padding-3 bg-base-lightest border-1px border-base-lighter margin-bottom-4"
+      id="compare-version-picker"
+    >
+      <div class="grid-row grid-gap-3 flex-align-end">
+        <!-- Panel Izquierdo -->
+        <div class="tablet:grid-col-5">
+          <label for="compare-select-left" class="usa-label text-bold font-sans-xs text-uppercase">
+            Panel Izquierdo (Base):
           </label>
           <select
             id="compare-select-left"
-            class="form-select border-secondary fw-semibold bg-white text-dark version-select-auto"
-            title="Seleccionar versión para el panel izquierdo"
+            class="usa-select margin-0 version-select-auto"
+            title="Seleccionar versión izquierda"
           >
-            <!-- Populated dynamically -->
+            {allDocs.map((doc, idx) => (
+              <option value={doc.id} selected={idx === allDocs.length - 1}>
+                {doc.badgeText || doc.label}
+              </option>
+            ))}
           </select>
         </div>
 
-        <!-- Swap Button -->
-        <div class="col-12 col-md-2 text-center">
+        <!-- Botón Invertir -->
+        <div class="tablet:grid-col-2 text-center">
           <button
+            type="button"
             id="btn-compare-swap"
-            class="btn btn-outline-dark w-100 fw-semibold d-inline-flex align-items-center justify-content-center gap-1"
+            class="usa-button usa-button--outline width-full"
             title="Intercambiar paneles"
             onclick="window.UlpianoDash?.swapComparePanels()"
           >
-            <span class="material-symbols-outlined">swap_horiz</span>
-            <span>Invertir</span>
+            ⇄ Invertir
           </button>
         </div>
 
-        <!-- Right Picker -->
-        <div class="col-12 col-md-5">
-          <label
-            for="compare-select-right"
-            class="form-label fw-bold text-dark small text-uppercase mb-1 d-flex align-items-center gap-1"
-          >
-            <span class="material-symbols-outlined" style="font-size: 1rem;">
-              right_panel_open
-            </span>
-            <span>Panel Derecho (Contraste)</span>
+        <!-- Panel Derecho -->
+        <div class="tablet:grid-col-5">
+          <label for="compare-select-right" class="usa-label text-bold font-sans-xs text-uppercase">
+            Panel Derecho (Contraste):
           </label>
           <select
             id="compare-select-right"
-            class="form-select border-secondary fw-semibold bg-white text-dark version-select-auto"
-            title="Seleccionar versión para el panel derecho"
+            class="usa-select margin-0 version-select-auto"
+            title="Seleccionar versión derecha"
           >
-            <!-- Populated dynamically -->
+            {allDocs.map((doc, idx) => (
+              <option value={doc.id} selected={idx === 0}>
+                {doc.badgeText || doc.label}
+              </option>
+            ))}
           </select>
         </div>
       </div>
 
-      <!-- Action Button & Status Message -->
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4 pt-3 border-top">
-        <button
-          class="btn btn-dark fw-bold px-4 d-inline-flex align-items-center gap-2"
-          onclick="window.UlpianoDash?.runCompare()"
-        >
-          <span class="material-symbols-outlined" style="font-size: 1.15rem;">
-            difference
-          </span>
-          <span>Ejecutar Comparación Paralela</span>
+      <div class="margin-top-3 border-top-1px border-base-lighter padding-top-2 display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
+        <button type="button" class="usa-button" onclick="window.UlpianoDash?.runCompare()">
+          Ejecutar Comparación Paralela
         </button>
-        <div id="compare-status-msg" class="text-muted small">
-          Selecciona las dos versiones y pulsa «Ejecutar Comparación Paralela».
-        </div>
+        <span class="font-sans-xs text-base" id="compare-status-msg">
+          Listo para comparar texto normativo.
+        </span>
       </div>
     </div>
 
-    <!-- Side-by-Side Split View -->
-    <div class="row g-4">
-      <!-- Left Panel -->
-      <div class="col-12 col-lg-6">
+    <!-- 3. PANELES DE LECTURA DIVIDIDA (USWDS Prose) -->
+    <div class="grid-row grid-gap-4">
+      <div class="tablet:grid-col-6">
+        <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2 display-flex flex-justify flex-align-center">
+          <strong class="font-sans-xs" id="compare-left-title">
+            Panel Base
+          </strong>
+          <span class="usa-tag" id="compare-left-badge">
+            V1.0
+          </span>
+        </div>
         <div
-          class="dc3-card p-0 overflow-hidden h-100 shadow-sm"
-          style="border-top: 3px solid #0f172a;"
+          class="usa-prose padding-3 bg-white border-1px border-base-lighter shadow-1 overflow-auto"
+          style="max-height: 800px;"
+          id="compare-left-paper"
         >
-          <div class="p-3 bg-light border-bottom d-flex justify-content-between align-items-center">
-            <div>
-              <div
-                class="fw-bold text-dark d-flex align-items-center gap-1"
-                id="compare-title-left"
-              >
-                <span class="material-symbols-outlined text-primary" style="font-size: 1.1rem;">
-                  article
-                </span>
-                <span>Documento Base</span>
-              </div>
-              <div class="text-muted small" id="compare-sub-left">
-                Versión de Referencia
-              </div>
-            </div>
-            <span class="badge bg-dark" id="compare-badge-left">
-              Panel Izq
-            </span>
-          </div>
-          <div
-            class="p-4 bg-white markdown-body reader-paper border-0 rounded-0"
-            style="min-height: 600px; max-height: 80vh; overflow-y: auto;"
-            id="compare-left-content"
-          >
-            <div class="text-center py-5 text-muted">
-              <span
-                class="material-symbols-outlined text-secondary mb-2"
-                style="font-size: 2.5rem;"
-              >
-                compare_arrows
-              </span>
-              <p>Selecciona una versión y haz clic en «Ejecutar Comparación Paralela»</p>
-            </div>
-          </div>
+          <p class="font-sans-sm text-base">Cargando texto normativo base...</p>
         </div>
       </div>
 
-      <!-- Right Panel -->
-      <div class="col-12 col-lg-6">
+      <div class="tablet:grid-col-6">
+        <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2 display-flex flex-justify flex-align-center">
+          <strong class="font-sans-xs" id="compare-right-title">
+            Panel Contraste
+          </strong>
+          <span class="usa-tag" id="compare-right-badge">
+            V1.2
+          </span>
+        </div>
         <div
-          class="dc3-card p-0 overflow-hidden h-100 shadow-sm"
-          style="border-top: 3px solid var(--legal-blue);"
+          class="usa-prose padding-3 bg-white border-1px border-base-lighter shadow-1 overflow-auto"
+          style="max-height: 800px;"
+          id="compare-right-paper"
         >
-          <div class="p-3 bg-light border-bottom d-flex justify-content-between align-items-center">
-            <div>
-              <div
-                class="fw-bold text-dark d-flex align-items-center gap-1"
-                id="compare-title-right"
-              >
-                <span class="material-symbols-outlined text-primary" style="font-size: 1.1rem;">
-                  article
-                </span>
-                <span>Documento de Contraste</span>
-              </div>
-              <div class="text-muted small" id="compare-sub-right">
-                Versión Modificada
-              </div>
-            </div>
-            <span class="badge bg-primary" id="compare-badge-right">
-              Panel Der
-            </span>
-          </div>
-          <div
-            class="p-4 bg-white markdown-body reader-paper border-0 rounded-0"
-            style="min-height: 600px; max-height: 80vh; overflow-y: auto;"
-            id="compare-right-content"
-          >
-            <div class="text-center py-5 text-muted">
-              <span
-                class="material-symbols-outlined text-secondary mb-2"
-                style="font-size: 2.5rem;"
-              >
-                compare_arrows
-              </span>
-              <p>Selecciona una versión y haz clic en «Ejecutar Comparación Paralela»</p>
-            </div>
-          </div>
+          <p class="font-sans-sm text-base">Cargando texto normativo de contraste...</p>
         </div>
       </div>
     </div>

@@ -27,6 +27,7 @@ export function switchView(viewName, pushState = true) {
   document.querySelectorAll('.dc3-nav-tab').forEach((pill) => {
     const isActive = pill.getAttribute('data-view') === viewName;
     pill.classList.toggle('active', isActive);
+    pill.classList.toggle('usa-current', isActive);
     pill.setAttribute('aria-selected', String(isActive));
   });
 

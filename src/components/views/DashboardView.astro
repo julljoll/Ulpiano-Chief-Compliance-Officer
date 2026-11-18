@@ -1,378 +1,451 @@
 ---
 /**
- * Ulpiano CCO — Executive Dashboard View
- * Legal Tech Specialist Design: Clear, Authoritative, Minimalist, Efficient
+ * USWDS Component: Dashboard Sheet (Planilla de Control y Auditoría)
+ * Fuente oficial: https://designsystem.digital.gov/components/card/
+ * Fuente oficial: https://designsystem.digital.gov/components/table/
  */
+import registryData from '../../../registry.json';
+import { REFORMS_CATALOG } from '../../modules/registry.js';
+
+const allDocs = Array.isArray(registryData) ? registryData : [];
+const latestDoc = allDocs[0] || {};
 ---
 
-<section id="view-dashboard" class="py-4 py-lg-5">
-  <div class="container-xxl px-3">
-    <!-- 1. EXECUTIVE MISSION BANNER (LEGAL TECH HERO) -->
-    <div class="legal-hero-card">
-      <div class="legal-breadcrumb">
-        <a href="#" onclick="window.UlpianoDash?.switchView('dashboard')">
-          Portal CCO
-        </a>
-        <span class="mx-1 text-muted">/</span>
-        <span>Ecosistema Normativo &amp; Auditoría</span>
-        <span class="mx-1 text-muted">/</span>
-        <span class="fw-semibold text-dark" id="kpi-hero-breadcrumb">
-          Ley Orgánica V-1.2 (FISMA 2014 + LOCOTA 2026 — Auditoría + DOV)
-        </span>
-      </div>
+<section id="view-dashboard" class="usa-section" data-view="dashboard">
+  <div class="grid-container">
+    <!-- 1. HERO EJECUTIVO (USWDS Hero Pattern) -->
+    <div class="usa-hero margin-bottom-4" aria-label="Introducción Institucional">
+      <div class="grid-container">
+        <div class="usa-hero__callout">
+          <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
+            <ol class="usa-breadcrumb__list">
+              <li class="usa-breadcrumb__list-item">
+                <a href="index.html#dashboard" class="usa-breadcrumb__link">
+                  Portal CCO
+                </a>
+              </li>
+              <li class="usa-breadcrumb__list-item">
+                <span class="usa-breadcrumb__link">Auditoría Normativa</span>
+              </li>
+              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                <span id="kpi-hero-breadcrumb">{latestDoc.label}</span>
+              </li>
+            </ol>
+          </nav>
 
-      <div class="d-flex flex-wrap align-items-center justify-content-between gap-4">
-        <div style="max-width: 860px;">
-          <div class="d-flex align-items-center gap-2 mb-2">
-            <span class="badge bg-dark text-white px-2 py-1 small">V-1.2 Oficial</span>
-            <span class="badge bg-light text-dark border px-2 py-1 small">
-              Jerarquía Constitucional Art. 203 CRBV
-            </span>
-          </div>
-          <h1 class="legal-hero-title mb-2" id="kpi-hero-title">
-            Auditoría de Integridad y Control de V-1.2 FISMA &amp; LOCOTA
+          <span class="usa-tag margin-bottom-1">RANGO ORGÁNICO ART. 203 CRBV</span>
+          <h1 class="usa-hero__heading" id="kpi-hero-title">
+            Auditoría de Integridad y Control de {latestDoc.shortLabel}
           </h1>
-          <p class="legal-hero-desc mb-0" id="kpi-hero-desc">
-            Versión 1.2 de gobernanza estratégica e interoperabilidad: integra la Ley Federal de
-            Modernización de la Seguridad de la Información (S.2521 — FISMA 2014), la doctrina de la
-            Sentencia TSJ/SC N° 0406 (2026) sobre el Art. 203 CRBV y la Ley Orgánica para la
-            Celeridad y Optimización de Trámites Administrativos (LOCOTA 2026). Introduce la
-            Auditoría Independiente Anual (Art. 10-bis), el Plan de Seguridad del Sistema (Art.
-            13-bis), Directivas Operativas Vinculantes (Art. 19-bis), articulación con Unidades de
-            Celeridad (Art. 11 LOCOTA) y la Comisión Nacional de Celeridad (Art. 7 LOCOTA).
-          </p>
-        </div>
+          <p id="kpi-hero-desc">{latestDoc.description}</p>
 
-        <div class="d-flex flex-column flex-sm-row gap-2 align-self-start">
-          <button
-            class="btn btn-dark fw-bold px-3 py-2 d-inline-flex align-items-center gap-2"
-            id="kpi-hero-btn-reader"
-            onclick="window.UlpianoDash?.openLatestDoc()"
-          >
-            <span class="material-symbols-outlined" style="font-size: 1.15rem;">
-              menu_book
-            </span>
-            <span id="kpi-hero-btn-label">Abrir Texto V-1.2</span>
-          </button>
-          <button
-            class="btn btn-outline-secondary px-3 py-2 d-inline-flex align-items-center gap-2"
-            onclick="window.UlpianoDash?.switchView('compare')"
-          >
-            <span class="material-symbols-outlined" style="font-size: 1.15rem;">
-              compare_arrows
-            </span>
-            <span>Comparar Versiones</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. PLAIN-LANGUAGE LEGAL VALUE: THE 3 ROMAN AXIOMS IN CRYPTOGRAPHIC PROTOCOLS -->
-    <div class="legal-axioms-banner mb-4">
-      <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
-        <div>
-          <span class="fw-bold text-dark text-uppercase small letter-spacing-wide">
-            ⚖️ Fundamento Dogmático &amp; Técnico
-          </span>
-          <h5 class="legal-serif-heading mb-0 mt-1">
-            Los 3 Axiomas del Jurista Domicio Ulpiano (Siglo III d.C.) en Código Criptográfico
-          </h5>
-        </div>
-        <span class="badge bg-light text-muted border d-none d-md-inline-block">
-          Ciberseguridad como Garante Anticorrupción
-        </span>
-      </div>
-
-      <div class="row g-3">
-        <!-- Axiom 1 -->
-        <div class="col-12 col-md-4">
-          <div class="axiom-item p-2">
-            <div class="axiom-icon" style="background: #fef2f2; color: #b91c1c;">
-              <span class="material-symbols-outlined">verified_user</span>
-            </div>
-            <div>
-              <div class="axiom-title">Honeste Vivere</div>
-              <div class="axiom-sub">(Vivir Honestamente)</div>
-              <div class="axiom-desc">
-                <strong>Segregación "4 Ojos Digital"</strong> (Art. 27): Doble firma obligatoria e
-                indivisible (Juez + Secretario) y bitácoras inmutables WORM. Ningún funcionario
-                puede alterar un fallo en solitario.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Axiom 2 -->
-        <div class="col-12 col-md-4">
-          <div class="axiom-item p-2">
-            <div class="axiom-icon" style="background: #eff6ff; color: #2563eb;">
-              <span class="material-symbols-outlined">security</span>
-            </div>
-            <div>
-              <div class="axiom-title">Alterum Non Laedere</div>
-              <div class="axiom-sub">(No Dañar a Otro)</div>
-              <div class="axiom-desc">
-                <strong>Ciberdefensa Zero Trust</strong>: CSIRT-Ulpiano 24/7, MFA biométrico FIDO2,
-                Planes PSS anuales (Art. 13-bis) y Directivas DOV con fuerza ejecutiva en 72 horas
-                para blindar los derechos procesales.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Axiom 3 -->
-        <div class="col-12 col-md-4">
-          <div class="axiom-item p-2">
-            <div class="axiom-icon" style="background: #ecfdf5; color: #059669;">
-              <span class="material-symbols-outlined">casino</span>
-            </div>
-            <div>
-              <div class="axiom-title">Suum Cuique Tribuere</div>
-              <div class="axiom-sub">(Dar a Cada Quien lo Suyo)</div>
-              <div class="axiom-desc">
-                <strong>Sorteo Algorítmico CSPRNG</strong> (Art. 26): Asignación determinística e
-                imparcial de causas y ponencias con semilla de entropía registrada en Árbol de
-                Merkle, erradicando el amaño discrecional.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. FOUR KEY PERFORMANCE TILES -->
-    <div class="row g-3 mb-5">
-      <!-- Tile 1: Artículos -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="legal-kpi-tile kpi-accent-top">
-          <div>
-            <div class="legal-kpi-label">Artículos del Anteproyecto</div>
-            <div class="legal-kpi-num" id="kpi-articles-num">
-              47
-            </div>
-          </div>
-          <div>
-            <span class="legal-kpi-tag" id="kpi-articles-tag">
-              11 Títulos + Anexo
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tile 2: Reformas -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="legal-kpi-tile kpi-accent-red" id="kpi-card-reforms">
-          <div>
-            <div class="legal-kpi-label" id="kpi-reforms-label">
-              Cláusulas FISMA 2014 &amp; LOCOTA 2026 (v1.2)
-            </div>
-            <div class="legal-kpi-num text-danger" id="kpi-reforms-num">
-              14
-            </div>
-          </div>
-          <div>
-            <span class="dc3-tag dc3-tag-red" id="kpi-reforms-tag">
-              Marcadas en Azul y Rojo
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tile 3: Jerarquía -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="legal-kpi-tile kpi-accent-gold">
-          <div>
-            <div class="legal-kpi-label">Jerarquía Normativa</div>
-            <div class="legal-kpi-num" id="kpi-hierarchy-num" style="font-size: 1.85rem;">
-              Orgánica
-            </div>
-          </div>
-          <div>
-            <span class="dc3-tag dc3-tag-gold" id="kpi-hierarchy-tag">
-              Art. 203 CRBV (TSJ 0406/2026)
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tile 4: Cobertura -->
-      <div class="col-12 col-sm-6 col-xl-3">
-        <div class="legal-kpi-tile kpi-accent-green">
-          <div>
-            <div class="legal-kpi-label">Cobertura de la Vida Jurídica</div>
-            <div
-              class="legal-kpi-num text-success"
-              id="kpi-coverage-num"
-              style="font-size: 1.85rem;"
+          <div class="margin-top-3 display-flex flex-wrap flex-gap-2">
+            <button
+              type="button"
+              class="usa-button"
+              id="kpi-hero-btn-reader"
+              onclick="window.UlpianoDash?.openLatestDoc()"
             >
-              100% Pleno
+              <span id="kpi-hero-btn-label">Abrir Texto {latestDoc.shortLabel}</span>
+            </button>
+            <button
+              type="button"
+              class="usa-button usa-button--outline"
+              onclick="window.UlpianoDash?.switchView('compare')"
+            >
+              Comparar Versiones
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. FUNDAMENTO DOGMÁTICO: LOS 3 AXIOMAS DE ULPIANO -->
+    <div class="margin-bottom-5">
+      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+        <span class="usa-tag">DOGMÁTICA Y DERECHO PROCESAL</span>
+        <h2 class="font-sans-lg margin-top-1 margin-bottom-0">
+          Los 3 Axiomas del Jurista Domicio Ulpiano en Código Criptográfico
+        </h2>
+      </div>
+
+      <ul class="usa-card-group">
+        <li class="usa-card tablet:grid-col-4">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <span class="usa-tag">Art. 27 — Doble Firma</span>
+              <h3 class="usa-card__heading">Honeste Vivere</h3>
+              <p class="font-sans-xs text-italic text-base margin-top-05">Vivir Honestamente</p>
+            </header>
+            <div class="usa-card__body">
+              <p>
+                <strong>Segregación "4 Ojos Digital"</strong>: Doble firma obligatoria e indivisible
+                (Juez + Secretario) y bitácoras inmutables WORM. Ningún funcionario puede alterar un
+                fallo en solitario ni causar retardo procesal encubierto.
+              </p>
+            </div>
+            <div class="usa-card__footer">
+              <span class="font-sans-2xs text-bold text-primary">
+                Incorruptibilidad Funcionarial
+              </span>
             </div>
           </div>
-          <div>
-            <span class="dc3-tag dc3-tag-green" id="kpi-coverage-tag">
-              Judicial + Adm. Pública + LOCOTA
-            </span>
+        </li>
+
+        <li class="usa-card tablet:grid-col-4">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <span class="usa-tag">Arts. 13-bis &amp; 19-bis</span>
+              <h3 class="usa-card__heading">Alterum Non Laedere</h3>
+              <p class="font-sans-xs text-italic text-base margin-top-05">No Dañar al Otro</p>
+            </header>
+            <div class="usa-card__body">
+              <p>
+                <strong>Ciberdefensa Zero Trust</strong>: CSIRT-Ulpiano 24/7, MFA biométrico FIDO2,
+                Planes de Seguridad del Sistema (PSS) anuales y Directivas Operativas Vinculantes
+                (DOV) ejecutivas en 72 horas para blindar la tutela judicial efectiva.
+              </p>
+            </div>
+            <div class="usa-card__footer">
+              <span class="font-sans-2xs text-bold text-primary">
+                Inmutabilidad Probatoria WORM
+              </span>
+            </div>
           </div>
-        </div>
-      </div>
+        </li>
+
+        <li class="usa-card tablet:grid-col-4">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <span class="usa-tag">Art. 26 — Imparcialidad</span>
+              <h3 class="usa-card__heading">Suum Cuique Tribuere</h3>
+              <p class="font-sans-xs text-italic text-base margin-top-05">
+                Dar a Cada Cual lo Suyo
+              </p>
+            </header>
+            <div class="usa-card__body">
+              <p>
+                <strong>Sorteo Algorítmico CSPRNG</strong>: Asignación determinística e imparcial de
+                causas, ponencias y trámites administrativos con semilla de entropía auditada en
+                Árbol de Merkle, erradicando el amaño discrecional.
+              </p>
+            </div>
+            <div class="usa-card__footer">
+              <span class="font-sans-2xs text-bold text-primary">
+                Equidad Algorítmica Imparcial
+              </span>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
 
-    <!-- 4. DYNAMIC VERSION CARDS GRID -->
-    <div class="mb-5">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-          <h4 class="fw-bold mb-0 text-dark d-flex align-items-center gap-2">
-            <span class="material-symbols-outlined text-primary">collections_bookmark</span>
-            <span>Catálogo y Control de Versiones del Anteproyecto</span>
-          </h4>
-          <div class="text-muted small mt-1">
-            Evolución técnico-legislativa registrada en <code>registry.json</code>
+    <!-- 3. CUATRO PANELES KPI DE RENDIMIENTO Y AUDITORÍA -->
+    <div class="margin-bottom-5">
+      <ul class="usa-card-group">
+        <li class="usa-card tablet:grid-col-3">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <h3 class="font-sans-xs text-uppercase text-base margin-0">
+                Artículos del Anteproyecto
+              </h3>
+            </header>
+            <div class="usa-card__body">
+              <p class="font-sans-2xl text-bold text-primary margin-y-1" id="kpi-articles-num">
+                {latestDoc.articlesCount || 47}
+              </p>
+              <span class="usa-tag" id="kpi-articles-tag">
+                {latestDoc.titlesCount || '11 Títulos + Anexo'}
+              </span>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row g-4" id="version-cards-grid">
-        <!-- Populated dynamically by viewer.js / registry.js -->
-      </div>
+        </li>
+
+        <li class="usa-card tablet:grid-col-3" id="kpi-card-reforms">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <h3 class="font-sans-xs text-uppercase text-base margin-0" id="kpi-reforms-label">
+                Cláusulas FISMA &amp; LOCOTA (V-1.2)
+              </h3>
+            </header>
+            <div class="usa-card__body">
+              <p
+                class="font-sans-2xl text-bold text-secondary-dark margin-y-1"
+                id="kpi-reforms-num"
+              >
+                {latestDoc.changes || 14}
+              </p>
+              <span class="usa-tag" id="kpi-reforms-tag">
+                Marcadas en Azul y Rojo
+              </span>
+            </div>
+          </div>
+        </li>
+
+        <li class="usa-card tablet:grid-col-3">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <h3 class="font-sans-xs text-uppercase text-base margin-0">Jerarquía Normativa</h3>
+            </header>
+            <div class="usa-card__body">
+              <p class="font-sans-2xl text-bold text-primary margin-y-1" id="kpi-hierarchy-num">
+                {latestDoc.hierarchy || 'Orgánica'}
+              </p>
+              <span class="usa-tag" id="kpi-hierarchy-tag">
+                Art. 203 CRBV (TSJ 0406/2026)
+              </span>
+            </div>
+          </div>
+        </li>
+
+        <li class="usa-card tablet:grid-col-3">
+          <div class="usa-card__container">
+            <header class="usa-card__header">
+              <h3 class="font-sans-xs text-uppercase text-base margin-0">
+                Cobertura de la Vida Jurídica
+              </h3>
+            </header>
+            <div class="usa-card__body">
+              <p class="font-sans-2xl text-bold text-success margin-y-1" id="kpi-coverage-num">
+                100% Pleno
+              </p>
+              <span class="usa-tag" id="kpi-coverage-tag">
+                Judicial + Adm. Pública + LOCOTA
+              </span>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
 
-    <!-- 5. THE 3 CORE STRUCTURAL REFORMS -->
-    <div class="mb-5">
-      <h4
-        class="fw-bold mb-3 text-dark d-flex align-items-center gap-2"
-        id="core-reforms-section-title"
-      >
-        <span class="material-symbols-outlined text-primary">shield</span>
-        <span>Desglose de las 3 Grandes Reformas Estructurales</span>
-      </h4>
-
-      <div class="row g-4" id="core-reforms-grid">
-        <!-- Populated dynamically by viewer.js based on latest version -->
+    <!-- 4. CATÁLOGO DE VERSIONES DE LA LEY ORGÁNICA (USWDS Cards) -->
+    <div class="margin-bottom-5">
+      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+        <h2 class="font-sans-lg margin-0">Catálogo y Control de Versiones del Anteproyecto</h2>
+        <p class="font-sans-sm text-base margin-top-05">
+          Evolución técnico-legislativa registrada en registro oficial normativo
+        </p>
       </div>
+
+      <ul class="usa-card-group" id="version-cards-grid">
+        {allDocs.map((doc) => (
+          <li class="usa-card tablet:grid-col-4">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                  <span class="usa-tag">{doc.shortLabel || doc.label}</span>
+                  <span class="font-sans-2xs text-base">{doc.date}</span>
+                </div>
+                <h3 class="usa-card__heading font-sans-md">{doc.label}</h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-xs text-base">{doc.description}</p>
+                <div class="display-flex flex-wrap flex-gap-1 margin-top-2">
+                  {doc.highlights?.map((h) => (
+                    <span class="usa-tag">{h}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="usa-card__footer display-flex flex-justify flex-align-center">
+                <button
+                  type="button"
+                  class="usa-button usa-button--small"
+                  onclick={`window.UlpianoDash?.loadDoc('${doc.id}')`}
+                >
+                  Abrir en Lector
+                </button>
+                {doc.changes > 0 ? (
+                  <span class="usa-tag">{doc.changes} Reformas</span>
+                ) : (
+                  <span class="font-sans-2xs text-base">Texto Base</span>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
 
-    <!-- 6. MASTER ARCHITECTURE SVG DIAGRAM PREVIEW -->
-    <div class="dc3-card mb-5 p-4">
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3 pb-3 border-bottom">
-        <div>
-          <h5 class="fw-bold mb-1 text-dark d-flex align-items-center gap-2">
-            <span class="material-symbols-outlined text-primary">account_tree</span>
-            <span>Arquitectura Maestra de Integración V-1.2</span>
-          </h5>
-          <div class="text-muted small">
-            Mapeo comparado: Reglamento UE 2023/2841, FISMA 2014 S.2521 y JTC Courts 2025 vs. Aporte
-            Original Título VII (Anticorrupción).
+    <!-- 5. DESGLOSE DE LAS GRANDES REFORMAS ESTRUCTURALES -->
+    <div class="margin-bottom-5">
+      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+        <h2 class="font-sans-lg margin-0" id="core-reforms-section-title">
+          Desglose de las 3 Grandes Reformas Estructurales ({latestDoc.shortLabel})
+        </h2>
+      </div>
+
+      <ul class="usa-card-group" id="core-reforms-grid">
+        {latestDoc.coreReforms?.map((ref) => (
+          <li class="usa-card tablet:grid-col-4">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                  <span class="usa-tag">{ref.tag}</span>
+                  <span class="font-sans-2xs text-base">{ref.articles}</span>
+                </div>
+                <h3 class="usa-card__heading font-sans-md">{ref.title}</h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-xs text-base margin-bottom-2">{ref.desc}</p>
+                <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2">
+                  <p class="font-sans-2xs margin-0 margin-bottom-1">
+                    <strong>Antes:</strong> {ref.before}
+                  </p>
+                  <p class="font-sans-2xs margin-0">
+                    <strong>Ahora:</strong> {ref.after}
+                  </p>
+                </div>
+              </div>
+              <div class="usa-card__footer">
+                <span class="font-sans-2xs text-bold text-primary">{ref.benefit}</span>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- 6. VISTA PREVIA DEL DIAGRAMA MAESTRO VECTORIAL -->
+    <div class="usa-card margin-bottom-5">
+      <div class="usa-card__container">
+        <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
+          <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
+            <div>
+              <h2 class="font-sans-lg margin-0">Arquitectura Maestra de Integración V-1.2</h2>
+              <p class="font-sans-xs text-base margin-top-05 margin-bottom-0">
+                Reglamento UE 2023/2841, FISMA 2014 S.2521 y JTC Courts 2025 vs. Aporte Original
+                Título VII.
+              </p>
+            </div>
+            <div class="display-flex flex-wrap flex-gap-1">
+              <a
+                href="./svg/ciberseguridad_integracion_V1.2.svg"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="usa-button usa-button--small"
+              >
+                Ver SVG Completo
+              </a>
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--outline"
+                onclick="window.UlpianoDash?.switchDiagramTab('master'); window.UlpianoDash?.switchView('diagrams');"
+              >
+                Explorar en Visor
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="d-flex flex-wrap gap-2">
-          <a
-            href="./svg/ciberseguridad_integracion_V1.2.svg"
-            target="_blank"
-            class="btn btn-sm btn-dark fw-semibold d-inline-flex align-items-center gap-1"
+        </header>
+        <div class="usa-card__body padding-2">
+          <div
+            id="dashboard-svg-container"
+            class="padding-2 bg-base-lightest border-1px border-base-lighter text-center overflow-auto"
           >
-            <span class="material-symbols-outlined" style="font-size: 1rem;">
-              open_in_new
-            </span>{' '}
-            Ver SVG Completo
-          </a>
-          <button
-            class="btn btn-sm btn-outline-secondary fw-semibold d-inline-flex align-items-center gap-1"
-            onclick="window.UlpianoDash?.switchDiagramTab('master'); window.UlpianoDash?.switchView('diagrams');"
-          >
-            <span class="material-symbols-outlined" style="font-size: 1rem;">
-              zoom_in
-            </span>{' '}
-            Explorar en Visor de Diagramas
-          </button>
+            <!-- Renderizado dinámico del diagrama -->
+          </div>
         </div>
-      </div>
-
-      <!-- SVG Viewport Box -->
-      <div
-        class="p-2 bg-light rounded overflow-auto text-center border"
-        style="max-height: 850px;"
-        id="dashboard-svg-container"
-      >
-        <!-- Populated by viewer.js with inline or object SVG -->
       </div>
     </div>
 
-    <!-- 7. ANALYTICAL CHARTS ROW -->
-    <div class="row g-4 mb-5">
-      <div class="col-12 col-lg-6">
-        <div class="dc3-card h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-            <h6 class="fw-bold mb-0 text-uppercase small text-dark">
-              Distribución de Reformas por Título
-            </h6>
-            <span class="dc3-tag" id="chart-reforms-version-tag">
+    <!-- 7. PANELES DE ANÁLISIS Y GRÁFICOS -->
+    <div class="grid-row grid-gap-4 margin-bottom-5">
+      <div class="tablet:grid-col-6">
+        <div class="usa-card__container padding-3 border-1px border-base-lighter">
+          <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-1">
+            <h3 class="font-sans-sm text-uppercase margin-0">Distribución de Reformas</h3>
+            <span class="usa-tag" id="chart-reforms-version-tag">
               Versión 1.2
             </span>
           </div>
-          <div style="height: 280px;">
-            <canvas id="chartReformsDistribution"></canvas>
-          </div>
+          <canvas id="chartReformsDistribution"></canvas>
         </div>
       </div>
-
-      <div class="col-12 col-lg-6">
-        <div class="dc3-card h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-            <h6 class="fw-bold mb-0 text-uppercase small text-dark">
-              Composición del Ámbito de Aplicación
-            </h6>
-            <span class="dc3-tag dc3-tag-green">Cobertura 100% Plena</span>
+      <div class="tablet:grid-col-6">
+        <div class="usa-card__container padding-3 border-1px border-base-lighter">
+          <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-1">
+            <h3 class="font-sans-sm text-uppercase margin-0">Ámbito de Aplicación</h3>
+            <span class="usa-tag">Cobertura 100% Plena</span>
           </div>
-          <div style="height: 280px;">
-            <canvas id="chartScope"></canvas>
-          </div>
+          <canvas id="chartScope"></canvas>
         </div>
       </div>
     </div>
 
-    <!-- 8. DELTA INSPECTOR TABLE -->
-    <div class="dc3-card mb-5">
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3 pb-3 border-bottom">
-        <div>
-          <h5 class="fw-bold mb-1 text-dark d-flex align-items-center gap-2">
-            <span class="material-symbols-outlined text-primary">manage_search</span>
-            <span>Explorador Detallado de Modificaciones (Delta Inspector)</span>
-          </h5>
-          <div class="text-muted small">
-            Auditoría de las 14 modificaciones estructurales introducidas en V-1.2 (S.2521 FISMA
-            2014, LOCOTA 2026, TSJ 0406/2026, Título VII).
+    <!-- 8. EXPLORADOR DELTA DE MODIFICACIONES (USWDS Table & Search) -->
+    <div class="margin-bottom-5">
+      <div class="border-bottom-1px border-base-lighter padding-bottom-2 margin-bottom-3">
+        <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
+          <div>
+            <h2 class="font-sans-lg margin-0">
+              Explorador Detallado de Modificaciones (Delta Inspector)
+            </h2>
+            <p class="font-sans-xs text-base margin-top-05 margin-bottom-0">
+              Auditoría de las 14 modificaciones estructurales introducidas en V-1.2 (S.2521 FISMA
+              2014, LOCOTA 2026, TSJ 0406/2026).
+            </p>
           </div>
-        </div>
-        <div style="max-width: 320px; width: 100%;">
-          <div class="input-group input-group-sm">
-            <span class="input-group-text bg-white border-end-0">
-              <span class="material-symbols-outlined" style="font-size: 1rem;">
-                search
-              </span>
-            </span>
+          <div class="usa-search usa-search--small" role="search">
+            <label class="usa-sr-only" for="delta-search-input">
+              Buscar por artículo
+            </label>
             <input
-              type="text"
+              class="usa-input"
               id="delta-search-input"
-              class="form-control border-start-0"
-              placeholder="Buscar por artículo o término clave..."
+              type="search"
+              name="search"
+              placeholder="Buscar por artículo o término..."
             />
           </div>
         </div>
       </div>
 
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0" style="font-size: 0.88rem;">
-          <thead class="table-light">
+      <div class="usa-table-container--scrollable" tabindex="0">
+        <table class="usa-table usa-table--striped usa-table--borderless width-full">
+          <caption class="usa-sr-only">Explorador de modificaciones entre versiones</caption>
+          <thead>
             <tr>
-              <th style="width: 20%;">Artículo / Sección</th>
-              <th style="width: 30%;">Resumen Técnico</th>
-              <th style="width: 40%;">Comparativa y Novedades (V1.0 → V1.1 → V1.2)</th>
-              <th style="width: 10%;" class="text-end">
+              <th scope="col">Artículo / Sección</th>
+              <th scope="col">Resumen Técnico</th>
+              <th scope="col">Comparativa y Novedades</th>
+              <th scope="col" class="text-right">
                 Acción
               </th>
             </tr>
           </thead>
           <tbody id="delta-explorer-tbody">
-            <!-- Populated dynamically by viewer.js / dashboard.js -->
+            {REFORMS_CATALOG.map((ref) => (
+              <tr>
+                <th scope="row">
+                  <span class="usa-tag margin-bottom-05">{ref.type}</span>
+                  <div class="font-sans-xs text-bold">{ref.article}</div>
+                </th>
+                <td>
+                  <p class="font-sans-xs margin-0">{ref.summary}</p>
+                  <p class="font-sans-2xs text-base margin-top-05 margin-bottom-0">
+                    <strong>Impacto:</strong> {ref.impact}
+                  </p>
+                </td>
+                <td>
+                  <div class="padding-1 bg-base-lightest border-1px border-base-lighter font-sans-2xs">
+                    <div class="margin-bottom-05">
+                      <strong>❌ {ref.beforeTag}:</strong> {ref.before}
+                    </div>
+                    <div>
+                      <strong>✅ {ref.afterTag}:</strong> {ref.after}
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <button
+                    type="button"
+                    class="usa-button usa-button--small usa-button--outline"
+                    onclick={`window.UlpianoDash?.loadDoc('${ref.targetDoc || 'v1.2'}')`}
+                  >
+                    Ver en Texto
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

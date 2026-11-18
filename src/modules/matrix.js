@@ -80,11 +80,14 @@ export function copyMatrixTable() {
       console.error('Error al copiar matriz:', err);
     });
 }
-
 export function filterMatrixBySheet(sheetType) {
   const rows = document.querySelectorAll('#matrix-tbody tr');
   const tabs = document.querySelectorAll('.excel-sheet-tab');
-  tabs.forEach((t) => t.classList.toggle('active', t.getAttribute('data-sheet') === sheetType));
+  tabs.forEach((t) => {
+    const isAct = t.getAttribute('data-sheet') === sheetType;
+    t.classList.toggle('active', isAct);
+    t.classList.toggle('usa-button--outline', !isAct);
+  });
 
   let visibleCount = 0;
   rows.forEach((row) => {
