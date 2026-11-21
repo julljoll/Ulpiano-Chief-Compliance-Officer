@@ -1,0 +1,334 @@
+---
+/**
+ * ULPIANO CCO — Static Legislative Reader & RAG Catalog (/lector/[id]/)
+ * 100% Build-Time Astro 7 Sätteri Markdown Rendering, Static TOC from `headings`, Zero-JS readable!
+ */
+import { getCollection, render } from 'astro:content';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { sourceFileToCollectionId } from '../../lib/format.ts';
+
+export async function getStaticPaths() {
+  const [versions, normativa] = await Promise.all([
+    getCollection('versiones'),
+    getCollection('normativa'),
+  ]);
+
+  return versions.map((v) => {
+    const targetFile = v.data.sourceFile.toLowerCase();
+    const targetNormId = sourceFileToCollectionId(v.data.sourceFile).replace(/\./g, '');
+    const mdEntry = normativa.find(
+      (n) =>
+        (n.filePath && n.filePath.toLowerCase() === targetFile) ||
+        n.id.toLowerCase().replace(/\./g, '') === targetNormId
+    );
+    if (!mdEntry) {
+      throw new Error(
+        `No Markdown entry found in docs/ for ${v.data.sourceFile} (available: ${normativa.map((n) => `${n.id}|${n.filePath}`).join(', ')})`
+      );
+    }
+    return {
+      params: { id: v.data.id },
+      props: {
+        doc: v.data,
+        allDocs: versions.map((entry) => entry.data),
+        mdEntry,
+      },
+    };
+  });
+}
+
+const { doc, allDocs, mdEntry } = Astro.props;
+const { Content, headings } = await render(mdEntry);
+const tocHeadings = headings.filter((h) => h.depth >= 1 && h.depth <= 4);
+
+const rawBody = mdEntry.body || '';
+const v11Count = (rawBody.match(/color:\s*red/gi) || []).length;
+const v12Count = (rawBody.match(/class="reforma-v12"/gi) || []).length;
+const totalReforms = v11Count + v12Count;
+---
+
+<LegalLayout
+  title={`${doc.label} — Lector Normativo Ulpiano CCO`}
+  description={doc.description}
+  activeSection="reader"
+>
+  <section class="usa-section">
+    <div class="grid-container">
+      <!-- 1. TOOLBAR SUPERIOR DEL LECTOR -->
+      <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-3 ulp-no-print">
+        <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2 margin-bottom-2">
+          <div>
+            <nav class="usa-breadcrumb margin-bottom-05" aria-label="Migas de pan">
+              <ol class="usa-breadcrumb__list">
+                <li class="usa-breadcrumb__list-item">
+                  <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+                </li>
+                <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                  <span>{doc.shortLabel}</span>
+                </li>
+              </ol>
+            </nav>
+            <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
+              <span class="usa-tag ulp-tag-v12">{doc.shortLabel}</span>
+              <h1 class="font-sans-md margin-0">{doc.label}</h1>
+            </div>
+          </div>
+
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
+            <!-- Native HTML version links (work with 0 JS!) -->
+            <nav aria-label="Cambiar versión del documento" class="display-flex flex-wrap ulp-gap-1">
+              {allDocs.map((item) => {
+                const isCurrent = item.id === doc.id;
+                return (
+                  <a
+                    href={`/lector/${item.id}/`}
+                    class={`usa-button usa-button--small ${isCurrent ? '' : 'usa-button--outline'}`}
+                    aria-current={isCurrent ? 'page' : undefined}
+                  >
+                    {item.shortLabel}
+                  </a>
+                );
+              })}
+            </nav>
+
+            <button
+              type="button"
+              class="usa-button usa-button--small usa-button--outline"
+              id="btn-toggle-floating-toc"
+              aria-expanded="true"
+            >
+              Índice Lateral
+            </button>
+
+            {totalReforms > 0 && (
+              <button
+                type="button"
+                class="usa-button usa-button--small usa-button--secondary"
+                id="btn-jump-highlight"
+                title="Saltar a la siguiente modificación resaltada (V1.1 rojo / V1.2 azul)"
+              >
+                <span id="highlight-counter">
+                  Siguiente reforma ({v11Count} V1.1 / {v12Count} V1.2)
+                </span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              class="usa-button usa-button--small usa-button--outline"
+              id="btn-print-reader"
+            >
+              Imprimir
+            </button>
+          </div>
+        </div>
+
+        <!-- Barra de tipografía accesible + leyenda -->
+        <div class="display-flex flex-wrap flex-justify flex-align-center border-top-1px border-base-lighter padding-top-1 ulp-gap-2">
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1" role="group" aria-label="Controles de tipografía">
+            <span class="font-sans-2xs text-bold text-base-darker">Tipografía:</span>
+            <button
+              type="button"
+              id="btn-font-serif"
+              class="usa-button usa-button--small"
+              aria-pressed="true"
+            >
+              Serif Jurídica
+            </button>
+            <button
+              type="button"
+              id="btn-font-sans"
+              class="usa-button usa-button--small usa-button--outline"
+              aria-pressed="false"
+            >
+              Sans UI
+            </button>
+            <button
+              type="button"
+              id="btn-font-dec"
+              class="usa-button usa-button--small usa-button--outline"
+              aria-label="A- Reducir tamaño de fuente"
+            >
+              A-
+            </button>
+            <span id="reader-font-size-val" class="font-mono-2xs text-bold">17px</span>
+            <button
+              type="button"
+              id="btn-font-inc"
+              class="usa-button usa-button--small usa-button--outline"
+              aria-label="A+ Aumentar tamaño de fuente"
+            >
+              A+
+            </button>
+          </div>
+
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1 font-sans-2xs">
+            <span class="reforma-rojo">Reforma V-1.1 (Ley Orgánica)</span>
+            <span class="reforma-v12">Reforma V-1.2 (FISMA &amp; LOCOTA)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. CONTENEDOR PRINCIPAL: ÍNDICE SIDENAV ESTÁTICO + PROSA COMPILADA POR ASTRO -->
+      <div class="grid-row grid-gap-4">
+        <div class="tablet:grid-col-4 desktop:grid-col-3" id="floating-toc-col">
+          <div
+            class="padding-2 border-1px border-base-lighter bg-white ulp-toc-sticky"
+            tabindex="0"
+            role="region"
+            aria-label="Panel del índice normativo"
+          >
+            <div class="display-flex flex-justify flex-align-center margin-bottom-2">
+              <h2 class="font-sans-xs text-uppercase text-bold margin-0">Índice Normativo</h2>
+              <span class="usa-tag ulp-tag-v12">{tocHeadings.length}</span>
+            </div>
+
+            <div class="margin-bottom-2 ulp-no-print">
+              <label class="usa-sr-only" for="floating-toc-filter">
+                Filtrar artículos en el índice
+              </label>
+              <input
+                class="usa-input"
+                id="floating-toc-filter"
+                type="search"
+                placeholder="Filtrar sección o artículo..."
+              />
+            </div>
+
+            <nav aria-label="Índice del documento normativo">
+              <ul class="usa-sidenav" id="floating-toc-list">
+                {tocHeadings.map((h) => (
+                  <li class="usa-sidenav__item floating-toc-li">
+                    <a
+                      href={`#${h.slug}`}
+                      class={`floating-toc-item toc-level-${h.depth}`}
+                    >
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div class="tablet:grid-col-8 desktop:grid-col-9" id="reader-paper-col">
+          <article
+            class="usa-prose ulp-reader-paper padding-4 bg-white border-1px border-base-lighter shadow-1"
+            id="paper-sheet"
+          >
+            <Content />
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const PREFS_KEY = 'ulpiano_cco_reader_prefs_v1';
+    const paper = document.getElementById('paper-sheet');
+    const sizeVal = document.getElementById('reader-font-size-val');
+    const btnSerif = document.getElementById('btn-font-serif');
+    const btnSans = document.getElementById('btn-font-sans');
+
+    let fontFamily: 'serif' | 'sans' = 'serif';
+    let fontSize = 17;
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}') as {
+        fontFamily?: string;
+        fontSize?: number;
+      };
+      if (saved.fontFamily === 'sans') fontFamily = 'sans';
+      if (typeof saved.fontSize === 'number' && saved.fontSize >= 14 && saved.fontSize <= 24) {
+        fontSize = saved.fontSize;
+      }
+    } catch {
+      // ignore storage errors
+    }
+
+    const applyTypography = () => {
+      if (!paper) return;
+      paper.classList.toggle('ulp-font-sans', fontFamily === 'sans');
+      paper.style.setProperty('--ulp-reader-font-size', `${fontSize}px`);
+      if (sizeVal) sizeVal.textContent = `${fontSize}px`;
+      btnSerif?.classList.toggle('usa-button--outline', fontFamily !== 'serif');
+      btnSerif?.setAttribute('aria-pressed', String(fontFamily === 'serif'));
+      btnSans?.classList.toggle('usa-button--outline', fontFamily !== 'sans');
+      btnSans?.setAttribute('aria-pressed', String(fontFamily === 'sans'));
+      try {
+        localStorage.setItem(PREFS_KEY, JSON.stringify({ fontFamily, fontSize }));
+      } catch {
+        // ignore
+      }
+    };
+
+    applyTypography();
+
+    btnSerif?.addEventListener('click', () => {
+      fontFamily = 'serif';
+      applyTypography();
+    });
+    btnSans?.addEventListener('click', () => {
+      fontFamily = 'sans';
+      applyTypography();
+    });
+    document.getElementById('btn-font-dec')?.addEventListener('click', () => {
+      fontSize = Math.max(14, fontSize - 1);
+      applyTypography();
+    });
+    document.getElementById('btn-font-inc')?.addEventListener('click', () => {
+      fontSize = Math.min(24, fontSize + 1);
+      applyTypography();
+    });
+    document.getElementById('btn-print-reader')?.addEventListener('click', () => window.print());
+
+    // Toggle TOC column
+    const tocBtn = document.getElementById('btn-toggle-floating-toc');
+    const tocCol = document.getElementById('floating-toc-col');
+    const paperCol = document.getElementById('reader-paper-col');
+    tocBtn?.addEventListener('click', () => {
+      if (!tocCol || !paperCol) return;
+      const hidden = tocCol.hasAttribute('hidden');
+      if (hidden) {
+        tocCol.removeAttribute('hidden');
+        paperCol.className = 'tablet:grid-col-8 desktop:grid-col-9';
+        tocBtn.classList.add('usa-button--outline');
+        tocBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        tocCol.setAttribute('hidden', '');
+        paperCol.className = 'grid-col-12';
+        tocBtn.classList.remove('usa-button--outline');
+        tocBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // TOC filter
+    const tocFilter = document.getElementById('floating-toc-filter') as HTMLInputElement | null;
+    tocFilter?.addEventListener('input', () => {
+      const q = tocFilter.value.toLowerCase().trim();
+      document.querySelectorAll<HTMLLIElement>('#floating-toc-list .floating-toc-li').forEach((li) => {
+        li.hidden = Boolean(q) && !(li.textContent || '').toLowerCase().includes(q);
+      });
+    });
+
+    // Sequential jump across V1.1 & V1.2 highlights
+    const jumpBtn = document.getElementById('btn-jump-highlight');
+    const counterEl = document.getElementById('highlight-counter');
+    const spans = paper ? Array.from(paper.querySelectorAll<HTMLElement>('.reforma-rojo, .reforma-v12')) : [];
+    let highlightIdx = -1;
+
+    jumpBtn?.addEventListener('click', () => {
+      if (!spans.length) return;
+      highlightIdx = (highlightIdx + 1) % spans.length;
+      const target = spans[highlightIdx];
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.add('ulp-highlight-pulse');
+      setTimeout(() => target.classList.remove('ulp-highlight-pulse'), 1600);
+      if (counterEl) {
+        const kind = target.classList.contains('reforma-v12') ? 'V1.2' : 'V1.1';
+        counterEl.textContent = `Reforma ${highlightIdx + 1}/${spans.length} (${kind})`;
+      }
+    });
+  </script>
+</LegalLayout>

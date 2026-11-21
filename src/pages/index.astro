@@ -1,32 +1,492 @@
 ---
+/**
+ * ULPIANO CCO — Executive Dashboard (Native Astro 7 Build-Time SSG)
+ * Zero Chart.js (uses build-time SVG charts), zero fetch for master SVG, zero-JS deep links to articles.
+ */
+import { getCollection } from 'astro:content';
 import LegalLayout from '../layouts/LegalLayout.astro';
-import DashboardView from '../components/views/DashboardView.astro';
-import DiagramsView from '../components/views/DiagramsView.astro';
-import ApiConsoleView from '../components/views/ApiConsoleView.astro';
-import ReaderView from '../components/views/ReaderView.astro';
-import CompareView from '../components/views/CompareView.astro';
-import MatrixView from '../components/views/MatrixView.astro';
+import ReformsBarChart from '../components/charts/ReformsBarChart.astro';
+import ScopeDonutChart from '../components/charts/ScopeDonutChart.astro';
+import { variantTagClass } from '../lib/format.ts';
+import { readPublicSvgInline } from '../lib/svg.ts';
+
+const allVersions = (await getCollection('versiones')).map((e) => e.data);
+const legislativeDocs = allVersions.filter((d) => d.kind !== 'catalog');
+const latestDoc = legislativeDocs[0]!;
+const reformsList = (await getCollection('reformas')).map((e) => e.data);
+
+const masterSvgInline = readPublicSvgInline(
+  '/svg/ciberseguridad_integracion_V1.2.svg',
+  'Diagrama de Arquitectura Maestra de Integración V-1.2 de Ulpiano CCO'
+);
 ---
 
 <LegalLayout
-  title="⚖️ Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital"
+  title="Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital"
   description="Portal oficial de ciberseguridad procesal, informática forense e integridad digital del sistema de justicia y de la administración pública. Integra FISMA 2014, UE 2023/2841, LOCOTA 2026 y TSJ/SC 0406/2026."
+  activeSection="dashboard"
 >
-  <!-- View A: Dashboard de Control y Mejoras -->
-  <DashboardView />
+  <section class="usa-section">
+    <div class="grid-container">
+      <!-- 1. HERO EJECUTIVO -->
+      <div class="usa-hero ulp-hero margin-bottom-4" aria-label="Introducción Institucional">
+        <div class="grid-container">
+          <div class="usa-hero__callout">
+            <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
+              <ol class="usa-breadcrumb__list">
+                <li class="usa-breadcrumb__list-item">
+                  <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+                </li>
+                <li class="usa-breadcrumb__list-item">
+                  <span class="usa-breadcrumb__link">Auditoría Normativa</span>
+                </li>
+                <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                  <span>{latestDoc.label}</span>
+                </li>
+              </ol>
+            </nav>
 
-  <!-- View B: Lector de Versiones y Expediente Normativo -->
-  <ReaderView />
+            <span class="usa-tag ulp-tag-v12 margin-bottom-1">RANGO ORGÁNICO ART. 203 CRBV</span>
+            <h1 class="usa-hero__heading">
+              Auditoría de Integridad y Control de {latestDoc.shortLabel}
+            </h1>
+            <p>{latestDoc.description}</p>
 
-  <!-- View C: Comparador Paralelo de Versiones -->
-  <CompareView />
+            <div class="margin-top-3 display-flex flex-wrap ulp-gap-2">
+              <a href={`/lector/${latestDoc.id}/`} class="usa-button">
+                Abrir Texto {latestDoc.shortLabel}
+              </a>
+              <a href="/comparador/v1.0-vs-v1.2/" class="usa-button usa-button--outline">
+                Comparar Versiones
+              </a>
+              <a href="/lector/rag-catalog/" class="usa-button usa-button--outline">
+                Abrir Catálogo RAG (115 Fuentes)
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- View D: Matriz de Trazabilidad Normativa -->
-  <MatrixView />
+      <!-- 2. FUNDAMENTO DOGMÁTICO: LOS 3 AXIOMAS DE ULPIANO -->
+      <div class="margin-bottom-5">
+        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+          <span class="usa-tag ulp-tag-v12">DOGMÁTICA Y DERECHO PROCESAL</span>
+          <h2 class="font-sans-lg margin-top-1 margin-bottom-0">
+            Los 3 Axiomas del Jurista Domicio Ulpiano en Código Criptográfico
+          </h2>
+        </div>
 
-  <!-- View E: Suite de Diagramas de Arquitectura & Compliance -->
-  <DiagramsView />
+        <ul class="usa-card-group">
+          <li class="usa-card tablet:grid-col-4">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <span class="usa-tag ulp-tag-v12">Art. 27 — Doble Firma</span>
+                <h3 class="usa-card__heading">Honeste Vivere</h3>
+                <p class="font-sans-xs text-italic text-base-dark margin-top-05">Vivir Honestamente</p>
+              </header>
+              <div class="usa-card__body">
+                <p>
+                  <strong>Segregación "4 Ojos Digital"</strong>: Doble firma obligatoria e indivisible
+                  (Juez + Secretario) y bitácoras inmutables WORM. Ningún funcionario puede alterar un
+                  fallo en solitario ni causar retardo procesal encubierto.
+                </p>
+              </div>
+              <div class="usa-card__footer">
+                <span class="font-sans-2xs text-bold text-primary">
+                  Incorruptibilidad Funcionarial
+                </span>
+              </div>
+            </div>
+          </li>
 
-  <!-- View F: Consola del Servidor API Backend Python 3.12 (FastAPI) -->
-  <ApiConsoleView />
+          <li class="usa-card tablet:grid-col-4">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <span class="usa-tag ulp-tag-success">Arts. 13-bis &amp; 19-bis</span>
+                <h3 class="usa-card__heading">Alterum Non Laedere</h3>
+                <p class="font-sans-xs text-italic text-base-dark margin-top-05">No Dañar al Otro</p>
+              </header>
+              <div class="usa-card__body">
+                <p>
+                  <strong>Ciberdefensa Zero Trust</strong>: CSIRT-Ulpiano 24/7, MFA biométrico FIDO2,
+                  Planes de Seguridad del Sistema (PSS) anuales y Directivas Operativas Vinculantes
+                  (DOV) ejecutivas en 72 horas para blindar la tutela judicial efectiva.
+                </p>
+              </div>
+              <div class="usa-card__footer">
+                <span class="font-sans-2xs text-bold text-primary">
+                  Inmutabilidad Probatoria WORM
+                </span>
+              </div>
+            </div>
+          </li>
+
+          <li class="usa-card tablet:grid-col-4">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <span class="usa-tag ulp-tag-warning">Art. 26 — Imparcialidad</span>
+                <h3 class="usa-card__heading">Suum Cuique Tribuere</h3>
+                <p class="font-sans-xs text-italic text-base-dark margin-top-05">
+                  Dar a Cada Cual lo Suyo
+                </p>
+              </header>
+              <div class="usa-card__body">
+                <p>
+                  <strong>Sorteo Algorítmico CSPRNG</strong>: Asignación determinística e imparcial de
+                  causas, ponencias y trámites administrativos con semilla de entropía auditada en
+                  Árbol de Merkle, erradicando el amaño discrecional.
+                </p>
+              </div>
+              <div class="usa-card__footer">
+                <span class="font-sans-2xs text-bold text-primary">
+                  Equidad Algorítmica Imparcial
+                </span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3. CUATRO PANELES KPI -->
+      <div class="margin-bottom-5">
+        <ul class="usa-card-group">
+          <li class="usa-card tablet:grid-col-3">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h3 class="font-sans-xs text-uppercase text-base-darker margin-0">
+                  Artículos del Anteproyecto
+                </h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-2xl text-bold text-primary margin-y-1">
+                  {latestDoc.articlesCount}
+                </p>
+                <span class="usa-tag ulp-tag-v12">{latestDoc.titlesCount}</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="usa-card tablet:grid-col-3">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h3 class="font-sans-xs text-uppercase text-base-darker margin-0">
+                  {latestDoc.changesLabel}
+                </h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-2xl text-bold text-secondary-darker margin-y-1">
+                  {latestDoc.changes}
+                </p>
+                <span class="usa-tag ulp-tag-v11">{latestDoc.changesTag}</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="usa-card tablet:grid-col-3">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h3 class="font-sans-xs text-uppercase text-base-darker margin-0">
+                  Jerarquía Normativa
+                </h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-2xl text-bold text-primary margin-y-1">
+                  {latestDoc.hierarchy}
+                </p>
+                <span class="usa-tag ulp-tag-v12">{latestDoc.hierarchySub}</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="usa-card tablet:grid-col-3">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h3 class="font-sans-xs text-uppercase text-base-darker margin-0">
+                  Cobertura de la Vida Jurídica
+                </h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-2xl text-bold text-primary-dark margin-y-1">
+                  {latestDoc.coverage}
+                </p>
+                <span class="usa-tag ulp-tag-success">{latestDoc.coverageSub}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 4. CATÁLOGO DE VERSIONES -->
+      <div class="margin-bottom-5">
+        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+          <h2 class="font-sans-lg margin-0">Catálogo y Control de Versiones del Anteproyecto</h2>
+          <p class="font-sans-sm text-base-dark margin-top-05">
+            Evolución técnico-legislativa registrada en registro oficial normativo
+          </p>
+        </div>
+
+        <ul class="usa-card-group">
+          {legislativeDocs.map((doc) => (
+            <li class="usa-card tablet:grid-col-4">
+              <div class="usa-card__container">
+                <header class="usa-card__header">
+                  <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                    <span class="usa-tag ulp-tag-v12">{doc.shortLabel}</span>
+                    <span class="font-sans-2xs text-base-dark">{doc.date}</span>
+                  </div>
+                  <h3 class="usa-card__heading font-sans-md">{doc.label}</h3>
+                </header>
+                <div class="usa-card__body">
+                  <p class="font-sans-xs text-base-dark">{doc.description}</p>
+                  <div class="display-flex flex-wrap ulp-gap-1 margin-top-2">
+                    {doc.highlights.map((h) => (
+                      <span class="usa-tag">{h}</span>
+                    ))}
+                  </div>
+                </div>
+                <div class="usa-card__footer display-flex flex-justify flex-align-center">
+                  <a href={`/lector/${doc.id}/`} class="usa-button usa-button--small">
+                    Abrir en Lector
+                  </a>
+                  {doc.changes > 0 ? (
+                    <span class="usa-tag ulp-tag-v11">{doc.changes} Reformas</span>
+                  ) : (
+                    <span class="font-sans-2xs text-base-dark">Texto Base</span>
+                  )}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 5. DESGLOSE DE LAS 3 GRANDES REFORMAS ESTRUCTURALES -->
+      <div class="margin-bottom-5">
+        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+          <h2 class="font-sans-lg margin-0">
+            Desglose de las {latestDoc.coreReforms.length} Grandes Reformas Estructurales ({latestDoc.shortLabel})
+          </h2>
+        </div>
+
+        <ul class="usa-card-group">
+          {latestDoc.coreReforms.map((ref) => (
+            <li class="usa-card tablet:grid-col-4">
+              <div class="usa-card__container">
+                <header class="usa-card__header">
+                  <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                    <span class={variantTagClass(ref.variant)}>{ref.tag}</span>
+                    <span class="font-sans-2xs text-base-dark">{ref.articles}</span>
+                  </div>
+                  <h3 class="usa-card__heading font-sans-md">{ref.title}</h3>
+                </header>
+                <div class="usa-card__body">
+                  <p class="font-sans-xs text-base-dark margin-bottom-2">{ref.desc}</p>
+                  <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2">
+                    <p class="font-sans-2xs margin-0 margin-bottom-1">
+                      <strong>Antes:</strong> {ref.before}
+                    </p>
+                    <p class="font-sans-2xs margin-0">
+                      <strong>Ahora:</strong> {ref.after}
+                    </p>
+                  </div>
+                </div>
+                <div class="usa-card__footer">
+                  <span class="font-sans-2xs text-bold text-primary">{ref.benefit}</span>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 6. DIAGRAMA MAESTRO VECTORIAL INCRUSTADO EN BUILD-TIME (0 fetch, 0 JS) -->
+      <div class="usa-card margin-bottom-5">
+        <div class="usa-card__container">
+          <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
+            <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2">
+              <div>
+                <h2 class="font-sans-lg margin-0">Arquitectura Maestra de Integración V-1.2</h2>
+                <p class="font-sans-xs text-base-dark margin-top-05 margin-bottom-0">
+                  Reglamento UE 2023/2841, FISMA 2014 S.2521 y JTC Courts 2025 vs. Aporte Original
+                  Título VII.
+                </p>
+              </div>
+              <div class="display-flex flex-wrap ulp-gap-1">
+                <a
+                  href="/svg/ciberseguridad_integracion_V1.2.svg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="usa-button usa-button--small"
+                >
+                  Ver SVG Completo
+                </a>
+                <a
+                  href="/diagramas/master/"
+                  class="usa-button usa-button--small usa-button--outline"
+                >
+                  Explorar en Visor (12 Vistas)
+                </a>
+              </div>
+            </div>
+          </header>
+          <div class="usa-card__body padding-2">
+            <div
+              id="dashboard-svg-container"
+              class="ulp-svg-viewport"
+              tabindex="0"
+              role="region"
+              aria-label="Vista previa del diagrama maestro V-1.2"
+              set:html={masterSvgInline}
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. GRÁFICOS SVG PUROS EN BUILD-TIME (0 KB JS — Reemplaza Chart.js) -->
+      <div class="grid-row grid-gap-4 margin-bottom-5">
+        <div class="tablet:grid-col-6">
+          <ReformsBarChart
+            title="Distribución de Reformas"
+            versionTag={latestDoc.shortLabel}
+            labels={latestDoc.reformsDistribution.labels}
+            data={latestDoc.reformsDistribution.data}
+          />
+        </div>
+        <div class="tablet:grid-col-6">
+          <ScopeDonutChart
+            title="Ámbito de Aplicación"
+            badge="Cobertura 100% Plena"
+          />
+        </div>
+      </div>
+
+      <!-- 8. EXPLORADOR DELTA DE MODIFICACIONES (Enlaces HTML puros + micro-filtro progresivo) -->
+      <div class="margin-bottom-5">
+        <div class="border-bottom-1px border-base-lighter padding-bottom-2 margin-bottom-3">
+          <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2">
+            <div>
+              <h2 class="font-sans-lg margin-0">
+                Explorador Detallado de Modificaciones (Delta Inspector)
+              </h2>
+              <p class="font-sans-xs text-base-dark margin-top-05 margin-bottom-0">
+                Auditoría de las {reformsList.length} modificaciones estructurales introducidas en
+                V-1.2 (S.2521 FISMA 2014, LOCOTA 2026, TSJ 0406/2026).
+              </p>
+              <p
+                id="delta-filter-status"
+                class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0"
+                aria-live="polite"
+              >
+                {reformsList.length} modificaciones estructurales registradas
+              </p>
+            </div>
+            <div class="usa-search usa-search--small" role="search">
+              <label class="usa-sr-only" for="delta-search-input">
+                Buscar por artículo o término
+              </label>
+              <input
+                class="usa-input"
+                id="delta-search-input"
+                type="search"
+                name="search"
+                placeholder="Buscar por artículo o término..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="usa-table-container--scrollable" tabindex="0">
+          <table class="usa-table usa-table--striped usa-table--borderless width-full">
+            <caption class="usa-sr-only">Explorador de modificaciones entre versiones</caption>
+            <thead>
+              <tr>
+                <th scope="col">Artículo / Sección</th>
+                <th scope="col">Resumen Técnico</th>
+                <th scope="col">Comparativa y Novedades</th>
+                <th scope="col" class="text-right">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="delta-explorer-tbody">
+              {reformsList.map((ref) => (
+                <tr>
+                  <th scope="row">
+                    <span class={`${variantTagClass(ref.variant)} margin-bottom-05`}>
+                      {ref.type}
+                    </span>
+                    <div class="font-sans-xs text-bold">{ref.article}</div>
+                  </th>
+                  <td>
+                    <p class="font-sans-xs margin-0">{ref.summary}</p>
+                    <p class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0">
+                      <strong>Impacto:</strong> {ref.impact}
+                    </p>
+                  </td>
+                  <td>
+                    <div class="padding-1 bg-base-lightest border-1px border-base-lighter font-sans-2xs">
+                      <div class="margin-bottom-05">
+                        <span class="usa-tag ulp-tag-v11 margin-right-05">{ref.beforeTag}</span>
+                        <span>{ref.before}</span>
+                      </div>
+                      <div>
+                        <span class="usa-tag ulp-tag-v12 margin-right-05">{ref.afterTag}</span>
+                        <strong>{ref.after}</strong>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <a
+                      href={`/lector/${ref.targetDoc}/#${ref.targetAnchor}`}
+                      class="usa-button usa-button--small usa-button--outline"
+                    >
+                      Ver en Texto
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Backwards-compatible legacy SPA hash redirect (#reader -> /lector/v1.2/, etc.)
+    const legacyHashMap: Record<string, string> = {
+      '#reader': '/lector/v1.2/',
+      '#diagrams': '/diagramas/master/',
+      '#compare': '/comparador/v1.0-vs-v1.2/',
+      '#matrix': '/matriz/',
+      '#api': '/consola-api/',
+    };
+    const redirectLegacyHash = () => {
+      const baseHash = window.location.hash.split('?')[0];
+      if (legacyHashMap[baseHash]) {
+        window.location.replace(legacyHashMap[baseHash]);
+      }
+    };
+    redirectLegacyHash();
+    window.addEventListener('hashchange', redirectLegacyHash);
+
+    // Progressive enhancement: live Delta table filter
+    const input = document.getElementById('delta-search-input') as HTMLInputElement | null;
+    const status = document.getElementById('delta-filter-status');
+    if (input) {
+      input.addEventListener('input', () => {
+        const q = input.value.toLowerCase().trim();
+        const rows = document.querySelectorAll<HTMLTableRowElement>('#delta-explorer-tbody tr');
+        let visible = 0;
+        rows.forEach((row) => {
+          const match = !q || (row.textContent || '').toLowerCase().includes(q);
+          row.hidden = !match;
+          if (match) visible++;
+        });
+        if (status) {
+          status.textContent = q
+            ? `Mostrando ${visible} de ${rows.length} reformas coincidentes`
+            : `${rows.length} modificaciones estructurales registradas`;
+        }
+      });
+    }
+  </script>
 </LegalLayout>

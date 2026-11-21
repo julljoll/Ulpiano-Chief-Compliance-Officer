@@ -1,0 +1,648 @@
+---
+/**
+ * ULPIANO CCO — Isolated Interactive Forensic API Console (/consola-api/)
+ * The ONLY page in the site that loads Web Crypto SHA-256 simulation & qrcode-generator.
+ * Zero bytes of this bundle ever ship to Dashboard, Reader, Compare, Diagrams, Matrix, Backend, or Frontend.
+ */
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { CANONICAL_SENTENCE_RECORD } from '../../lib/crypto.ts';
+---
+
+<LegalLayout
+  title="Consola API Python (FastAPI) & Verificador SHA-256 — Ulpiano CCO"
+  description="Simulador criptográfico interactivo con SHA-256 real (Web Crypto API), generador QR SVG, Bóveda WORM de sesión, sorteo CSPRNG y OpenAPI 3.1."
+  activeSection="api"
+>
+  <section class="usa-section">
+    <div class="grid-container">
+      <!-- 1. HERO -->
+      <div class="usa-hero ulp-hero margin-bottom-4" aria-label="Consola de API Python 3.12">
+        <div class="grid-container">
+          <div class="usa-hero__callout">
+            <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
+              <ol class="usa-breadcrumb__list">
+                <li class="usa-breadcrumb__list-item">
+                  <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+                </li>
+                <li class="usa-breadcrumb__list-item">
+                  <span class="usa-breadcrumb__link">Arquitectura Desacoplada</span>
+                </li>
+                <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                  <span>Servidor API Python 3.12 (FastAPI)</span>
+                </li>
+              </ol>
+            </nav>
+
+            <span class="usa-tag ulp-tag-v12 margin-bottom-1">
+              FASTAPI ASGI + PYKCS11 HSM FIPS 140-2 L3 + WEB CRYPTO SHA-256
+            </span>
+            <h1 class="usa-hero__heading">Consola Interactiva del Backend Judicial en Python</h1>
+            <p>
+              Simulador conectado con criptografía real en el navegador (<code>Web Crypto SHA-256</code>
+              y generación de QR SVG verificable). Al firmar un expediente en el Simulador 1, se
+              registra en la Bóveda WORM de sesión para cotejarlo al instante en el Simulador 2.
+            </p>
+
+            <div class="margin-top-3 display-flex flex-wrap ulp-gap-2">
+              <a href="/diagramas/backend_python/" class="usa-button">
+                Ver Diagrama Backend Python
+              </a>
+              <a href="/backend/" class="usa-button usa-button--outline">
+                Página de Arquitectura Backend
+              </a>
+              <a
+                href="/openapi.json"
+                download="ulpiano-openapi-3.1.json"
+                class="usa-button usa-button--outline"
+              >
+                Descargar OpenAPI 3.1 (JSON)
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. CALCULADORA SHA-256 LOCAL -->
+      <div class="usa-card margin-bottom-4">
+        <div class="usa-card__container padding-3">
+          <h2 class="font-sans-md margin-top-0 margin-bottom-1">
+            Calculadora Forense SHA-256 Local (Sin Subir Archivos al Servidor)
+          </h2>
+          <p class="font-sans-xs text-base-dark margin-top-0 margin-bottom-2">
+            Seleccione o arrastre cualquier documento local (PDF, texto o evidencia digital) para
+            calcular su huella criptográfica SHA-256 real mediante <code>crypto.subtle.digest</code> y
+            usarla en la firma o cotejo.
+          </p>
+          <div id="sim-file-dropzone" class="ulp-dropzone">
+            <label class="usa-label margin-top-0" for="sim-file-input">
+              Seleccionar archivo local para cálculo SHA-256:
+            </label>
+            <input id="sim-file-input" class="usa-file-input margin-top-1" type="file" />
+            <p
+              id="sim-file-hash-status"
+              class="font-mono-2xs text-base-darker margin-top-1 margin-bottom-0"
+              aria-live="polite"
+            >
+              Ningún archivo seleccionado (se utilizarán los metadatos del expediente).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. REJILLA DE 4 SIMULADORES FORENSES -->
+      <div class="margin-bottom-5">
+        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+          <h2 class="font-sans-lg margin-0">Simuladores Criptográficos Forenses</h2>
+          <p class="font-sans-sm text-base-dark margin-top-05">
+            Ejecución interactiva de endpoints certificados con registro de hash real, QR y Bóveda WORM
+          </p>
+        </div>
+
+        <ul class="usa-card-group">
+          <!-- SIM 1: FIRMA DIGITAL PAdES-B-LTA -->
+          <li class="usa-card desktop:grid-col-6 tablet:grid-col-12">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                  <span class="usa-tag ulp-tag-v12">POST /api/v1/sentencias/firmar-pades</span>
+                  <span class="font-sans-2xs text-base-dark">LMDyFE Arts. 4, 6, 8</span>
+                </div>
+                <h3 class="usa-card__heading font-sans-md">Firma Digital Avanzada PAdES-B-LTA</h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-xs text-base-dark margin-bottom-2">
+                  Calcula el digest SHA-256 real y emite una firma electrónica mancomunada mediante
+                  <code>pyHanko</code>, token HSM PKCS#11 FIPS 140-2 Nivel 3 y sellado TSA RFC 3161.
+                </p>
+                <form class="usa-form maxw-full">
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-sign-exp">Número de Expediente:</label>
+                    <input
+                      class="usa-input"
+                      id="sim-sign-exp"
+                      name="expediente"
+                      type="text"
+                      value="EXP-TSJ-SC-2026-0406"
+                    />
+                  </div>
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-sign-court">Tribunal o Sala:</label>
+                    <select class="usa-select" id="sim-sign-court" name="court">
+                      <option value="Sala Constitucional TSJ">Sala Constitucional TSJ</option>
+                      <option value="Sala Político-Administrativa">Sala Político-Administrativa</option>
+                      <option value="Sala de Casación Penal">Sala de Casación Penal</option>
+                    </select>
+                  </div>
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-sign-judge">
+                      Magistrado / Funcionario Firmante:
+                    </label>
+                    <input
+                      class="usa-input"
+                      id="sim-sign-judge"
+                      name="judge"
+                      type="text"
+                      value="Dr. Jull Ortiz"
+                    />
+                  </div>
+                  <div class="display-flex flex-wrap ulp-gap-1 margin-top-2">
+                    <button type="button" id="btn-sim-sign" class="usa-button">
+                      Ejecutar Firma Criptográfica
+                    </button>
+                    <button
+                      type="button"
+                      id="btn-verify-signed-csv"
+                      class="usa-button usa-button--outline"
+                      hidden
+                    >
+                      Cotejar este CSV ahora
+                    </button>
+                  </div>
+                </form>
+
+                <div id="sim-sign-qr-wrap" class="margin-top-2" hidden>
+                  <div class="ulp-qr-box">
+                    <div
+                      id="sim-sign-qr-svg"
+                      role="img"
+                      aria-label="Código QR de verificación CSV"
+                    ></div>
+                    <span id="sim-sign-qr-csv" class="font-mono-2xs text-bold"></span>
+                  </div>
+                </div>
+
+                <div class="margin-top-3">
+                  <p class="font-sans-2xs text-bold text-uppercase text-base-darker margin-bottom-05">
+                    Respuesta JSON de la API:
+                  </p>
+                  <pre
+                    id="sim-sign-result"
+                    class="ulp-code-output margin-0"
+                    tabindex="0"
+                    aria-live="polite"
+                  >{`// Esperando ejecución de firma...`}</pre>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- SIM 2: COTEJO PÚBLICO CSV Y QR -->
+          <li class="usa-card desktop:grid-col-6 tablet:grid-col-12">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                  <span class="usa-tag ulp-tag-success">GET /api/v1/sentencias/cotejar</span>
+                  <span class="font-sans-2xs text-base-dark">Infogobierno Art. 27</span>
+                </div>
+                <h3 class="usa-card__heading font-sans-md">Cotejo Forense de Documento (CSV / QR)</h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-xs text-base-dark margin-bottom-2">
+                  Valida en la Bóveda Inmutable WORM la integridad del fallo canónico o de cualquier
+                  expediente recién firmado en el Simulador 1 mediante su CSV y digest SHA-256.
+                </p>
+                <form class="usa-form maxw-full">
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-cotejo-csv">
+                      Código Seguro de Verificación (CSV):
+                    </label>
+                    <input
+                      class="usa-input"
+                      id="sim-cotejo-csv"
+                      name="csv"
+                      type="text"
+                      value={CANONICAL_SENTENCE_RECORD.csvCode}
+                    />
+                  </div>
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-cotejo-hash">
+                      Hash SHA-256 (opcional — valida coincidencia exacta):
+                    </label>
+                    <input
+                      class="usa-input"
+                      id="sim-cotejo-hash"
+                      name="hash"
+                      type="text"
+                      value={CANONICAL_SENTENCE_RECORD.hashSha256}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    id="btn-sim-cotejo"
+                    class="usa-button usa-button--secondary margin-top-2 width-full"
+                  >
+                    Verificar Integridad en Bóveda WORM
+                  </button>
+                </form>
+
+                <div class="margin-top-3">
+                  <p class="font-sans-2xs text-bold text-uppercase text-base-darker margin-bottom-05">
+                    Resultado de Verificación:
+                  </p>
+                  <pre
+                    id="sim-cotejo-result"
+                    class="ulp-code-output margin-0"
+                    tabindex="0"
+                    aria-live="polite"
+                  >{`// Esperando cotejo de documento...`}</pre>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- SIM 3: SORTEO IMPARCIAL CSPRNG -->
+          <li class="usa-card desktop:grid-col-6 tablet:grid-col-12">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                  <span class="usa-tag ulp-tag-warning">POST /api/v1/causas/sorteo-aleatorio</span>
+                  <span class="font-sans-2xs text-base-dark">Título VII Art. 26</span>
+                </div>
+                <h3 class="usa-card__heading font-sans-md">
+                  Sorteo Aleatorio Imparcial de Causas (CSPRNG)
+                </h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-xs text-base-dark margin-bottom-2">
+                  Asignación de ponencia mediante generador criptoseguro (<code>WebCrypto</code> /
+                  <code>secrets.SystemRandom</code>) auditado en Árbol de Merkle.
+                </p>
+                <form class="usa-form maxw-full">
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-sorteo-causa">Identificador de la Causa:</label>
+                    <input
+                      class="usa-input"
+                      id="sim-sorteo-causa"
+                      name="causa"
+                      type="text"
+                      value="CAUSA-ADM-2026-8841"
+                    />
+                  </div>
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-sorteo-materia">Materia Judicial:</label>
+                    <select class="usa-select" id="sim-sorteo-materia" name="materia">
+                      <option value="Constitucional">Constitucional (Art. 203 CRBV)</option>
+                      <option value="Contencioso Administrativo">
+                        Contencioso Administrativo (LOCOTA)
+                      </option>
+                      <option value="Ciberdelincuencia Forense">
+                        Ciberdelincuencia Forense (LPCDI)
+                      </option>
+                    </select>
+                  </div>
+                  <div class="usa-form-group">
+                    <label class="usa-label" for="sim-sorteo-ent">Entropía del Sistema:</label>
+                    <input
+                      class="usa-input"
+                      id="sim-sorteo-ent"
+                      name="entropia"
+                      type="text"
+                      readonly
+                      value="WebCrypto CSPRNG + /dev/urandom + HSM TRNG RFC 4086"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    id="btn-sim-sorteo"
+                    class="usa-button margin-top-2 width-full"
+                  >
+                    Ejecutar Sorteo Criptográfico
+                  </button>
+                </form>
+
+                <div class="margin-top-3">
+                  <p class="font-sans-2xs text-bold text-uppercase text-base-darker margin-bottom-05">
+                    Acta Digital de Sorteo CSPRNG:
+                  </p>
+                  <pre
+                    id="sim-sorteo-result"
+                    class="ulp-code-output margin-0"
+                    tabindex="0"
+                    aria-live="polite"
+                  >{`// Esperando sorteo aleatorio...`}</pre>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- SIM 4: MONITOR WSS -->
+          <li class="usa-card desktop:grid-col-6 tablet:grid-col-12">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+                  <span class="usa-tag ulp-tag-v11">WSS /api/v1/compliance/stream</span>
+                  <span class="font-sans-2xs text-base-dark">Título VII Art. 25</span>
+                </div>
+                <h3 class="usa-card__heading font-sans-md">Monitor WebSockets en Tiempo Real</h3>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-xs text-base-dark margin-bottom-2">
+                  Canal bidireccional seguro (WSS) con la Oficina del Chief Compliance Officer para
+                  reportar intentos de alteración o retardo procesal injustificado.
+                </p>
+                <div class="margin-bottom-2">
+                  <button
+                    type="button"
+                    id="btn-sim-anomaly"
+                    class="usa-button usa-button--secondary width-full"
+                  >
+                    Simular Intento de Alteración de Causa
+                  </button>
+                </div>
+
+                <div>
+                  <p class="font-sans-2xs text-bold text-uppercase text-base-darker margin-bottom-05">
+                    Feed de Eventos en Tiempo Real:
+                  </p>
+                  <div
+                    id="sim-ws-feed"
+                    class="ulp-code-output"
+                    tabindex="0"
+                    aria-live="polite"
+                  >
+                    <div class="ulp-ws-entry">
+                      [WSS] Canal seguro conectado: wss://ulpiano.sha256.us/api/v1/compliance/stream
+                    </div>
+                    <div class="ulp-ws-entry">
+                      [WSS] Modo escucha activo: monitoreando eventos de integridad...
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import qrcode from 'qrcode-generator';
+    import { CANONICAL_SENTENCE_RECORD, randomHex, sha256Hex } from '../../lib/crypto.ts';
+    import type { SignedVaultRecord } from '../../types/legal.ts';
+
+    const VAULT_KEY = 'ulpiano_cco_worm_vault_v1';
+    let pendingFile: { fileName: string; sha256: string } | null = null;
+    let merkleCounter = 41892;
+
+    const getVault = (): Record<string, SignedVaultRecord> => {
+      const base: Record<string, SignedVaultRecord> = {
+        [CANONICAL_SENTENCE_RECORD.csvCode]: CANONICAL_SENTENCE_RECORD,
+      };
+      try {
+        const raw = sessionStorage.getItem(VAULT_KEY);
+        if (raw) return { ...base, ...(JSON.parse(raw) as Record<string, SignedVaultRecord>) };
+      } catch {
+        // ignore
+      }
+      return base;
+    };
+
+    const saveVault = (rec: SignedVaultRecord) => {
+      try {
+        const next = getVault();
+        next[rec.csvCode] = rec;
+        sessionStorage.setItem(VAULT_KEY, JSON.stringify(next));
+      } catch {
+        // ignore
+      }
+    };
+
+    const setStateClass = (el: HTMLElement, state: 'default' | 'success' | 'error' | 'warning') => {
+      el.classList.remove(
+        'ulp-code-output--success',
+        'ulp-code-output--error',
+        'ulp-code-output--warning'
+      );
+      if (state !== 'default') el.classList.add(`ulp-code-output--${state}`);
+    };
+
+    // File local SHA-256 calculator
+    const handleFile = async (file: File) => {
+      const status = document.getElementById('sim-file-hash-status');
+      if (status) status.textContent = `Calculando SHA-256 local de "${file.name}"...`;
+      const digest = await sha256Hex(await file.arrayBuffer());
+      pendingFile = { fileName: file.name, sha256: digest };
+      if (status) status.textContent = `Archivo verificado localmente: ${file.name} — SHA-256: ${digest}`;
+      const hashInput = document.getElementById('sim-cotejo-hash') as HTMLInputElement | null;
+      if (hashInput) hashInput.value = digest;
+    };
+
+    const fileInput = document.getElementById('sim-file-input') as HTMLInputElement | null;
+    const dropzone = document.getElementById('sim-file-dropzone');
+    fileInput?.addEventListener('change', () => {
+      const f = fileInput.files?.[0];
+      if (f) void handleFile(f);
+    });
+    dropzone?.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('is-dragover');
+    });
+    dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('is-dragover'));
+    dropzone?.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('is-dragover');
+      const f = e.dataTransfer?.files?.[0];
+      if (f) void handleFile(f);
+    });
+
+    // Sim 1: Firma PAdES-B-LTA
+    const verifyNowBtn = document.getElementById('btn-verify-signed-csv') as HTMLButtonElement | null;
+    document.getElementById('btn-sim-sign')?.addEventListener('click', async () => {
+      const exp = (document.getElementById('sim-sign-exp') as HTMLInputElement | null)?.value.trim() || 'EXP-TSJ-SC-2026-0406';
+      const court = (document.getElementById('sim-sign-court') as HTMLSelectElement | null)?.value || 'Sala Constitucional TSJ';
+      const judge = (document.getElementById('sim-sign-judge') as HTMLInputElement | null)?.value.trim() || 'Dr. Jull Ortiz';
+      const resultEl = document.getElementById('sim-sign-result');
+      if (!resultEl) return;
+
+      const now = new Date().toISOString();
+      const computedSha = pendingFile?.sha256 ?? (await sha256Hex(`${exp}|${court}|${judge}|${now}`));
+      const csvCode = `TSJ-2026-${randomHex(2).toUpperCase()}-${computedSha.slice(0, 6).toUpperCase()}`;
+      const rec: SignedVaultRecord = {
+        csvCode,
+        expediente: exp,
+        tribunal: court,
+        firmante: judge,
+        hashSha256: computedSha,
+        timestampIso: now,
+        fileName: pendingFile?.fileName,
+        merkleIndex: ++merkleCounter,
+      };
+      saveVault(rec);
+
+      const url = `https://ulpiano.sha256.us/consola-api/?csv=${encodeURIComponent(csvCode)}`;
+      const payload = {
+        status: 'SUCCESS',
+        status_code: 201,
+        engine: 'Python 3.12 (FastAPI / pyHanko / PyKCS11) + WebCrypto SHA-256 Real',
+        document_metadata: {
+          expediente: rec.expediente,
+          tribunal: rec.tribunal,
+          firmante_autorizado: rec.firmante,
+          archivo_origen: rec.fileName ?? 'Resolucion_Judicial_PDF-A-2u.pdf',
+          fecha_certificada_tsa: rec.timestampIso,
+        },
+        cryptographic_verification: {
+          hash_sha256_real: rec.hashSha256,
+          pades_profile: 'PAdES-B-LTA (ISO 19005-2 PDF/A-2u)',
+          tsa_rfc3161: 'SUSCERTE Timestamping Authority (TSA-VEN-01)',
+          hsm_token: 'FIPS 140-2 Level 3 Secure Hardware Token',
+          csv_code: rec.csvCode,
+          qr_validation_url: url,
+        },
+        storage: {
+          vault: 'MinIO S3 Object Lock (WORM)',
+          retention_mode: 'COMPLIANCE_PERPETUAL',
+          merkle_tree_index: rec.merkleIndex,
+        },
+      };
+
+      setStateClass(resultEl, 'success');
+      resultEl.textContent = JSON.stringify(payload, null, 2);
+
+      const qr = qrcode(0, 'M');
+      qr.addData(url);
+      qr.make();
+      const qrWrap = document.getElementById('sim-sign-qr-wrap');
+      const qrSvgEl = document.getElementById('sim-sign-qr-svg');
+      const qrCsvEl = document.getElementById('sim-sign-qr-csv');
+      if (qrWrap && qrSvgEl && qrCsvEl) {
+        qrSvgEl.innerHTML = qr.createSvgTag({ scalable: true, margin: 2 });
+        qrCsvEl.textContent = `CSV: ${rec.csvCode}`;
+        qrWrap.hidden = false;
+      }
+
+      if (verifyNowBtn) {
+        verifyNowBtn.dataset.csv = rec.csvCode;
+        verifyNowBtn.dataset.hash = rec.hashSha256;
+        verifyNowBtn.hidden = false;
+      }
+    });
+
+    // Sim 2: Cotejo Forense
+    const runCotejo = () => {
+      const csv = ((document.getElementById('sim-cotejo-csv') as HTMLInputElement | null)?.value || '').trim();
+      const providedHash = ((document.getElementById('sim-cotejo-hash') as HTMLInputElement | null)?.value || '').trim().toLowerCase();
+      const resultEl = document.getElementById('sim-cotejo-result');
+      if (!resultEl) return;
+
+      const rec = getVault()[csv];
+      if (!rec) {
+        setStateClass(resultEl, 'error');
+        resultEl.textContent = JSON.stringify(
+          {
+            status: 'INTEGRITY_VIOLATION_OR_NOT_FOUND',
+            codigo_csv: csv || '(vacío)',
+            verificacion: 'FALLIDA',
+          },
+          null,
+          2
+        );
+        return;
+      }
+
+      if (providedHash && providedHash !== rec.hashSha256.toLowerCase()) {
+        setStateClass(resultEl, 'error');
+        resultEl.textContent = JSON.stringify(
+          {
+            status: 'HASH_MISMATCH_TAMPERING_DETECTED',
+            codigo_csv: csv,
+            esperado_boveda_sha256: rec.hashSha256,
+            recibido_cliente_sha256: providedHash,
+          },
+          null,
+          2
+        );
+        return;
+      }
+
+      setStateClass(resultEl, 'success');
+      resultEl.textContent = JSON.stringify(
+        {
+          status: 'DOCUMENTO_AUTENTICO',
+          codigo_csv: rec.csvCode,
+          integridad: 'INALTERADO_100%',
+          documento: {
+            expediente: rec.expediente,
+            sala: rec.tribunal,
+            firmante: rec.firmante,
+            fecha_publicacion: rec.timestampIso,
+          },
+          boveda_inmutable: {
+            estado_worm: 'LOCKED',
+            sha256_verificado: rec.hashSha256,
+            merkle_tree_index: rec.merkleIndex,
+          },
+        },
+        null,
+        2
+      );
+    };
+
+    document.getElementById('btn-sim-cotejo')?.addEventListener('click', runCotejo);
+    verifyNowBtn?.addEventListener('click', () => {
+      const csvInput = document.getElementById('sim-cotejo-csv') as HTMLInputElement | null;
+      const hashInput = document.getElementById('sim-cotejo-hash') as HTMLInputElement | null;
+      if (csvInput && verifyNowBtn.dataset.csv) csvInput.value = verifyNowBtn.dataset.csv;
+      if (hashInput && verifyNowBtn.dataset.hash) hashInput.value = verifyNowBtn.dataset.hash;
+      runCotejo();
+    });
+
+    // Sim 3: Sorteo CSPRNG
+    document.getElementById('btn-sim-sorteo')?.addEventListener('click', () => {
+      const causa = (document.getElementById('sim-sorteo-causa') as HTMLInputElement | null)?.value.trim() || 'CAUSA-ADM-2026-8841';
+      const materia = (document.getElementById('sim-sorteo-materia') as HTMLSelectElement | null)?.value || 'Constitucional';
+      const resultEl = document.getElementById('sim-sorteo-result');
+      if (!resultEl) return;
+
+      const judges = [
+        'Dr. Jull Ortiz — Ponente Titular',
+        'Dra. Gladys Gutiérrez — Magistrada',
+        'Dr. Maikel Moreno — Magistrado',
+        'Dra. Caryslia Rodríguez — Magistrada',
+        'Dr. Inocencio Figueroa — Magistrado',
+      ];
+      const buf = new Uint8Array(17);
+      crypto.getRandomValues(buf);
+      const seedHex = Array.from(buf.slice(0, 16), (b) => b.toString(16).padStart(2, '0')).join('');
+      const selected = judges[buf[16] % judges.length];
+
+      setStateClass(resultEl, 'warning');
+      resultEl.textContent = JSON.stringify(
+        {
+          status: 'SORTEO_COMPLETADO_EXITOSO',
+          causa_distribuida: causa,
+          materia,
+          resultado_sorteo: {
+            magistrado_ponente_asignado: selected,
+            metodo_sorteo: 'WebCrypto CSPRNG (getRandomValues / secrets.SystemRandom)',
+            semilla_entropia_auditada: `0x${seedHex}`,
+            timestamp_utc: new Date().toISOString(),
+          },
+          merkle_tree_index: ++merkleCounter,
+        },
+        null,
+        2
+      );
+    });
+
+    // Sim 4: WSS Anomaly Feed
+    document.getElementById('btn-sim-anomaly')?.addEventListener('click', () => {
+      const feed = document.getElementById('sim-ws-feed');
+      if (!feed) return;
+      const time = new Date().toLocaleTimeString('es-VE', { hour12: false });
+      const items = [
+        `[ANOMALÍA ${time}] Intento de modificación no autorizada en expediente EXP-2026-9901 bloqueado por Bóveda WORM Object Lock.`,
+        `[ALERTA CCO ${time}] Retardo procesal detectado en Tribunal 4to Mercantil (+15 días LOCOTA / Art. 257 CRBV). Notificación enviada a CGR y SUNAI.`,
+        `[SEGURIDAD ${time}] Sesión concurrente anómala abortada en Módulo de Jueces. Token JWT FIDO2 revocado por CSIRT-Ulpiano.`,
+      ];
+      const pick = new Uint8Array(1);
+      crypto.getRandomValues(pick);
+      const div = document.createElement('div');
+      div.className = 'ulp-ws-entry ulp-ws-entry--alert';
+      div.textContent = items[pick[0] % items.length];
+      feed.appendChild(div);
+      feed.scrollTop = feed.scrollHeight;
+    });
+  </script>
+</LegalLayout>

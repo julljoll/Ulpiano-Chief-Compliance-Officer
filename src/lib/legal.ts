@@ -1,6 +1,7 @@
 /**
  * Ulpiano CCO — Legal Normative & Standards Reference Constants (TypeScript)
  */
+import type { DocumentMeta, MatrixRowItem } from '../types/legal.ts';
 
 export interface LegalFramework {
   jurisdiction: string;
@@ -32,7 +33,21 @@ export const LEGAL_FRAMEWORK: LegalFramework = {
   accessibility: 'WCAG 2.1 AAA / USWDS 3.0 / Section 508',
 };
 
-import type { MatrixRowItem } from '../types/legal';
+/**
+ * Validates registry.json entries at build/test time to guarantee schema integrity.
+ */
+export function validateRegistrySchema(entries: unknown): DocumentMeta[] {
+  if (!Array.isArray(entries) || entries.length === 0) {
+    throw new Error('registry.json debe contener al menos un documento registrado.');
+  }
+  return entries.map((entry, idx) => {
+    const doc = entry as Partial<DocumentMeta>;
+    if (!doc.id || !doc.label || !doc.sourceFile) {
+      throw new Error(`Entrada inválida en registry.json en posición ${idx}: faltan id/label/sourceFile.`);
+    }
+    return doc as DocumentMeta;
+  });
+}
 
 export const MATRIX_ROWS: MatrixRowItem[] = [
   {
@@ -163,7 +178,7 @@ export const MATRIX_ROWS: MatrixRowItem[] = [
   },
   {
     rowNum: '07',
-    titleId: 'TÍTULO VII ★',
+    titleId: 'TÍTULO VII (ORIGINAL)',
     titleName: 'Integridad Procesal y Administrativa',
     articles: 'Arts. 24° al 32°',
     topic: 'Aporte Original: Justicia & Toda la Administración Pública',
@@ -173,7 +188,7 @@ export const MATRIX_ROWS: MatrixRowItem[] = [
     hierarchy: 'Innovación',
     isStar: true,
     comparativeLaw: [
-      { tag: '★ Aporte Original', detail: 'Ulpiano CCO (Jull Ortiz)', isOriginal: true },
+      { tag: 'Aporte Original', detail: 'Ulpiano CCO (Jull Ortiz)', isOriginal: true },
       { tag: 'ISO 37001 / 37301', detail: 'Gestión Antisoborno y Compliance' },
       { tag: 'ISO/IEC 42001', detail: 'Gestión de Inteligencia Artificial Ética' },
     ],

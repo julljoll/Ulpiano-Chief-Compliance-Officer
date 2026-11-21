@@ -1,0 +1,199 @@
+---
+/**
+ * ULPIANO CCO — Shared Build-Time Inline SVG Diagram Viewer
+ * Renders full vector diagram in static HTML (100% visible with JS disabled).
+ * Adds ~1 KB progressive enhancement for layout-aware zoom, drag-to-pan, keyboard shortcuts, and fullscreen.
+ */
+import { readPublicSvgInline } from '../lib/svg.ts';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  tag?: string;
+  svgFile: string;
+  ariaLabel?: string;
+}
+
+const {
+  title,
+  subtitle = '',
+  tag = '',
+  svgFile,
+  ariaLabel = title,
+} = Astro.props;
+
+const inlineSvg = readPublicSvgInline(svgFile, ariaLabel);
+const downloadName = svgFile.split('/').pop() || 'diagrama.svg';
+---
+
+<div class="usa-card margin-bottom-5" data-svg-viewer>
+  <div class="usa-card__container">
+    <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
+      <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2">
+        <div>
+          {tag && <span class="usa-tag ulp-tag-v12 margin-bottom-05">{tag}</span>}
+          <h2 class="font-sans-md margin-0">{title}</h2>
+          {subtitle && (
+            <p class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0">{subtitle}</p>
+          )}
+        </div>
+        <div class="display-flex flex-wrap ulp-gap-1">
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline"
+            data-zoom="-0.15"
+            title="Reducir zoom (tecla -)"
+          >
+            Zoom -
+          </button>
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline"
+            data-zoom="reset"
+            title="Restablecer zoom al 100% (tecla 0)"
+          >
+            <span data-zoom-label>100%</span>
+          </button>
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline"
+            data-zoom="0.15"
+            title="Aumentar zoom (tecla +)"
+          >
+            Zoom +
+          </button>
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline"
+            data-fullscreen
+            aria-pressed="false"
+            title="Pantalla completa (Esc para salir)"
+          >
+            Pantalla Completa
+          </button>
+          <a
+            href={svgFile}
+            download={downloadName}
+            class="usa-button usa-button--small usa-button--outline"
+          >
+            Descargar SVG
+          </a>
+          <a
+            href={svgFile}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="usa-button usa-button--small"
+          >
+            Abrir SVG
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="usa-card__body padding-2">
+      <div
+        class="ulp-svg-viewport"
+        data-svg-viewport
+        tabindex="0"
+        role="region"
+        aria-label={ariaLabel}
+        set:html={inlineSvg}
+      />
+      <p class="font-sans-2xs text-base-dark margin-top-1 margin-bottom-0">
+        Atajos: <code>+</code> / <code>-</code> / <code>0</code> para zoom; arrastre con el ratón al
+        ampliar; <code>Esc</code> para salir de pantalla completa.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-svg-viewer]').forEach((card) => {
+    const viewport = card.querySelector<HTMLElement>('[data-svg-viewport]');
+    const zoomLabel = card.querySelector<HTMLElement>('[data-zoom-label]');
+    const fsBtn = card.querySelector<HTMLButtonElement>('[data-fullscreen]');
+    if (!viewport) return;
+
+    let zoom = 1.0;
+
+    const applyZoom = () => {
+      const svg = viewport.querySelector<SVGElement>('svg');
+      const pct = Math.round(zoom * 100);
+      if (svg) {
+        svg.style.width = `${pct}%`;
+        svg.style.maxWidth = zoom > 1 ? 'none' : '100%';
+      }
+      viewport.classList.toggle('is-zoomed', zoom > 1);
+      if (zoomLabel) zoomLabel.textContent = `${pct}%`;
+    };
+
+    const toggleFs = () => {
+      const isFull = card.classList.toggle('ulp-fullscreen-active');
+      if (fsBtn) {
+        fsBtn.textContent = isFull ? 'Salir de Pantalla Completa' : 'Pantalla Completa';
+        fsBtn.setAttribute('aria-pressed', String(isFull));
+      }
+    };
+
+    card.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      const zBtn = target?.closest<HTMLElement>('[data-zoom]');
+      if (zBtn) {
+        const val = zBtn.getAttribute('data-zoom');
+        zoom = val === 'reset' ? 1.0 : Number(Math.max(0.5, Math.min(2.5, zoom + Number(val))).toFixed(2));
+        applyZoom();
+        return;
+      }
+      if (target?.closest('[data-fullscreen]')) {
+        toggleFs();
+      }
+    });
+
+    // Drag-to-pan when zoomed
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+
+    viewport.addEventListener('mousedown', (e) => {
+      if (zoom <= 1) return;
+      dragging = true;
+      viewport.classList.add('is-dragging');
+      startX = e.pageX - viewport.offsetLeft;
+      startY = e.pageY - viewport.offsetTop;
+      startLeft = viewport.scrollLeft;
+      startTop = viewport.scrollTop;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      viewport.classList.remove('is-dragging');
+    });
+
+    viewport.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      e.preventDefault();
+      viewport.scrollLeft = startLeft - (e.pageX - viewport.offsetLeft - startX);
+      viewport.scrollTop = startTop - (e.pageY - viewport.offsetTop - startY);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const tag = (document.activeElement?.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+      if (e.key === 'Escape' && card.classList.contains('ulp-fullscreen-active')) {
+        toggleFs();
+      } else if (e.key === '+' || e.key === '=') {
+        zoom = Number(Math.min(2.5, zoom + 0.15).toFixed(2));
+        applyZoom();
+      } else if (e.key === '-') {
+        zoom = Number(Math.max(0.5, zoom - 0.15).toFixed(2));
+        applyZoom();
+      } else if (e.key === '0') {
+        zoom = 1.0;
+        applyZoom();
+      }
+    });
+  });
+</script>

@@ -1,264 +1,55 @@
 ---
-/**
- * USWDS Technical Architecture Page: Frontend Next.js 15
- * Fuente oficial: https://designsystem.digital.gov/page-templates/
- */
-import LegalLayout from '../layouts/LegalLayout.astro';
+import ArchitecturePage from '../components/ArchitecturePage.astro';
+import type { ArchLayerItem } from '../types/legal.ts';
+
+const layers: ArchLayerItem[] = [
+  {
+    badge: 'Capa 1: Accesibilidad',
+    title: 'Diseño USWDS & Next.js RSC',
+    tech: 'USWDS 3.0 / WCAG AAA',
+    desc: 'Tokens de accesibilidad universal WCAG 2.1 AAA, tipografía oficial del sistema, React Server Components (RSC) y autenticación FIDO2 Passwordless.',
+    legal: 'CRBV Art. 26 • Ley Infogobierno Art. 22',
+  },
+  {
+    badge: 'Capa 2: Visor Forense',
+    title: 'Visor PDF/A-2u & Cotejo CSV',
+    tech: 'React-PDF / PDF.js',
+    desc: 'Renderizado de resoluciones firmadas, cotejo público mediante Código Seguro de Verificación (CSV) / QR y validación de certificados SUSCERTE.',
+    legal: 'Infogobierno Art. 27 • LMDyFE Art. 4',
+  },
+  {
+    badge: 'Capa 3: Auditoría',
+    title: 'Tablero CCO & Flujo 4-Ojos',
+    tech: 'Zustand / SWR',
+    desc: 'Semaforización de plazos procesales LOCOTA/CRBV 257, flujo de doble aprobación obligatoria y visor de bitácora forense con Árbol de Merkle.',
+    legal: 'Título VII Arts. 27-28 • LOCOTA Art. 11',
+  },
+  {
+    badge: 'Capa 4: Conexión API',
+    title: 'Cliente API Python & WSS',
+    tech: 'REST / WSS',
+    desc: 'Cliente HTTP fuertemente tipado generado desde OpenAPI 3.1, canal WebSockets seguro (WSS) para alertas en tiempo real y cabeceras CSP estrictas.',
+    legal: 'CRBV Art. 110 • OWASP Top 10',
+  },
+];
 ---
 
-<LegalLayout
-  title="Arquitectura Frontend Next.js 15 | Ulpiano Chief Compliance Officer"
-  description="Diagrama y especificación técnica de la arquitectura de cliente web en Next.js 15 (App Router, React-PDF, USWDS 3.0, WCAG 2.1 AAA y FIDO2 WebAuthn) conectado al servidor API en Python 3.12."
-  activePage="frontend"
->
-  <div class="grid-container padding-y-4">
-    <!-- Hero Banner -->
-    <div class="usa-hero margin-bottom-4" aria-label="Arquitectura Frontend">
-      <div class="grid-container">
-        <div class="usa-hero__callout">
-          <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
-            <ol class="usa-breadcrumb__list">
-              <li class="usa-breadcrumb__list-item">
-                <a href="index.html" class="usa-breadcrumb__link">
-                  Portal CCO
-                </a>
-              </li>
-              <li class="usa-breadcrumb__list-item">
-                <span class="usa-breadcrumb__link">Arquitectura Técnica</span>
-              </li>
-              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-                <span>Portal Web Frontend en Next.js 15</span>
-              </li>
-            </ol>
-          </nav>
-
-          <span class="usa-tag margin-bottom-1">
-            NEXT.JS 15 APP ROUTER • REACT-PDF FORENSE • WCAG AAA
-          </span>
-          <h1 class="usa-hero__heading">Arquitectura del Cliente Web Judicial en Next.js 15</h1>
-          <p>
-            Diagrama interactivo del portal judicial de alta disponibilidad: visor forense React-PDF
-            de sentencias, cotejo público con códigos CSV y QR, panel del Compliance Officer con
-            semaforización de plazos LOCOTA y conexión REST tipada hacia el backend en Python 3.12
-            (FastAPI).
-          </p>
-
-          <div class="margin-top-3 display-flex flex-wrap flex-gap-2">
-            <a
-              href="./svg/tsj_arquitectura_frontend.svg"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="usa-button"
-            >
-              Abrir SVG Directo ↗
-            </a>
-            <a
-              href="./svg/tsj_arquitectura_frontend.svg"
-              download="tsj_arquitectura_frontend.svg"
-              class="usa-button usa-button--outline"
-            >
-              Descargar SVG
-            </a>
-            <a href="backend.html" class="usa-button usa-button--outline">
-              Ver Arquitectura Backend Python
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Visor de Diagrama SVG con Controles USWDS -->
-    <div class="usa-card margin-bottom-5">
-      <div class="usa-card__container">
-        <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
-          <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
-            <div>
-              <span class="usa-tag margin-bottom-05">FRONTEND CLIENT</span>
-              <h2 class="font-sans-md margin-0">
-                Diagrama Oficial de Arquitectura Frontend (Next.js 15 + React-PDF)
-              </h2>
-            </div>
-            <div class="display-flex flex-wrap flex-gap-1">
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="zoomSvg(-0.15)"
-                title="Reducir Zoom"
-              >
-                Zoom -
-              </button>
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="resetZoom()"
-                title="Restablecer"
-              >
-                <span id="zoom-val">100%</span>
-              </button>
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="zoomSvg(0.15)"
-                title="Aumentar Zoom"
-              >
-                Zoom +
-              </button>
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="toggleFullscreen()"
-                title="Pantalla Completa"
-                id="btn-fullscreen"
-              >
-                Pantalla Completa
-              </button>
-            </div>
-          </div>
-        </header>
-
-        <div class="usa-card__body padding-2">
-          <div
-            id="svg-viewport"
-            class="padding-3 bg-base-lightest border-1px border-base-lighter text-center overflow-auto"
-          >
-            <object
-              data="./svg/tsj_arquitectura_frontend.svg"
-              type="image/svg+xml"
-              id="svg-object"
-              class="width-full maxw-full"
-            >
-              <img
-                src="./svg/tsj_arquitectura_frontend.svg"
-                alt="Diagrama de Arquitectura Frontend Next.js"
-                class="width-full"
-              />
-            </object>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Desglose por Capas de la Arquitectura Frontend -->
-    <div class="margin-bottom-5">
-      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
-        <h2 class="font-sans-lg margin-0">Desglose por Capas de la Arquitectura Frontend</h2>
-      </div>
-
-      <ul class="usa-card-group">
-        <!-- Capa 1 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 1: Accesibilidad</span>
-              <h3 class="usa-card__heading font-sans-sm">Diseño USWDS &amp; Next.js RSC</h3>
-              <p class="font-sans-2xs text-base margin-top-05">USWDS 3.0 / WCAG AAA</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                Tokens de accesibilidad universal WCAG 2.1 AAA, tipografía oficial del sistema,
-                React Server Components (RSC) y autenticación FIDO2 Passwordless.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">
-                CRBV Art. 26 • Ley Infogobierno Art. 22
-              </span>
-            </div>
-          </div>
-        </li>
-
-        <!-- Capa 2 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 2: Visor Forense</span>
-              <h3 class="usa-card__heading font-sans-sm">Visor PDF/A-2u &amp; Cotejo CSV</h3>
-              <p class="font-sans-2xs text-base margin-top-05">React-PDF / PDF.js</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                Renderizado de resoluciones firmadas, cotejo público mediante Código Seguro de
-                Verificación (CSV) / QR y validación de certificados SUSCERTE.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">
-                Infogobierno Art. 27 • LMDyFE Art. 4
-              </span>
-            </div>
-          </div>
-        </li>
-
-        <!-- Capa 3 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 3: Auditoría</span>
-              <h3 class="usa-card__heading font-sans-sm">Tablero CCO &amp; Flujo 4-Ojos</h3>
-              <p class="font-sans-2xs text-base margin-top-05">Zustand / SWR</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                Semaforización de plazos procesales LOCOTA/CRBV 257, flujo de doble aprobación
-                obligatoria y visor de bitácora forense con Árbol de Merkle.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">
-                Título VII Arts. 27-28 • LOCOTA Art. 11
-              </span>
-            </div>
-          </div>
-        </li>
-
-        <!-- Capa 4 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 4: Conexión API</span>
-              <h3 class="usa-card__heading font-sans-sm">Cliente API Python &amp; WSS</h3>
-              <p class="font-sans-2xs text-base margin-top-05">REST / WSS</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                Cliente HTTP fuertemente tipado generado desde OpenAPI 3.1, canal WebSockets seguro
-                (WSS) para alertas en tiempo real y cabeceras CSP con Nonce.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">CRBV Art. 110 • OWASP Top 10</span>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <script is:inline>
-    let currentZoom = 1.0;
-    function applyZoom() {
-      const obj = document.getElementById('svg-object');
-      const valEl = document.getElementById('zoom-val');
-      if (obj) obj.style.transform = `scale(${currentZoom})`;
-      if (valEl) valEl.textContent = `${Math.round(currentZoom * 100)}%`;
-    }
-    function zoomSvg(delta) {
-      currentZoom = Math.max(0.5, Math.min(2.5, currentZoom + delta));
-      applyZoom();
-    }
-    function resetZoom() {
-      currentZoom = 1.0;
-      applyZoom();
-    }
-    function toggleFullscreen() {
-      const el = document.getElementById('svg-viewport');
-      if (!document.fullscreenElement) {
-        el.requestFullscreen().catch((err) =>
-          alert(`Error al entrar en pantalla completa: ${err.message}`)
-        );
-      } else {
-        document.exitFullscreen();
-      }
-    }
-  </script>
-</LegalLayout>
+<ArchitecturePage
+  pageTitle="Arquitectura Frontend Next.js 15 | Ulpiano Chief Compliance Officer"
+  pageDescription="Diagrama y especificación técnica de la arquitectura de cliente web en Next.js 15 (App Router, React-PDF, USWDS 3.0, WCAG 2.1 AAA y FIDO2 WebAuthn) conectado al servidor API en Python 3.12."
+  activeSection="frontend"
+  heroLabel="Arquitectura Frontend"
+  breadcrumbCurrent="Portal Web Frontend en Next.js 15"
+  heroTag="NEXT.JS 15 APP ROUTER • REACT-PDF FORENSE • WCAG AAA"
+  heroHeading="Arquitectura del Cliente Web Judicial en Next.js 15"
+  heroIntro="Diagrama interactivo del portal judicial de alta disponibilidad: visor forense React-PDF de sentencias, cotejo público con códigos CSV y QR, panel del Compliance Officer con semaforización de plazos LOCOTA y conexión REST tipada hacia el backend en Python 3.12 (FastAPI)."
+  svgPath="/svg/tsj_arquitectura_frontend.svg"
+  svgDownloadName="tsj_arquitectura_frontend.svg"
+  svgAlt="Diagrama de Arquitectura Frontend Next.js 15"
+  viewerTag="FRONTEND CLIENT"
+  viewerHeading="Diagrama Oficial de Arquitectura Frontend (Next.js 15 + React-PDF)"
+  siblingHref="/backend/"
+  siblingLabel="Ver Arquitectura Backend Python"
+  layersHeading="Desglose por Capas de la Arquitectura Frontend"
+  layers={layers}
+/>

@@ -1,0 +1,150 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Ulpiano CCO — API Judicial de Ciberseguridad Procesal e Integridad Digital",
+    "version": "1.2.0",
+    "summary": "Especificación OpenAPI 3.1 del backend desacoplado en Python 3.12 (FastAPI ASGI), firma PAdES-B-LTA con HSM FIPS 140-2 L3, Bóveda WORM S3 y alertas de cumplimiento ISO/IEC 42001.",
+    "license": {
+      "name": "Apache 2.0",
+      "identifier": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://ulpiano.sha256.us",
+      "description": "Portal Institucional Ulpiano CCO (Entorno de Referencia)"
+    }
+  ],
+  "tags": [
+    { "name": "Sentencias y Firma", "description": "Firma mancomunada 4-Ojos PAdES-B-LTA y sellado TSA RFC 3161 (LMDyFE Arts. 4, 6, 8; Título VII Art. 27)." },
+    { "name": "Cotejo Forense", "description": "Verificación pública universal mediante CSV, QR y digest dual SHA-256/SHA3-512 (Ley Infogobierno Art. 27)." },
+    { "name": "Sorteo Imparcial", "description": "Distribución determinística CSPRNG indexada en Árbol de Merkle (Título VII Art. 26)." },
+    { "name": "Compliance en Vivo", "description": "Telemetría WebSockets (WSS) de alertas tempranas de retardo e integridad hacia CGR y SUNAI (Título VII Arts. 25, 29-31)." }
+  ],
+  "paths": {
+    "/api/v1/sentencias/firmar-pades": {
+      "post": {
+        "tags": ["Sentencias y Firma"],
+        "operationId": "firmarSentenciaPades",
+        "summary": "Ejecutar firma digital avanzada PAdES-B-LTA con HSM PKCS#11 y resguardo WORM",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["expediente", "tribunal", "firmante_autorizado"],
+                "properties": {
+                  "expediente": { "type": "string", "example": "EXP-TSJ-SC-2026-0406" },
+                  "tribunal": { "type": "string", "example": "Sala Constitucional TSJ" },
+                  "firmante_autorizado": { "type": "string", "example": "Dr. Jull Ortiz" },
+                  "sha256_cliente": { "type": "string", "description": "Digest SHA-256 calculado sobre el archivo PDF/A-2u antes del sellado." }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Resolución firmada en PAdES-B-LTA y bloqueada en Bóveda WORM MinIO S3.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "SUCCESS" },
+                    "status_code": { "type": "integer", "example": 201 },
+                    "engine": { "type": "string" },
+                    "document_metadata": { "type": "object" },
+                    "cryptographic_verification": {
+                      "type": "object",
+                      "properties": {
+                        "hash_sha256": { "type": "string" },
+                        "pades_profile": { "type": "string" },
+                        "tsa_rfc3161": { "type": "string" },
+                        "hsm_token": { "type": "string" },
+                        "csv_code": { "type": "string" },
+                        "qr_validation_url": { "type": "string", "format": "uri" }
+                      }
+                    },
+                    "storage": { "type": "object" },
+                    "legal_ground": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sentencias/cotejar": {
+      "get": {
+        "tags": ["Cotejo Forense"],
+        "operationId": "cotejarSentenciaCsv",
+        "summary": "Validar autenticidad e inalterabilidad de un fallo por CSV y hash SHA-256",
+        "parameters": [
+          {
+            "name": "csv",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "example": "TSJ-2026-SC-0406-V12-F9A7" }
+          },
+          {
+            "name": "sha256",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Documento auténtico verificado en Bóveda WORM y certificado OCSP vigente."
+          },
+          "404": {
+            "description": "Código CSV no encontrado o violación de integridad detectada."
+          }
+        }
+      }
+    },
+    "/api/v1/causas/sorteo-aleatorio": {
+      "post": {
+        "tags": ["Sorteo Imparcial"],
+        "operationId": "ejecutarSorteoCsprng",
+        "summary": "Asignar ponencia imparcial mediante CSPRNG (secrets.SystemRandom) y registro en Árbol de Merkle",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["causa", "materia"],
+                "properties": {
+                  "causa": { "type": "string", "example": "CAUSA-ADM-2026-8841" },
+                  "materia": { "type": "string", "example": "Constitucional" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Acta digital de sorteo emitida con semilla criptográfica y posición en Árbol de Merkle."
+          }
+        }
+      }
+    },
+    "/api/v1/compliance/stream": {
+      "get": {
+        "tags": ["Compliance en Vivo"],
+        "operationId": "conectarStreamCompliance",
+        "summary": "Canal WebSockets (WSS) de alertas tempranas de retardo procesal e integridad",
+        "responses": {
+          "101": {
+            "description": "Switching Protocols — Canal bidireccional WSS autenticado con JWT FIDO2."
+          }
+        }
+      }
+    }
+  }
+}

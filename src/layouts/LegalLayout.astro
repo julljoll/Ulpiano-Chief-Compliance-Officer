@@ -1,24 +1,28 @@
 ---
 /**
- * USWDS Master Base Layout (Plantilla Maestra Institucional)
- * Fuente oficial: https://designsystem.digital.gov/page-templates/
+ * ULPIANO CCO — Master Institutional Layout (100% Native Astro 7, Zero Legacy JS, Light-Only)
+ * Zero inline scripts, zero uswds.min.js (78 KB removed), native CSS @view-transition.
  */
+import '@uswds/uswds/css/uswds.min.css';
+import '../styles/ulpiano-uswds.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Identifier from '../components/Identifier.astro';
-import '../../public/assets/uswds/css/uswds.min.css';
+import GlobalSearchModal from '../components/GlobalSearchModal.astro';
 
 interface Props {
   title?: string;
   description?: string;
-  activePage?: 'index' | 'backend' | 'frontend';
+  activeSection?: 'dashboard' | 'diagrams' | 'api' | 'reader' | 'compare' | 'matrix' | 'backend' | 'frontend';
 }
 
 const {
   title = 'Ulpiano CCO — Dirección de Ciberseguridad Procesal e Integridad Digital',
   description = 'Portal oficial de ciberseguridad procesal, informática forense e integridad digital del sistema de justicia y de la administración pública.',
-  activePage = 'index',
+  activeSection = 'dashboard',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://ulpiano.sha256.us').toString();
 ---
 
 <!doctype html>
@@ -28,36 +32,44 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#004987" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.json" />
 
-    <!-- USWDS Precompiled Stylesheet & Critical Init Script -->
-    <link rel="stylesheet" href="/assets/uswds/css/uswds.min.css" />
-    <script is:inline src="/assets/uswds/js/uswds-init.min.js"></script>
+    <!-- Open Graph & Social Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_VE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Ulpiano CCO" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <style is:inline>
+      @media (prefers-reduced-motion: no-preference) {
+        @view-transition {
+          navigation: auto;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- 1. Enlace de salto (Skip Navigation) -->
-    <a class="usa-skipnav" href="#main-content">
-      Saltar al contenido principal
-    </a>
+    <a class="usa-skipnav" href="#main-content">Saltar al contenido principal</a>
 
-    <!-- 2. Overlay oficial USWDS -->
-    <div class="usa-overlay"></div>
+    <div class="usa-overlay" data-nav-overlay></div>
 
-    <!-- 3. Encabezado Oficial USWDS -->
-    <Header activePage={activePage} />
+    <Header activeSection={activeSection} />
 
-    <!-- 4. Contenedor Principal Único -->
     <main id="main-content">
       <slot />
     </main>
 
-    <!-- 5. Pie de Página Oficial USWDS -->
-    <Footer activePage={activePage} />
+    <GlobalSearchModal />
 
-    <!-- 6. Identificador Institucional Oficial USWDS -->
+    <Footer activeSection={activeSection} />
+
     <Identifier />
-
-    <!-- 7. Runtime Scripts: USWDS + Engine del Portal -->
-    <script is:inline src="/assets/uswds/js/uswds.min.js"></script>
-    <script src="../scripts/viewer.js"></script>
   </body>
 </html>

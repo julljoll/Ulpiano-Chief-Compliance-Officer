@@ -1,0 +1,164 @@
+---
+/**
+ * ULPIANO CCO — Lazy Global Command Palette Search Dialog (Ctrl+K)
+ * Fetches static build-time `/search-index.json` ONLY on first open (0 bytes on initial page load).
+ */
+---
+
+<dialog
+  id="global-search-dialog"
+  class="ulp-search-dialog"
+  aria-labelledby="global-search-heading"
+>
+  <div class="padding-3">
+    <div class="display-flex flex-justify flex-align-center border-bottom-1px border-base-lighter padding-bottom-2 margin-bottom-2">
+      <div>
+        <h2 id="global-search-heading" class="font-sans-md margin-0">
+          Búsqueda Global Ulpiano CCO
+        </h2>
+        <p class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0">
+          Busque artículos, reformas V-1.2, matriz ISO/FISMA, Catálogo RAG o los 12 diagramas.
+        </p>
+      </div>
+      <button
+        type="button"
+        class="usa-button usa-button--outline usa-button--small"
+        data-close-search
+        aria-label="Cerrar búsqueda global"
+      >
+        Cerrar (Esc)
+      </button>
+    </div>
+
+    <div class="margin-bottom-2">
+      <label class="usa-sr-only" for="global-search-input">
+        Término de búsqueda global
+      </label>
+      <input
+        id="global-search-input"
+        class="usa-input width-full maxw-full"
+        type="search"
+        placeholder="Ej: Artículo 10-bis, FISMA, WORM, LOCOTA, FastAPI, RAG..."
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="display-flex flex-justify flex-align-center margin-bottom-1">
+      <span id="global-search-count" class="font-sans-2xs text-base-dark" aria-live="polite">
+        0 resultados
+      </span>
+      <span class="font-sans-2xs text-base-dark">Atajo: Ctrl+K / Cmd+K</span>
+    </div>
+
+    <div
+      id="global-search-results"
+      class="ulp-search-results"
+      role="region"
+      aria-label="Resultados de búsqueda"
+      tabindex="0"
+    ></div>
+  </div>
+</dialog>
+
+<script>
+  import { escapeHtml } from '../lib/format.ts';
+
+  interface SearchEntry {
+    kind: string;
+    title: string;
+    subtitle: string;
+    href: string;
+  }
+
+  const dialog = document.getElementById('global-search-dialog') as HTMLDialogElement | null;
+  const input = document.getElementById('global-search-input') as HTMLInputElement | null;
+  const resultsEl = document.getElementById('global-search-results');
+  const countEl = document.getElementById('global-search-count');
+
+  let indexCache: SearchEntry[] | null = null;
+
+  const normalize = (s: string) =>
+    s
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+  async function ensureIndex(): Promise<SearchEntry[]> {
+    if (indexCache) return indexCache;
+    try {
+      const res = await fetch('/search-index.json');
+      if (res.ok) {
+        indexCache = (await res.json()) as SearchEntry[];
+        return indexCache;
+      }
+    } catch {
+      // Fallback empty
+    }
+    return [];
+  }
+
+  function renderResults(entries: SearchEntry[], rawQuery: string): void {
+    if (!resultsEl) return;
+    const q = normalize(rawQuery.trim());
+    const matches = q
+      ? entries
+          .filter((e) => normalize(`${e.title} ${e.subtitle} ${e.kind}`).includes(q))
+          .slice(0, 14)
+      : entries.slice(0, 8);
+
+    if (countEl) {
+      countEl.textContent = `${matches.length} resultado${matches.length === 1 ? '' : 's'}`;
+    }
+
+    if (matches.length === 0) {
+      resultsEl.innerHTML =
+        '<p class="font-sans-sm text-base-dark padding-2 margin-0">No se encontraron coincidencias en normas, reformas, matriz ni diagramas.</p>';
+      return;
+    }
+
+    resultsEl.innerHTML = matches
+      .map(
+        (m) => `
+          <a href="${escapeHtml(m.href)}" class="ulp-search-result-btn text-no-underline">
+            <div class="display-flex flex-justify flex-align-center ulp-gap-1 margin-bottom-05">
+              <strong class="font-sans-sm">${escapeHtml(m.title)}</strong>
+              <span class="usa-tag ulp-tag-v12">${escapeHtml(m.kind)}</span>
+            </div>
+            <p class="font-sans-2xs text-base-dark margin-0">${escapeHtml(m.subtitle)}</p>
+          </a>
+        `
+      )
+      .join('');
+  }
+
+  async function openSearch(): Promise<void> {
+    if (!dialog) return;
+    if (!dialog.open && typeof dialog.showModal === 'function') dialog.showModal();
+    if (resultsEl && !indexCache) {
+      resultsEl.innerHTML = '<p class="font-sans-xs text-base-dark padding-2 margin-0">Cargando índice...</p>';
+    }
+    const entries = await ensureIndex();
+    renderResults(entries, input?.value || '');
+    input?.focus();
+    input?.select();
+  }
+
+  document.querySelectorAll('[data-open-search]').forEach((btn) => {
+    btn.addEventListener('click', () => void openSearch());
+  });
+  document.querySelectorAll('[data-close-search]').forEach((btn) => {
+    btn.addEventListener('click', () => dialog?.close());
+  });
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+  input?.addEventListener('input', () => {
+    if (indexCache) renderResults(indexCache, input.value);
+  });
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      void openSearch();
+    }
+  });
+</script>

@@ -1,0 +1,460 @@
+/* ==========================================================================
+   ULPIANO CCO — USWDS 3.0 Light-Only Institutional Extensions
+   Design System Traceability: src/styles/tokens.css (WCAG 2.1 AAA Light Only)
+   ========================================================================== */
+
+@import './tokens.css';
+
+:root {
+  --ulp-reader-font-size: 1.0625rem;
+}
+
+/* Ensure crisp light surface baseline */
+body {
+  background-color: var(--theme-color-base-lightest);
+  color: var(--theme-color-ink);
+}
+
+.ulp-svg-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ulp-svg-donut {
+  display: inline-block;
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+}
+
+.text-no-underline {
+  text-decoration: none;
+}
+
+/* Override default USWDS hero photo background with institutional light-blue legal banner */
+.usa-hero.ulp-hero {
+  background-image: none;
+  background-color: var(--usa-color-blue-5);
+  border-bottom: 4px solid var(--usa-color-blue-70);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+.usa-hero.ulp-hero .usa-hero__callout {
+  background-color: var(--theme-color-base-lightest);
+  color: var(--theme-color-ink);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-left: 6px solid var(--usa-color-blue-70);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  max-width: 100%;
+  padding: var(--space-4);
+}
+
+.usa-hero.ulp-hero .usa-hero__heading {
+  color: var(--usa-color-blue-90);
+}
+
+.usa-hero.ulp-hero .usa-breadcrumb,
+.usa-hero.ulp-hero .usa-breadcrumb__list,
+.usa-hero.ulp-hero .usa-breadcrumb__list-item {
+  background-color: transparent;
+}
+
+.usa-hero.ulp-hero .usa-breadcrumb__link {
+  color: var(--usa-color-blue-70);
+}
+
+/* Utility helpers aligned strictly to USWDS tokens */
+.ulp-gap-1 {
+  gap: var(--space-1);
+}
+
+.ulp-gap-2 {
+  gap: var(--space-2);
+}
+
+/* Semantic badges (high-contrast WCAG AAA light surfaces) */
+.ulp-tag-v11 {
+  background-color: var(--usa-color-red-5);
+  color: var(--usa-color-red-60);
+  border: 1px solid var(--usa-color-red-20);
+}
+
+.ulp-tag-v12 {
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-80);
+  border: 1px solid var(--usa-color-blue-20);
+}
+
+.ulp-tag-success {
+  background-color: var(--usa-color-green-5);
+  color: var(--usa-color-green-60);
+  border: 1px solid var(--usa-color-green-20);
+}
+
+.ulp-tag-warning {
+  background-color: var(--usa-color-gold-5);
+  color: var(--usa-color-gold-70);
+  border: 1px solid var(--usa-color-gold-20);
+}
+
+.ulp-tag-forensic {
+  background-color: var(--usa-color-violet-5);
+  color: var(--usa-color-violet-70);
+  border: 1px solid var(--usa-color-violet-20);
+}
+
+.ulp-row-star {
+  background-color: var(--usa-color-gold-5);
+}
+
+/* Charts responsive wrapper (required for Chart.js maintainAspectRatio: false) */
+.ulp-chart-wrap {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+/* Legislative Reform Highlights (WCAG 2.1 AAA >= 7:1 contrast) */
+.reforma-rojo {
+  color: var(--usa-color-red-60);
+  background-color: var(--usa-color-red-5);
+  border-bottom: 2px solid var(--usa-color-red-30);
+  padding: 0 0.18em;
+  border-radius: var(--radius-sm);
+}
+
+.reforma-v12 {
+  color: var(--usa-color-blue-80);
+  background-color: var(--usa-color-blue-5);
+  border-bottom: 2px solid var(--usa-color-blue-30);
+  padding: 0 0.18em;
+  border-radius: var(--radius-sm);
+}
+
+.ulp-highlight-pulse {
+  outline: 3px solid var(--usa-color-gold-40);
+  outline-offset: 2px;
+  background-color: var(--usa-color-gold-10);
+  transition:
+    outline-color var(--transition-duration-normal) var(--transition-easing),
+    background-color var(--transition-duration-normal) var(--transition-easing);
+}
+
+/* Semantic Diff Highlights (Compare View) */
+.ulp-diff-ins {
+  background-color: var(--usa-color-green-5);
+  color: var(--usa-color-green-70);
+  border-bottom: 2px solid var(--usa-color-green-30);
+  text-decoration: none;
+  padding: 0 0.15em;
+  border-radius: var(--radius-sm);
+}
+
+.ulp-diff-del {
+  background-color: var(--usa-color-red-5);
+  color: var(--usa-color-red-70);
+  text-decoration: line-through;
+  padding: 0 0.15em;
+  border-radius: var(--radius-sm);
+}
+
+.ulp-diff-article {
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-md);
+  background-color: var(--theme-color-base-lightest);
+  margin-bottom: var(--space-2);
+  padding: var(--space-2);
+}
+
+.ulp-diff-article--added {
+  border-left: 5px solid var(--usa-color-green-50);
+}
+
+.ulp-diff-article--modified {
+  border-left: 5px solid var(--usa-color-blue-70);
+}
+
+.ulp-diff-article--removed {
+  border-left: 5px solid var(--usa-color-red-50);
+}
+
+/* Reader Typography & Sticky TOC */
+.ulp-reader-paper {
+  font-family: var(--font-serif);
+  font-size: var(--ulp-reader-font-size);
+  line-height: var(--line-height-loose);
+  max-width: none;
+}
+
+.ulp-reader-paper.ulp-font-sans {
+  font-family: var(--font-sans);
+}
+
+.ulp-reader-paper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--size-font-sm);
+}
+
+.ulp-reader-paper th,
+.ulp-reader-paper td {
+  border: 1px solid var(--usa-color-gray-cool-20);
+  padding: var(--space-1) var(--space-15);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ulp-reader-paper thead th {
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-90);
+  font-weight: var(--font-weight-bold);
+}
+
+.ulp-reader-paper blockquote {
+  border-left: 4px solid var(--usa-color-blue-60);
+  background-color: var(--usa-color-gray-cool-1);
+  margin: var(--space-2) 0;
+  padding: var(--space-15) var(--space-2);
+}
+
+.ulp-toc-sticky {
+  position: sticky;
+  top: var(--space-2);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+.floating-toc-item {
+  font-size: var(--size-font-xs);
+  line-height: 1.35;
+}
+
+.floating-toc-item.toc-level-2 {
+  padding-left: var(--space-2);
+}
+
+.floating-toc-item.toc-level-3 {
+  padding-left: var(--space-3);
+  font-size: var(--size-font-2xs);
+}
+
+.floating-toc-item.toc-level-4 {
+  padding-left: var(--space-4);
+  font-size: var(--size-font-2xs);
+}
+
+/* Compare Parallel Scroll Panels */
+.ulp-compare-paper {
+  max-height: 72vh;
+  overflow-y: auto;
+  font-size: var(--size-font-sm);
+  line-height: 1.6;
+}
+
+/* Light-Only Code / API Output Panels (WCAG AAA >= 14:1 contrast) */
+.ulp-code-output {
+  background-color: var(--usa-color-gray-cool-5);
+  color: var(--usa-color-gray-cool-90);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-left: 4px solid var(--usa-color-blue-70);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--size-font-2xs);
+  line-height: 1.5;
+  padding: var(--space-2);
+  max-height: 22rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ulp-code-output--success {
+  border-left-color: var(--usa-color-green-50);
+  background-color: var(--usa-color-green-5);
+  color: var(--usa-color-green-70);
+}
+
+.ulp-code-output--error {
+  border-left-color: var(--usa-color-red-50);
+  background-color: var(--usa-color-red-5);
+  color: var(--usa-color-red-70);
+}
+
+.ulp-code-output--warning {
+  border-left-color: var(--usa-color-gold-50);
+  background-color: var(--usa-color-gold-5);
+  color: var(--usa-color-gold-70);
+}
+
+.ulp-ws-entry {
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+  padding: var(--space-05) 0;
+}
+
+.ulp-ws-entry--alert {
+  color: var(--usa-color-red-60);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* QR Code Container */
+.ulp-qr-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-md);
+  padding: var(--space-15);
+}
+
+.ulp-qr-box svg {
+  width: 132px;
+  height: 132px;
+  display: block;
+}
+
+/* SVG Diagram Viewport & Fullscreen */
+.ulp-svg-viewport {
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-md);
+  max-height: 75vh;
+  overflow: auto;
+  padding: var(--space-2);
+  text-align: center;
+}
+
+.ulp-svg-viewport.is-zoomed {
+  cursor: grab;
+  text-align: left;
+}
+
+.ulp-svg-viewport.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.ulp-svg-viewport svg,
+.ulp-svg-viewport object,
+.ulp-svg-viewport img {
+  display: block;
+  margin: 0 auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.ulp-fullscreen-active {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-modal);
+  background-color: var(--theme-color-base-lightest);
+  overflow: auto;
+  padding: var(--space-3);
+  margin: 0;
+}
+
+.ulp-fullscreen-active .ulp-svg-viewport {
+  max-height: calc(100vh - 10rem);
+}
+
+/* Global Search Dialog (Ctrl+K) */
+.ulp-search-dialog {
+  width: min(760px, calc(100vw - 2rem));
+  max-height: 82vh;
+  border: 2px solid var(--usa-color-blue-70);
+  border-radius: var(--radius-lg);
+  background-color: var(--theme-color-base-lightest);
+  color: var(--theme-color-ink);
+  box-shadow: var(--shadow-5);
+  padding: 0;
+}
+
+.ulp-search-dialog::backdrop {
+  background-color: rgba(11, 27, 61, 0.35);
+}
+
+.ulp-search-results {
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+.ulp-search-result-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: var(--theme-color-base-lightest);
+  color: var(--theme-color-ink);
+  border: 1px solid var(--usa-color-gray-cool-10);
+  border-radius: var(--radius-md);
+  padding: var(--space-15);
+  margin-bottom: var(--space-1);
+  cursor: pointer;
+}
+
+.ulp-search-result-btn:hover,
+.ulp-search-result-btn:focus-visible {
+  background-color: var(--usa-color-blue-5);
+  border-color: var(--usa-color-blue-60);
+  outline: var(--focus-ring);
+}
+
+/* Skip & focus visibility */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* File dropzone for real SHA-256 client verification */
+.ulp-dropzone {
+  border: 2px dashed var(--usa-color-blue-40);
+  background-color: var(--usa-color-blue-5);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  text-align: center;
+}
+
+.ulp-dropzone.is-dragover {
+  border-color: var(--usa-color-blue-70);
+  background-color: var(--usa-color-blue-10);
+}
+
+/* Print Stylesheet (Official Gazette / Legislative Output) */
+@media print {
+  .usa-header,
+  .usa-footer,
+  .usa-identifier,
+  .usa-skipnav,
+  .ulp-no-print,
+  #floating-toc-col {
+    display: none !important;
+  }
+
+  #reader-paper-col {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+
+  .ulp-reader-paper {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

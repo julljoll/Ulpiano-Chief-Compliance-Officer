@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 
@@ -16,81 +16,111 @@ async function findFiles(directory) {
   return nested.flat();
 }
 
-test('Astro build preserves all HTML entry URLs and application views', async () => {
+test('Astro MPA build generates all ~26 static routes, endpoints, redirects, and strict CSP compliance', async () => {
   const files = await findFiles(outputDirectory);
-  for (const route of ['index.html', 'frontend.html', 'backend.html']) {
-    assert.ok(files.includes(path.join(outputDirectory, route)), `Missing /${route}`);
-  }
+  const relFiles = new Set(files.map((f) => path.relative(outputDirectory, f)));
 
-  const index = await readFile(path.join(outputDirectory, 'index.html'), 'utf8');
-  for (const view of ['dashboard', 'diagrams', 'api', 'reader', 'compare', 'matrix']) {
-    assert.match(index, new RegExp(`data-view="${view}"`), `Missing ${view} navigation`);
-    assert.match(index, new RegExp(`id="view-${view}"`), `Missing ${view} view`);
-  }
-  for (const control of [
-    'reader-version-select',
-    'paper-sheet',
-    'floating-toc-filter',
-    'btn-toggle-floating-toc',
-    'btn-jump-red-highlight',
-    'delta-search-input',
-    'delta-explorer-tbody',
-    'compare-select-left',
-    'compare-select-right',
-    'matrix-search-input',
-    'matrix-filter-count',
-    'matrix-tbody',
-    'diagram-viewport-content',
-    'diagram-zoom-val',
-    'dashboard-svg-container',
-    'sim-sign-result',
-    'sim-cotejo-result',
-    'sim-sorteo-result',
-    'sim-ws-feed',
+  for (const route of [
+    'index.html',
+    'lector/index.html',
+    'lector/v1.2/index.html',
+    'lector/v1.1/index.html',
+    'lector/v1.0/index.html',
+    'lector/rag-catalog/index.html',
+    'comparador/index.html',
+    'comparador/v1.0-vs-v1.2/index.html',
+    'comparador/v1.1-vs-v1.2/index.html',
+    'comparador/v1.0-vs-v1.1/index.html',
+    'comparador/v1.2-vs-v1.0/index.html',
+    'diagramas/index.html',
+    'diagramas/master/index.html',
+    'diagramas/comparative_law/index.html',
+    'diagramas/backend_python/index.html',
+    'diagramas/tsj_sentences_security/index.html',
+    'diagramas/tsj_backend_blueprint/index.html',
+    'matriz/index.html',
+    'matriz/trazabilidad.csv',
+    'consola-api/index.html',
+    'backend/index.html',
+    'frontend/index.html',
+    'backend.html',
+    'frontend.html',
+    'search-index.json',
+    '.htaccess',
+    'openapi.json',
+    'favicon.svg',
+    'manifest.json',
+    'robots.txt',
+    'sw.js',
+    'sitemap-index.xml',
   ]) {
-    assert.ok(index.includes(`id="${control}"`), `Missing interaction target ${control}`);
+    assert.ok(relFiles.has(route), `Missing generated route/asset: ${route}`);
   }
 
-  const frontend = await readFile(path.join(outputDirectory, 'frontend.html'), 'utf8');
-  const backend = await readFile(path.join(outputDirectory, 'backend.html'), 'utf8');
-  assert.ok(frontend.includes('href="backend.html"'));
-  assert.ok(backend.includes('href="frontend.html"'));
+  // Zero uswds.min.js or duplicate uswds.min.css in dist
+  assert.ok(
+    !files.some((f) => f.includes('uswds.min.js') || f.includes('uswds-init.min.js')),
+    'Legacy USWDS JS must not ship in dist/'
+  );
+
+  // Check strict CSP and pure static HTML rendering on key pages
+  const indexHtml = await readFile(path.join(outputDirectory, 'index.html'), 'utf8');
+  const readerV12 = await readFile(path.join(outputDirectory, 'lector/v1.2/index.html'), 'utf8');
+  const compareV10V12 = await readFile(
+    path.join(outputDirectory, 'comparador/v1.0-vs-v1.2/index.html'),
+    'utf8'
+  );
+  const diagramMaster = await readFile(
+    path.join(outputDirectory, 'diagramas/master/index.html'),
+    'utf8'
+  );
+
+  for (const [name, html] of [
+    ['index.html', indexHtml],
+    ['lector/v1.2/index.html', readerV12],
+    ['comparador/v1.0-vs-v1.2/index.html', compareV10V12],
+    ['diagramas/master/index.html', diagramMaster],
+  ]) {
+    assert.doesNotMatch(html, /\bonclick=/i, `Inline onclick found in ${name}`);
+    assert.doesNotMatch(
+      html,
+      /<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/i,
+      `Inline <script> without src= found in ${name} (would violate strict CSP script-src 'self')`
+    );
+    assert.ok(html.includes('manifest.json'), `Missing PWA manifest in ${name}`);
+    assert.ok(html.includes('favicon.svg'), `Missing favicon in ${name}`);
+  }
+
+  // Verify build-time SVG charts (zero <canvas> Chart.js on index!)
+  assert.ok(!indexHtml.includes('<canvas'), 'Dashboard must use build-time SVG charts, not Chart.js canvas');
+  assert.ok(indexHtml.includes('bar-chart-title'), 'Missing build-time SVG bar chart');
+  assert.ok(indexHtml.includes('donut-chart-title'), 'Missing build-time SVG donut chart');
+
+  // Verify build-time pre-rendered Markdown, TOC, article IDs, and semantic diff
+  assert.ok(readerV12.includes('id="articulo-10-bis"'), 'HAST plugin must emit #articulo-10-bis anchor');
+  assert.ok(readerV12.includes('class="reforma-rojo"'), 'HAST plugin must convert inline red to .reforma-rojo');
+  assert.ok(readerV12.includes('class="reforma-v12"'), 'Reader must preserve .reforma-v12 highlights');
+  assert.ok(compareV10V12.includes('ulp-diff-ins'), 'Comparator must pre-render semantic diff insertions');
+  assert.ok(diagramMaster.includes('<svg'), 'Diagrams page must inline SVG at build time');
+
+  // Verify static endpoints contain real data
+  const searchIndex = JSON.parse(await readFile(path.join(outputDirectory, 'search-index.json'), 'utf8'));
+  assert.ok(searchIndex.length >= 60, `Expected >=60 search index entries, got ${searchIndex.length}`);
+  const csv = await readFile(path.join(outputDirectory, 'matriz/trazabilidad.csv'), 'utf8');
+  assert.ok(csv.startsWith('\uFEFF') && csv.includes('TÍTULO VII'), 'Static CSV endpoint must include UTF-8 BOM and matrix rows');
 });
 
-test('static assets, app bundles, and all document sources ship in the production build', async () => {
-  const files = await findFiles(outputDirectory);
-  for (const asset of [
-    'manifest.json',
-    'svg/ciberseguridad_integracion_V1.2.svg',
-    'svg/backend_python_api_arquitectura.svg',
-  ]) {
-    assert.ok(files.includes(path.join(outputDirectory, asset)), `Missing ${asset}`);
+test('Zero-JS budget: Home page (index.html) ships < 10 KB of client JS total', async () => {
+  const indexHtml = await readFile(path.join(outputDirectory, 'index.html'), 'utf8');
+  const scriptSrcs = [...indexHtml.matchAll(/<script[^>]+src="([^"]+\.js)"/g)].map((m) => m[1]);
+  let totalBytes = 0;
+  for (const src of scriptSrcs) {
+    const filePath = path.join(outputDirectory, src.replace(/^\/+/, ''));
+    const info = await stat(filePath);
+    totalBytes += info.size;
   }
-
-  const index = await readFile(path.join(outputDirectory, 'index.html'), 'utf8');
-  const assetReferences = [...index.matchAll(/(?:src|href)="([^"]*_astro\/[^"]+)"/g)].map(
-    (match) => match[1]
-  );
   assert.ok(
-    assetReferences.some((asset) => asset.endsWith('.js')),
-    'Missing bundled application script'
+    totalBytes < 10 * 1024,
+    `Home JS budget exceeded! Expected <10KB, got ${(totalBytes / 1024).toFixed(2)}KB (${scriptSrcs.join(', ')})`
   );
-  assert.ok(
-    assetReferences.some((asset) => asset.endsWith('.css')),
-    'Missing bundled application styles'
-  );
-  for (const asset of assetReferences) {
-    assert.ok(
-      files.includes(path.join(outputDirectory, asset.replace(/^\//, ''))),
-      `Broken bundle reference ${asset}`
-    );
-  }
-
-  const bundles = await Promise.all(
-    files.filter((file) => file.endsWith('.js')).map((file) => readFile(file, 'utf8'))
-  );
-  const documentBundle = bundles.join('\n');
-  for (const phrase of ['LOCOTA 2026', 'EXPOSICIÓN DE MOTIVOS', 'ANTEPROYECTO DE LEY ORGÁNICA']) {
-    assert.ok(documentBundle.includes(phrase), `Missing Markdown source content: ${phrase}`);
-  }
 });

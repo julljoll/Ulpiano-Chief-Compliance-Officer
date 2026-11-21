@@ -1,0 +1,348 @@
+---
+/**
+ * ULPIANO CCO — Normative Traceability Matrix Page (/matriz/)
+ * Static HTML + Zero-JS CSV download (/matriz/trazabilidad.csv) + progressive composite filtering.
+ */
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { MATRIX_ROWS } from '../../lib/legal.ts';
+---
+
+<LegalLayout
+  title="Matriz de Trazabilidad Normativa — Ulpiano CCO"
+  description="Mapeo sistemático entre los 11 Títulos del Anteproyecto, derecho comparado (UE 2023/2841, FISMA 2014, JTC Courts 2025), estándares ISO/IEC y el bloque constitucional venezolano."
+  activeSection="matrix"
+>
+  <section class="usa-section">
+    <div class="grid-container">
+      <div class="grid-row grid-gap flex-align-start margin-bottom-4">
+        <div class="tablet:grid-col-8">
+          <nav class="usa-breadcrumb margin-bottom-1" aria-label="Migas de pan">
+            <ol class="usa-breadcrumb__list">
+              <li class="usa-breadcrumb__list-item">
+                <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+              </li>
+              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                <span>Matriz de Trazabilidad</span>
+              </li>
+            </ol>
+          </nav>
+          <h1 class="font-sans-xl margin-bottom-1 margin-top-0">
+            Matriz de Trazabilidad Normativa y Estándares Forenses
+          </h1>
+          <p class="usa-intro margin-top-1 text-base-dark">
+            Mapeo sistemático y auditable entre los 11 Títulos del Anteproyecto, el derecho comparado
+            (UE 2023/2841, FISMA 2014 S.2521, JTC Courts 2025), estándares internacionales ISO/IEC y
+            el bloque constitucional venezolano (CRBV Art. 203 y Sentencia TSJ 0406/2026).
+          </p>
+        </div>
+        <div class="tablet:grid-col-4 display-flex flex-wrap flex-justify-end flex-align-center ulp-gap-1 ulp-no-print">
+          <a href="/lector/rag-catalog/" class="usa-button usa-button--small">
+            Ver Catálogo RAG (115 Fuentes)
+          </a>
+          <a href="/" class="usa-button usa-button--outline usa-button--small">
+            Dashboard
+          </a>
+        </div>
+      </div>
+
+      <div class="display-flex flex-wrap ulp-gap-1 margin-bottom-3" aria-label="Estándares de Referencia">
+        <span class="usa-tag ulp-tag-v12">11 Títulos + Disposiciones</span>
+        <span class="usa-tag ulp-tag-v12">UE 2023/2841 (CERT-EU)</span>
+        <span class="usa-tag ulp-tag-success">JTC NCSC 2025 (Cortes)</span>
+        <span class="usa-tag ulp-tag-v12">FISMA 2014 S.2521 (PSS &amp; DOV)</span>
+        <span class="usa-tag ulp-tag-v11">TSJ Sentencia 0406/2026 &amp; LOCOTA 2026</span>
+        <span class="usa-tag ulp-tag-warning">ISO/IEC 27001 / 27037 / 42001</span>
+        <span class="usa-tag ulp-tag-v11">CRBV Art. 203 (Rango Orgánico)</span>
+      </div>
+
+      <div
+        id="matrix-feedback-alert"
+        class="usa-alert usa-alert--success usa-alert--slim margin-bottom-3"
+        role="status"
+        aria-live="polite"
+        hidden
+      >
+        <div class="usa-alert__body">
+          <p class="usa-alert__text" id="matrix-feedback-text"></p>
+        </div>
+      </div>
+
+      <div class="usa-card margin-bottom-4 ulp-no-print">
+        <div class="usa-card__container padding-3">
+          <div class="grid-row grid-gap flex-align-center">
+            <div class="tablet:grid-col-6">
+              <div class="usa-search usa-search--small" role="search">
+                <label class="usa-sr-only" for="matrix-search-input">
+                  Filtrar por término en la matriz
+                </label>
+                <input
+                  class="usa-input"
+                  id="matrix-search-input"
+                  type="search"
+                  name="search"
+                  placeholder="Filtrar por término (ej. LOCOTA, FISMA, ISO, 0406, 203)..."
+                />
+                <button
+                  class="usa-button"
+                  id="matrix-search-btn"
+                  type="button"
+                  aria-label="Buscar en la matriz"
+                >
+                  <span class="usa-search__submit-text">Buscar</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="tablet:grid-col-6 display-flex flex-justify-end flex-wrap flex-align-center ulp-gap-1">
+              <span
+                class="text-base-darker font-sans-xs margin-right-1"
+                id="matrix-filter-count"
+                aria-live="polite"
+              >
+                Mostrando <strong>{MATRIX_ROWS.length}</strong> filas normativas en cuadrícula
+              </span>
+              <a
+                href="/matriz/trazabilidad.csv"
+                download="Matriz_Trazabilidad_Normativa_V1.2.csv"
+                class="usa-button usa-button--outline usa-button--small"
+                title="Descargar como archivo CSV compatible con Excel (funciona sin JS)"
+              >
+                Exportar CSV
+              </a>
+              <button
+                type="button"
+                id="btn-copy-matrix"
+                class="usa-button usa-button--outline usa-button--small"
+                title="Copiar filas visibles en formato TSV"
+              >
+                Copiar Tabla
+              </button>
+              <button
+                type="button"
+                id="btn-print-matrix"
+                class="usa-button usa-button--outline usa-button--small"
+                title="Imprimir Matriz"
+              >
+                Imprimir
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="display-flex flex-wrap ulp-gap-1 margin-top-2 border-top-1px border-base-lighter padding-top-2"
+            role="group"
+            aria-label="Filtro por sección"
+          >
+            <button
+              type="button"
+              class="usa-button usa-button--small excel-sheet-tab active"
+              data-sheet="all"
+              aria-pressed="true"
+            >
+              Todas las Secciones
+            </button>
+            <button
+              type="button"
+              class="usa-button usa-button--outline usa-button--small excel-sheet-tab"
+              data-sheet="organica"
+              aria-pressed="false"
+            >
+              Ley Orgánica &amp; Constitucional (Art. 203)
+            </button>
+            <button
+              type="button"
+              class="usa-button usa-button--outline usa-button--small excel-sheet-tab"
+              data-sheet="fisma"
+              aria-pressed="false"
+            >
+              Gobernanza FISMA 2014 &amp; UE
+            </button>
+            <button
+              type="button"
+              class="usa-button usa-button--outline usa-button--small excel-sheet-tab"
+              data-sheet="original"
+              aria-pressed="false"
+            >
+              Aporte Original Título VII (Anticorrupción)
+            </button>
+            <button
+              type="button"
+              class="usa-button usa-button--outline usa-button--small excel-sheet-tab"
+              data-sheet="forense"
+              aria-pressed="false"
+            >
+              Forense Digital ISO 27037 &amp; Sanciones
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="usa-table-container--scrollable margin-bottom-6" tabindex="0">
+        <table
+          class="usa-table usa-table--striped usa-table--borderless width-full"
+          id="matrix-table-main"
+        >
+          <caption class="usa-sr-only">
+            Matriz de trazabilidad entre los 11 títulos normativos, estándares internacionales y bloque constitucional
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="text-center">Fila</th>
+              <th scope="col">Título &amp; Artículos</th>
+              <th scope="col">Materia Regulada &amp; Alcance</th>
+              <th scope="col">Derecho Comparado / Estándares</th>
+              <th scope="col">Bloque Constitucional &amp; Nacional</th>
+              <th scope="col" class="text-center">Jerarquía</th>
+            </tr>
+          </thead>
+          <tbody id="matrix-tbody">
+            {MATRIX_ROWS.map((row) => (
+              <tr
+                id={`fila-${row.rowNum}`}
+                data-category={row.category}
+                class={row.isStar ? 'ulp-row-star' : ''}
+              >
+                <td class="text-center text-bold font-mono-sm">{row.rowNum}</td>
+                <td>
+                  <span class="usa-tag ulp-tag-v12 text-bold margin-bottom-05">{row.titleId}</span>
+                  <div class="text-bold text-ink">{row.titleName}</div>
+                  <span class="text-base-dark font-sans-xs">{row.articles}</span>
+                </td>
+                <td>
+                  <div class="text-bold text-ink margin-bottom-05">{row.topic}</div>
+                  <p class="font-sans-xs text-base-darker line-height-sans-3 margin-0">{row.scope}</p>
+                </td>
+                <td>
+                  <ul class="usa-list usa-list--unstyled margin-0 font-sans-xs">
+                    {row.comparativeLaw.map((item) => (
+                      <li class="margin-bottom-05">
+                        <span
+                          class={`usa-tag ${item.isOriginal ? 'ulp-tag-warning' : 'ulp-tag-v12'} margin-right-05`}
+                        >
+                          {item.tag}
+                        </span>
+                        <span>{item.detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+                <td>
+                  <ul class="usa-list usa-list--unstyled margin-0 font-sans-xs">
+                    {row.constitutionalBlock.map((item) => (
+                      <li class="margin-bottom-05">
+                        <span
+                          class={`usa-tag ${item.isImportant ? 'ulp-tag-v11' : 'ulp-tag-v12'} margin-right-05`}
+                        >
+                          {item.tag}
+                        </span>
+                        <span class={item.isImportant ? 'text-bold' : ''}>{item.detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+                <td class="text-center">
+                  <span
+                    class={`usa-tag ${row.hierarchy === 'Orgánica' ? 'ulp-tag-v11' : row.hierarchy === 'Innovación' ? 'ulp-tag-warning' : 'ulp-tag-v12'}`}
+                  >
+                    {row.hierarchy}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import { matchesMatrixSheet } from '../../lib/format.ts';
+
+    let activeSheet = 'all';
+    let activeQuery = '';
+
+    const searchInput = document.getElementById('matrix-search-input') as HTMLInputElement | null;
+    const searchBtn = document.getElementById('matrix-search-btn');
+    const countEl = document.getElementById('matrix-filter-count');
+    const feedbackAlert = document.getElementById('matrix-feedback-alert');
+    const feedbackText = document.getElementById('matrix-feedback-text');
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.excel-sheet-tab');
+
+    const applyFilters = () => {
+      const rows = document.querySelectorAll<HTMLTableRowElement>('#matrix-tbody tr');
+      const q = activeQuery.toLowerCase().trim();
+      let visible = 0;
+
+      tabs.forEach((tab) => {
+        const isAct = tab.getAttribute('data-sheet') === activeSheet;
+        tab.classList.toggle('active', isAct);
+        tab.classList.toggle('usa-button--outline', !isAct);
+        tab.setAttribute('aria-pressed', String(isAct));
+      });
+
+      rows.forEach((row) => {
+        const cat = (row.getAttribute('data-category') || '').toLowerCase();
+        const txt = (row.textContent || '').toLowerCase();
+        const show = matchesMatrixSheet(cat, txt, activeSheet) && (!q || txt.includes(q));
+        row.hidden = !show;
+        if (show) visible++;
+      });
+
+      if (countEl) {
+        countEl.innerHTML =
+          q || activeSheet !== 'all'
+            ? `Mostrando <strong>${visible}</strong> de <strong>${rows.length}</strong> filas filtradas`
+            : `Mostrando <strong>${rows.length}</strong> filas normativas en cuadrícula`;
+      }
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        activeSheet = tab.getAttribute('data-sheet') || 'all';
+        applyFilters();
+      });
+    });
+
+    searchInput?.addEventListener('input', () => {
+      activeQuery = searchInput.value;
+      applyFilters();
+    });
+    searchBtn?.addEventListener('click', () => {
+      activeQuery = searchInput?.value || '';
+      applyFilters();
+    });
+
+    document.getElementById('btn-print-matrix')?.addEventListener('click', () => window.print());
+
+    document.getElementById('btn-copy-matrix')?.addEventListener('click', async () => {
+      const rows = document.querySelectorAll<HTMLTableRowElement>('#matrix-tbody tr');
+      let tsv =
+        'Fila\tTítulo & Artículos\tMateria Regulada\tDerecho Comparado / Estándares\tBloque Constitucional & Nacional\tJerarquía\n';
+      rows.forEach((row) => {
+        if (row.hidden) return;
+        const cells = row.querySelectorAll('td');
+        if (cells.length < 6) return;
+        const clean = (cell: Element, sep: string) =>
+          (cell.textContent || '').replace(/\s*\r?\n\s*/g, sep).replace(/\s{2,}/g, ' ').trim();
+        tsv += `${clean(cells[0], ' ')}\t${clean(cells[1], ' ')}\t${clean(cells[2], ' ')}\t${clean(cells[3], ' | ')}\t${clean(cells[4], ' | ')}\t${clean(cells[5], ' ')}\n`;
+      });
+
+      const showMsg = (msg: string, warn = false) => {
+        if (!feedbackAlert || !feedbackText) return;
+        feedbackAlert.className = `usa-alert usa-alert--${warn ? 'warning' : 'success'} usa-alert--slim margin-bottom-3`;
+        feedbackText.textContent = msg;
+        feedbackAlert.hidden = false;
+        setTimeout(() => {
+          feedbackAlert.hidden = true;
+        }, 4500);
+      };
+
+      try {
+        await navigator.clipboard.writeText(tsv);
+        showMsg('Matriz copiada al portapapeles en formato TSV compatible con Excel o Calc.');
+      } catch {
+        showMsg('No se pudo acceder al portapapeles. Utilice el botón Exportar CSV.', true);
+      }
+    });
+  </script>
+</LegalLayout>

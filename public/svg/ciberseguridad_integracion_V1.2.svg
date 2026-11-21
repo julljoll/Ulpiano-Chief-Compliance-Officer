@@ -2,9 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1650" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
   <defs>
     <style><![CDATA[
-      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
-      @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;600;700&display=swap');
-
       .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
       .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
 
@@ -117,7 +114,7 @@
       <g transform="translate(0, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
         <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
-        <text x="14" y="22" class="text-item-title" fill="#004987">CERT-EU ➔ CSIRT-Ulpiano (Arts. 8-9)</text>
+        <text x="14" y="22" class="text-item-title" fill="#004987">CERT-EU → CSIRT-Ulpiano (Arts. 8-9)</text>
         <text x="14" y="42" class="text-item-desc">• Centro especializado de respuesta a incidentes 24/7.</text>
         <text x="14" y="60" class="text-item-desc">• Protección integral de expedientes judiciales y trámites.</text>
         <text x="14" y="78" class="text-item-desc">• Monitoreo perimetral y detección temprana de brechas.</text>

@@ -1,0 +1,163 @@
+---
+/**
+ * ULPIANO CCO — Static Vector Diagrams Suite (/diagramas/[id]/ — 12 Dedicated SEO Pages)
+ * Every SVG is inlined at build-time via SvgZoomViewer.astro (0 client fetch, 100% visible without JS).
+ */
+import { getCollection } from 'astro:content';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import SvgZoomViewer from '../../components/SvgZoomViewer.astro';
+import { variantTagClass } from '../../lib/format.ts';
+
+export async function getStaticPaths() {
+  const allDiagrams = (await getCollection('diagramas')).map((d) => d.data);
+  return allDiagrams.map((diag) => ({
+    params: { id: diag.id },
+    props: { diag, allDiagrams },
+  }));
+}
+
+const { diag, allDiagrams } = Astro.props;
+---
+
+<LegalLayout
+  title={`${diag.name} — Diagramas Ulpiano CCO`}
+  description={diag.sub}
+  activeSection="diagrams"
+>
+  <section class="usa-section">
+    <div class="grid-container">
+      <!-- 1. HERO -->
+      <div class="usa-hero ulp-hero margin-bottom-4" aria-label="Suite de 12 Diagramas">
+        <div class="grid-container">
+          <div class="usa-hero__callout">
+            <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
+              <ol class="usa-breadcrumb__list">
+                <li class="usa-breadcrumb__list-item">
+                  <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+                </li>
+                <li class="usa-breadcrumb__list-item">
+                  <span class="usa-breadcrumb__link">Modelado Arquitectónico</span>
+                </li>
+                <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                  <span>{diag.shortName}</span>
+                </li>
+              </ol>
+            </nav>
+
+            <span class="usa-tag ulp-tag-v12 margin-bottom-1">{diag.badge}</span>
+            <h1 class="usa-hero__heading">{diag.name}</h1>
+            <p>{diag.sub}</p>
+
+            <div class="margin-top-3 display-flex flex-wrap ulp-gap-2">
+              <a
+                href={diag.file}
+                download={diag.file.split('/').pop()}
+                class="usa-button"
+              >
+                Descargar SVG
+              </a>
+              <a href="/" class="usa-button usa-button--outline">
+                Volver al Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. FILTRO POR CATEGORÍA + SELECTOR DE 12 PERSPECTIVAS (Enlaces reales) -->
+      <div class="margin-bottom-3">
+        <p class="font-sans-xs text-bold text-uppercase text-base-darker margin-bottom-1">
+          Filtrar por Categoría:
+        </p>
+        <div class="display-flex flex-wrap ulp-gap-1" role="group" aria-label="Categorías de diagramas">
+          <button type="button" class="usa-button usa-button--small" data-diag-cat="all" aria-pressed="true">
+            Todas ({allDiagrams.length})
+          </button>
+          <button type="button" class="usa-button usa-button--small usa-button--outline" data-diag-cat="gobernanza" aria-pressed="false">
+            Gobernanza &amp; Compliance (4)
+          </button>
+          <button type="button" class="usa-button usa-button--small usa-button--outline" data-diag-cat="normativa" aria-pressed="false">
+            Marco Legal &amp; Comparado (3)
+          </button>
+          <button type="button" class="usa-button usa-button--small usa-button--outline" data-diag-cat="arquitectura" aria-pressed="false">
+            Arquitectura de Software (5)
+          </button>
+        </div>
+      </div>
+
+      <nav class="margin-bottom-4" aria-label="Selector de los 12 diagramas vectoriales" id="diagram-nav-tabs">
+        <p class="font-sans-xs text-bold text-uppercase text-base-darker margin-bottom-1">
+          Perspectivas Vectoriales ({allDiagrams.length}):
+        </p>
+        <ul class="usa-list usa-list--unstyled display-flex flex-wrap ulp-gap-1">
+          {allDiagrams.map((item) => {
+            const isCurrent = item.id === diag.id;
+            return (
+              <li data-tab-category={item.category}>
+                <a
+                  href={`/diagramas/${item.id}/`}
+                  class={`usa-button usa-button--small ${isCurrent ? '' : 'usa-button--outline'}`}
+                  aria-current={isCurrent ? 'page' : undefined}
+                >
+                  {item.shortName}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <!-- 3. VISOR VECTORIAL COMPARTIDO (SVG incrustado en build) -->
+      <SvgZoomViewer
+        title={diag.name}
+        subtitle={diag.sub}
+        svgFile={diag.file}
+        ariaLabel={diag.name}
+      />
+
+      <!-- 4. DESGLOSE DE CAPAS ESTÁTICO -->
+      <div class="margin-bottom-5">
+        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+          <h2 class="font-sans-lg margin-0">Desglose por Capas y Especificación Técnica</h2>
+        </div>
+
+        <ul class="usa-card-group">
+          {diag.breakdown.map((item) => (
+            <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
+              <div class="usa-card__container">
+                <header class="usa-card__header">
+                  <span class={`${variantTagClass(item.variant)} margin-bottom-1`}>
+                    {item.badge}
+                  </span>
+                  <h3 class="usa-card__heading font-sans-sm">{item.title}</h3>
+                </header>
+                <div class="usa-card__body">
+                  <p class="font-sans-2xs text-base-dark margin-0">{item.desc}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const catBtns = document.querySelectorAll<HTMLButtonElement>('[data-diag-cat]');
+    const tabItems = document.querySelectorAll<HTMLLIElement>('#diagram-nav-tabs [data-tab-category]');
+
+    catBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-diag-cat') || 'all';
+        catBtns.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle('usa-button--outline', !active);
+          b.setAttribute('aria-pressed', String(active));
+        });
+        tabItems.forEach((li) => {
+          li.hidden = cat !== 'all' && li.getAttribute('data-tab-category') !== cat;
+        });
+      });
+    });
+  </script>
+</LegalLayout>

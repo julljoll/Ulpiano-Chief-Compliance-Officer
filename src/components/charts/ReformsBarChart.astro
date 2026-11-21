@@ -1,0 +1,164 @@
+---
+/**
+ * ULPIANO CCO — Pure Build-Time SVG Bar Chart (0 KB Client JS, WCAG 2.1 AAA Light-Only)
+ * Replaces 200 KB Chart.js dependency completely.
+ */
+interface Props {
+  title: string;
+  versionTag: string;
+  labels: string[];
+  data: number[];
+}
+
+const { title, versionTag, labels, data } = Astro.props;
+
+const maxVal = Math.max(1, ...data);
+const ySteps = 4;
+const chartW = 560;
+const chartH = 260;
+const padLeft = 40;
+const padRight = 16;
+const padTop = 26;
+const padBottom = 64;
+const plotW = chartW - padLeft - padRight;
+const plotH = chartH - padTop - padBottom;
+const slotW = data.length > 0 ? plotW / data.length : plotW;
+const barW = Math.min(44, Math.max(18, slotW * 0.56));
+
+const bars = labels.map((label, i) => {
+  const val = data[i] ?? 0;
+  const h = (val / maxVal) * plotH;
+  const x = padLeft + i * slotW + (slotW - barW) / 2;
+  const y = padTop + plotH - h;
+  const shortLabel = label.replace(/\s*\(.*?\)/g, '');
+  const subLabel = (label.match(/\((.*?)\)/)?.[1] ?? '').slice(0, 14);
+  return { label, shortLabel, subLabel, val, x, y, h, cx: x + barW / 2 };
+});
+
+const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
+  const val = Math.round((maxVal / ySteps) * idx);
+  const y = padTop + plotH - (val / maxVal) * plotH;
+  return { val, y };
+});
+---
+
+<div class="usa-card__container padding-3 border-1px border-base-lighter">
+  <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-1">
+    <h2 class="font-sans-sm text-uppercase margin-0">{title}</h2>
+    <span class="usa-tag ulp-tag-v12">{versionTag}</span>
+  </div>
+
+  <svg
+    viewBox={`0 0 ${chartW} ${chartH}`}
+    class="ulp-svg-chart width-full height-auto"
+    role="img"
+    aria-labelledby="bar-chart-title bar-chart-desc"
+  >
+    <title id="bar-chart-title">{title} — {versionTag}</title>
+    <desc id="bar-chart-desc">
+      Gráfico de barras de modificaciones normativas por título: {bars.map((b) => `${b.label}: ${b.val}`).join(', ')}.
+    </desc>
+
+    <!-- Horizontal gridlines & Y ticks -->
+    {gridLines.map((g) => (
+      <g>
+        <line
+          x1={padLeft}
+          y1={g.y}
+          x2={chartW - padRight}
+          y2={g.y}
+          stroke="#e7e9ed"
+          stroke-width="1"
+        />
+        <text
+          x={padLeft - 8}
+          y={g.y + 4}
+          text-anchor="end"
+          fill="#323a45"
+          font-size="11"
+          font-family="Public Sans Web, -apple-system, sans-serif"
+        >
+          {g.val}
+        </text>
+      </g>
+    ))}
+
+    <!-- Baseline axis -->
+    <line
+      x1={padLeft}
+      y1={padTop + plotH}
+      x2={chartW - padRight}
+      y2={padTop + plotH}
+      stroke="#8190a4"
+      stroke-width="1.5"
+    />
+
+    <!-- Bars + Data Labels -->
+    {bars.map((b) => (
+      <g>
+        <rect
+          x={b.x}
+          y={b.y}
+          width={barW}
+          height={Math.max(2, b.h)}
+          rx="3"
+          fill="#004987"
+          stroke="#0b1b3d"
+          stroke-width="1"
+        />
+        <text
+          x={b.cx}
+          y={b.y - 6}
+          text-anchor="middle"
+          fill="#0b1b3d"
+          font-size="12"
+          font-weight="700"
+          font-family="Public Sans Web, -apple-system, sans-serif"
+        >
+          {b.val}
+        </text>
+        <text
+          x={b.cx}
+          y={padTop + plotH + 16}
+          text-anchor="middle"
+          fill="#13171b"
+          font-size="10"
+          font-weight="600"
+          font-family="Public Sans Web, -apple-system, sans-serif"
+        >
+          {b.shortLabel}
+        </text>
+        {b.subLabel && (
+          <text
+            x={b.cx}
+            y={padTop + plotH + 30}
+            text-anchor="middle"
+            fill="#45505f"
+            font-size="9"
+            font-family="Public Sans Web, -apple-system, sans-serif"
+          >
+            {b.subLabel}
+          </text>
+        )}
+      </g>
+    ))}
+  </svg>
+
+  <table class="usa-sr-only">
+    <caption>Datos numéricos de {title}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Sección</th>
+        <th scope="col">Modificaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {bars.map((b) => (
+        <tr>
+          <td>{b.label}</td>
+          <td>{b.val}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

@@ -1,18 +1,17 @@
 ---
 /**
- * USWDS Component: Footer (Big)
- * Fuente oficial: https://designsystem.digital.gov/components/footer/
+ * USWDS Component: Footer (Big) — Zero-JS Multi-Page Navigation
  */
 interface Props {
-  activePage?: 'index' | 'backend' | 'frontend';
+  activeSection?: string;
 }
 
-const { activePage = 'index' } = Astro.props;
+const { activeSection = 'dashboard' } = Astro.props;
 ---
 
 <footer class="usa-footer usa-footer--big">
   <div class="grid-container usa-footer__return-to-top">
-    <a href="#">Volver arriba</a>
+    <a href="#main-content">Volver arriba</a>
   </div>
   <div class="usa-footer__primary-section">
     <div class="grid-container">
@@ -21,8 +20,8 @@ const { activePage = 'index' } = Astro.props;
           <nav class="usa-footer__nav" aria-label="Navegación del pie de página">
             <div class="grid-row grid-gap-4">
               <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
-                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
-                  <h4 class="usa-footer__primary-link">Fundamento Dogmático</h4>
+                <section class="usa-footer__primary-content">
+                  <h2 class="usa-footer__primary-link">Fundamento Dogmático</h2>
                   <ul class="usa-list usa-list--unstyled">
                     <li class="usa-footer__secondary-link">
                       <em>Honeste Vivere</em> (Integridad &amp; 4 Ojos)
@@ -37,44 +36,41 @@ const { activePage = 'index' } = Astro.props;
                 </section>
               </div>
               <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
-                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
-                  <h4 class="usa-footer__primary-link">Módulos del Sistema</h4>
+                <section class="usa-footer__primary-content">
+                  <h2 class="usa-footer__primary-link">Módulos del Sistema</h2>
                   <ul class="usa-list usa-list--unstyled">
                     <li class="usa-footer__secondary-link">
-                      <a href="index.html#dashboard">Dashboard de Control V-1.2</a>
+                      <a href="/">Dashboard de Control V-1.2</a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a href="index.html#diagrams">Suite de Diagramas (9 Vistas)</a>
+                      <a href="/diagramas/master/">Suite de Diagramas (12 Vistas)</a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a href="index.html#api">Consola API &amp; WSS</a>
+                      <a href="/consola-api/">Consola API &amp; WSS</a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a href="index.html#reader">Lector Normativo</a>
+                      <a href="/lector/v1.2/">Lector Normativo &amp; RAG</a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a href="index.html#compare">Comparador Diferencial</a>
+                      <a href="/comparador/v1.0-vs-v1.2/">Comparador Diferencial</a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a href="index.html#matrix">Matriz de Trazabilidad</a>
+                      <a href="/matriz/">Matriz de Trazabilidad</a>
                     </li>
                   </ul>
                 </section>
               </div>
               <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
-                <section class="usa-footer__primary-content usa-footer__primary-content--collapsible">
-                  <h4 class="usa-footer__primary-link">Arquitectura Técnica</h4>
+                <section class="usa-footer__primary-content">
+                  <h2 class="usa-footer__primary-link">Arquitectura Técnica</h2>
                   <ul class="usa-list usa-list--unstyled">
                     <li class="usa-footer__secondary-link">
-                      <a href="backend.html" class={activePage === 'backend' ? 'usa-current' : ''}>
+                      <a href="/backend/" class={activeSection === 'backend' ? 'usa-current' : ''}>
                         Servidor API Python 3.12
                       </a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a
-                        href="frontend.html"
-                        class={activePage === 'frontend' ? 'usa-current' : ''}
-                      >
+                      <a href="/frontend/" class={activeSection === 'frontend' ? 'usa-current' : ''}>
                         Cliente Web Next.js 15
                       </a>
                     </li>
@@ -88,11 +84,7 @@ const { activePage = 'index' } = Astro.props;
                       </a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a
-                        href="https://github.com/julljoll/Ulpiano-Chief-Compliance-Officer/blob/main/openapi.json"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <a href="/openapi.json" target="_blank" rel="noopener noreferrer">
                         Especificación OpenAPI 3.1
                       </a>
                     </li>
@@ -104,7 +96,7 @@ const { activePage = 'index' } = Astro.props;
         </div>
         <div class="tablet:grid-col-4">
           <div class="usa-sign-up">
-            <h4 class="usa-sign-up__heading">Garantías Criptográficas</h4>
+            <h2 class="usa-sign-up__heading">Garantías Criptográficas</h2>
             <p class="usa-sign-up__text">
               Conforme al Art. 203 CRBV, Sentencia TSJ/SC N° 0406/2026, FISMA 2014, LOCOTA 2026 e
               ISO/IEC 27001 / 27037 / 42001. Bóveda WORM MinIO Object Lock y sellado de tiempo RFC
@@ -121,7 +113,7 @@ const { activePage = 'index' } = Astro.props;
         <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
           <div class="mobile-lg:grid-col-auto">
             <p class="usa-footer__logo-heading">Ulpiano — Chief Compliance Officer</p>
-            <p class="font-sans-2xs text-base-light margin-top-05">
+            <p class="font-sans-2xs text-base-darker margin-top-05">
               Dirección de Ciberseguridad Procesal, Informática Forense e Integridad Digital. Autor:
               Jull Ortiz (sha256.us). Licencia Apache 2.0.
             </p>

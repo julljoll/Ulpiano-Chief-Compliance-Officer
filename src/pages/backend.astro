@@ -1,264 +1,55 @@
 ---
-/**
- * USWDS Technical Architecture Page: Backend Python 3.12 (FastAPI)
- * Fuente oficial: https://designsystem.digital.gov/page-templates/
- */
-import LegalLayout from '../layouts/LegalLayout.astro';
+import ArchitecturePage from '../components/ArchitecturePage.astro';
+import type { ArchLayerItem } from '../types/legal.ts';
+
+const layers: ArchLayerItem[] = [
+  {
+    badge: 'Capa 1: Ingress',
+    title: 'Ingress API & Autenticación',
+    tech: 'uvicorn / uvloop',
+    desc: 'FastAPI ASGI de alto rendimiento, terminación TLS 1.3, autenticación OAuth2 + JWT (FIDO2) y limitación estricta de tasa por IP.',
+    legal: 'LPCDI Art. 9 • ISO/IEC 27001',
+  },
+  {
+    badge: 'Capa 2: Lógica Forense',
+    title: 'Firma & Sorteo Criptoseguro',
+    tech: 'PyKCS11 + pyHanko',
+    desc: 'Firma PAdES-B-LTA con token HSM PKCS#11 FIPS 140-2 L3, sellado TSA RFC 3161 y sorteo aleatorio imparcial con CSPRNG.',
+    legal: 'LMDyFE Arts. 4, 6, 8 • Art. 26',
+  },
+  {
+    badge: 'Capa 3: Asíncrona',
+    title: 'Colas & IA Ética (ISO 42001)',
+    tech: 'Celery + Redis 7',
+    desc: 'Workers en Celery para análisis de resoluciones, motor RAG sobre PostgreSQL pgvector y alertas tempranas hacia la Contraloría.',
+    legal: 'LOCOTA Art. 11 • ISO/IEC 42001',
+  },
+  {
+    badge: 'Capa 4: Persistencia',
+    title: 'Bóveda WORM & Árbol Merkle',
+    tech: 'PostgreSQL + MinIO WORM',
+    desc: 'Almacenamiento inmutable S3 Object Lock (WORM) con hash dual SHA-256/SHA3-512 y bitácora forense verificable.',
+    legal: 'Infogobierno Art. 27 • Art. 28',
+  },
+];
 ---
 
-<LegalLayout
-  title="Arquitectura Backend Python 3.12 (FastAPI) | Ulpiano Chief Compliance Officer"
-  description="Diagrama y especificación técnica de la arquitectura de servidor API en Python 3.12 (FastAPI, PyKCS11 HSM, Celery, PostgreSQL 16 pgvector y MinIO S3 WORM) para el sistema judicial."
-  activePage="backend"
->
-  <div class="grid-container padding-y-4">
-    <!-- Hero Banner -->
-    <div class="usa-hero margin-bottom-4" aria-label="Arquitectura Backend">
-      <div class="grid-container">
-        <div class="usa-hero__callout">
-          <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
-            <ol class="usa-breadcrumb__list">
-              <li class="usa-breadcrumb__list-item">
-                <a href="index.html" class="usa-breadcrumb__link">
-                  Portal CCO
-                </a>
-              </li>
-              <li class="usa-breadcrumb__list-item">
-                <span class="usa-breadcrumb__link">Arquitectura Técnica</span>
-              </li>
-              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-                <span>Servidor API Python 3.12 (FastAPI)</span>
-              </li>
-            </ol>
-          </nav>
-
-          <span class="usa-tag margin-bottom-1">
-            PYTHON 3.12 CORE • FASTAPI + UVLOOP • OPENAPI 3.1
-          </span>
-          <h1 class="usa-hero__heading">Arquitectura del Servidor API Backend en Python 3.12</h1>
-          <p>
-            Diagrama técnico y flujo de datos del núcleo de procesamiento judicial: gestión
-            asíncrona, firma criptográfica SUSCERTE con PyKCS11, tareas de fondo Celery/Redis,
-            persistencia pgvector y bóveda inmutable WORM conforme a la LMDyFE y la Ley de
-            Infogobierno.
-          </p>
-
-          <div class="margin-top-3 display-flex flex-wrap flex-gap-2">
-            <a
-              href="./svg/backend_python_api_arquitectura.svg"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="usa-button"
-            >
-              Abrir SVG Directo ↗
-            </a>
-            <a
-              href="./svg/backend_python_api_arquitectura.svg"
-              download="backend_python_api_arquitectura.svg"
-              class="usa-button usa-button--outline"
-            >
-              Descargar SVG
-            </a>
-            <a href="frontend.html" class="usa-button usa-button--outline">
-              Ver Arquitectura Frontend Next.js
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Visor de Diagrama SVG con Controles USWDS -->
-    <div class="usa-card margin-bottom-5">
-      <div class="usa-card__container">
-        <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
-          <div class="display-flex flex-wrap flex-justify flex-align-center flex-gap-2">
-            <div>
-              <span class="usa-tag margin-bottom-05">BACKEND CORE</span>
-              <h2 class="font-sans-md margin-0">
-                Diagrama Oficial de Arquitectura Backend (Python 3.12 FastAPI)
-              </h2>
-            </div>
-            <div class="display-flex flex-wrap flex-gap-1">
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="zoomSvg(-0.15)"
-                title="Reducir Zoom"
-              >
-                Zoom -
-              </button>
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="resetZoom()"
-                title="Restablecer"
-              >
-                <span id="zoom-val">100%</span>
-              </button>
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="zoomSvg(0.15)"
-                title="Aumentar Zoom"
-              >
-                Zoom +
-              </button>
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--outline"
-                onclick="toggleFullscreen()"
-                title="Pantalla Completa"
-                id="btn-fullscreen"
-              >
-                Pantalla Completa
-              </button>
-            </div>
-          </div>
-        </header>
-
-        <div class="usa-card__body padding-2">
-          <div
-            id="svg-viewport"
-            class="padding-3 bg-base-lightest border-1px border-base-lighter text-center overflow-auto"
-          >
-            <object
-              data="./svg/backend_python_api_arquitectura.svg"
-              type="image/svg+xml"
-              id="svg-object"
-              class="width-full maxw-full"
-            >
-              <img
-                src="./svg/backend_python_api_arquitectura.svg"
-                alt="Diagrama de Arquitectura Backend Python"
-                class="width-full"
-              />
-            </object>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Desglose por Capas de la Arquitectura Backend -->
-    <div class="margin-bottom-5">
-      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
-        <h2 class="font-sans-lg margin-0">Desglose por Capas de la Arquitectura Backend</h2>
-      </div>
-
-      <ul class="usa-card-group">
-        <!-- Capa 1 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 1: Ingress</span>
-              <h3 class="usa-card__heading font-sans-sm">Ingress API &amp; Autenticación</h3>
-              <p class="font-sans-2xs text-base margin-top-05">uvicorn / uvloop</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                FastAPI ASGI de alto rendimiento, terminación TLS 1.3, autenticación OAuth2 + JWT
-                (FIDO2) y limitación estricta de tasa por IP.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">LPCDI Art. 9 • ISO/IEC 27001</span>
-            </div>
-          </div>
-        </li>
-
-        <!-- Capa 2 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 2: Lógica Forense</span>
-              <h3 class="usa-card__heading font-sans-sm">Firma &amp; Sorteo Criptoseguro</h3>
-              <p class="font-sans-2xs text-base margin-top-05">PyKCS11 + pyHanko</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                Firma PAdES-B-LTA con token HSM PKCS#11 FIPS 140-2 L3, sellado TSA RFC 3161 y sorteo
-                aleatorio imparcial con CSPRNG.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">
-                LMDyFE Arts. 4, 6, 8 • Art. 26
-              </span>
-            </div>
-          </div>
-        </li>
-
-        <!-- Capa 3 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 3: Asíncrona</span>
-              <h3 class="usa-card__heading font-sans-sm">Colas &amp; IA Ética (ISO 42001)</h3>
-              <p class="font-sans-2xs text-base margin-top-05">Celery + Redis 7</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                Workers en Celery para análisis de resoluciones, motor RAG sobre PostgreSQL pgvector
-                y alertas tempranas hacia la Contraloría.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">
-                LOCOTA Art. 11 • ISO/IEC 42001
-              </span>
-            </div>
-          </div>
-        </li>
-
-        <!-- Capa 4 -->
-        <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-          <div class="usa-card__container">
-            <header class="usa-card__header">
-              <span class="usa-tag margin-bottom-1">Capa 4: Persistencia</span>
-              <h3 class="usa-card__heading font-sans-sm">Bóveda WORM &amp; Árbol Merkle</h3>
-              <p class="font-sans-2xs text-base margin-top-05">PostgreSQL + MinIO WORM</p>
-            </header>
-            <div class="usa-card__body">
-              <p class="font-sans-2xs text-base">
-                Almacenamiento inmutable S3 Object Lock (WORM) con hash dual SHA-256/SHA3-512 y
-                bitácora forense verificable.
-              </p>
-            </div>
-            <div class="usa-card__footer">
-              <span class="font-sans-2xs text-bold text-primary">
-                Infogobierno Art. 27 • Art. 28
-              </span>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <script is:inline>
-    let currentZoom = 1.0;
-    function applyZoom() {
-      const obj = document.getElementById('svg-object');
-      const valEl = document.getElementById('zoom-val');
-      if (obj) obj.style.transform = `scale(${currentZoom})`;
-      if (valEl) valEl.textContent = `${Math.round(currentZoom * 100)}%`;
-    }
-    function zoomSvg(delta) {
-      currentZoom = Math.max(0.5, Math.min(2.5, currentZoom + delta));
-      applyZoom();
-    }
-    function resetZoom() {
-      currentZoom = 1.0;
-      applyZoom();
-    }
-    function toggleFullscreen() {
-      const el = document.getElementById('svg-viewport');
-      if (!document.fullscreenElement) {
-        el.requestFullscreen().catch((err) =>
-          alert(`Error al entrar en pantalla completa: ${err.message}`)
-        );
-      } else {
-        document.exitFullscreen();
-      }
-    }
-  </script>
-</LegalLayout>
+<ArchitecturePage
+  pageTitle="Arquitectura Backend Python 3.12 (FastAPI) | Ulpiano Chief Compliance Officer"
+  pageDescription="Diagrama y especificación técnica de la arquitectura de servidor API en Python 3.12 (FastAPI, PyKCS11 HSM, Celery, PostgreSQL 16 pgvector y MinIO S3 WORM) para el sistema judicial."
+  activeSection="backend"
+  heroLabel="Arquitectura Backend"
+  breadcrumbCurrent="Servidor API Python 3.12 (FastAPI)"
+  heroTag="PYTHON 3.12 CORE • FASTAPI + UVLOOP • OPENAPI 3.1"
+  heroHeading="Arquitectura del Servidor API Backend en Python 3.12"
+  heroIntro="Diagrama técnico y flujo de datos del núcleo de procesamiento judicial: gestión asíncrona, firma criptográfica SUSCERTE con PyKCS11, tareas de fondo Celery/Redis, persistencia pgvector y bóveda inmutable WORM conforme a la LMDyFE y la Ley de Infogobierno."
+  svgPath="/svg/backend_python_api_arquitectura.svg"
+  svgDownloadName="backend_python_api_arquitectura.svg"
+  svgAlt="Diagrama de Arquitectura Backend Python 3.12 FastAPI"
+  viewerTag="BACKEND CORE"
+  viewerHeading="Diagrama Oficial de Arquitectura Backend (Python 3.12 FastAPI)"
+  siblingHref="/frontend/"
+  siblingLabel="Ver Arquitectura Frontend Next.js"
+  layersHeading="Desglose por Capas de la Arquitectura Backend"
+  layers={layers}
+/>

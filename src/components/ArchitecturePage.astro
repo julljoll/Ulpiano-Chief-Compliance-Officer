@@ -1,0 +1,126 @@
+---
+/**
+ * ULPIANO CCO — Shared Standalone Architecture Page Template (Backend Python & Frontend Next.js)
+ * Reuses SvgZoomViewer.astro with build-time inlined SVG (0 fetch, works without JS).
+ */
+import LegalLayout from '../layouts/LegalLayout.astro';
+import SvgZoomViewer from './SvgZoomViewer.astro';
+import type { ArchLayerItem } from '../types/legal.ts';
+
+interface Props {
+  pageTitle: string;
+  pageDescription: string;
+  activeSection: 'backend' | 'frontend';
+  heroLabel: string;
+  breadcrumbCurrent: string;
+  heroTag: string;
+  heroHeading: string;
+  heroIntro: string;
+  svgPath: string;
+  svgDownloadName: string;
+  svgAlt: string;
+  viewerTag: string;
+  viewerHeading: string;
+  siblingHref: string;
+  siblingLabel: string;
+  layersHeading: string;
+  layers: ArchLayerItem[];
+}
+
+const {
+  pageTitle,
+  pageDescription,
+  activeSection,
+  heroLabel,
+  breadcrumbCurrent,
+  heroTag,
+  heroHeading,
+  heroIntro,
+  svgPath,
+  svgDownloadName,
+  svgAlt,
+  viewerTag,
+  viewerHeading,
+  siblingHref,
+  siblingLabel,
+  layersHeading,
+  layers,
+} = Astro.props;
+---
+
+<LegalLayout
+  title={pageTitle}
+  description={pageDescription}
+  activeSection={activeSection}
+>
+  <div class="grid-container padding-y-4">
+    <div class="usa-hero ulp-hero margin-bottom-4" aria-label={heroLabel}>
+      <div class="grid-container">
+        <div class="usa-hero__callout">
+          <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
+            <ol class="usa-breadcrumb__list">
+              <li class="usa-breadcrumb__list-item">
+                <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+              </li>
+              <li class="usa-breadcrumb__list-item">
+                <span class="usa-breadcrumb__link">Arquitectura Técnica</span>
+              </li>
+              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                <span>{breadcrumbCurrent}</span>
+              </li>
+            </ol>
+          </nav>
+
+          <span class="usa-tag ulp-tag-v12 margin-bottom-1">{heroTag}</span>
+          <h1 class="usa-hero__heading">{heroHeading}</h1>
+          <p>{heroIntro}</p>
+
+          <div class="margin-top-3 display-flex flex-wrap ulp-gap-2">
+            <a href={svgPath} target="_blank" rel="noopener noreferrer" class="usa-button">
+              Abrir SVG Directo
+            </a>
+            <a href={svgPath} download={svgDownloadName} class="usa-button usa-button--outline">
+              Descargar SVG
+            </a>
+            <a href={siblingHref} class="usa-button usa-button--outline">
+              {siblingLabel}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <SvgZoomViewer
+      title={viewerHeading}
+      tag={viewerTag}
+      svgFile={svgPath}
+      ariaLabel={svgAlt}
+    />
+
+    <div class="margin-bottom-5">
+      <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
+        <h2 class="font-sans-lg margin-0">{layersHeading}</h2>
+      </div>
+
+      <ul class="usa-card-group">
+        {layers.map((layer) => (
+          <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <span class="usa-tag ulp-tag-v12 margin-bottom-1">{layer.badge}</span>
+                <h3 class="usa-card__heading font-sans-sm">{layer.title}</h3>
+                <p class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0">{layer.tech}</p>
+              </header>
+              <div class="usa-card__body">
+                <p class="font-sans-2xs text-base-dark margin-0">{layer.desc}</p>
+              </div>
+              <div class="usa-card__footer">
+                <span class="font-sans-2xs text-bold text-primary">{layer.legal}</span>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</LegalLayout>

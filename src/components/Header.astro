@@ -1,13 +1,25 @@
 ---
 /**
- * USWDS Component: Header (Basic)
- * Fuente oficial: https://designsystem.digital.gov/components/header/
+ * USWDS Component: Header (Basic) — Native Astro Multi-Page Navigation
+ * Active state (`usa-current` + `aria-current="page"`) computed 100% at build time.
+ * Lightweight ~18-line mobile drawer script replaces 78 KB uswds.min.js.
  */
 interface Props {
-  activePage?: 'index' | 'backend' | 'frontend';
+  activeSection?: 'dashboard' | 'diagrams' | 'api' | 'reader' | 'compare' | 'matrix' | 'backend' | 'frontend';
 }
 
-const { activePage = 'index' } = Astro.props;
+const { activeSection = 'dashboard' } = Astro.props;
+
+const navItems = [
+  { id: 'dashboard', label: 'Dashboard', href: '/' },
+  { id: 'diagrams', label: 'Diagramas', href: '/diagramas/master/' },
+  { id: 'api', label: 'Consola API', href: '/consola-api/' },
+  { id: 'reader', label: 'Lector Normativo', href: '/lector/v1.2/' },
+  { id: 'compare', label: 'Comparador', href: '/comparador/v1.0-vs-v1.2/' },
+  { id: 'matrix', label: 'Trazabilidad ISO', href: '/matriz/' },
+  { id: 'backend', label: 'Backend Python', href: '/backend/' },
+  { id: 'frontend', label: 'Frontend Next.js', href: '/frontend/' },
+] as const;
 ---
 
 <header class="usa-header usa-header--basic">
@@ -15,73 +27,75 @@ const { activePage = 'index' } = Astro.props;
     <div class="usa-navbar">
       <div class="usa-logo" id="basic-logo">
         <em class="usa-logo__text">
-          <a href="index.html" title="Inicio — Ulpiano CCO">
+          <a href="/" title="Inicio — Ulpiano CCO">
             Ulpiano — Chief Compliance Officer
           </a>
         </em>
       </div>
-      <button type="button" class="usa-menu-btn">
+      <button type="button" class="usa-menu-btn" data-nav-open aria-expanded="false">
         Menú
       </button>
     </div>
-    <nav aria-label="Navegación principal" class="usa-nav">
-      <button type="button" class="usa-nav__close">
+    <nav aria-label="Navegación principal" class="usa-nav" data-nav-drawer>
+      <button
+        type="button"
+        class="usa-nav__close"
+        data-nav-close
+        aria-label="Cerrar menú de navegación"
+      >
         <svg class="usa-icon" aria-hidden="true" focusable="false" role="img">
           <use href="/assets/uswds/img/sprite.svg#close"></use>
         </svg>
       </button>
       <ul class="usa-nav__primary usa-accordion">
-        <li class="usa-nav__primary-item">
-          <a
-            href="index.html#dashboard"
-            class={`usa-nav__link dc3-nav-tab ${activePage === 'index' ? 'usa-current' : ''}`}
-            data-view="dashboard"
+        {navItems.map((item) => {
+          const isCurrent = activeSection === item.id;
+          return (
+            <li class="usa-nav__primary-item">
+              <a
+                href={item.href}
+                class={`usa-nav__link ${isCurrent ? 'usa-current' : ''}`}
+                aria-current={isCurrent ? 'page' : undefined}
+              >
+                <span>{item.label}</span>
+              </a>
+            </li>
+          );
+        })}
+        <li class="usa-nav__primary-item display-flex flex-align-center padding-left-1">
+          <button
+            type="button"
+            id="btn-open-global-search"
+            class="usa-button usa-button--outline usa-button--small"
+            data-open-search
+            title="Abrir búsqueda global (Ctrl+K)"
           >
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a href="index.html#diagrams" class="usa-nav__link dc3-nav-tab" data-view="diagrams">
-            <span>Diagramas</span>
-          </a>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a href="index.html#api" class="usa-nav__link dc3-nav-tab" data-view="api">
-            <span>Consola API</span>
-          </a>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a href="index.html#reader" class="usa-nav__link dc3-nav-tab" data-view="reader">
-            <span>Lector Normativo</span>
-          </a>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a href="index.html#compare" class="usa-nav__link dc3-nav-tab" data-view="compare">
-            <span>Comparador</span>
-          </a>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a href="index.html#matrix" class="usa-nav__link dc3-nav-tab" data-view="matrix">
-            <span>Trazabilidad ISO</span>
-          </a>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a
-            href="backend.html"
-            class={`usa-nav__link ${activePage === 'backend' ? 'usa-current' : ''}`}
-          >
-            <span>Backend Python</span>
-          </a>
-        </li>
-        <li class="usa-nav__primary-item">
-          <a
-            href="frontend.html"
-            class={`usa-nav__link ${activePage === 'frontend' ? 'usa-current' : ''}`}
-          >
-            <span>Frontend Next.js</span>
-          </a>
+            Buscar (Ctrl+K)
+          </button>
         </li>
       </ul>
     </nav>
   </div>
 </header>
+
+<script>
+  const openBtn = document.querySelector<HTMLButtonElement>('[data-nav-open]');
+  const closeBtn = document.querySelector<HTMLButtonElement>('[data-nav-close]');
+  const drawer = document.querySelector<HTMLElement>('[data-nav-drawer]');
+  const overlay = document.querySelector<HTMLElement>('[data-nav-overlay]');
+
+  const setOpen = (open: boolean) => {
+    drawer?.classList.toggle('is-visible', open);
+    overlay?.classList.toggle('is-visible', open);
+    openBtn?.setAttribute('aria-expanded', String(open));
+    if (open) closeBtn?.focus();
+    else openBtn?.focus();
+  };
+
+  openBtn?.addEventListener('click', () => setOpen(true));
+  closeBtn?.addEventListener('click', () => setOpen(false));
+  overlay?.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer?.classList.contains('is-visible')) setOpen(false);
+  });
+</script>

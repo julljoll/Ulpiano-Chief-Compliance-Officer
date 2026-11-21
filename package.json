@@ -11,24 +11,36 @@
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1",
-    "lint": "eslint src/scripts/viewer.js \"src/modules/*.js\" tests/*.js",
-    "test": "node --test",
-    "format": "prettier --write \"**/*.{js,css,html,json,astro}\" --ignore-path .prettierignore"
+    "check": "astro check",
+    "lint": "eslint \"src/**/*.{ts,js,astro}\" \"tests/*.js\" \"scripts/*.mjs\"",
+    "audit": "node scripts/audit.mjs",
+    "test": "node --test tests/build.test.js tests/unit.test.js",
+    "test:e2e": "node --test tests/e2e.test.js",
+    "test:all": "node --test",
+    "verify": "npm run check && npm run lint && npm run audit && npm run build && npm run test:all",
+    "format": "prettier --write \"**/*.{js,ts,css,html,json,astro}\" --ignore-path .prettierignore"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@astrojs/sitemap": "^3.7.2",
     "@types/node": "^26.6.6",
+    "@types/qrcode-generator": "^0.0.16",
     "astro": "^7.4.7",
+    "axe-core": "^4.11.2",
     "eslint": "^10.14.0",
+    "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.14.0",
+    "playwright-core": "^1.59.1",
     "prettier": "^3.0.0",
     "prettier-plugin-astro": "^1.1.2",
-    "typescript": "~5.7.3"
+    "typescript": "~5.7.3",
+    "typescript-eslint": "^8.58.2"
   },
   "overrides": {
     "minimatch": "^11.0.5"
   },
   "dependencies": {
-    "@uswds/uswds": "3.14.0"
+    "@uswds/uswds": "3.14.0",
+    "qrcode-generator": "^2.0.4"
   }
 }

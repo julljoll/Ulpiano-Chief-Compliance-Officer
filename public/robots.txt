@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ulpiano.sha256.us/sitemap-index.xml

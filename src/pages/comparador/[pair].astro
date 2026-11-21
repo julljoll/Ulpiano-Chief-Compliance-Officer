@@ -1,0 +1,331 @@
+---
+/**
+ * ULPIANO CCO — Build-Time Legislative Comparator & Pre-Computed Semantic Article Diff (/comparador/[pair]/)
+ * Pre-renders BOTH Parallel texts AND Word-Level LCS Diff in static HTML (0 ms client CPU, works without JS!).
+ */
+import { getCollection, render } from 'astro:content';
+import LegalLayout from '../../layouts/LegalLayout.astro';
+import { compareLegislativeMarkdown } from '../../lib/diff.ts';
+import { sourceFileToCollectionId } from '../../lib/format.ts';
+
+export async function getStaticPaths() {
+  const [versions, normativa] = await Promise.all([
+    getCollection('versiones'),
+    getCollection('normativa'),
+  ]);
+
+  const legislative = versions.map((v) => v.data).filter((d) => d.kind !== 'catalog');
+  const paths = [];
+
+  const findMd = (sourceFile: string) => {
+    const targetFile = sourceFile.toLowerCase();
+    const targetId = sourceFileToCollectionId(sourceFile).replace(/\./g, '');
+    return normativa.find(
+      (n) =>
+        (n.filePath && n.filePath.toLowerCase() === targetFile) ||
+        n.id.toLowerCase().replace(/\./g, '') === targetId
+    );
+  };
+
+  for (const leftDoc of legislative) {
+    for (const rightDoc of legislative) {
+      if (leftDoc.id === rightDoc.id) continue;
+      const leftEntry = findMd(leftDoc.sourceFile);
+      const rightEntry = findMd(rightDoc.sourceFile);
+      if (!leftEntry || !rightEntry) continue;
+
+      paths.push({
+        params: { pair: `${leftDoc.id}-vs-${rightDoc.id}` },
+        props: {
+          leftDoc,
+          rightDoc,
+          leftEntry,
+          rightEntry,
+          legislative,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { leftDoc, rightDoc, leftEntry, rightEntry, legislative } = Astro.props;
+
+const [{ Content: LeftContent }, { Content: RightContent }] = await Promise.all([
+  render(leftEntry),
+  render(rightEntry),
+]);
+
+const diffs = compareLegislativeMarkdown(leftEntry.body || '', rightEntry.body || '');
+const addedCount = diffs.filter((d) => d.status === 'added').length;
+const modifiedCount = diffs.filter((d) => d.status === 'modified').length;
+const removedCount = diffs.filter((d) => d.status === 'removed').length;
+const unchangedCount = diffs.filter((d) => d.status === 'unchanged').length;
+const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
+---
+
+<LegalLayout
+  title={`Comparador ${leftDoc.shortLabel} vs ${rightDoc.shortLabel} — Ulpiano CCO`}
+  description={`Comparativa paralela y diff semántico artículo por artículo entre ${leftDoc.label} y ${rightDoc.label}.`}
+  activeSection="compare"
+>
+  <section class="usa-section">
+    <div class="grid-container">
+      <!-- 1. ENCABEZADO -->
+      <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2 margin-bottom-4">
+        <div>
+          <nav class="usa-breadcrumb margin-bottom-1" aria-label="Migas de pan">
+            <ol class="usa-breadcrumb__list">
+              <li class="usa-breadcrumb__list-item">
+                <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+              </li>
+              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+                <span>{leftDoc.shortLabel} vs {rightDoc.shortLabel}</span>
+              </li>
+            </ol>
+          </nav>
+          <h1 class="font-sans-xl margin-0">
+            Comparador de Versiones &amp; Diff Semántico ({leftDoc.shortLabel} vs {rightDoc.shortLabel})
+          </h1>
+          <p class="font-sans-sm text-base-dark margin-top-05 margin-bottom-0">
+            Pre-calculado en tiempo de compilación: <strong>{addedCount}</strong> añadidos,{' '}
+            <strong>{modifiedCount}</strong> modificados, <strong>{removedCount}</strong> eliminados y{' '}
+            <strong>{unchangedCount}</strong> sin cambios.
+          </p>
+        </div>
+        <a href="/" class="usa-button usa-button--outline usa-button--small">
+          Volver al Dashboard
+        </a>
+      </div>
+
+      <!-- 2. SELECTORES DE PAREJA DE VERSIONES Y CONTROLES -->
+      <div class="padding-3 bg-base-lightest border-1px border-base-lighter margin-bottom-4">
+        <div class="grid-row grid-gap-3 flex-align-end">
+          <div class="tablet:grid-col-5">
+            <label for="compare-select-left" class="usa-label text-bold font-sans-xs text-uppercase">
+              Panel Izquierdo (Base):
+            </label>
+            <select id="compare-select-left" class="usa-select margin-0">
+              {legislative.map((doc) => (
+                <option value={doc.id} selected={doc.id === leftDoc.id}>
+                  {doc.badgeText}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div class="tablet:grid-col-2 text-center">
+            <a
+              href={swapHref}
+              id="btn-compare-swap"
+              class="usa-button usa-button--outline width-full"
+              title="Intercambiar paneles (funciona sin JS)"
+            >
+              Invertir
+            </a>
+          </div>
+
+          <div class="tablet:grid-col-5">
+            <label for="compare-select-right" class="usa-label text-bold font-sans-xs text-uppercase">
+              Panel Derecho (Contraste):
+            </label>
+            <select id="compare-select-right" class="usa-select margin-0">
+              {legislative.map((doc) => (
+                <option value={doc.id} selected={doc.id === rightDoc.id}>
+                  {doc.badgeText}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <!-- Enlaces directos de pares (accesibles sin JS) -->
+        <div class="margin-top-2 display-flex flex-wrap ulp-gap-1 font-sans-2xs">
+          <span class="text-bold text-base-darker padding-y-05">Accesos directos:</span>
+          <a href="/comparador/v1.0-vs-v1.2/" class="usa-link padding-y-05">V-1.0 vs V-1.2</a>
+          <span>•</span>
+          <a href="/comparador/v1.1-vs-v1.2/" class="usa-link padding-y-05">V-1.1 vs V-1.2</a>
+          <span>•</span>
+          <a href="/comparador/v1.0-vs-v1.1/" class="usa-link padding-y-05">V-1.0 vs V-1.1</a>
+        </div>
+
+        <div class="margin-top-2 border-top-1px border-base-lighter padding-top-2 display-flex flex-wrap flex-justify flex-align-center ulp-gap-2">
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
+            <button
+              type="button"
+              id="btn-compare-mode-parallel"
+              class="usa-button usa-button--small"
+              aria-pressed="true"
+            >
+              Vista Paralela
+            </button>
+            <button
+              type="button"
+              id="btn-compare-mode-diff"
+              class="usa-button usa-button--small usa-button--outline"
+              aria-pressed="false"
+            >
+              Diff Semántico por Artículo ({diffs.length})
+            </button>
+          </div>
+
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-2">
+            <div class="usa-checkbox margin-0">
+              <input class="usa-checkbox__input" id="compare-sync-scroll" type="checkbox" checked />
+              <label class="usa-checkbox__label margin-0 font-sans-xs" for="compare-sync-scroll">
+                Scroll sincronizado
+              </label>
+            </div>
+            <div class="usa-checkbox margin-0">
+              <input class="usa-checkbox__input" id="compare-only-changes" type="checkbox" />
+              <label class="usa-checkbox__label margin-0 font-sans-xs" for="compare-only-changes">
+                Solo artículos con cambios
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3A. VISTA PARALELA PRE-RENDERIZADA -->
+      <div id="compare-parallel-container" class="grid-row grid-gap-4 margin-bottom-5">
+        <div class="tablet:grid-col-6">
+          <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2 display-flex flex-justify flex-align-center">
+            <strong class="font-sans-xs">{leftDoc.label}</strong>
+            <span class="usa-tag ulp-tag-v11">{leftDoc.shortLabel}</span>
+          </div>
+          <div
+            class="usa-prose ulp-compare-paper padding-3 bg-white border-1px border-base-lighter shadow-1"
+            id="compare-left-paper"
+            tabindex="0"
+            role="region"
+            aria-label={`Texto normativo base: ${leftDoc.label}`}
+          >
+            <LeftContent />
+          </div>
+        </div>
+
+        <div class="tablet:grid-col-6">
+          <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2 display-flex flex-justify flex-align-center">
+            <strong class="font-sans-xs">{rightDoc.label}</strong>
+            <span class="usa-tag ulp-tag-v12">{rightDoc.shortLabel}</span>
+          </div>
+          <div
+            class="usa-prose ulp-compare-paper padding-3 bg-white border-1px border-base-lighter shadow-1"
+            id="compare-right-paper"
+            tabindex="0"
+            role="region"
+            aria-label={`Texto normativo de contraste: ${rightDoc.label}`}
+          >
+            <RightContent />
+          </div>
+        </div>
+      </div>
+
+      <!-- 3B. DIFF SEMÁNTICO POR ARTÍCULO PRE-CALCULADO EN BUILD -->
+      <div id="compare-diff-container" class="margin-bottom-5">
+        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3 display-flex flex-wrap flex-justify flex-align-center ulp-gap-1">
+          <h2 class="font-sans-lg margin-0">Diff Semántico por Artículo</h2>
+          <div class="display-flex flex-wrap ulp-gap-1">
+            <span class="usa-tag ulp-tag-success">{addedCount} Añadidos</span>
+            <span class="usa-tag ulp-tag-v12">{modifiedCount} Modificados</span>
+            <span class="usa-tag ulp-tag-v11">{removedCount} Eliminados</span>
+            <span class="usa-tag">{unchangedCount} Sin cambios</span>
+          </div>
+        </div>
+
+        <div id="compare-diff-list">
+          {diffs.map((item) => (
+            <article
+              class={`ulp-diff-article ${item.status !== 'unchanged' ? `ulp-diff-article--${item.status}` : ''}`}
+              data-diff-status={item.status}
+            >
+              <header class="display-flex flex-wrap flex-justify flex-align-center margin-bottom-1 ulp-gap-1">
+                <h3 class="font-sans-sm margin-0">{item.heading}</h3>
+                {item.status === 'added' && <span class="usa-tag ulp-tag-success">Añadido</span>}
+                {item.status === 'modified' && <span class="usa-tag ulp-tag-v12">Modificado</span>}
+                {item.status === 'removed' && <span class="usa-tag ulp-tag-v11">Eliminado</span>}
+                {item.status === 'unchanged' && <span class="usa-tag">Sin cambios</span>}
+              </header>
+              <p class="font-serif-xs line-height-serif-4 margin-0">
+                {item.tokens.map((tok) =>
+                  tok.type === 'add' ? (
+                    <>{' '}<ins class="ulp-diff-ins">{tok.value}</ins></>
+                  ) : tok.type === 'del' ? (
+                    <>{' '}<del class="ulp-diff-del">{tok.value}</del></>
+                  ) : (
+                    <>{' '}{tok.value}</>
+                  )
+                )}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const selLeft = document.getElementById('compare-select-left') as HTMLSelectElement | null;
+    const selRight = document.getElementById('compare-select-right') as HTMLSelectElement | null;
+    const parallelBox = document.getElementById('compare-parallel-container');
+    const diffBox = document.getElementById('compare-diff-container');
+    const btnParallel = document.getElementById('btn-compare-mode-parallel');
+    const btnDiff = document.getElementById('btn-compare-mode-diff');
+    const onlyChangesCb = document.getElementById('compare-only-changes') as HTMLInputElement | null;
+    const syncScrollCb = document.getElementById('compare-sync-scroll') as HTMLInputElement | null;
+    const leftPaper = document.getElementById('compare-left-paper');
+    const rightPaper = document.getElementById('compare-right-paper');
+
+    // Navigate to pre-rendered pair route when selects change
+    const goToPair = () => {
+      if (!selLeft || !selRight) return;
+      if (selLeft.value === selRight.value) return;
+      window.location.href = `/comparador/${selLeft.value}-vs-${selRight.value}/`;
+    };
+    selLeft?.addEventListener('change', goToPair);
+    selRight?.addEventListener('change', goToPair);
+
+    // Toggle mode progressively (both are visible if JS is disabled!)
+    const setMode = (mode: 'parallel' | 'diff') => {
+      if (parallelBox) parallelBox.hidden = mode !== 'parallel';
+      if (diffBox) diffBox.hidden = mode !== 'diff';
+      btnParallel?.classList.toggle('usa-button--outline', mode !== 'parallel');
+      btnParallel?.setAttribute('aria-pressed', String(mode === 'parallel'));
+      btnDiff?.classList.toggle('usa-button--outline', mode !== 'diff');
+      btnDiff?.setAttribute('aria-pressed', String(mode === 'diff'));
+    };
+    setMode('parallel');
+
+    btnParallel?.addEventListener('click', () => setMode('parallel'));
+    btnDiff?.addEventListener('click', () => setMode('diff'));
+
+    onlyChangesCb?.addEventListener('change', () => {
+      const only = onlyChangesCb.checked;
+      document
+        .querySelectorAll<HTMLElement>('#compare-diff-list [data-diff-status="unchanged"]')
+        .forEach((el) => {
+          el.hidden = only;
+        });
+    });
+
+    // Synchronized scroll
+    let syncing = false;
+    const syncScroll = (src: HTMLElement, dst: HTMLElement) => {
+      if (!syncScrollCb?.checked || syncing) return;
+      syncing = true;
+      const maxSrc = src.scrollHeight - src.clientHeight;
+      const maxDst = dst.scrollHeight - dst.clientHeight;
+      if (maxSrc > 0 && maxDst > 0) {
+        dst.scrollTop = Math.round((src.scrollTop / maxSrc) * maxDst);
+      }
+      requestAnimationFrame(() => {
+        syncing = false;
+      });
+    };
+    if (leftPaper && rightPaper) {
+      leftPaper.addEventListener('scroll', () => syncScroll(leftPaper, rightPaper), { passive: true });
+      rightPaper.addEventListener('scroll', () => syncScroll(rightPaper, leftPaper), { passive: true });
+    }
+  </script>
+</LegalLayout>

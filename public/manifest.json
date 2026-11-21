@@ -1,15 +1,16 @@
 {
   "name": "Ulpiano CCO — Chief Compliance Officer",
   "short_name": "Ulpiano CCO",
-  "description": "Portal de ciberseguridad procesal e integridad digital del sistema de justicia venezolano",
+  "description": "Portal oficial de ciberseguridad procesal, informática forense e integridad digital del sistema de justicia y administración pública.",
   "theme_color": "#004987",
-  "background_color": "#f5f6f8",
+  "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "./index.html",
+  "scope": "./",
   "lang": "es",
   "icons": [
     {
-      "src": "./svg/ciberseguridad_integracion_V1.2.svg",
+      "src": "./favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

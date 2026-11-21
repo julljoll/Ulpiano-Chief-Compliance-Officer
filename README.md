@@ -2,7 +2,7 @@
 ### *Arquitectura de Ciberseguridad Procesal, Integridad Digital y Forense Judicial (V-1.2)*
 
 <p align="center">
-  <img src="./svg/ciberseguridad_integracion_V1.2.svg" alt="Arquitectura Maestra de Integración V-1.2 — Ulpiano Chief Compliance Officer" width="100%">
+  <img src="./public/svg/ciberseguridad_integracion_V1.2.svg" alt="Arquitectura Maestra de Integración V-1.2 — Ulpiano Chief Compliance Officer" width="100%">
 </p>
 
 <p align="center">
@@ -24,8 +24,8 @@
 3. [💡 3. La Solución: Tesis del Doble Frente](#-3-la-solución-tesis-del-doble-frente)
 4. [⚙️ 4. ¿Cómo Funciona? (Guía Técnica Paso a Paso)](#️-4-cómo-funciona-guía-técnica-paso-a-paso)
 5. [🏛️ 5. Los 4 Grandes Bloques Arquitectónicos](#️-5-los-4-grandes-bloques-arquitectónicos)
-6. [🧭 6. El Portal Web Oficial (SPA con 6 Módulos)](#-6-el-portal-web-oficial-spa-con-6-módulos)
-7. [🖼️ 7. Suite de 9 Perspectivas Vectoriales](#️-7-suite-de-9-perspectivas-vectoriales)
+6. [🧭 6. El Portal Web Oficial (Arquitectura MPA Astro 7)](#-6-el-portal-web-oficial-arquitectura-mpa-astro-7)
+7. [🖼️ 7. Suite de 12 Perspectivas Vectoriales](#️-7-suite-de-12-perspectivas-vectoriales)
 8. [📐 8. Marcos Normativos y Estándares Internacionales](#-8-marcos-normativos-y-estándares-internacionales)
 9. [💻 9. Pila Tecnológica & Arquitectura de Software](#-9-pila-tecnológica--arquitectura-de-software)
 10. [📂 10. Estructura del Repositorio](#-10-estructura-del-repositorio)
@@ -128,9 +128,9 @@ flowchart TD
 A continuación se describe el ciclo de vida completo de una actuación judicial bajo la arquitectura Ulpiano CCO:
 
 ```
- Ciudadano / Operador            Frontend Web SPA              Backend API (FastAPI)           Bóveda WORM & Entes
+ Ciudadano / Operador            Frontend MPA Astro 7          Backend API (FastAPI)           Bóveda WORM & Entes
 ┌────────────────────┐         ┌──────────────────┐          ┌───────────────────────┐        ┌──────────────────┐
-│  1. Acceso Portal  │ ──────> │ Router ESModules │          │                       │        │                  │
+│  1. Acceso Portal  │ ──────> │ Rutas SSG + HAST │          │                       │        │                  │
 │  2. Sorteo Causa   │ ──────> │ CSPRNG WebCrypto │ ───────> │ secrets.SystemRandom  │ ─────> │ Merkle Tree      │
 │  3. Firma Dual     │ ──────> │ WebAuthn FIDO2   │ ───────> │ PyKCS11 HSM + pyHanko │ ─────> │ MinIO S3 (WORM)  │
 │  4. Cotejo CSV/QR  │ ──────> │ Lector de Código │ ───────> │ Verificación Hash     │ ─────> │ Hash SHA-256 OK  │
@@ -138,9 +138,9 @@ A continuación se describe el ciclo de vida completo de una actuación judicial
 └────────────────────┘         └──────────────────┘          └───────────────────────┘        └──────────────────┘
 ```
 
-### 🔹 Paso 1: Inicialización Segura del Portal SPA
-* **Qué ocurre:** El usuario abre [`index.html`](./index.html), generado como salida estática por Astro. [`src/scripts/viewer.js`](./src/scripts/viewer.js) carga los módulos del portal.
-* **Técnica:** [`src/modules/registry.js`](./src/modules/registry.js) importa [`registry.json`](./registry.json) como fuente única de metadata y empaqueta las tres fuentes Markdown al compilar. [`src/modules/router.js`](./src/modules/router.js) conserva los seis hashes y el historial de navegación.
+### 🔹 Paso 1: Entrega Estática Zero-JS First del Portal MPA (Astro 7)
+* **Qué ocurre:** El usuario accede directamente a rutas estáticas pre-renderizadas (`/`, `/lector/v1.2/`, `/comparador/v1.0-vs-v1.2/`, `/diagramas/master/`, `/matriz/`, `/consola-api/`) bajo política CSP estricta (`script-src 'self'`, cero scripts inline ni handlers `onclick=`).
+* **Técnica:** La Content Layer API de Astro 7 ([`src/content.config.ts`](./src/content.config.ts)) valida con Zod [`registry.json`](./registry.json), [`src/data/diagrams.json`](./src/data/diagrams.json), [`src/data/reforms.json`](./src/data/reforms.json) y compila en build-time las fuentes Markdown mediante el plugin HAST de Sätteri ([`src/plugins/ulpiano-hast.ts`](./src/plugins/ulpiano-hast.ts)). El portal funciona íntegramente incluso con JavaScript desactivado y añade mejora progresiva mínima (~3.15 KB JS en la portada).
 
 ### 🔹 Paso 2: Sorteo Determinístico de la Causa (Art. 26)
 * **Qué ocurre:** Al ingresar una causa, el sistema asigna el magistrado o juez de forma matemáticamente inalterable.
@@ -204,48 +204,51 @@ A continuación se describe el ciclo de vida completo de una actuación judicial
 
 ---
 
-## 🧭 6. El Portal Web Oficial (SPA con 6 Módulos)
+## 🧭 6. El Portal Web Oficial (Arquitectura MPA Astro 7)
 
-El portal institucional disponible en este repositorio integra 6 herramientas de análisis y control:
+El portal institucional disponible en este repositorio genera **30 páginas estáticas** y **2 endpoints estáticos** (`/search-index.json` y `/matriz/trazabilidad.csv`) organizados en 6 módulos de análisis y control, con compatibilidad retroactiva para hashes legados (`/#reader`, `/#compare`, `/#diagrams`, `/#matrix`, `/#api-console`):
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                   PORTAL OFICIAL ULPIANO CCO (V-1.2)                                   │
+│                              PORTAL OFICIAL ULPIANO CCO — ASTRO 7 MPA (V-1.2)                          │
 ├──────────────────┬──────────────────┬──────────────────┬──────────────────┬────────────────────────────┤
 │ 📊 Dashboard     │ 🏛️ Diagramas     │ 🐍 Consola API   │ 📖 Lector V-1.2  │ ⚖️ Comparador & 📋 Matriz   │
 ├──────────────────┼──────────────────┼──────────────────┼──────────────────┼────────────────────────────┤
-│ • 4 KPIs reales  │ • 9 Perspectivas │ • Firma PAdES    │ • Visor de Ley   │ • Comparativa paralela     │
-│ • Delta          │   vectoriales SVG│   con HSM L3     │   con TOC flotante│ • Resaltado de reformas    │
-│   Inspector con  │ • Zoom dinámico  │ • Cotejo CSV     │   interactivo    │ • Matriz tipo Excel con 12 │
-│   buscador       │ • Fullscreen     │ • Sorteo CSPRNG  │ • Salto a cambios│   títulos y exportación CSV│
-│ • Gráficos       │ • Descarga HD    │ • Alertas WSS    │   en rojo y azul │   con codificación UTF-8   │
+│ • 4 KPIs reales  │ • 12 Perspectivas│ • Firma PAdES    │ • 4 Docs SSG     │ • 6 pares pre-renderizados │
+│ • Gráficos SVG   │   SVG embebidos  │   SHA-256 real   │   (Sätteri HAST) │ • Diff Semántico build-time│
+│   en build-time  │ • Zoom dinámico  │ • QR SVG + WORM  │ • TOC estático   │ • Matriz filtrable + CSV   │
+│ • Delta Inspector│ • Fullscreen     │ • Sorteo CSPRNG  │ • Salto a cambios│   estático UTF-8 BOM       │
+│ • ~3.15 KB JS    │ • Descarga HD    │ • Alertas WSS    │   V1.1 / V1.2    │ • Búsqueda Ctrl+K lazy     │
 └──────────────────┴──────────────────┴──────────────────┴──────────────────┴────────────────────────────┘
 ```
 
-| Módulo | Módulo JS Asociado | Propósito y Funcionalidad |
+| Módulo / Ruta MPA | Archivos Astro Asociados | Propósito y Funcionalidad |
 | :--- | :--- | :--- |
-| **📊 Dashboard de Mejoras** | [`dashboard.js`](./modules/dashboard.js) & [`charts.js`](./modules/charts.js) | Panel de control ejecutivo con KPIs, desglose de las 3 grandes reformas estructurales, gráficos estadísticos y Delta Inspector. |
-| **🏛️ Diagramas (9 Vistas)** | [`diagrams.js`](./modules/diagrams.js) & [`diagrams-registry.js`](./modules/diagrams-registry.js) | Suite de visualización de los 9 diagramas de arquitectura vectorial con zoom interactivo (50%-250%), pantalla completa y descarga SVG. |
-| **🐍 Consola API Python** | [`api-sim.js`](./modules/api-sim.js) | Simulador interactivo de endpoints FastAPI: firma PAdES con HSM, cotejo CSV inmutable, sorteo CSPRNG y alertas en vivo vía WebSocket. |
-| **📖 Lector de Versiones** | [`reader.js`](./modules/reader.js) | Lector documental con índice flotante dinámico (`IntersectionObserver`), selector de tipografía y botón para saltar secuencialmente entre reformas. |
-| **⚖️ Comparador de Versiones**| [`compare.js`](./modules/compare.js) | Vista split-screen para cotejo lado a lado de dos versiones (V1.0 vs V1.1 vs V1.2) con sincronización de lectura. |
-| **📋 Matriz de Trazabilidad**| [`matrix.js`](./modules/matrix.js) | Cuadrícula tabular interactiva tipo Excel con filtros por pestañas normativas, copiado al portapapeles y exportación a archivo CSV con UTF-8 BOM. |
+| **📊 Dashboard (`/`)** | [`index.astro`](./src/pages/index.astro), [`ReformsBarChart.astro`](./src/components/charts/ReformsBarChart.astro), [`ScopeDonutChart.astro`](./src/components/charts/ScopeDonutChart.astro) | Panel ejecutivo con KPIs, 3 grandes reformas, gráficos SVG puros en build-time (0 KB JS), arquitectura maestra inline y Delta Inspector con enlaces directos `#articulo-*`. |
+| **🏛️ Diagramas (`/diagramas/[id]/`)** | [`diagramas/[id].astro`](./src/pages/diagramas/%5Bid%5D.astro) & [`SvgZoomViewer.astro`](./src/components/SvgZoomViewer.astro) | 12 páginas estáticas con SVG embebido en build-time, filtro por categoría, zoom sin recorte, arrastre (pan), pantalla completa y descarga SVG. |
+| **🐍 Consola API (`/consola-api/`)** | [`consola-api/index.astro`](./src/pages/consola-api/index.astro) & [`crypto.ts`](./src/lib/crypto.ts) | Isla interactiva aislada con SHA-256 real (Web Crypto API), verificador de archivos locales, QR SVG (`qrcode-generator`), Bóveda WORM de sesión, sorteo CSPRNG y [`openapi.json`](./public/openapi.json). |
+| **📖 Lector (`/lector/[id]/`)** | [`lector/[id].astro`](./src/pages/lector/%5Bid%5D.astro) & [`ulpiano-hast.ts`](./src/plugins/ulpiano-hast.ts) | 4 rutas pre-renderizadas (`v1.2`, `v1.1`, `v1.0`, `rag-catalog`) compiladas en build-time con Sätteri HAST, TOC accesible, tipografía persistente y salto dual entre reformas. |
+| **⚖️ Comparador (`/comparador/[pair]/`)** | [`comparador/[pair].astro`](./src/pages/comparador/%5Bpair%5D.astro) & [`diff.ts`](./src/lib/diff.ts) | 6 pares pre-renderizados con vista paralela (scroll sincronizado opcional) y Diff Semántico artículo por artículo calculado en build-time. |
+| **📋 Matriz & Búsqueda (`/matriz/`)** | [`matriz/index.astro`](./src/pages/matriz/index.astro), [`trazabilidad.csv.ts`](./src/pages/matriz/trazabilidad.csv.ts), [`search-index.json.ts`](./src/pages/search-index.json.ts) | Matriz con filtros combinados, endpoint CSV estático UTF-8 BOM descargable sin JS, copiado TSV y Command Palette global (`Ctrl+K`) con índice JSON estático bajo demanda. |
 
 ---
 
-## 🖼️ 7. Suite de 9 Perspectivas Vectoriales
+## 🖼️ 7. Suite de 12 Perspectivas Vectoriales
 
-Todos los diagramas del proyecto son archivos SVG vectoriales puros, editables, con modo claro institucional y tipografía estandarizada:
+Todos los diagramas del proyecto son archivos SVG vectoriales puros, editables, sin emojis, con modo claro institucional (USWDS 3.0) y tipografía estandarizada:
 
-1. [`svg/ciberseguridad_integracion_V1.2.svg`](./svg/ciberseguridad_integracion_V1.2.svg) — **Arquitectura Maestra Integral V-1.2:** Mapeo completo de los 4 grandes bloques de gobernanza.
-2. [`svg/cms_compliance_organigrama_descendente.svg`](./svg/cms_compliance_organigrama_descendente.svg) — **Organigrama Funcional Descendente:** Jerarquía institucional de control, dos pilares (Workflows vs IA) y 4 estratos.
-3. [`svg/cms_compliance_workflows_arquitectura.svg`](./svg/cms_compliance_workflows_arquitectura.svg) — **CMS Compliance Officer: Workflows & Alertas IA:** Pipelines programáticos code-based (sin interfaz gráfica) y radar de alertas.
-4. [`svg/backend_python_api_arquitectura.svg`](./svg/backend_python_api_arquitectura.svg) — **Servidor Backend API en Python (FastAPI):** Ingress TLS 1.3, PKI SUSCERTE, Celery/Redis, pgvector RAG y Bóveda WORM MinIO.
-5. [`svg/tsj_arquitectura_frontend.svg`](./svg/tsj_arquitectura_frontend.svg) — **Portal Judicial TSJ: Frontend Web en Next.js 15:** Visor Forense React-PDF, tokens USWDS 3.0, accesibilidad WCAG AAA y WebAuthn FIDO2.
-6. [`svg/arquitectura_tecnica_v1.2.svg`](./svg/arquitectura_tecnica_v1.2.svg) — **Arquitectura Técnica & Forense V-1.2:** Capas Zero Trust, CSIRT, Forense ISO 27037 y Bóveda WORM.
-7. [`svg/marco_legal_internacional_v1.2.svg`](./svg/marco_legal_internacional_v1.2.svg) — **Derecho Comparado:** Articulación con Reglamento UE 2023/2841, NIS2, FISMA 2014, JTC NCSC 2025 e ISOs.
-8. [`svg/marco_legal_nacional_v1.2.svg`](./svg/marco_legal_nacional_v1.2.svg) — **Bloque Constitucional:** CRBV Art. 203 (Ley Orgánica), Sentencia TSJ 0406/2026 y LOCOTA 2026.
-9. [`svg/titulo_vii_idea_de_valor_v1.2.svg`](./svg/titulo_vii_idea_de_valor_v1.2.svg) — **Aporte Original Título VII:** Doble Frente, Sorteo Algorítmico, Segregación "4 Ojos" e IA Ética.
+1. [`public/svg/ciberseguridad_integracion_V1.2.svg`](./public/svg/ciberseguridad_integracion_V1.2.svg) — **Arquitectura Maestra Integral V-1.2:** Mapeo completo de los 4 grandes bloques de gobernanza.
+2. [`public/svg/cms_compliance_organigrama_descendente.svg`](./public/svg/cms_compliance_organigrama_descendente.svg) — **Organigrama Funcional Descendente:** Jerarquía institucional de control, dos pilares (Workflows vs IA) y 4 estratos.
+3. [`public/svg/cms_compliance_workflows_arquitectura.svg`](./public/svg/cms_compliance_workflows_arquitectura.svg) — **CMS Compliance Officer: Workflows & Alertas IA:** Pipelines programáticos code-based (sin interfaz gráfica) y radar de alertas.
+4. [`public/svg/backend_python_api_arquitectura.svg`](./public/svg/backend_python_api_arquitectura.svg) — **Servidor Backend API en Python (FastAPI):** Ingress TLS 1.3, PKI SUSCERTE, Celery/Redis, pgvector RAG y Bóveda WORM MinIO.
+5. [`public/svg/tsj_arquitectura_frontend.svg`](./public/svg/tsj_arquitectura_frontend.svg) — **Portal Judicial TSJ: Frontend Web en Next.js 15:** Visor Forense React-PDF, tokens USWDS 3.0, accesibilidad WCAG AAA y WebAuthn FIDO2.
+6. [`public/svg/arquitectura_tecnica_v1.2.svg`](./public/svg/arquitectura_tecnica_v1.2.svg) — **Arquitectura Técnica & Forense V-1.2:** Capas Zero Trust, CSIRT, Forense ISO 27037 y Bóveda WORM.
+7. [`public/svg/marco_legal_internacional_v1.2.svg`](./public/svg/marco_legal_internacional_v1.2.svg) — **Marco Legal Internacional:** Articulación con Reglamento UE 2023/2841, NIS2, FISMA 2014, JTC NCSC 2025 e ISOs.
+8. [`public/svg/derecho_comparado_ulpiano_v1.2.svg`](./public/svg/derecho_comparado_ulpiano_v1.2.svg) — **Derecho Comparado (6 Jurisdicciones):** Convergencia UE, EE.UU., España, Colombia, Chile y normas ISO/IEC.
+9. [`public/svg/marco_legal_nacional_v1.2.svg`](./public/svg/marco_legal_nacional_v1.2.svg) — **Bloque Constitucional:** CRBV Art. 203 (Ley Orgánica), Sentencia TSJ 0406/2026 y LOCOTA 2026.
+10. [`public/svg/titulo_vii_idea_de_valor_v1.2.svg`](./public/svg/titulo_vii_idea_de_valor_v1.2.svg) — **Aporte Original Título VII:** Doble Frente, Sorteo Algorítmico, Segregación "4 Ojos" e IA Ética.
+11. [`public/svg/arquitectura_sentencias_tsj_seguridad.svg`](./public/svg/arquitectura_sentencias_tsj_seguridad.svg) — **Next.js Full-Stack & Sentencias Digitales:** Flujo PDF/A-2u, Linux soberano (Art. 13 Infogobierno) y sellado TSA.
+12. [`public/svg/tsj_arquitectura_backend.svg`](./public/svg/tsj_arquitectura_backend.svg) — **Blueprint Backend TSJ:** Plano de referencia complementario de capas API, PKI y Bóveda WORM.
 
 ---
 
@@ -304,12 +307,12 @@ flowchart TD
 
 | Componente | Tecnología | Versión / Tipo | Propósito |
 | :--- | :--- | :--- | :--- |
-| **Core Lógico** | JavaScript (ESM) | ES2022 Nativo | Modularidad sin dependencias de empaquetado ni frameworks pesados. |
-| **Design System** | USWDS 3.0 / Bootstrap | 5.3.3 Custom Tokens | Paleta oficial, tipografía legible y cumplimiento estricto WCAG 2.1 AAA. |
-| **Gráficos** | Chart.js | CDN v4.x | Renderizado reactivo de la distribución de reformas y competencias. |
-| **Parser Markdown** | Marked.js | CDN v14.x | Conversión segura de fuentes Markdown a HTML con soporte de tablas. |
-| **Iconografía** | Google Material Symbols | Outlined | Señalética visual institucional y técnica estandarizada. |
-| **Seguridad Web** | Apache `.htaccess` | HSTS / CSP / MIME | Protección contra ataques XSS, clickjacking, MIME sniffing y caché optimizado. |
+| **Framework & Core** | Astro 7 + Content Layer API | Astro 7.4 / TS 5.7 | Generación estática MPA (30 páginas + 2 endpoints), esquemas Zod (`astro/zod`) y View Transitions CSS nativas. |
+| **Design System** | USWDS 3.0 (CSS-Only Light-Only) | `@uswds/uswds` 3.14 | Paleta institucional clara sin `uswds.min.js` (0 KB JS del framework), carga única de estilos y WCAG 2.1 AA/AAA verificado con `axe-core`. |
+| **Gráficos** | SVG Puro en Build-Time | Astro Components | `ReformsBarChart.astro` y `ScopeDonutChart.astro` renderizados en servidor/build con 0 KB JS cliente y tablas `usa-sr-only`. |
+| **Markdown & Diff** | Sätteri HAST + Diff Build-Time | `@astrojs/markdown-satteri` | Compilación de las 4 fuentes Markdown en tiempo de build con anclas `#articulo-*`, tablas USWDS y diff semántico estático (sin Marked ni DOMPurify en el navegador). |
+| **Criptografía & QR** | Web Crypto API + QR SVG | Aislado en `/consola-api/` | Cálculo real de digests SHA-256 (FIPS 180-4) y QR vectoriales (`qrcode-generator`) aislados únicamente a la consola API. |
+| **Seguridad Web** | `public/.htaccess` + `vercel.json` | HSTS / CSP Estricto | `script-src 'self'` (cero scripts inline, cero `onclick=`, cero CDNs externos), `assetsInlineLimit: 0` y PWA offline (`sw.js`). |
 
 ---
 
@@ -317,26 +320,29 @@ flowchart TD
 
 ```
 Ulpiano-Chief-Compliance-Officer/
-├── src/pages/                  # Páginas Astro nativas (index.astro, frontend.astro, backend.astro)
-├── src/layouts/                # LegalLayout.astro (Layout institucional legal-tech)
-├── src/components/views/       # Vistas modulares Astro (Dashboard, Diagrams, Api, Reader, Compare, Matrix)
-├── src/scripts/, src/modules/  # Motor SPA reactivo, router hash y módulos forenses
-├── src/styles/                 # Design System legal (legal-theme.css, tokens.css, viewer.css)
-├── src/lib/                    # Constantes del marco normativo y estándares
-├── docs/                       # Fuentes Markdown incluidas en el build estático
-├── registry.json               # Fuente única de metadata de versiones
-├── public/svg/                 # Suite de 9 diagramas vectoriales de alta resolución
-├── public/manifest.json        # Manifiesto PWA
-├── tests/                      # Suite de pruebas automatizadas (build y router)
-├── astro.config.mjs            # Configuración de compilación estática de Astro
-└── vercel.json                 # Configuración de despliegue estático
+├── src/content.config.ts       # Astro 7 Content Layer API (normativa, versiones, diagramas, reformas)
+├── src/data/                   # Colecciones JSON validadas (diagrams.json, reforms.json)
+├── src/plugins/                # ulpiano-hast.ts (Plugin Sätteri HAST en tiempo de compilación)
+├── src/pages/                  # Rutas MPA nativas (index, lector/[id], comparador/[pair], diagramas/[id], matriz, consola-api, backend, frontend) + endpoints estáticos
+├── src/layouts/                # LegalLayout.astro (Layout institucional USWDS 3.0 Light-Only, cero scripts inline)
+├── src/components/             # Header, Footer, Identifier, GlobalSearchModal, SvgZoomViewer, ArchitecturePage y charts/ (SVG build-time)
+├── src/lib/                    # Motor puro TS build-time/shared (legal.ts, diff.ts, format.ts, crypto.ts, svg.ts)
+├── src/styles/                 # Design System Light-Only (tokens.css, ulpiano-uswds.css)
+├── docs/                       # Fuentes Markdown (V1.0, V1.1, V1.2 y Catálogo Normativo RAG)
+├── registry.json               # Fuente única validada de metadata documental
+├── public/svg/                 # Suite completa de 12 diagramas vectoriales emoji-free y sin imports externos
+├── public/                     # .htaccess, openapi.json, favicon.svg, manifest.json, robots.txt, sw.js, redirecciones HTML
+├── scripts/                    # audit.mjs (Light-Only, CSP y Cero Legado JS) y consistency_check.sh
+├── tests/                      # Pruebas unitarias, de build/presupuesto JS y E2E Playwright (Zero-JS + Interactivo + CSP + axe-core)
+├── astro.config.mjs            # Compilación estática Astro 7 + Sätteri HAST + @astrojs/sitemap + assetsInlineLimit: 0
+└── vercel.json                 # Configuración de despliegue estático y cabeceras de seguridad
 ```
 
 ---
 
 ## ⚡ 11. Guía de Instalación y Ejecución Local
 
-Node.js 22.23.4 o superior y npm son necesarios para Astro. Los deploys producen un sitio estático, sin funciones de servidor ni un dominio predefinido.
+Node.js 22.23.4 o superior (recomendado Node 24 LTS) y npm son necesarios para Astro. Los deploys producen un sitio estático 100% autocontenido, sin dependencias de CDN externas.
 
 ### Paso a Paso:
 
@@ -351,15 +357,11 @@ Node.js 22.23.4 o superior y npm son necesarios para Astro. Los deploys producen
    npm ci
    npm run dev
    ```
-3. **Compilar y validar:**
+3. **Validar (Typecheck + ESLint + Auditoría CSP/Light-Only + Build + Unit/E2E/WCAG):**
    ```bash
-   npm run lint
-   npm run build
-   npm test
+   npm run verify
    ```
-   El directorio `dist/` contiene las páginas estáticas de producción.
-
-> **Estilos:** se recuperó la última versión rastreada de `design-system/tokens.css` desde Git a `src/styles/tokens.css`. `design-system/components.css` no aparece en el checkout ni en el historial; la vista conserva los estilos disponibles en `viewer.css` y usa solo algunos alias CSS en `src/styles/compat-tokens.css`. No es posible garantizar paridad exacta con el archivo de componentes faltante.
+   El directorio `dist/` contiene las páginas estáticas de producción, `.htaccess`, `openapi.json`, `sitemap-index.xml` y todos los assets optimizados.
 
 ---
 

@@ -2,8 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1680" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
   <defs>
     <style><![CDATA[
-      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@400;600;700;800&display=swap');
-
       .font-sans { font-family: 'Inter', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
       .font-mono { font-family: 'Fira Code', 'Roboto Mono', Consolas, Monaco, monospace; }
 
@@ -234,9 +232,9 @@
           <text x="0" y="86" class="text-node-desc">• Mitigación DDoS &amp; Bloqueo de botnets</text>
           <text x="0" y="104" class="text-tech-cite">• Conexión upstream HTTP/2 hacia Uvicorn</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 110: Soberanía e Interés Público</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LPCDI Art. 6: Blindaje ante Acceso Indebido</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: NIST SP 800-52 Rev. 2 TLS</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 110: Soberanía e Interés Público</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 6: Blindaje ante Acceso Indebido</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] NIST SP 800-52 Rev. 2 TLS</text>
         </g>
       </g>
 
@@ -262,9 +260,9 @@
           <text x="0" y="86" class="text-node-desc">• WebSockets para alertas en tiempo real</text>
           <text x="0" y="104" class="text-tech-cite">• Middleware de Logging Forense JSON</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#bae6fd" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 13: Software Libre</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LOCOTA Art. 11: Interoperabilidad Digital</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO/IEC 25010 Calidad Software</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 13: Software Libre</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LOCOTA Art. 11: Interoperabilidad Digital</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 25010 Calidad Software</text>
         </g>
       </g>
 
@@ -291,9 +289,9 @@
           <text x="0" y="86" class="text-node-desc">• Segregación "4 Ojos Digital" (Art. 27)</text>
           <text x="0" y="104" class="text-tech-cite">• Detección de sesiones anómalas concurrentes</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Título VII Art. 27: Segregación de Funciones</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LPCDI Art. 9: Acceso Indebido a Sistemas</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: NIST SP 800-207 Zero Trust</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Art. 27: Segregación de Funciones</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 9: Acceso Indebido a Sistemas</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] NIST SP 800-207 Zero Trust</text>
         </g>
       </g>
     </g>
@@ -347,9 +345,9 @@
           <text x="0" y="86" class="text-node-desc">• Certificados de Jueces y Secretarios TSJ</text>
           <text x="0" y="104" class="text-tech-cite">• Zero Private Key Leakage garantizado</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Art. 16: Prohibición de Falsificación</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LMDyFE Art. 18: Presunción Legal de Firma</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: FIPS 140-2 Level 3 HSM</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Art. 16: Prohibición de Falsificación</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LMDyFE Art. 18: Presunción Legal de Firma</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] FIPS 140-2 Level 3 HSM</text>
         </g>
       </g>
 
@@ -375,9 +373,9 @@
           <text x="0" y="86" class="text-node-desc">• Firma Long-Term Validation (LTV integrada)</text>
           <text x="0" y="104" class="text-tech-cite">• Certificación jerárquica con Raíz SUSCERTE</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#e9d5ff" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Arts. 4 y 6: Eficacia Probatoria Plena</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LMDyFE Art. 8: Conservación y Fecha Cierta</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ETSI EN 319 142 PAdES</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Arts. 4 y 6: Eficacia Probatoria Plena</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LMDyFE Art. 8: Conservación y Fecha Cierta</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ETSI EN 319 142 PAdES</text>
         </g>
       </g>
 
@@ -403,9 +401,9 @@
           <text x="0" y="86" class="text-node-desc">• Cotejo público universal en portal TSJ</text>
           <text x="0" y="104" class="text-tech-cite">• Integración con visor React-PDF frontend</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Art. 7: Integridad e Inalterabilidad</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ Ley Infogobierno Art. 27: Mecanismo de Cotejo</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: NIST FIPS 180-4 &amp; FIPS 202</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Art. 7: Integridad e Inalterabilidad</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] Ley Infogobierno Art. 27: Mecanismo de Cotejo</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] NIST FIPS 180-4 &amp; FIPS 202</text>
         </g>
       </g>
     </g>
@@ -458,9 +456,9 @@
           <text x="0" y="86" class="text-node-desc">• Generación de reportes PSS periódicos</text>
           <text x="0" y="104" class="text-tech-cite">• Tolerancia a fallos con reintentos exponenciales</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 26: Tutela Judicial Eficaz y Continua</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ FISMA § 3554: Mantenimiento de PSS</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO 22301 Continuidad Operativa</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 26: Tutela Judicial Eficaz y Continua</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] FISMA § 3554: Mantenimiento de PSS</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO 22301 Continuidad Operativa</text>
         </g>
       </g>
 
@@ -487,9 +485,9 @@
           <text x="0" y="86" class="text-node-desc">• Sorteo Criptográfico de Causas (Art. 26)</text>
           <text x="0" y="104" class="text-tech-cite">• Generador criptoseguro secrets.SystemRandom</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#bbf7d0" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Título VII Arts. 15, 25, 26 y 31 Ley V-1.2</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ Sentencia TSJ 0406/2026: Sorteo Inmutable</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO/IEC 42001 &amp; ISO 37001</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Arts. 15, 25, 26 y 31 Ley V-1.2</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] Sentencia TSJ 0406/2026: Sorteo Inmutable</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 42001 &amp; ISO 37001</text>
         </g>
       </g>
 
@@ -515,9 +513,9 @@
           <text x="0" y="86" class="text-node-desc">• Citas exactas artículo por artículo sin sesgos</text>
           <text x="0" y="104" class="text-tech-cite">• Zero Data Exfiltration a servicios de terceros</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 28: Habeas Data y Privacidad</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ Título VII Art. 30: Auditoría Algorítmica</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: NIST AI Risk Management Framework</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 28: Habeas Data y Privacidad</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] Título VII Art. 30: Auditoría Algorítmica</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] NIST AI Risk Management Framework</text>
         </g>
       </g>
     </g>
@@ -570,9 +568,9 @@
           <text x="0" y="86" class="text-node-desc">• Replicación síncrona Streaming Replication</text>
           <text x="0" y="104" class="text-tech-cite">• Pool de conexiones pgbouncer optimizado</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 13: BD Software Libre</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LPCDI Art. 7: Protección contra Sabotaje</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO/IEC 27001 Control A.8.24</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 13: BD Software Libre</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 7: Protección contra Sabotaje</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 27001 Control A.8.24</text>
         </g>
       </g>
 
@@ -598,9 +596,9 @@
           <text x="0" y="86" class="text-node-desc">• Retención legal forzosa e inviolable</text>
           <text x="0" y="104" class="text-tech-cite">• Cifrado del lado del servidor SSE-KMS</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#fde68a" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 11: Repositorios Digitales</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LMDyFE Art. 7: Inalterabilidad Absoluta</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: SEC Rule 17a-4 / Cohasset Certified</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 11: Repositorios Digitales</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LMDyFE Art. 7: Inalterabilidad Absoluta</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] SEC Rule 17a-4 / Cohasset Certified</text>
         </g>
       </g>
 
@@ -626,9 +624,9 @@
           <text x="0" y="86" class="text-node-desc">• Cadena de custodia digital ISO/IEC 27037</text>
           <text x="0" y="104" class="text-tech-cite">• Exportación forense según Manual MP 2017</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Título VII Art. 28: Registro Inmutable</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LPCDI Art. 12: Falsificación de Documentos</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO/IEC 27037 &amp; RFC 3227</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Art. 28: Registro Inmutable</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 12: Falsificación de Documentos</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 27037 &amp; RFC 3227</text>
         </g>
       </g>
     </g>

@@ -2,9 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1650" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
   <defs>
     <style><![CDATA[
-      @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
-      @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600;700&display=swap');
-
       .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
       .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
 
@@ -162,7 +159,7 @@
     <g transform="translate(16, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#93c5fd" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#eff6ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">📁 /triggers/upload.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">/triggers/upload.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Disparador de Evento</text>
@@ -183,7 +180,7 @@
     <g transform="translate(258, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#fca5a5" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#fef2f2"/>
-      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">📁 /guards/cuatro-ojos.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">/guards/cuatro-ojos.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Controles &amp; Segregación</text>
@@ -204,7 +201,7 @@
     <g transform="translate(500, 46)">
       <rect width="236" height="226" rx="6" fill="#f8fafc" stroke="#86efac" stroke-width="1"/>
       <rect x="0" y="0" width="236" height="26" rx="6" fill="#f0fdf4"/>
-      <text x="10" y="17" class="text-folder-name" fill="#15803d">📁 /workflows/publicacion.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#15803d">/workflows/publicacion.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Orquestación Secuencial</text>
@@ -225,7 +222,7 @@
     <g transform="translate(750, 46)">
       <rect width="234" height="226" rx="6" fill="#f8fafc" stroke="#d8b4fe" stroke-width="1"/>
       <rect x="0" y="0" width="234" height="26" rx="6" fill="#faf5ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">📁 /actions/crypto-publish.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">/actions/crypto-publish.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Acciones Atómicas de Ejecución</text>
@@ -268,7 +265,7 @@
     <g transform="translate(16, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#93c5fd" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#eff6ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">📁 /triggers/radicacion.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">/triggers/radicacion.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Disparador de Base de Datos</text>
@@ -289,7 +286,7 @@
     <g transform="translate(258, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#fca5a5" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#fef2f2"/>
-      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">📁 /guards/sorteo-guard.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">/guards/sorteo-guard.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Validaciones de Imparcialidad</text>
@@ -310,7 +307,7 @@
     <g transform="translate(500, 46)">
       <rect width="236" height="226" rx="6" fill="#f8fafc" stroke="#86efac" stroke-width="1"/>
       <rect x="0" y="0" width="236" height="26" rx="6" fill="#f0fdf4"/>
-      <text x="10" y="17" class="text-folder-name" fill="#15803d">📁 /workflows/sorteo.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#15803d">/workflows/sorteo.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Sorteo Criptográfico Determinístico</text>
@@ -331,7 +328,7 @@
     <g transform="translate(750, 46)">
       <rect width="234" height="226" rx="6" fill="#f8fafc" stroke="#d8b4fe" stroke-width="1"/>
       <rect x="0" y="0" width="234" height="26" rx="6" fill="#faf5ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">📁 /actions/sorteo-actions.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">/actions/sorteo-actions.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Acciones de Notificación &amp; Log</text>
@@ -374,7 +371,7 @@
     <g transform="translate(16, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#93c5fd" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#eff6ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">📁 /triggers/evidencia.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">/triggers/evidencia.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Ingesta Forense Segura</text>
@@ -395,7 +392,7 @@
     <g transform="translate(258, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#fca5a5" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#fef2f2"/>
-      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">📁 /guards/custody-guard.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">/guards/custody-guard.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Garantía de Inalterabilidad</text>
@@ -416,7 +413,7 @@
     <g transform="translate(500, 46)">
       <rect width="236" height="226" rx="6" fill="#f8fafc" stroke="#86efac" stroke-width="1"/>
       <rect x="0" y="0" width="236" height="26" rx="6" fill="#f0fdf4"/>
-      <text x="10" y="17" class="text-folder-name" fill="#15803d">📁 /workflows/custodia.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#15803d">/workflows/custodia.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Pipeline de Preservación</text>
@@ -437,7 +434,7 @@
     <g transform="translate(750, 46)">
       <rect width="234" height="226" rx="6" fill="#f8fafc" stroke="#d8b4fe" stroke-width="1"/>
       <rect x="0" y="0" width="234" height="26" rx="6" fill="#faf5ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">📁 /actions/forensic-act.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">/actions/forensic-act.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Acciones de Sellado &amp; Bóveda</text>
@@ -480,7 +477,7 @@
     <g transform="translate(16, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#93c5fd" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#eff6ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">📁 /triggers/ai-cron.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#1d4ed8">/triggers/ai-cron.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Disparadores Programados (Cron)</text>
@@ -501,7 +498,7 @@
     <g transform="translate(258, 46)">
       <rect width="228" height="226" rx="6" fill="#f8fafc" stroke="#fca5a5" stroke-width="1"/>
       <rect x="0" y="0" width="228" height="26" rx="6" fill="#fef2f2"/>
-      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">📁 /guards/human-loop.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#b91c1c">/guards/human-loop.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Guardia de Supervisión Humana</text>
@@ -522,7 +519,7 @@
     <g transform="translate(500, 46)">
       <rect width="236" height="226" rx="6" fill="#f8fafc" stroke="#86efac" stroke-width="1"/>
       <rect x="0" y="0" width="236" height="26" rx="6" fill="#f0fdf4"/>
-      <text x="10" y="17" class="text-folder-name" fill="#15803d">📁 /workflows/eval-alertas.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#15803d">/workflows/eval-alertas.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Evaluación de Alertas Tempranas</text>
@@ -543,7 +540,7 @@
     <g transform="translate(750, 46)">
       <rect width="234" height="226" rx="6" fill="#f8fafc" stroke="#d8b4fe" stroke-width="1"/>
       <rect x="0" y="0" width="234" height="26" rx="6" fill="#faf5ff"/>
-      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">📁 /actions/alert-dispatch.ts</text>
+      <text x="10" y="17" class="text-folder-name" fill="#7e22ce">/actions/alert-dispatch.ts</text>
       
       <g transform="translate(10, 36)">
         <text x="0" y="12" class="text-item-title">Despacho de Alerta Preventiva</text>

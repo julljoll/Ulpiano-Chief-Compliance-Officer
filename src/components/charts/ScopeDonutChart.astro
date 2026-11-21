@@ -1,0 +1,124 @@
+---
+/**
+ * ULPIANO CCO — Pure Build-Time SVG Donut Chart (0 KB Client JS, WCAG 2.1 AAA Light-Only)
+ * Replaces 200 KB Chart.js dependency completely.
+ */
+interface Slice {
+  label: string;
+  value: number;
+  color: string;
+}
+
+interface Props {
+  title: string;
+  badge: string;
+  slices?: Slice[];
+}
+
+const {
+  title,
+  badge,
+  slices = [
+    { label: 'Poder Judicial (TSJ y Cortes)', value: 35, color: '#004987' },
+    { label: 'Administración Pública Nacional/Estadal', value: 30, color: '#2e8540' },
+    { label: 'Ministerio Público', value: 15, color: '#df7e00' },
+    { label: 'Defensa Pública', value: 10, color: '#0076d6' },
+    { label: 'Auxiliares y Forenses', value: 10, color: '#5c6b7e' },
+  ],
+} = Astro.props;
+
+const total = slices.reduce((acc, s) => acc + s.value, 0) || 100;
+const radius = 64;
+const circumference = 2 * Math.PI * radius;
+
+let cumulative = 0;
+const renderedSlices = slices.map((s) => {
+  const fraction = s.value / total;
+  const dash = fraction * circumference;
+  const offset = -cumulative * circumference;
+  cumulative += fraction;
+  return {
+    ...s,
+    pct: Math.round(fraction * 100),
+    dashArray: `${Math.max(0, dash - 1.5)} ${circumference}`,
+    dashOffset: offset,
+  };
+});
+---
+
+<div class="usa-card__container padding-3 border-1px border-base-lighter">
+  <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-1">
+    <h2 class="font-sans-sm text-uppercase margin-0">{title}</h2>
+    <span class="usa-tag ulp-tag-success">{badge}</span>
+  </div>
+
+  <div class="grid-row grid-gap-2 flex-align-center">
+    <div class="tablet:grid-col-5 text-center">
+      <svg
+        viewBox="0 0 180 180"
+        class="ulp-svg-donut"
+        role="img"
+        aria-labelledby="donut-chart-title donut-chart-desc"
+      >
+        <title id="donut-chart-title">{title} — {badge}</title>
+        <desc id="donut-chart-desc">
+          Distribución porcentual del ámbito de aplicación: {renderedSlices.map((s) => `${s.label}: ${s.pct}%`).join(', ')}.
+        </desc>
+
+        <g transform="rotate(-90 90 90)">
+          {renderedSlices.map((s) => (
+            <circle
+              cx="90"
+              cy="90"
+              r={radius}
+              fill="none"
+              stroke={s.color}
+              stroke-width="26"
+              stroke-dasharray={s.dashArray}
+              stroke-dashoffset={s.dashOffset}
+            />
+          ))}
+        </g>
+
+        <text
+          x="90"
+          y="86"
+          text-anchor="middle"
+          fill="#0b1b3d"
+          font-size="20"
+          font-weight="700"
+          font-family="Public Sans Web, -apple-system, sans-serif"
+        >
+          100%
+        </text>
+        <text
+          x="90"
+          y="104"
+          text-anchor="middle"
+          fill="#45505f"
+          font-size="10"
+          font-weight="600"
+          font-family="Public Sans Web, -apple-system, sans-serif"
+        >
+          PLENO
+        </text>
+      </svg>
+    </div>
+
+    <div class="tablet:grid-col-7">
+      <ul class="usa-list usa-list--unstyled margin-0 font-sans-xs">
+        {renderedSlices.map((s) => (
+          <li class="display-flex flex-justify flex-align-center padding-y-05 border-bottom-1px border-base-lightest">
+            <span class="display-flex flex-align-center ulp-gap-1">
+              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+                <rect width="12" height="12" rx="2" fill={s.color} />
+              </svg>
+              <span>{s.label}</span>
+            </span>
+            <strong class="font-mono-2xs">{s.pct}%</strong>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>

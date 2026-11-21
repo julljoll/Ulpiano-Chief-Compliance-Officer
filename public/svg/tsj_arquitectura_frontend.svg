@@ -2,8 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1680" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
   <defs>
     <style><![CDATA[
-      @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@400;600;700;800&display=swap');
-
       .font-sans { font-family: 'Inter', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
       .font-mono { font-family: 'Fira Code', 'Roboto Mono', Consolas, Monaco, monospace; }
 
@@ -239,9 +237,9 @@
           <text x="0" y="86" class="text-node-desc">• Sin dependencia exclusiva de color para alertas</text>
           <text x="0" y="104" class="text-tech-cite">• Tokens CSS estándar en tokens.css</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 26: Acceso Universal a la Justicia</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ Ley Infogobierno Art. 22: Accesibilidad Web</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: W3C WCAG 2.1 Level AAA</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 26: Acceso Universal a la Justicia</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] Ley Infogobierno Art. 22: Accesibilidad Web</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] W3C WCAG 2.1 Level AAA</text>
         </g>
       </g>
 
@@ -269,9 +267,9 @@
           <text x="0" y="86" class="text-node-desc">• Renderizado híbrido SSR/SSG ultrarrápido</text>
           <text x="0" y="104" class="text-tech-cite">• Cero fugas de tokens en el navegador</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#bbf7d0" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 13: Software Libre</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LOCOTA Art. 11: Celeridad y Eficiencia</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: OWASP ASVS Level 3 Frontend</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 13: Software Libre</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LOCOTA Art. 11: Celeridad y Eficiencia</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] OWASP ASVS Level 3 Frontend</text>
         </g>
       </g>
 
@@ -299,9 +297,9 @@
           <text x="0" y="86" class="text-node-desc">• Renovación automática de tokens asíncronos</text>
           <text x="0" y="104" class="text-tech-cite">• Encriptación local WebCrypto en el cliente</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Art. 18: Presunción de Autoría</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LPCDI Art. 9: Acceso Indebido a Datos</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: FIDO2 / WebAuthn Level 2</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Art. 18: Presunción de Autoría</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 9: Acceso Indebido a Datos</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] FIDO2 / WebAuthn Level 2</text>
         </g>
       </g>
     </g>
@@ -355,9 +353,9 @@
           <text x="0" y="86" class="text-node-desc">• Búsqueda de texto indexada en tiempo real</text>
           <text x="0" y="104" class="text-tech-cite">• Descarga segura con marca de agua oficial</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Art. 4: Eficacia Probatoria Plena</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ Ley Infogobierno Art. 11: Acceso Público</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO 19005-2 PDF/A-2u</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Art. 4: Eficacia Probatoria Plena</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] Ley Infogobierno Art. 11: Acceso Público</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO 19005-2 PDF/A-2u</text>
         </g>
       </g>
 
@@ -385,9 +383,9 @@
           <text x="0" y="86" class="text-node-desc">• Descarga de constancia de validez jurídica</text>
           <text x="0" y="104" class="text-tech-cite">• Prevención de suplantación de sentencias</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#bae6fd" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 27: Garantía de Cotejo</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LMDyFE Art. 7: Inalterabilidad del Texto</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: RFC 3161 Time-Stamp Protocol</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 27: Garantía de Cotejo</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LMDyFE Art. 7: Inalterabilidad del Texto</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] RFC 3161 Time-Stamp Protocol</text>
         </g>
       </g>
 
@@ -416,9 +414,9 @@
           <text x="0" y="86" class="text-node-desc">• Muestra de la Autoridad Certificadora Raíz</text>
           <text x="0" y="104" class="text-tech-cite">• Detección de cualquier bit alterado post-firma</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ LMDyFE Arts. 16 y 18: Seguridad Jurídica</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ Normativas SUSCERTE: Jerarquía de Confianza</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ETSI TS 102 778 PAdES</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Arts. 16 y 18: Seguridad Jurídica</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] Normativas SUSCERTE: Jerarquía de Confianza</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ETSI TS 102 778 PAdES</text>
         </g>
       </g>
     </g>
@@ -473,9 +471,9 @@
           <text x="0" y="86" class="text-node-desc">• Mapeo de riesgos conforme a ISO 37301</text>
           <text x="0" y="104" class="text-tech-cite">• Generación de reportes de cumplimiento CGR</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 257: Celeridad y Eficacia</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LOCOTA Art. 11: Unidades de Celeridad</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO 37301 Compliance Systems</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 257: Celeridad y Eficacia</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LOCOTA Art. 11: Unidades de Celeridad</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO 37301 Compliance Systems</text>
         </g>
       </g>
 
@@ -504,9 +502,9 @@
           <text x="0" y="86" class="text-node-desc">• Validación de no conflicto de interés</text>
           <text x="0" y="104" class="text-tech-cite">• Trazabilidad forense punto a punto</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#e9d5ff" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Título VII Art. 27: Doble Aprobación Forzosa</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ CRBV Art. 49: Garantía del Debido Proceso</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: NIST SP 800-53 AC-5 Separation</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Art. 27: Doble Aprobación Forzosa</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] CRBV Art. 49: Garantía del Debido Proceso</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] NIST SP 800-53 AC-5 Separation</text>
         </g>
       </g>
 
@@ -534,9 +532,9 @@
           <text x="0" y="86" class="text-node-desc">• Integración con herramientas periciales</text>
           <text x="0" y="104" class="text-tech-cite">• Cumplimiento de cadena de custodia digital</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Título VII Art. 28: Bitácora Inalterable</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ Manual MP 2017: Cadena de Custodia</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: ISO/IEC 27037 Evidencia Digital</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Art. 28: Bitácora Inalterable</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] Manual MP 2017: Cadena de Custodia</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 27037 Evidencia Digital</text>
         </g>
       </g>
     </g>
@@ -590,9 +588,9 @@
           <text x="0" y="86" class="text-node-desc">• Cero exposición de lógica de negocio en cliente</text>
           <text x="0" y="104" class="text-tech-cite">• Desacoplamiento total Frontend ⇄ Backend</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ Ley Infogobierno Art. 13: Interoperabilidad</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ CRBV Art. 110: Estándares Abiertos</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: OpenAPI 3.1 &amp; RESTful Best Practices</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 13: Interoperabilidad</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] CRBV Art. 110: Estándares Abiertos</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] OpenAPI 3.1 &amp; RESTful Best Practices</text>
         </g>
       </g>
 
@@ -619,9 +617,9 @@
           <text x="0" y="86" class="text-node-desc">• Cifrado de transporte TLS 1.3 garantizado</text>
           <text x="0" y="104" class="text-tech-cite">• Heartbeat y reconexión automática</text>
           <line x1="0" y1="118" x2="286" y2="118" stroke="#fde68a" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ CRBV Art. 26: Tutela Judicial Oportuna</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ LOCOTA Art. 11: Notificación Electrónica</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: RFC 6455 WebSocket Protocol</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 26: Tutela Judicial Oportuna</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] LOCOTA Art. 11: Notificación Electrónica</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] RFC 6455 WebSocket Protocol</text>
         </g>
       </g>
 
@@ -649,9 +647,9 @@
           <text x="0" y="86" class="text-node-desc">• Permissions-Policy restringida al mínimo</text>
           <text x="0" y="104" class="text-tech-cite">• Blindaje contra Cross-Site Scripting (XSS)</text>
           <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">⚖️ LPCDI Art. 6: Blindaje ante Intrusiones</text>
-          <text x="0" y="152" class="text-law-cite">⚖️ CRBV Art. 110: Seguridad de la Información</text>
-          <text x="0" y="168" class="text-tech-cite">🔒 Standard: W3C CSP Level 3 &amp; OWASP Top 10</text>
+          <text x="0" y="136" class="text-law-cite">[LEY] LPCDI Art. 6: Blindaje ante Intrusiones</text>
+          <text x="0" y="152" class="text-law-cite">[LEY] CRBV Art. 110: Seguridad de la Información</text>
+          <text x="0" y="168" class="text-tech-cite">[STD] W3C CSP Level 3 &amp; OWASP Top 10</text>
         </g>
       </g>
     </g>
