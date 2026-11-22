@@ -1,384 +1,374 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1650" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <!-- Design System Traceability: USWDS 3.0 Light-Only Palette (src/styles/tokens.css) • Section 508 / WCAG 2.1 AAA • Ulpiano CCO V-1.2 -->
   <defs>
     <style><![CDATA[
       .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
       .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
 
       .text-title { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 15px; fill: #ffffff; letter-spacing: -0.01em; }
-      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.5px; fill: #f1f5f9; }
-      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.5px; fill: #fde047; }
+      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.5px; fill: #eff6fb; }
+      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.5px; fill: #fac76f; }
       .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 11.5px; fill: #ffffff; letter-spacing: 0.02em; }
       .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 9.2px; }
-      
-      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.8px; fill: #0f2d59; }
-      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.8px; fill: #2d3748; line-height: 1.35; }
-      .text-item-sub { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.2px; fill: #5c6b7e; }
+
+      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.8px; fill: #162e51; }
+      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.8px; fill: #21272d; line-height: 1.35; }
 
       .text-flow-num { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 10.5px; fill: #ffffff; }
 
-      .flow-arrow-down { stroke: #0066cc; stroke-width: 2.2; fill: none; }
-      .flow-arrow-green { stroke: #15803d; stroke-width: 2.2; fill: none; }
-      .flow-arrow-gold { stroke: #d97706; stroke-width: 2.2; fill: none; }
-      .flow-arrow-purple { stroke: #7e22ce; stroke-width: 2.2; fill: none; }
+      .flow-arrow-down { stroke: #004987; stroke-width: 2.2; fill: none; }
+      .flow-arrow-green { stroke: #1b622b; stroke-width: 2.2; fill: none; }
+      .flow-arrow-gold { stroke: #c05600; stroke-width: 2.2; fill: none; }
     ]]></style>
 
-    <filter id="shadow-1" x="-4%" y="-4%" width="108%" height="108%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.08"/>
+    <filter id="tech-shadow-1" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#13171b" flood-opacity="0.08"/>
     </filter>
-    <filter id="shadow-2" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.12"/>
+    <filter id="tech-shadow-2" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0b1b3d" flood-opacity="0.12"/>
     </filter>
 
-    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#071426"/>
-      <stop offset="50%" stop-color="#0f2647"/>
-      <stop offset="100%" stop-color="#163866"/>
+    <linearGradient id="techHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b1b3d"/>
+      <stop offset="50%" stop-color="#162e51"/>
+      <stop offset="100%" stop-color="#004987"/>
     </linearGradient>
 
-    <linearGradient id="capa1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#004c87"/>
-      <stop offset="100%" stop-color="#0284c7"/>
+    <linearGradient id="techCapa1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#162e51"/>
+      <stop offset="100%" stop-color="#1a5b8c"/>
     </linearGradient>
 
-    <linearGradient id="capa2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#15803d"/>
-      <stop offset="100%" stop-color="#22c55e"/>
+    <linearGradient id="techCapa2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#004987"/>
+      <stop offset="100%" stop-color="#0076d6"/>
     </linearGradient>
 
-    <linearGradient id="capa3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#854d0e"/>
-      <stop offset="100%" stop-color="#d97706"/>
+    <linearGradient id="techCapa3Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a156d"/>
+      <stop offset="100%" stop-color="#7832a8"/>
     </linearGradient>
 
-    <linearGradient id="capa4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#581c87"/>
-      <stop offset="100%" stop-color="#7e22ce"/>
+    <linearGradient id="techCapa4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d2b14"/>
+      <stop offset="100%" stop-color="#1b622b"/>
     </linearGradient>
 
-    <marker id="arrow-down-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#0066cc"/>
+    <marker id="tech-arrow-down-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#004987"/>
     </marker>
-    <marker id="arrow-down-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#15803d"/>
+    <marker id="tech-arrow-down-violet" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#7832a8"/>
     </marker>
-    <marker id="arrow-down-gold" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#d97706"/>
-    </marker>
-    <marker id="arrow-down-purple" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#7e22ce"/>
+    <marker id="tech-arrow-down-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#1b622b"/>
     </marker>
 
-    <pattern id="uswds-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e2e8f0" stroke-width="0.75"/>
+    <pattern id="tech-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e7e9ed" stroke-width="0.75"/>
     </pattern>
   </defs>
 
-  <!-- CANVAS BACKGROUND (HOJA FOLIO VERTICAL 1080 x 1650) -->
+  <!-- CANVAS BACKGROUND -->
   <rect width="1080" height="1650" fill="#ffffff"/>
-  <rect width="1080" height="1650" fill="url(#uswds-grid)" opacity="0.65"/>
+  <rect width="1080" height="1650" fill="url(#tech-grid)" opacity="0.65"/>
 
-  <!-- ================= 1. HEADER HERO (OPTIMIZADO) ================= -->
+  <!-- ================= 1. HEADER HERO ================= -->
   <g transform="translate(40, 16)">
-    <rect x="0" y="0" width="1000" height="96" rx="8" fill="url(#headerGrad)" stroke="#1e3a8a" stroke-width="1.2" filter="url(#shadow-2)"/>
-    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#facc15"/>
+    <rect x="0" y="0" width="1000" height="96" rx="8" fill="url(#techHeaderGrad)" stroke="#1a5b8c" stroke-width="1.2" filter="url(#tech-shadow-2)"/>
+    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#f3a534"/>
 
-    <!-- Title & Subtitle (No icon in top header, full width layout from x=24) -->
     <g transform="translate(24, 0)">
       <text x="0" y="32" class="text-title">ARQUITECTURA TÉCNICA V-1.2: SISTEMA INTEGRAL DE JUSTICIA</text>
       <text x="0" y="53" class="text-subtitle">
-        Ley Orgánica (Art. 203 CRBV / TSJ 0406/2026): LOCOTA 2026, Auditoría Anual, PSS y DOV
+        Ley Orgánica (Art. 203 CRBV / TSJ 0406/2026): 47 Artículos, 14 Reformas, LOCOTA 2026 y DOV
       </text>
       <text x="0" y="74" class="text-subcite">
-        Estándares: FISMA 2014 • UE 2023/2841 • JTC Courts 2025 • ISO/IEC (27001, 27037, 42001)
+        Defensa por Capas: NIST Zero Trust • CSIRT 24/7 • ISO 27037 Forense • Título VII Anticorrupción
       </text>
     </g>
 
-    <!-- Right Badges (Bounded from x=755 to x=985 - Width 230px, HIGH CONTRAST) -->
     <g transform="translate(755, 16)">
-      <rect x="0" y="0" width="230" height="28" rx="5" fill="#0050a0" stroke="#38bdf8" stroke-width="1"/>
+      <rect x="0" y="0" width="230" height="28" rx="5" fill="#004987" stroke="#73b3e7" stroke-width="1"/>
       <text x="115" y="18" class="text-tag" fill="#ffffff" text-anchor="middle">ARQUITECTURA TÉCNICA V-1.2</text>
 
-      <rect x="0" y="36" width="230" height="28" rx="5" fill="#0f172a" stroke="#475569" stroke-width="1"/>
-      <text x="115" y="54" class="text-tag" fill="#38bdf8" text-anchor="middle">HOJA FOLIO VERTICAL</text>
+      <rect x="0" y="36" width="230" height="28" rx="5" fill="#0b1b3d" stroke="#5c6b7e" stroke-width="1"/>
+      <text x="115" y="54" class="text-tag" fill="#fac76f" text-anchor="middle">DEFENSA POR CAPAS • 47 ARTS</text>
     </g>
   </g>
 
   <!-- ================= 2. CAPA 1: IDENTIDAD Y ACCESO ================= -->
   <g transform="translate(40, 124)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#aacdec" stroke-width="1.5" filter="url(#shadow-1)"/>
-    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#capa1Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#capa1Grad)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#aacdec" stroke-width="1.5" filter="url(#tech-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#techCapa1Grad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#techCapa1Grad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#004c87" text-anchor="middle">1</text>
+    <text x="22" y="21" class="text-flow-num" fill="#162e51" text-anchor="middle">1</text>
     <text x="40" y="21" class="text-header-box">CAPA 1: IDENTIDAD Y ACCESO (ZERO TRUST &amp; FISMA S.2521)</text>
-    <text x="980" y="21" class="text-tag" fill="#d9e8f6" text-anchor="end">NIST SP 800-207 • Zero Trust</text>
+    <text x="980" y="21" class="text-tag" fill="#d9e8f6" text-anchor="end">NIST SP 800-207 • FIDO2 WebAuthn</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 1.1 -->
       <g transform="translate(0, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0284c7"/>
-        <text x="14" y="22" class="text-item-title">Autenticación MFA Criptográfica (Art. 12)</text>
-        <text x="14" y="42" class="text-item-desc">• FIDO2 / WebAuthn con llaves de hardware FIPS 140-2.</text>
-        <text x="14" y="60" class="text-item-desc">• Certificados de operador judicial emitidos por SUSCERTE.</text>
-        <text x="14" y="78" class="text-item-desc">• Prohibición de contraseñas estáticas en sede judicial.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0f2fe"/>
-        <text x="238" y="111" class="text-tag" fill="#0284c7" text-anchor="middle">FIPS 140-2 Level 3 • WebAuthn / FIDO2</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Autenticación MFA Criptográfica (Art. 12)</text>
+        <text x="14" y="42" class="text-item-desc">• FIDO2 / WebAuthn con llaves de hardware FIPS 140-2 L3 para jueces.</text>
+        <text x="14" y="60" class="text-item-desc">• Certificados de operador judicial emitidos por PSC acreditados por SUSCERTE.</text>
+        <text x="14" y="78" class="text-item-desc">• Prohibición expresa de contraseñas estáticas en sedes de justicia digital.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">FIPS 140-2 Level 3 • WebAuthn / FIDO2</text>
       </g>
 
       <!-- Box 1.2 -->
       <g transform="translate(496, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0284c7"/>
-        <text x="14" y="22" class="text-item-title">Control de Acceso Basado en Atributos (ABAC)</text>
-        <text x="14" y="42" class="text-item-desc">• Principio de Mínimo Privilegio (JTC Courts 2025).</text>
-        <text x="14" y="60" class="text-item-desc">• Acceso condicionado por rol, sala procesal y horario.</text>
-        <text x="14" y="78" class="text-item-desc">• Microsegmentación estricta de redes de deliberación.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0f2fe"/>
-        <text x="238" y="111" class="text-tag" fill="#0284c7" text-anchor="middle">NIST SP 800-162 ABAC Model</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Control de Acceso Basado en Atributos (ABAC)</text>
+        <text x="14" y="42" class="text-item-desc">• Principio de Mínimo Privilegio adaptado a cortes (JTC Courts 2025).</text>
+        <text x="14" y="60" class="text-item-desc">• Acceso condicionado por rol, sala procesal, causa activa y horario judicial.</text>
+        <text x="14" y="78" class="text-item-desc">• Microsegmentación de redes de deliberación de magistrados y ponentes.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">NIST SP 800-162 ABAC Model</text>
       </g>
 
       <!-- Box 1.3 -->
       <g transform="translate(0, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0284c7"/>
-        <text x="14" y="22" class="text-item-title">Planes de Seguridad del Sistema (PSS - Art. 13-bis)</text>
-        <text x="14" y="42" class="text-item-desc">• Requisito habilitante para operar sistemas judiciales.</text>
-        <text x="14" y="60" class="text-item-desc">• Documentación técnica de controles según criticidad.</text>
-        <text x="14" y="78" class="text-item-desc">• Homologado y supervisado permanentemente por DINCIP.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0f2fe"/>
-        <text x="238" y="111" class="text-tag" fill="#0284c7" text-anchor="middle">FISMA 2014 44 U.S.C. § 3554(b)(1) (PSS Model)</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Plan de Seguridad del Sistema - PSS (Art. 13-bis)</text>
+        <text x="14" y="42" class="text-item-desc">• Ficha técnica y análisis de riesgos NIST SP 800-30 por cada sistema de causas.</text>
+        <text x="14" y="60" class="text-item-desc">• Asignación de responsabilidad nominal indelegable a directores y DBAs.</text>
+        <text x="14" y="78" class="text-item-desc">• Registro obligatorio en DINCIP con actualización anual y remediación.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">FISMA 2014 § 3554(b) • NIST SP 800-53</text>
       </g>
 
       <!-- Box 1.4 -->
       <g transform="translate(496, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0284c7"/>
-        <text x="14" y="22" class="text-item-title">Responsabilidad de la Máxima Autoridad (Art. 7)</text>
-        <text x="14" y="42" class="text-item-desc">• Deber indelegable del Presidente de Sala sobre la seguridad.</text>
-        <text x="14" y="60" class="text-item-desc">• Responsabilidad civil, administrativa y penal por omisión.</text>
-        <text x="14" y="78" class="text-item-desc">• Rendición de cuentas periódica ante la Asamblea Nacional.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0f2fe"/>
-        <text x="238" y="111" class="text-tag" fill="#0284c7" text-anchor="middle">FISMA 2014 44 U.S.C. § 3554(a) (Agency Head)</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Continuidad Operativa COOP en Justicia (Art. 13)</text>
+        <text x="14" y="42" class="text-item-desc">• RTO menor a 4 horas para causas de flagrancia, amparos y habeas corpus.</text>
+        <text x="14" y="60" class="text-item-desc">• Bóveda de contingencia WORM en MinIO S3 con réplica aislada air-gapped.</text>
+        <text x="14" y="78" class="text-item-desc">• Despacho telemático alternativo sin suspensión de términos procesales.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">ISO 22301 Continuidad • JTC Courts 2025</text>
       </g>
     </g>
   </g>
 
   <!-- Flow Arrow 1 to 2 -->
-  <path d="M 540 454 L 540 476" class="flow-arrow-down" marker-end="url(#arrow-down-green)"/>
+  <path d="M 540 454 L 540 476" class="flow-arrow-down" marker-end="url(#tech-arrow-down-blue)"/>
 
-  <!-- ================= 3. CAPA 2: DEFENSA Y OPERACIONES ================= -->
+  <!-- ================= 3. CAPA 2: CSIRT & DOV ================= -->
   <g transform="translate(40, 478)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#98cca3" stroke-width="1.5" filter="url(#shadow-1)"/>
-    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#capa2Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#capa2Grad)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#004987" stroke-width="2" filter="url(#tech-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#techCapa2Grad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#techCapa2Grad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#15803d" text-anchor="middle">2</text>
-    <text x="40" y="21" class="text-header-box">CAPA 2: DEFENSA, OPERACIONES &amp; DIRECTIVAS VINCULANTES (DOV)</text>
-    <text x="980" y="21" class="text-tag" fill="#eaf4ec" text-anchor="end">CERT-EU / CSIRT-Ulpiano Model</text>
+    <text x="22" y="21" class="text-flow-num" fill="#162e51" text-anchor="middle">2</text>
+    <text x="40" y="21" class="text-header-box">CAPA 2: CSIRT JUDICIAL &amp; DIRECTIVAS OPERATIVAS VINCULANTES (UE &amp; FISMA)</text>
+    <text x="980" y="21" class="text-tag" fill="#ffffff" text-anchor="end">Respuesta Rápida 24/7 • DOV 72h</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 2.1 -->
       <g transform="translate(0, 0)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#16a34a"/>
-        <text x="14" y="22" class="text-item-title">CSIRT-Ulpiano: SOC Judicial 24/7 (Arts. 8-9)</text>
-        <text x="14" y="42" class="text-item-desc">• Monitoreo continuo de telemetría y eventos de red.</text>
-        <text x="14" y="60" class="text-item-desc">• Detección temprana de intrusiones y malware en cortes.</text>
-        <text x="14" y="78" class="text-item-desc">• Coordinación con DINCIP y organismos de inteligencia.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#15803d" text-anchor="middle">Reglamento (UE) 2023/2841 Arts. 8 y 9</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#aacdec" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#004987"/>
+        <text x="14" y="22" class="text-item-title" fill="#0b1b3d">CSIRT-Ulpiano 24/7 (Art. 8)</text>
+        <text x="14" y="42" class="text-item-desc">• Centro de operaciones de seguridad monitoreando SIEM y telemetría de tribunales.</text>
+        <text x="14" y="60" class="text-item-desc">• Detección temprana de brechas, spear-phishing y ataques contra el expediente digital.</text>
+        <text x="14" y="78" class="text-item-desc">• Aislamiento inmediato de nodos comprometidos sin corromper la evidencia.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#d9e8f6"/>
+        <text x="238" y="111" class="text-tag" fill="#0b1b3d" text-anchor="middle">Reglamento (UE) 2023/2841 Arts. 8 y 9</text>
       </g>
 
       <!-- Box 2.2 -->
       <g transform="translate(496, 0)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#16a34a"/>
-        <text x="14" y="22" class="text-item-title">Directivas Operativas Vinculantes (DOV - Art. 19-bis)</text>
-        <text x="14" y="42" class="text-item-desc">• Mandatos técnicos de mitigación de cumplimiento forzoso.</text>
-        <text x="14" y="60" class="text-item-desc">• Plazo improrrogable de 72 horas para neutralizar riesgos.</text>
-        <text x="14" y="78" class="text-item-desc">• Emisión exclusiva por DINCIP con fuerza ejecutoria.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#15803d" text-anchor="middle">FISMA 2014 44 U.S.C. § 3553(b) (BOD Model)</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#aacdec" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#004987"/>
+        <text x="14" y="22" class="text-item-title" fill="#0b1b3d">Taxonomía Común de Incidentes (Art. 18)</text>
+        <text x="14" y="42" class="text-item-desc">• Escala unificada de severidad técnica y operativa (Nivel 1 Bajo a Nivel 4 Crítico).</text>
+        <text x="14" y="60" class="text-item-desc">• Procedimientos Operativos Estándar (SOPs) y cadenas de mando predefinidas.</text>
+        <text x="14" y="78" class="text-item-desc">• Reporte pericial obligatorio al Consejo de la Magistratura y DINCIP.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#d9e8f6"/>
+        <text x="238" y="111" class="text-tag" fill="#0b1b3d" text-anchor="middle">ISO/IEC 27035 • Taxonomía Unificada</text>
       </g>
 
       <!-- Box 2.3 -->
       <g transform="translate(0, 140)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#16a34a"/>
-        <text x="14" y="22" class="text-item-title">Defensa Anti-Ransomware &amp; COOP (Art. 8)</text>
-        <text x="14" y="42" class="text-item-desc">• Respaldos inmutables WORM aislados físicamente (Air-Gapped).</text>
-        <text x="14" y="60" class="text-item-desc">• Planes de Continuidad Operativa ante parálisis informática.</text>
-        <text x="14" y="78" class="text-item-desc">• Prioridad en flagrancias, amparos y tutelas urgentes.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#15803d" text-anchor="middle">JTC Court Continuity &amp; Disaster Recovery</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#aacdec" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#004987"/>
+        <text x="14" y="22" class="text-item-title" fill="#0b1b3d">Directivas Operativas Vinculantes - DOV (Art. 19-bis)</text>
+        <text x="14" y="42" class="text-item-desc">• Mandatos coercitivos emitidos por DINCIP con plazo perentorio de 72 horas.</text>
+        <text x="14" y="60" class="text-item-desc">• Desconexión preventiva de endpoints vulnerables y parches inmediatos.</text>
+        <text x="14" y="78" class="text-item-desc">• Fuerza obligatoria en tribunales y unidades administrativas (LOCOTA Art. 11).</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#d9e8f6"/>
+        <text x="238" y="111" class="text-tag" fill="#0b1b3d" text-anchor="middle">FISMA 2014 § 3553(b) Binding Operational Directives</text>
       </g>
 
       <!-- Box 2.4 -->
       <g transform="translate(496, 140)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#16a34a"/>
-        <text x="14" y="22" class="text-item-title">Taxonomía Común &amp; Crisis (Arts. 18, 23)</text>
-        <text x="14" y="42" class="text-item-desc">• Escala estandarizada de severidad de incidentes judiciales.</text>
-        <text x="14" y="60" class="text-item-desc">• Protocolos de contención y cadena de mando unificada.</text>
-        <text x="14" y="78" class="text-item-desc">• Notificación obligatoria en 24h a la Junta Interinstitucional.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#15803d" text-anchor="middle">Reglamento (UE) 2023/2841 Arts. 18 y 23</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#aacdec" stroke-width="1.2"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#004987"/>
+        <text x="14" y="22" class="text-item-title" fill="#0b1b3d">Auditoría Independiente Anual (Art. 10-bis)</text>
+        <text x="14" y="42" class="text-item-desc">• Auditoría externa anual ejecutada por el Poder Ciudadano / DINCIP.</text>
+        <text x="14" y="60" class="text-item-desc">• Pentesting riguroso y verificación de cumplimiento de controles NIST SP 800-53.</text>
+        <text x="14" y="78" class="text-item-desc">• Informe de auditoría con entrega vinculante en 90 días a la AN, CGR y TSJ.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#d9e8f6"/>
+        <text x="238" y="111" class="text-tag" fill="#0b1b3d" text-anchor="middle">FISMA 2014 § 3555 Independent Evaluation</text>
       </g>
     </g>
   </g>
 
   <!-- Flow Arrow 2 to 3 -->
-  <path d="M 540 808 L 540 830" class="flow-arrow-down" stroke="#d97706" marker-end="url(#arrow-down-gold)"/>
+  <path d="M 540 808 L 540 830" class="flow-arrow-down" stroke="#7832a8" marker-end="url(#tech-arrow-down-violet)"/>
 
-  <!-- ================= 4. CAPA 3: DATOS Y EVIDENCIA DIGITAL ================= -->
+  <!-- ================= 4. CAPA 3: INFORMÁTICA FORENSE & HASHES ================= -->
   <g transform="translate(40, 832)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#fac76f" stroke-width="1.5" filter="url(#shadow-1)"/>
-    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#capa3Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#capa3Grad)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#cfb5e6" stroke-width="1.5" filter="url(#tech-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#techCapa3Grad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#techCapa3Grad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#854d0e" text-anchor="middle">3</text>
-    <text x="40" y="21" class="text-header-box">CAPA 3: DATOS, CADENA DE CUSTODIA DIGITAL &amp; AUDITORÍA FISMA</text>
-    <text x="980" y="21" class="text-tag" fill="#fef6e7" text-anchor="end">ISO/IEC 27037 Evidencia Forense</text>
+    <text x="22" y="21" class="text-flow-num" fill="#4a156d" text-anchor="middle">3</text>
+    <text x="40" y="21" class="text-header-box">CAPA 3: INFORMÁTICA FORENSE, CADENA DE CUSTODIA &amp; HASH DUAL</text>
+    <text x="980" y="21" class="text-tag" fill="#f3ebf9" text-anchor="end">ISO/IEC 27037 • WORM Object Lock</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 3.1 -->
       <g transform="translate(0, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#d97706"/>
-        <text x="14" y="22" class="text-item-title">Cadena de Custodia Digital Inalterable (Art. 28)</text>
-        <text x="14" y="42" class="text-item-desc">• Registro criptográfico con hash SHA3-512 por actuación.</text>
-        <text x="14" y="60" class="text-item-desc">• Sellado de tiempo RFC 3161 homologado por SUSCERTE.</text>
-        <text x="14" y="78" class="text-item-desc">• Cumplimiento estricto del Manual Único de Custodia (2017).</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#fef6e7"/>
-        <text x="238" y="111" class="text-tag" fill="#854d0e" text-anchor="middle">ISO/IEC 27037 • LMDyFE Arts. 4, 7 y 8</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
+        <text x="14" y="22" class="text-item-title" fill="#4a156d">Cadena de Custodia Digital (Art. 20 / ISO 27037)</text>
+        <text x="14" y="42" class="text-item-desc">• Protocolo pericial de adquisición, fijación, extracción y resguardo de evidencia.</text>
+        <text x="14" y="60" class="text-item-desc">• Registro inalterable de cada funcionario, IP y hora que interactúa con la prueba.</text>
+        <text x="14" y="78" class="text-item-desc">• Cumplimiento estricto del Manual Único de Cadena de Custodia de Evidencias.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
+        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">ISO/IEC 27037:2012 • Manual Cadena de Custodia</text>
       </g>
 
       <!-- Box 3.2 -->
       <g transform="translate(496, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#d97706"/>
-        <text x="14" y="22" class="text-item-title">Auditoría Anual Independiente (Art. 10-bis)</text>
-        <text x="14" y="42" class="text-item-desc">• Evaluación anual por órgano de control fiscal independiente.</text>
-        <text x="14" y="60" class="text-item-desc">• Ensayos de intrusión y revisión de controles técnicos.</text>
-        <text x="14" y="78" class="text-item-desc">• Informe de compliance remitido a la Asamblea Nacional.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#fef6e7"/>
-        <text x="238" y="111" class="text-tag" fill="#854d0e" text-anchor="middle">FISMA 2014 44 U.S.C. § 3555 (Inspector General)</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
+        <text x="14" y="22" class="text-item-title" fill="#4a156d">Orden de Volatilidad (Art. 21 / RFC 3227)</text>
+        <text x="14" y="42" class="text-item-desc">• Adquisición estricta de memoria RAM, procesos activos y sockets antes del apagado.</text>
+        <text x="14" y="60" class="text-item-desc">• Extracción de tablas de enrutamiento y logs del kernel en tiempo real.</text>
+        <text x="14" y="78" class="text-item-desc">• Invalidez procesal absoluta de incautaciones informáticas que violen el orden.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
+        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">RFC 3227 Guidelines for Evidence Collection</text>
       </g>
 
       <!-- Box 3.3 -->
       <g transform="translate(0, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#d97706"/>
-        <text x="14" y="22" class="text-item-title">Interoperabilidad con LOCOTA 2026</text>
-        <text x="14" y="42" class="text-item-desc">• Integración con Unidades de Celeridad y Trámites (Art. 11).</text>
-        <text x="14" y="60" class="text-item-desc">• Ventanilla única interoperable de sentencias y recursos.</text>
-        <text x="14" y="78" class="text-item-desc">• Cero dilaciones indebidas y eliminación del papel físico.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#fef6e7"/>
-        <text x="238" y="111" class="text-tag" fill="#854d0e" text-anchor="middle">Ley Orgánica para la Celeridad de Trámites</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
+        <text x="14" y="22" class="text-item-title" fill="#4a156d">Sellado Hash Dual SHA-256 + SHA3-512 (Art. 28)</text>
+        <text x="14" y="42" class="text-item-desc">• Doble huella criptográfica calculada en el instante exacto de cierre del acto.</text>
+        <text x="14" y="60" class="text-item-desc">• Sellado de tiempo certificado RFC 3161 emitido por la Autoridad TSA SUSCERTE.</text>
+        <text x="14" y="78" class="text-item-desc">• Cotejo público universal mediante Código CSV y QR (Art. 27 Infogobierno).</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
+        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">NIST FIPS 180-4 (SHA-256) &amp; FIPS 202 (SHA-3)</text>
       </g>
 
       <!-- Box 3.4 -->
       <g transform="translate(496, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#d97706"/>
-        <text x="14" y="22" class="text-item-title">Régimen Sancionatorio Escalonado</text>
-        <text x="14" y="42" class="text-item-desc">• Catálogo de faltas tipificadas: Leves, Graves y Muy Graves.</text>
-        <text x="14" y="60" class="text-item-desc">• Garantías plenas de debido proceso y doble instancia (Art. 49).</text>
-        <text x="14" y="78" class="text-item-desc">• Sanciones administrativas proporcionales e inhabilitaciones.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#fef6e7"/>
-        <text x="238" y="111" class="text-tag" fill="#854d0e" text-anchor="middle">Título VIII (Régimen Sancionatorio Garantista)</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
+        <text x="14" y="22" class="text-item-title" fill="#4a156d">Bóveda WORM MinIO S3 Object Lock (Art. 28)</text>
+        <text x="14" y="42" class="text-item-desc">• Repositorio inmutable Write-Once-Read-Many bajo estándar SEC Rule 17a-4.</text>
+        <text x="14" y="60" class="text-item-desc">• Inmunidad absoluta contra alteraciones o borrado, incluso por administradores (DBA).</text>
+        <text x="14" y="78" class="text-item-desc">• Garantía de preservación a largo plazo de expedientes conforme a ISO 19005-2.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
+        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">S3 Object Lock (Compliance Mode) • SEC Rule 17a-4</text>
       </g>
     </g>
   </g>
 
   <!-- Flow Arrow 3 to 4 -->
-  <path d="M 540 1162 L 540 1184" class="flow-arrow-down" stroke="#7e22ce" marker-end="url(#arrow-down-purple)"/>
+  <path d="M 540 1162 L 540 1184" class="flow-arrow-down" stroke="#1b622b" marker-end="url(#tech-arrow-down-green)"/>
 
-  <!-- ================= 5. CAPA 4: MOTOR ANTICORRUPCIÓN ================= -->
+  <!-- ================= 5. CAPA 4: MOTOR ALGORÍTMICO & IA ================= -->
   <g transform="translate(40, 1186)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#cfb5e6" stroke-width="1.5" filter="url(#shadow-1)"/>
-    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#capa4Grad)"/>
-    <rect y="24" width="1000" height="10" fill="url(#capa4Grad)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#98cca3" stroke-width="1.5" filter="url(#tech-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#techCapa4Grad)"/>
+    <rect y="24" width="1000" height="10" fill="url(#techCapa4Grad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#581c87" text-anchor="middle">4</text>
-    <text x="40" y="21" class="text-header-box">CAPA 4: MOTOR ALGORÍTMICO ANTICORRUPCIÓN &amp; ÉTICA IA (TÍTULO VII)</text>
-    <text x="980" y="21" class="text-tag" fill="#f3ebf9" text-anchor="end">Idea de Valor Original Jull Ortiz</text>
+    <text x="22" y="21" class="text-flow-num" fill="#0d2b14" text-anchor="middle">4</text>
+    <text x="40" y="21" class="text-header-box">CAPA 4: MOTOR ALGORÍTMICO, INTEGRIDAD &amp; IA ÉTICA (TÍTULO VII V-1.2)</text>
+    <text x="980" y="21" class="text-tag" fill="#eaf4ec" text-anchor="end">Sorteo Criptoseguro • Segregación 4 Ojos</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 4.1 -->
       <g transform="translate(0, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7e22ce"/>
-        <text x="14" y="22" class="text-item-title">Sorteo Criptográfico de Causas (Art. 26)</text>
-        <text x="14" y="42" class="text-item-desc">• Asignación aleatoria determinística sin mano humana.</text>
-        <text x="14" y="60" class="text-item-desc">• Erradicación de la asignación dirigida de expedientes.</text>
-        <text x="14" y="78" class="text-item-desc">• Registro inmutable en base de datos PostgreSQL.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#581c87" text-anchor="middle">Imparcialidad Procesal y Transparencia Algorítmica</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1b622b"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">Sorteo Criptoseguro Algorítmico (Art. 26)</text>
+        <text x="14" y="42" class="text-item-desc">• Reparto aleatorio inmutable de causas mediante CSPRNG (secrets.SystemRandom).</text>
+        <text x="14" y="60" class="text-item-desc">• Semilla de entropía indexada en Árbol de Merkle con prueba pública de no manipulación.</text>
+        <text x="14" y="78" class="text-item-desc">• Erradicación definitiva de la asignación manual discrecional en tribunales.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Título VII Art. 26 • CSPRNG + Merkle Tree</text>
       </g>
 
       <!-- Box 4.2 -->
       <g transform="translate(496, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7e22ce"/>
-        <text x="14" y="22" class="text-item-title">Segregación "Cuatro Ojos Digital" (Art. 27)</text>
-        <text x="14" y="42" class="text-item-desc">• Control dual en la expedición de autos y providencias.</text>
-        <text x="14" y="60" class="text-item-desc">• Firma conjunta obligatoria de Juez y Secretario de Sala.</text>
-        <text x="14" y="78" class="text-item-desc">• Bloqueo de decisiones unilaterales no auditadas.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#581c87" text-anchor="middle">Control Dual de Fe Pública Judicial</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1b622b"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">Segregación "4 Ojos" Digital (Art. 27)</text>
+        <text x="14" y="42" class="text-item-desc">• Doble firma electrónica obligatoria e indivisible (Juez + Secretario) para fallos.</text>
+        <text x="14" y="60" class="text-item-desc">• Bloqueo absoluto del sistema ante intentos de publicación unilateral de resoluciones.</text>
+        <text x="14" y="78" class="text-item-desc">• Verificación cruzada automatizada de no conflicto de interés antes de la firma.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Título VII Art. 27 • Segregación de Funciones</text>
       </g>
 
       <!-- Box 4.3 -->
       <g transform="translate(0, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7e22ce"/>
-        <text x="14" y="22" class="text-item-title">Supervisión Humana en IA (Art. 25)</text>
-        <text x="14" y="42" class="text-item-desc">• Asistente IA subordinado al criterio del juzgador humano.</text>
-        <text x="14" y="60" class="text-item-desc">• Prohibición absoluta de sentencias 100% automatizadas.</text>
-        <text x="14" y="78" class="text-item-desc">• Explicabilidad técnica y derecho a la contradicción procesal.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#581c87" text-anchor="middle">ISO/IEC 42001 &amp; AI Act UE: Ética Algorítmica</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1b622b"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">IA Ética de Alertas Tempranas (Arts. 25, 29-31)</text>
+        <text x="14" y="42" class="text-item-desc">• Radar de cumplimiento que detecta retardo procesal y anomalías en tiempo real.</text>
+        <text x="14" y="60" class="text-item-desc">• Canal de alertas telemáticas directas vía API WSS hacia la CGR y SUNAI.</text>
+        <text x="14" y="78" class="text-item-desc">• Marco ético y gobernanza de algoritmos auditables conforme a ISO/IEC 42001.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">ISO/IEC 42001:2023 • Alertas Tempranas CGR/SUNAI</text>
       </g>
 
       <!-- Box 4.4 -->
       <g transform="translate(496, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7e22ce"/>
-        <text x="14" y="22" class="text-item-title">Alertas Contra Retardo Procesal (Arts. 29-31)</text>
-        <text x="14" y="42" class="text-item-desc">• Monitoreo automático en tiempo real de lapsos legales.</text>
-        <text x="14" y="60" class="text-item-desc">• Notificación directa a Inspectoría General y DINCIP.</text>
-        <text x="14" y="78" class="text-item-desc">• Celeridad procesal garantizada por la CRBV (Art. 26).</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#581c87" text-anchor="middle">Erradicación del Retardo Procesal (CRBV Art. 26)</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1b622b"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">Supervisión Humana Obligatoria (Art. 25)</text>
+        <text x="14" y="42" class="text-item-desc">• Prohibición constitucional tajante de sentencias dictadas autónomamente por IA.</text>
+        <text x="14" y="60" class="text-item-desc">• Exigencia de motivación jurídica razonada y autoría humana verificable del juez.</text>
+        <text x="14" y="78" class="text-item-desc">• Nulidad absoluta de cualquier fallo emitido sin la firma de magistrado competente.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Doctrina Vinculante TSJ/SC N° 0406/2026</text>
       </g>
     </g>
   </g>
 
   <!-- ================= 6. WATERMARK FOOTER ================= -->
   <g transform="translate(40, 1535)">
-    <rect width="1000" height="75" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <rect width="1000" height="75" rx="8" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1"/>
     <text x="20" y="32" font-family="'Public Sans', sans-serif" font-size="10.5px" fill="#5c6b7e">
-      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#0050a0">Arquitectura Técnica V-1.2</tspan> • Autor: <tspan font-weight="700" fill="#0050a0">Jull Ortiz (sha256.us ↗)</tspan> • Formato Hoja Folio Vertical
+      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#004987">Arquitectura Técnica V-1.2</tspan> • Autor: <tspan font-weight="700" fill="#004987">Jull Ortiz (sha256.us ↗)</tspan>
     </text>
     <text x="980" y="32" font-family="'Roboto Mono', monospace" font-size="9.8px" fill="#5c6b7e" text-anchor="end">
-      FISMA 2014 S.2521 • UE 2023/2841 • LOCOTA 2026 • TSJ 0406/2026
+      NIST SP 800-207 • ISO 27037 • FISMA 2014 • LOCOTA 2026
     </text>
-    <text x="20" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#94a3b8">
+    <text x="20" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#8190a4">
       Design System USWDS 3.0 • Section 508 / WCAG 2.1 AAA • Tokens Semánticos Light • Hoja Folio Oficial (8.5" × 13")
     </text>
-    <text x="980" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#0050a0" text-anchor="end" font-weight="700">
-      SISTEMA JUDICIAL DE ALTA SEGURIDAD
+    <text x="980" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#004987" text-anchor="end" font-weight="700">
+      DEFENSA EN PROFUNDIDAD • 47 ARTÍCULOS • TSJ 0406/2026
     </text>
   </g>
 </svg>

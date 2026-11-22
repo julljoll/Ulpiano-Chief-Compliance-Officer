@@ -1,633 +1,577 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1650" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <!-- Design System Traceability: USWDS 3.0 Light-Only Palette (src/styles/tokens.css) • Section 508 / WCAG 2.1 AAA • Ulpiano CCO V-1.2 -->
   <defs>
     <style><![CDATA[
       .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
       .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
 
       .text-title { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 15px; fill: #ffffff; letter-spacing: -0.01em; }
-      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.2px; fill: #f1f5f9; }
-      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.2px; fill: #fde047; }
+      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.2px; fill: #eff6fb; }
+      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.2px; fill: #fac76f; }
       .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 11.2px; fill: #ffffff; letter-spacing: 0.02em; }
       .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 9px; }
       
-      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.5px; fill: #0f2d59; }
-      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.2px; fill: #2d3748; line-height: 1.35; }
-      .text-law-cite { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 8.6px; fill: #8a3b00; }
-      .text-tech-cite { font-family: 'Roboto Mono', monospace; font-weight: 600; font-size: 8.2px; fill: #0050a0; }
+      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.5px; fill: #162e51; }
+      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.2px; fill: #21272d; line-height: 1.35; }
+      .text-law-cite { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 8.6px; fill: #8c3b00; }
+      .text-tech-cite { font-family: 'Roboto Mono', monospace; font-weight: 600; font-size: 8.2px; fill: #004987; }
       .text-folder-name { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 9.3px; }
 
       .text-node-num { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 10.5px; fill: #ffffff; }
 
-      .tree-line { stroke: #0050a0; stroke-width: 1.8; fill: none; }
-      .tree-line-gold { stroke: #d97706; stroke-width: 1.8; fill: none; }
-      .tree-line-green { stroke: #15803d; stroke-width: 1.8; fill: none; }
-      .tree-line-violet { stroke: #7e22ce; stroke-width: 1.8; fill: none; }
-      .tree-line-red { stroke: #b91c1c; stroke-width: 1.8; fill: none; }
-      .tree-line-dashed { stroke: #94a3b8; stroke-width: 1.5; stroke-dasharray: 4, 4; fill: none; }
+      .tree-line { stroke: #004987; stroke-width: 1.8; fill: none; }
+      .tree-line-gold { stroke: #c05600; stroke-width: 1.8; fill: none; }
+      .tree-line-green { stroke: #1b622b; stroke-width: 1.8; fill: none; }
+      .tree-line-violet { stroke: #7832a8; stroke-width: 1.8; fill: none; }
+      .tree-line-red { stroke: #8b0a03; stroke-width: 1.8; fill: none; }
+      .tree-line-dashed { stroke: #8190a4; stroke-width: 1.5; stroke-dasharray: 4, 4; fill: none; }
     ]]></style>
 
-    <!-- Filters for Depth -->
-    <filter id="o-shadow" x="-3%" y="-3%" width="106%" height="106%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.07"/>
+    <filter id="organ-shadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#13171b" flood-opacity="0.07"/>
     </filter>
-    <filter id="o-heavy-shadow" x="-4%" y="-4%" width="108%" height="108%">
-      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0b1f3a" flood-opacity="0.12"/>
+    <filter id="organ-heavy-shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0b1b3d" flood-opacity="0.12"/>
     </filter>
 
-    <!-- Gradients -->
-    <linearGradient id="oHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#071426"/>
-      <stop offset="50%" stop-color="#0f2647"/>
-      <stop offset="100%" stop-color="#163866"/>
+    <linearGradient id="organHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b1b3d"/>
+      <stop offset="50%" stop-color="#162e51"/>
+      <stop offset="100%" stop-color="#004987"/>
     </linearGradient>
 
-    <linearGradient id="oTopNodeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0f2d59"/>
-      <stop offset="100%" stop-color="#1e40af"/>
+    <linearGradient id="organTopNodeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b1b3d"/>
+      <stop offset="100%" stop-color="#004987"/>
     </linearGradient>
 
-    <linearGradient id="oBranchAGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1e3a8a"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+    <linearGradient id="organBranchAGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#162e51"/>
+      <stop offset="100%" stop-color="#1a5b8c"/>
     </linearGradient>
 
-    <linearGradient id="oBranchBGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#854d0e"/>
-      <stop offset="100%" stop-color="#d97706"/>
+    <linearGradient id="organBranchBGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5d2700"/>
+      <stop offset="100%" stop-color="#df7e00"/>
     </linearGradient>
 
-    <linearGradient id="oTriggersGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#004987"/>
-      <stop offset="100%" stop-color="#0284c7"/>
+    <linearGradient id="organTriggersGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#162e51"/>
+      <stop offset="100%" stop-color="#0076d6"/>
     </linearGradient>
 
-    <linearGradient id="oGuardsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#8b0a03"/>
-      <stop offset="100%" stop-color="#dc2626"/>
+    <linearGradient id="organGuardsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5c1111"/>
+      <stop offset="100%" stop-color="#b50909"/>
     </linearGradient>
 
-    <linearGradient id="oWorkflowsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#154721"/>
-      <stop offset="100%" stop-color="#16a34a"/>
+    <linearGradient id="organWorkflowsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d2b14"/>
+      <stop offset="100%" stop-color="#2e8540"/>
     </linearGradient>
 
-    <linearGradient id="oActionsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="organActionsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#4a156d"/>
-      <stop offset="100%" stop-color="#9333ea"/>
+      <stop offset="100%" stop-color="#7832a8"/>
     </linearGradient>
 
-    <!-- Markers -->
-    <marker id="o-arrow-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#0050a0"/>
+    <marker id="organ-arrow-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#004987"/>
     </marker>
-    <marker id="o-arrow-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#15803d"/>
+    <marker id="organ-arrow-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#1b622b"/>
     </marker>
-    <marker id="o-arrow-red" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#dc2626"/>
+    <marker id="organ-arrow-red" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#b50909"/>
     </marker>
-    <marker id="o-arrow-violet" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#7e22ce"/>
+    <marker id="organ-arrow-violet" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#7832a8"/>
     </marker>
-    <marker id="o-arrow-gold" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#d97706"/>
+    <marker id="organ-arrow-gold" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#c05600"/>
     </marker>
 
-    <!-- Grid -->
-    <pattern id="o-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e2e8f0" stroke-width="0.75"/>
+    <pattern id="organ-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e7e9ed" stroke-width="0.75"/>
     </pattern>
   </defs>
 
-  <!-- LIENZO BASE (HOJA FOLIO VERTICAL 1080 x 1650) -->
-  <rect width="1080" height="1650" fill="#f8fafc"/>
-  <rect width="1080" height="1650" fill="url(#o-grid)" opacity="0.65"/>
+  <!-- CANVAS BACKGROUND -->
+  <rect width="1080" height="1650" fill="#ffffff"/>
+  <rect width="1080" height="1650" fill="url(#organ-grid)" opacity="0.65"/>
 
-  <!-- ======================================================== -->
-  <!-- 1. CABECERA INSTITUCIONAL SUPERIOR                       -->
-  <!-- ======================================================== -->
+  <!-- ================= 1. CABECERA ================= -->
   <g transform="translate(40, 16)">
-    <rect width="1000" height="96" rx="8" fill="url(#oHeaderGrad)" stroke="#1e3a8a" stroke-width="1.2" filter="url(#o-heavy-shadow)"/>
-    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#38bdf8"/>
+    <rect width="1000" height="96" rx="8" fill="url(#organHeaderGrad)" stroke="#1a5b8c" stroke-width="1.2" filter="url(#organ-heavy-shadow)"/>
+    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#f3a534"/>
 
-    <!-- Title & Subtitle (No icon in top header, full width layout from x=24) -->
     <g transform="translate(24, 0)">
-      <text x="0" y="30" class="text-title">ORGANIGRAMA FUNCIONAL DESCENDENTE: CMS COMPLIANCE OFFICER ULPIANO</text>
+      <text x="0" y="30" class="text-title">ORGANIGRAMA FUNCIONAL DESCENDENTE: CMS COMPLIANCE OFFICER TSJ</text>
       <text x="0" y="51" class="text-subtitle">
-        Jerarquía de Control • Workflows Programáticos (/workflows/, /triggers/, /actions/, /guards/) • IA Ética
+        Estructura Jerárquica: Dirección Superior → Dos Ramas (Workflows vs IA) → 4 Estratos → Salidas Judiciales
       </text>
       <text x="0" y="72" class="text-subcite">
-        CRBV Art. 203 • TSJ 0406/2026 • FISMA 2014 S.2521 • LOCOTA 2026 Art. 11 • ISO 42001 • Art. 25 Supervisión Humana
-      </text>
-    </g>
-
-    <!-- Right Badges (Bounded from x=755 to x=985 - Width 230px, HIGH CONTRAST) -->
-    <g transform="translate(755, 16)">
-      <rect x="0" y="0" width="230" height="28" rx="5" fill="#0050a0" stroke="#38bdf8" stroke-width="1"/>
-      <text x="115" y="18" class="text-tag" fill="#ffffff" text-anchor="middle">ORGANIGRAMA DE SISTEMAS</text>
-      
-      <rect x="0" y="36" width="230" height="28" rx="5" fill="#0f172a" stroke="#475569" stroke-width="1"/>
-      <text x="115" y="54" class="text-tag" fill="#38bdf8" text-anchor="middle">ARQUITECTURA JERÁRQUICA TSJ</text>
-    </g>
-  </g>
-
-  <!-- ======================================================== -->
-  <!-- 2. NIVEL 1: NODO CÚSPIDE — DIRECCIÓN DE CIBERSEGURIDAD   -->
-  <!-- ======================================================== -->
-  <g transform="translate(190, 122)">
-    <!-- Tree Trunk from Top Header -->
-    <line x1="350" y1="-10" x2="350" y2="0" class="tree-line" stroke-width="2.2"/>
-
-    <rect width="700" height="88" rx="8" fill="url(#oTopNodeGrad)" stroke="#60a5fa" stroke-width="1.5" filter="url(#o-heavy-shadow)"/>
-    <rect x="0" y="0" width="6" height="88" rx="3" fill="#fde047"/>
-
-    <g transform="translate(16, 12)">
-      <rect width="64" height="64" rx="8" fill="#ffffff" fill-opacity="0.12" stroke="#fde047" stroke-width="1"/>
-      <text x="32" y="43" font-family="'Material Symbols Outlined'" font-size="34px" fill="#fde047" text-anchor="middle">corporate_fare</text>
-    </g>
-
-    <g transform="translate(92, 14)">
-      <text x="0" y="16" font-family="'Public Sans', sans-serif" font-weight="800" font-size="13.5px" fill="#ffffff">
-        NIVEL 1: DIRECCIÓN NACIONAL DE COMPLIANCE &amp; CIBERSEGURIDAD PROCESAL
-      </text>
-      <text x="0" y="33" font-family="'Public Sans', sans-serif" font-weight="500" font-size="9.8px" fill="#bfdbfe">
-        Órgano Rector de Gobernanza Tecnológica • Supervisión Integral del Sistema de Justicia y Administración Pública
-      </text>
-      <text x="0" y="50" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#fde047">
         Fundamento: CRBV Arts. 26, 49, 110, 203 • Sentencia TSJ/SC 0406/2026 • FISMA 2014 § 3554 • LOCOTA 2026
       </text>
     </g>
+
+    <g transform="translate(755, 16)">
+      <rect x="0" y="0" width="230" height="28" rx="5" fill="#004987" stroke="#73b3e7" stroke-width="1"/>
+      <text x="115" y="18" class="text-tag" fill="#ffffff" text-anchor="middle">ORGANIGRAMA CCO TSJ</text>
+      
+      <rect x="0" y="36" width="230" height="28" rx="5" fill="#0b1b3d" stroke="#5c6b7e" stroke-width="1"/>
+      <text x="115" y="54" class="text-tag" fill="#fac76f" text-anchor="middle">JERARQUÍA DE CONTROL • V-1.2</text>
+    </g>
   </g>
 
-  <!-- ======================================================== -->
-  <!-- 3. RAMIFICACIÓN NIVEL 2: BIFURCACIÓN DE LOS DOS PILARES  -->
-  <!-- ======================================================== -->
-  <!-- Central Vertical Trunk from Level 1 -->
-  <line x1="540" y1="210" x2="540" y2="228" class="tree-line" stroke-width="2.2"/>
-  <circle cx="540" cy="228" r="4.5" fill="#0050a0"/>
+  <!-- ================= 2. NIVEL 1: DIRECCIÓN SUPERIOR ================= -->
+  <g transform="translate(240, 124)">
+    <rect width="600" height="66" rx="8" fill="url(#organTopNodeGrad)" stroke="#1a5b8c" stroke-width="1.5" filter="url(#organ-heavy-shadow)"/>
+    <rect x="0" y="0" width="6" height="66" rx="3" fill="#f3a534"/>
 
-  <!-- Horizontal Distribution Bus -->
-  <line x1="280" y1="228" x2="800" y2="228" class="tree-line" stroke-width="2.2"/>
-  
-  <!-- Left Drop to Branch A -->
-  <line x1="280" y1="228" x2="280" y2="242" class="tree-line" stroke-width="2.2" marker-end="url(#o-arrow-blue)"/>
-  
-  <!-- Right Drop to Branch B -->
-  <line x1="800" y1="228" x2="800" y2="242" class="tree-line-gold" stroke-width="2.2" marker-end="url(#o-arrow-gold)"/>
+    <circle cx="28" cy="33" r="14" fill="#ffffff"/>
+    <text x="28" y="38" class="text-node-num" fill="#0b1b3d" text-anchor="middle">1</text>
 
-  <!-- Branch A: Automatización Programática (Code-Based) -->
-  <g transform="translate(40, 246)">
-    <rect width="480" height="92" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="1.3" filter="url(#o-shadow)"/>
-    <path d="M 0 8 Q 0 0 8 0 L 472 0 Q 480 0 480 8 L 480 28 L 0 28 Z" fill="url(#oBranchAGrad)"/>
-    <text x="14" y="19" class="text-header-box">RAMA A: MOTOR DE AUTOMATIZACIÓN DE PROCESOS (SIN GUI)</text>
-    
+    <g transform="translate(56, 12)">
+      <text x="0" y="16" class="text-header-box" font-size="12px">DIRECCIÓN NACIONAL DE COMPLIANCE TSJ &amp; SALA PLENA</text>
+      <text x="0" y="32" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#eff6fb">
+        Órgano Rector Colegiado • Rectoría Tecnológica Judicial • Art. 203 CRBV / Sentencia TSJ 0406/2026
+      </text>
+      <text x="0" y="46" font-family="'Public Sans', sans-serif" font-size="8.8px" fill="#fac76f">
+        Aprobación de Planes PSS (Art. 13-bis) • Cumplimiento DOV (Art. 19-bis) • Auditoría Anual FISMA (Art. 10-bis)
+      </text>
+    </g>
+  </g>
+
+  <!-- Conectores Nivel 1 a Nivel 2 -->
+  <path d="M 540 190 L 540 216" class="tree-line" stroke-width="2"/>
+  <path d="M 280 216 L 800 216" class="tree-line" stroke-width="2"/>
+  <path d="M 280 216 L 280 234" class="tree-line" stroke-width="2" marker-end="url(#organ-arrow-blue)"/>
+  <path d="M 800 216 L 800 234" class="tree-line-gold" stroke-width="2" marker-end="url(#organ-arrow-gold)"/>
+
+  <!-- ================= 3. NIVEL 2: DOS PILARES (WORKFLOWS VS IA) ================= -->
+  <!-- Rama A: Workflows Programáticos (Izquierda) -->
+  <g transform="translate(40, 236)">
+    <rect width="480" height="96" rx="8" fill="#f5f6f8" stroke="#73b3e7" stroke-width="1.5" filter="url(#organ-shadow)"/>
+    <rect width="480" height="26" rx="8" fill="url(#organBranchAGrad)"/>
+    <rect y="18" width="480" height="8" fill="url(#organBranchAGrad)"/>
+
+    <circle cx="18" cy="13" r="8" fill="#ffffff"/>
+    <text x="18" y="17" class="text-node-num" font-size="9px" fill="#162e51" text-anchor="middle">A</text>
+    <text x="34" y="17" class="text-header-box" font-size="10.2px">RAMA A: MOTOR DE WORKFLOWS EN CÓDIGO PURO</text>
+    <text x="466" y="17" class="text-tag" font-size="8px" fill="#d9e8f6" text-anchor="end">BPMN 2.0 • Sin GUI</text>
+
+    <g transform="translate(14, 34)">
+      <text x="0" y="14" class="text-item-desc">• <tspan font-weight="700">TypeScript / Python / BullMQ:</tspan> Pipelines determinísticos sin interfaz gráfica manual.</text>
+      <text x="0" y="28" class="text-item-desc">• <tspan font-weight="700">Auditabilidad:</tspan> Código versionado en Git, CI/CD firmado y pruebas automatizadas de seguridad.</text>
+      <text x="0" y="42" class="text-item-desc">• <tspan font-weight="700">Gobernanza:</tspan> Segregación Cuatro Ojos (Art. 27) y almacenamiento inmutable WORM (Art. 28).</text>
+      <text x="0" y="54" class="text-law-cite">[LEY] CRBV Art. 141 (Eficacia y Transparencia) • LOCOTA Art. 11</text>
+    </g>
+  </g>
+
+  <!-- Rama B: Inteligencia Artificial para Alertas (Derecha) -->
+  <g transform="translate(560, 236)">
+    <rect width="480" height="96" rx="8" fill="#f5f6f8" stroke="#f3a534" stroke-width="1.5" filter="url(#organ-shadow)"/>
+    <rect width="480" height="26" rx="8" fill="url(#organBranchBGrad)"/>
+    <rect y="18" width="480" height="8" fill="url(#organBranchBGrad)"/>
+
+    <circle cx="18" cy="13" r="8" fill="#ffffff"/>
+    <text x="18" y="17" class="text-node-num" font-size="9px" fill="#5d2700" text-anchor="middle">B</text>
+    <text x="34" y="17" class="text-header-box" font-size="10.2px">RAMA B: IA PARA ALERTAS TEMPRANAS</text>
+    <text x="466" y="17" class="text-tag" font-size="8px" fill="#fef6e7" text-anchor="end">ISO 42001 • Solo Radar</text>
+
+    <g transform="translate(14, 34)">
+      <text x="0" y="14" class="text-item-desc">• <tspan font-weight="700">Monitoreo Pasivo:</tspan> Detección de retardo procesal injustificado y anomalías estadísticas.</text>
+      <text x="0" y="28" class="text-item-desc">• <tspan font-weight="700">Supervisión Humana:</tspan> Prohibición terminante de sentencias automáticas (Art. 25 y TSJ 0406).</text>
+      <text x="0" y="42" class="text-item-desc">• <tspan font-weight="700">Canal CGR/SUNAI:</tspan> Envío de telemetría de cumplimiento para auditorías de control fiscal.</text>
+      <text x="0" y="54" class="text-law-cite">[LEY] Anteproyecto Art. 25 • Sentencia TSJ/SC 0406/2026 • EU AI Act</text>
+    </g>
+  </g>
+
+  <!-- Conectores Rama A a 4 Estratos Modulares -->
+  <path d="M 280 332 L 280 354" class="tree-line" stroke-width="2"/>
+  <path d="M 155 354 L 925 354" class="tree-line" stroke-width="2"/>
+  <path d="M 155 354 L 155 372" class="tree-line" stroke-width="1.8" marker-end="url(#organ-arrow-blue)"/>
+  <path d="M 410 354 L 410 372" class="tree-line-red" stroke-width="1.8" marker-end="url(#organ-arrow-red)"/>
+  <path d="M 670 354 L 670 372" class="tree-line-green" stroke-width="1.8" marker-end="url(#organ-arrow-green)"/>
+  <path d="M 925 354 L 925 372" class="tree-line-violet" stroke-width="1.8" marker-end="url(#organ-arrow-violet)"/>
+
+  <!-- Línea de integración IA (Rama B a /guards/ y /workflows/) -->
+  <path d="M 800 332 L 800 344 L 540 344 L 540 430" class="tree-line-dashed" stroke="#c05600"/>
+
+  <!-- ================= 4. NIVELES 3-4: LOS 4 ESTRATOS MODULARES ================= -->
+  <!-- Columna 1: /triggers/ -->
+  <g transform="translate(40, 374)">
+    <rect width="235" height="420" rx="6" fill="#f5f6f8" stroke="#aacdec" stroke-width="1.2" filter="url(#organ-shadow)"/>
+    <rect width="235" height="26" rx="6" fill="url(#organTriggersGrad)"/>
+    <rect y="18" width="235" height="8" fill="url(#organTriggersGrad)"/>
+    <text x="10" y="17" class="text-header-box" font-size="9.8px">1. /triggers/ (INGESTA)</text>
+
+    <!-- Sub-cajas -->
+    <g transform="translate(8, 34)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#004987"/>
+      <text x="10" y="16" class="text-folder-name" fill="#162e51">event-bridge.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Eventos del portal de causas</text>
+      <text x="10" y="46" class="text-item-desc">• Webhooks autenticados FIDO2</text>
+      <text x="10" y="60" class="text-item-desc">• PostgreSQL LISTEN / NOTIFY</text>
+      <text x="10" y="74" class="text-tech-cite">Event-Driven Architecture</text>
+    </g>
+
+    <g transform="translate(8, 126)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#004987"/>
+      <text x="10" y="16" class="text-folder-name" fill="#162e51">schedulers.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Cron de sorteo de causas</text>
+      <text x="10" y="46" class="text-item-desc">• Verificación de firmas vencidas</text>
+      <text x="10" y="60" class="text-item-desc">• Control DOV en 72h (Art. 19-bis)</text>
+      <text x="10" y="74" class="text-tech-cite">BullMQ • Redis Workers</text>
+    </g>
+
+    <g transform="translate(8, 218)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#004987"/>
+      <text x="10" y="16" class="text-folder-name" fill="#162e51">file-watcher.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Detección de nuevos PDF/A-2u</text>
+      <text x="10" y="46" class="text-item-desc">• Validación de no alteración</text>
+      <text x="10" y="60" class="text-item-desc">• Ingesta WORM inmutable</text>
+      <text x="10" y="74" class="text-tech-cite">MinIO S3 Object Lock</text>
+    </g>
+
+    <g transform="translate(8, 310)">
+      <rect width="219" height="98" rx="4" fill="#eff6fb" stroke="#aacdec" stroke-width="1"/>
+      <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="8.8px" fill="#0b1b3d">RESPONSABILIDAD:</text>
+      <text x="10" y="30" class="text-item-desc">
+        <tspan x="10" dy="0">Capturar cada acción judicial o</tspan>
+        <tspan x="10" dy="13">administrativa sin pérdida de</tspan>
+        <tspan x="10" dy="13">paquetes ni retrasos, con</tspan>
+        <tspan x="10" dy="13">trazabilidad total garantizada.</tspan>
+      </text>
+      <text x="10" y="86" class="text-law-cite">[LEY] CRBV Art. 110 • Infogobierno</text>
+    </g>
+  </g>
+
+  <!-- Columna 2: /guards/ -->
+  <g transform="translate(295, 374)">
+    <rect width="235" height="420" rx="6" fill="#f5f6f8" stroke="#e79c9c" stroke-width="1.2" filter="url(#organ-shadow)"/>
+    <rect width="235" height="26" rx="6" fill="url(#organGuardsGrad)"/>
+    <rect y="18" width="235" height="8" fill="url(#organGuardsGrad)"/>
+    <text x="10" y="17" class="text-header-box" font-size="9.8px">2. /guards/ (SEGURIDAD)</text>
+
+    <!-- Sub-cajas -->
+    <g transform="translate(8, 34)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#b50909"/>
+      <text x="10" y="16" class="text-folder-name" fill="#5c1111">four-eyes-guard.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Segregación Juez + Secretario</text>
+      <text x="10" y="46" class="text-item-desc">• Verificación dual de llaves</text>
+      <text x="10" y="60" class="text-item-desc">• Bloqueo ante firma solitaria</text>
+      <text x="10" y="74" class="text-law-cite">Art. 27 Propuesta LO • Art. 49 CRBV</text>
+    </g>
+
+    <g transform="translate(8, 126)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#b50909"/>
+      <text x="10" y="16" class="text-folder-name" fill="#5c1111">human-oversight.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Control de alertas de IA</text>
+      <text x="10" y="46" class="text-item-desc">• Veto a fallos automáticos</text>
+      <text x="10" y="60" class="text-item-desc">• Firma humana inexcusable</text>
+      <text x="10" y="74" class="text-law-cite">Art. 25 • Sentencia TSJ 0406/2026</text>
+    </g>
+
+    <g transform="translate(8, 218)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#b50909"/>
+      <text x="10" y="16" class="text-folder-name" fill="#5c1111">anti-tamper-guard.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Verificación de hash SHA-256</text>
+      <text x="10" y="46" class="text-item-desc">• Detección de alteración de BD</text>
+      <text x="10" y="60" class="text-item-desc">• Alerta a Inspectoría en 1s</text>
+      <text x="10" y="74" class="text-tech-cite">Merkle Audit Proof</text>
+    </g>
+
+    <g transform="translate(8, 310)">
+      <rect width="219" height="98" rx="4" fill="#f9eded" stroke="#e79c9c" stroke-width="1"/>
+      <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="8.8px" fill="#5c1111">RESPONSABILIDAD:</text>
+      <text x="10" y="30" class="text-item-desc">
+        <tspan x="10" dy="0">Ninguna actuación procesal se</tspan>
+        <tspan x="10" dy="13">ejecuta sin validación de</tspan>
+        <tspan x="10" dy="13">cuatro ojos, supervisión humana</tspan>
+        <tspan x="10" dy="13">y comprobación criptográfica.</tspan>
+      </text>
+      <text x="10" y="86" class="text-law-cite">[LEY] CRBV Art. 49 • Debido Proceso</text>
+    </g>
+  </g>
+
+  <!-- Columna 3: /workflows/ -->
+  <g transform="translate(550, 374)">
+    <rect width="235" height="420" rx="6" fill="#f5f6f8" stroke="#98cca3" stroke-width="1.2" filter="url(#organ-shadow)"/>
+    <rect width="235" height="26" rx="6" fill="url(#organWorkflowsGrad)"/>
+    <rect y="18" width="235" height="8" fill="url(#organWorkflowsGrad)"/>
+    <text x="10" y="17" class="text-header-box" font-size="9.8px">3. /workflows/ (PIPELINES)</text>
+
+    <!-- Sub-cajas -->
+    <g transform="translate(8, 34)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#1b622b"/>
+      <text x="10" y="16" class="text-folder-name" fill="#0d2b14">sorteo-workflow.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Asignación aleatoria de causa</text>
+      <text x="10" y="46" class="text-item-desc">• Semilla CSPRNG determinística</text>
+      <text x="10" y="60" class="text-item-desc">• Balanceo de ponencias</text>
+      <text x="10" y="74" class="text-law-cite">Art. 26 • Juez Natural Imparcial</text>
+    </g>
+
+    <g transform="translate(8, 126)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#1b622b"/>
+      <text x="10" y="16" class="text-folder-name" fill="#0d2b14">sentencia-workflow.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Ciclo: Proyecto → Doble Firma</text>
+      <text x="10" y="46" class="text-item-desc">• Sellado TSA + Hash dual</text>
+      <text x="10" y="60" class="text-item-desc">• Publicación inmutable WORM</text>
+      <text x="10" y="74" class="text-tech-cite">BPMN 2.0 • Temporal.io</text>
+    </g>
+
+    <g transform="translate(8, 218)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#1b622b"/>
+      <text x="10" y="16" class="text-folder-name" fill="#0d2b14">dov-remediacion.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Ejecución DOV en 72h perentorias</text>
+      <text x="10" y="46" class="text-item-desc">• Auditoría anual Art. 10-bis FISMA</text>
+      <text x="10" y="60" class="text-item-desc">• Alertas a CGR / SUNAI en vivo</text>
+      <text x="10" y="74" class="text-law-cite">Arts. 10-bis, 19-bis • FISMA 2014</text>
+    </g>
+
+    <g transform="translate(8, 310)">
+      <rect width="219" height="98" rx="4" fill="#eaf4ec" stroke="#98cca3" stroke-width="1"/>
+      <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="8.8px" fill="#0d2b14">RESPONSABILIDAD:</text>
+      <text x="10" y="30" class="text-item-desc">
+        <tspan x="10" dy="0">Orquestar la secuencia estricta</tspan>
+        <tspan x="10" dy="13">de pasos de cada trámite procesal,</tspan>
+        <tspan x="10" dy="13">sin desvíos y con registro total</tspan>
+        <tspan x="10" dy="13">auditable ante la ley.</tspan>
+      </text>
+      <text x="10" y="86" class="text-law-cite">[LEY] CRBV Art. 257 • Celeridad Procesal</text>
+    </g>
+  </g>
+
+  <!-- Columna 4: /actions/ -->
+  <g transform="translate(805, 374)">
+    <rect width="235" height="420" rx="6" fill="#f5f6f8" stroke="#cfb5e6" stroke-width="1.2" filter="url(#organ-shadow)"/>
+    <rect width="235" height="26" rx="6" fill="url(#organActionsGrad)"/>
+    <rect y="18" width="235" height="8" fill="url(#organActionsGrad)"/>
+    <text x="10" y="17" class="text-header-box" font-size="9.8px">4. /actions/ (CRIPTO)</text>
+
+    <!-- Sub-cajas -->
+    <g transform="translate(8, 34)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#7832a8"/>
+      <text x="10" y="16" class="text-folder-name" fill="#4a156d">sign-pades.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Firma PAdES-B-LTA certificada</text>
+      <text x="10" y="46" class="text-item-desc">• Integración HSM FIPS 140-2 L3</text>
+      <text x="10" y="60" class="text-item-desc">• Proveedores SUSCERTE</text>
+      <text x="10" y="74" class="text-law-cite">LMDyFE Arts. 4-18 • ETSI EN 319 142</text>
+    </g>
+
+    <g transform="translate(8, 126)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#7832a8"/>
+      <text x="10" y="16" class="text-folder-name" fill="#4a156d">timestamp-tsa.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Sellado RFC 3161 institucional</text>
+      <text x="10" y="46" class="text-item-desc">• No repudio temporal del fallo</text>
+      <text x="10" y="60" class="text-item-desc">• Hash dual SHA-256 + SHA3-512</text>
+      <text x="10" y="74" class="text-tech-cite">TSA SUSCERTE • RFC 3161</text>
+    </g>
+
+    <g transform="translate(8, 218)">
+      <rect width="219" height="84" rx="4" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+      <rect width="3" height="84" rx="1.5" fill="#7832a8"/>
+      <text x="10" y="16" class="text-folder-name" fill="#4a156d">worm-store.ts</text>
+      <text x="10" y="32" class="text-item-desc">• Almacenamiento S3 Object Lock</text>
+      <text x="10" y="46" class="text-item-desc">• Inalterabilidad garantizada</text>
+      <text x="10" y="60" class="text-item-desc">• Generación de CSV y QR</text>
+      <text x="10" y="74" class="text-law-cite">Art. 28 • Infogobierno Art. 27</text>
+    </g>
+
+    <g transform="translate(8, 310)">
+      <rect width="219" height="98" rx="4" fill="#f3ebf9" stroke="#cfb5e6" stroke-width="1"/>
+      <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="8.8px" fill="#4a156d">RESPONSABILIDAD:</text>
+      <text x="10" y="30" class="text-item-desc">
+        <tspan x="10" dy="0">Ejecutar operaciones criptográficas</tspan>
+        <tspan x="10" dy="13">atómicas e irreversibles: firma</tspan>
+        <tspan x="10" dy="13">PAdES, sellado TSA y guarda</tspan>
+        <tspan x="10" dy="13">inmutable WORM en MinIO S3.</tspan>
+      </text>
+      <text x="10" y="86" class="text-law-cite">[LEY] LMDyFE • SUSCERTE Raíz</text>
+    </g>
+  </g>
+
+  <!-- Conectores 4 Estratos a Salidas Judiciales -->
+  <path d="M 155 794 L 155 820" class="tree-line" stroke-width="1.8"/>
+  <path d="M 410 794 L 410 820" class="tree-line-red" stroke-width="1.8"/>
+  <path d="M 670 794 L 670 820" class="tree-line-green" stroke-width="1.8"/>
+  <path d="M 925 794 L 925 820" class="tree-line-violet" stroke-width="1.8"/>
+  <path d="M 155 820 L 925 820" class="tree-line" stroke-width="1.8"/>
+  <path d="M 540 820 L 540 838" class="tree-line" stroke-width="2" marker-end="url(#organ-arrow-blue)"/>
+
+  <!-- ================= 5. NIVEL 5: SALIDAS Y SERVICIOS INSTITUCIONALES ================= -->
+  <g transform="translate(40, 840)">
+    <rect width="1000" height="136" rx="8" fill="#f5f6f8" stroke="#004987" stroke-width="1.5" filter="url(#organ-shadow)"/>
+    <rect width="1000" height="26" rx="8" fill="url(#organTopNodeGrad)"/>
+    <rect y="18" width="1000" height="8" fill="url(#organTopNodeGrad)"/>
+    <text x="20" y="17" class="text-header-box">5. IMPACTO CIUDADANO: SERVICIOS Y SALIDAS INSTITUCIONALES TSJ</text>
+    <text x="980" y="17" class="text-tag" fill="#d9e8f6" text-anchor="end">Garantías Constitucionales en Producción</text>
+
+    <g transform="translate(14, 36)">
+      <!-- Salida 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="232" height="88" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect width="4" height="88" rx="2" fill="#004987"/>
+        <text x="14" y="20" class="text-item-title" fill="#162e51">Portal Público Oficial</text>
+        <text x="14" y="36" class="text-item-desc">• Sentencias PDF/A-2u firmadas</text>
+        <text x="14" y="50" class="text-item-desc">• Código Seguro CSV y QR oficial</text>
+        <text x="14" y="64" class="text-item-desc">• Acceso ciudadano universal</text>
+        <text x="14" y="78" class="text-law-cite">Ley de Infogobierno Art. 27</text>
+      </g>
+
+      <!-- Salida 2 -->
+      <g transform="translate(248, 0)">
+        <rect width="232" height="88" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect width="4" height="88" rx="2" fill="#1b622b"/>
+        <text x="14" y="20" class="text-item-title" fill="#0d2b14">Sorteo Imparcial Verificado</text>
+        <text x="14" y="36" class="text-item-desc">• Acta de reparto con hash público</text>
+        <text x="14" y="50" class="text-item-desc">• Notificación instantánea a partes</text>
+        <text x="14" y="64" class="text-item-desc">• Cero manipulación de causas</text>
+        <text x="14" y="78" class="text-law-cite">Título VII Art. 26 • CRBV Art. 49</text>
+      </g>
+
+      <!-- Salida 3 -->
+      <g transform="translate(496, 0)">
+        <rect width="232" height="88" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect width="4" height="88" rx="2" fill="#7832a8"/>
+        <text x="14" y="20" class="text-item-title" fill="#4a156d">Bóveda Forense WORM</text>
+        <text x="14" y="36" class="text-item-desc">• Resguardo inmutable en MinIO S3</text>
+        <text x="14" y="50" class="text-item-desc">• Cadena de custodia ISO 27037</text>
+        <text x="14" y="64" class="text-item-desc">• Preservación legal por 30+ años</text>
+        <text x="14" y="78" class="text-law-cite">Título VII Art. 28 • SEC 17a-4</text>
+      </g>
+
+      <!-- Salida 4 -->
+      <g transform="translate(744, 0)">
+        <rect width="232" height="88" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect width="4" height="88" rx="2" fill="#b50909"/>
+        <text x="14" y="20" class="text-item-title" fill="#5c1111">Telemetría CGR / SUNAI</text>
+        <text x="14" y="36" class="text-item-desc">• Alertas en vivo de retardo</text>
+        <text x="14" y="50" class="text-item-desc">• Auditoría fiscal automatizada</text>
+        <text x="14" y="64" class="text-item-desc">• Detección de anomalías por IA</text>
+        <text x="14" y="78" class="text-law-cite">Arts. 25, 29-31 • ISO 42001</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= 6. MATRIZ NORMATIVA INFERIOR ================= -->
+  <g transform="translate(40, 990)">
+    <rect width="1000" height="520" rx="8" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1.5" filter="url(#organ-shadow)"/>
+    <rect width="1000" height="28" rx="8" fill="url(#organHeaderGrad)"/>
+    <rect y="20" width="1000" height="8" fill="url(#organHeaderGrad)"/>
+    <text x="20" y="19" class="text-header-box">MATRIZ DE FUNDAMENTACIÓN NORMATIVA Y ESTÁNDARES INTERNACIONALES (V-1.2)</text>
+    <text x="980" y="19" class="text-tag" fill="#fac76f" text-anchor="end">47 Artículos • Rango Orgánico</text>
+
+    <!-- 3 Columnas Normativas -->
     <g transform="translate(14, 38)">
-      <text x="0" y="12" class="text-item-title">Ejecución Determinística de Reglas Procesales (BPMN 2.0 / Code-Based)</text>
-      <text x="0" y="27" class="text-item-desc">• Automatiza tareas mecánicas: firmas, hashes, sorteos, cadenas de custodia y notificaciones.</text>
-      <text x="0" y="41" class="text-item-desc">• <tspan font-weight="700">Sin GUI:</tspan> Código versionado en Git, pipelines auditables (Temporal.io / TypeScript / BullMQ).</text>
-    </g>
-  </g>
+      <!-- Col 1: Bloque Constitucional y Ley Orgánica -->
+      <g transform="translate(0, 0)">
+        <rect width="310" height="466" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect width="310" height="24" rx="6" fill="#eff6fb"/>
+        <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="10px" fill="#162e51">1. BLOQUE CONSTITUCIONAL Y LEGAL</text>
 
-  <!-- Branch B: Capa de IA para Alertas Tempranas -->
-  <g transform="translate(560, 246)">
-    <rect width="480" height="92" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.3" filter="url(#o-shadow)"/>
-    <path d="M 0 8 Q 0 0 8 0 L 472 0 Q 480 0 480 8 L 480 28 L 0 28 Z" fill="url(#oBranchBGrad)"/>
-    <text x="14" y="19" class="text-header-box">RAMA B: CAPA DE INTELIGENCIA ARTIFICIAL ÉTICA (SUPERVISIÓN HUMANA)</text>
-    
-    <g transform="translate(14, 38)">
-      <text x="0" y="12" class="text-item-title" fill="#854d0e">Exclusivamente para Alertas Tempranas de Retardo y Anomalías (Art. 25)</text>
-      <text x="0" y="27" class="text-item-desc">• <tspan font-weight="700">Prohibido:</tspan> La IA NO dicta sentencias ni automatiza decisiones jurisdiccionales.</text>
-      <text x="0" y="41" class="text-item-desc">• Inferencia de riesgo con explicabilidad obligatoria SHAP/LIME (ISO/IEC 42001 / EU AI Act).</text>
-    </g>
-  </g>
-
-  <!-- Conectores que convergen hacia la estructura de 4 capas operativas -->
-  <line x1="280" y1="338" x2="280" y2="352" class="tree-line" stroke-width="2"/>
-  <line x1="800" y1="338" x2="800" y2="352" class="tree-line-gold" stroke-width="2"/>
-  <line x1="280" y1="352" x2="800" y2="352" class="tree-line" stroke-width="2"/>
-  <line x1="540" y1="352" x2="540" y2="368" class="tree-line" stroke-width="2.2" marker-end="url(#o-arrow-blue)"/>
-
-  <!-- ======================================================== -->
-  <!-- 4. ESTRATO JERÁRQUICO 1: /triggers/ (DISPARADORES)       -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 372)">
-    <rect width="1000" height="152" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" filter="url(#o-shadow)"/>
-    
-    <!-- Level Banner -->
-    <path d="M 0 8 Q 0 0 8 0 L 992 0 Q 1000 0 1000 8 L 1000 28 L 0 28 Z" fill="url(#oTriggersGrad)"/>
-    <circle cx="16" cy="14" r="9" fill="#e0f2fe"/>
-    <text x="16" y="17.5" font-family="'Public Sans', sans-serif" font-weight="800" font-size="9.5px" fill="#004987" text-anchor="middle">1</text>
-    <text x="32" y="18" class="text-header-box">CAPA DE ENTRADA &amp; DISPARADORES: /triggers/ (EVENT-DRIVEN ARCHITECTURE)</text>
-    <rect x="760" y="5" width="225" height="18" rx="3" fill="#0b1b3d" stroke="#38bdf8" stroke-width="0.8"/>
-    <text x="872" y="17" class="text-tag" fill="#38bdf8" text-anchor="middle">INGESTA DE EVENTOS PROCESALES</text>
-
-    <!-- 4 Distributed Nodes -->
-    <!-- Node 1.1 -->
-    <g transform="translate(16, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#eff6ff"/>
-      <text x="8" y="15" class="text-folder-name" fill="#1d4ed8">[EVT] /triggers/upload.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Ingesta de Sentencia</text>
-        <text x="0" y="24" class="text-item-desc">• Next.js Server Action autenticado</text>
-        <text x="0" y="36" class="text-item-desc">• Evento POST multipart/form-data</text>
-        <text x="0" y="48" class="text-item-desc">• Encolamiento BullMQ Redis</text>
-        <text x="0" y="62" class="text-tech-cite">event: 'SENTENCIA_UPLOAD'</text>
+        <g transform="translate(10, 32)">
+          <text x="0" y="12" class="text-item-desc"><tspan font-weight="700">CRBV Art. 203:</tspan> Rango de Ley Orgánica.</text>
+          <text x="0" y="26" class="text-item-desc"><tspan font-weight="700">CRBV Art. 26:</tspan> Tutela judicial efectiva.</text>
+          <text x="0" y="40" class="text-item-desc"><tspan font-weight="700">CRBV Art. 49:</tspan> Debido proceso y juez natural.</text>
+          <text x="0" y="54" class="text-item-desc"><tspan font-weight="700">CRBV Art. 28:</tspan> Habeas data y privacidad.</text>
+          <text x="0" y="68" class="text-item-desc"><tspan font-weight="700">CRBV Art. 110:</tspan> Interés público en TIC.</text>
+          <text x="0" y="82" class="text-item-desc"><tspan font-weight="700">CRBV Art. 141:</tspan> Eficacia y honestidad.</text>
+          <text x="0" y="96" class="text-item-desc"><tspan font-weight="700">CRBV Art. 257:</tspan> Proceso no formalista.</text>
+          <text x="0" y="118" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#004987">DOCTRINA TSJ VINCULANTE:</text>
+          <text x="0" y="132" class="text-item-desc">• <tspan font-weight="700">Sentencia TSJ/SC N° 0406/2026:</tspan> Carácter orgánico, validación del sorteo y supervisión de IA.</text>
+          <text x="0" y="152" class="text-item-desc">• <tspan font-weight="700">Resolución TSJ N° 2021-0011:</tspan> Firma digital de sentencias y actas telemáticas.</text>
+          <text x="0" y="172" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#004987">LEYES ORGÁNICAS VINCULADAS:</text>
+          <text x="0" y="186" class="text-item-desc">• <tspan font-weight="700">LOCOTA 2026 Art. 11:</tspan> Unidades de Celeridad.</text>
+          <text x="0" y="200" class="text-item-desc">• <tspan font-weight="700">LOCOTA 2026 Art. 7:</tspan> Comisión de Celeridad.</text>
+          <text x="0" y="214" class="text-item-desc">• <tspan font-weight="700">Ley de Infogobierno:</tspan> Arts. 13, 22, 27.</text>
+          <text x="0" y="228" class="text-item-desc">• <tspan font-weight="700">LMDyFE:</tspan> Arts. 4, 7, 8, 16, 18.</text>
+          <text x="0" y="242" class="text-item-desc">• <tspan font-weight="700">LPCDI:</tspan> Delitos informáticos Arts. 6, 7, 12.</text>
+        </g>
       </g>
-    </g>
 
-    <!-- Node 1.2 -->
-    <g transform="translate(258, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#eff6ff"/>
-      <text x="8" y="15" class="text-folder-name" fill="#1d4ed8">[EVT] /triggers/radicacion.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Radicación de Causa</text>
-        <text x="0" y="24" class="text-item-desc">• PostgreSQL LISTEN / NOTIFY</text>
-        <text x="0" y="36" class="text-item-desc">• Registro instantáneo de expediente</text>
-        <text x="0" y="48" class="text-item-desc">• Cero retención manual de causas</text>
-        <text x="0" y="62" class="text-tech-cite">trigger: pg.listen('sorteo_queue')</text>
+      <!-- Col 2: Propuesta Ley Orgánica V-1.2 -->
+      <g transform="translate(330, 0)">
+        <rect width="310" height="466" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect width="310" height="24" rx="6" fill="#fef6e7"/>
+        <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="10px" fill="#5d2700">2. LEY ORGÁNICA V-1.2 (47 ARTÍCULOS)</text>
+
+        <g transform="translate(10, 32)">
+          <text x="0" y="12" class="text-item-desc"><tspan font-weight="700">Título I:</tspan> Principios Generales y Ámbito Pleno.</text>
+          <text x="0" y="26" class="text-item-desc"><tspan font-weight="700">Título II:</tspan> DINCIP (Art. 7) y CSIRT (Art. 8).</text>
+          <text x="0" y="40" class="text-item-desc"><tspan font-weight="700">Art. 10-bis:</tspan> Auditoría Independiente Anual.</text>
+          <text x="0" y="54" class="text-item-desc"><tspan font-weight="700">Título III:</tspan> Estándares Técnicos y Planes PSS.</text>
+          <text x="0" y="68" class="text-item-desc"><tspan font-weight="700">Art. 13-bis:</tspan> Planes de Seguridad del Sistema.</text>
+          <text x="0" y="82" class="text-item-desc"><tspan font-weight="700">Título V:</tspan> Gestión de Incidentes.</text>
+          <text x="0" y="96" class="text-item-desc"><tspan font-weight="700">Art. 19-bis:</tspan> Directivas Vinculantes en 72h (DOV).</text>
+          <text x="0" y="118" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#8c3b00">TÍTULO VII — RÉGIMEN DE INTEGRIDAD:</text>
+          <text x="0" y="132" class="text-item-desc">• <tspan font-weight="700">Art. 25:</tspan> Supervisión humana indelegable en IA.</text>
+          <text x="0" y="146" class="text-item-desc">• <tspan font-weight="700">Art. 26:</tspan> Sorteo algorítmico criptoseguro.</text>
+          <text x="0" y="160" class="text-item-desc">• <tspan font-weight="700">Art. 27:</tspan> Segregación "4 Ojos" digital.</text>
+          <text x="0" y="174" class="text-item-desc">• <tspan font-weight="700">Art. 28:</tspan> Bóveda WORM y hash dual.</text>
+          <text x="0" y="188" class="text-item-desc">• <tspan font-weight="700">Arts. 29-31:</tspan> Alertas a CGR / SUNAI en vivo.</text>
+          <text x="0" y="210" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#8c3b00">TÍTULO VIII — RÉGIMEN SANCIONATORIO:</text>
+          <text x="0" y="224" class="text-item-desc">• <tspan font-weight="700">Arts. 32-34:</tspan> Faltas Leves, Graves y Muy Graves.</text>
+          <text x="0" y="238" class="text-item-desc">• <tspan font-weight="700">Art. 37:</tspan> Garantías plenas de debido proceso.</text>
+        </g>
       </g>
-    </g>
 
-    <!-- Node 1.3 -->
-    <g transform="translate(500, 36)">
-      <rect width="236" height="102" rx="6" fill="#f8fafc" stroke="#bfdbfe" stroke-width="1"/>
-      <rect x="0" y="0" width="236" height="22" rx="6" fill="#eff6ff"/>
-      <text x="8" y="15" class="text-folder-name" fill="#1d4ed8">[EVT] /triggers/evidencia.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Ingesta Pericial Forense</text>
-        <text x="0" y="24" class="text-item-desc">• Canal mTLS 1.3 Pericial seguro</text>
-        <text x="0" y="36" class="text-item-desc">• Aislamiento en sandbox staging</text>
-        <text x="0" y="48" class="text-item-desc">• Extracción automática de metadatos</text>
-        <text x="0" y="62" class="text-tech-cite">protocol: mTLS / ISO 27037</text>
-      </g>
-    </g>
+      <!-- Col 3: Estándares Internacionales ISO / NIST / EU -->
+      <g transform="translate(660, 0)">
+        <rect width="310" height="466" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect width="310" height="24" rx="6" fill="#eaf4ec"/>
+        <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="10px" fill="#0d2b14">3. ESTÁNDARES INTERNACIONALES</text>
 
-    <!-- Node 1.4 -->
-    <g transform="translate(750, 36)">
-      <rect width="234" height="102" rx="6" fill="#f8fafc" stroke="#fcd34d" stroke-width="1"/>
-      <rect x="0" y="0" width="234" height="22" rx="6" fill="#fef3c7"/>
-      <text x="8" y="15" class="text-folder-name" fill="#b45309">⏰ /triggers/ai-cron.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title" fill="#854d0e">Cron Auditoría &amp; Tiempos IA</text>
-        <text x="0" y="24" class="text-item-desc">• Cron nocturno '0 2 * * *'</text>
-        <text x="0" y="36" class="text-item-desc">• Escaneo de causas activas &gt; 30d</text>
-        <text x="0" y="48" class="text-item-desc">• Ingesta de métricas de retardo</text>
-        <text x="0" y="62" class="text-law-cite">Ref: Art. 26 CRBV Sin Dilaciones</text>
+        <g transform="translate(10, 32)">
+          <text x="0" y="12" class="text-item-desc"><tspan font-weight="700">FISMA 2014 S.2521:</tspan> Ley Federal EE.UU. § 3551-3558.</text>
+          <text x="0" y="26" class="text-item-desc"><tspan font-weight="700">NIST SP 800-53 R5:</tspan> Controles de Seguridad.</text>
+          <text x="0" y="40" class="text-item-desc"><tspan font-weight="700">NIST SP 800-207:</tspan> Arquitectura Zero Trust.</text>
+          <text x="0" y="54" class="text-item-desc"><tspan font-weight="700">NIST SP 800-30:</tspan> Evaluación de Riesgos.</text>
+          <text x="0" y="68" class="text-item-desc"><tspan font-weight="700">FIPS 140-2 Level 3:</tspan> Módulos Criptográficos HSM.</text>
+          <text x="0" y="82" class="text-item-desc"><tspan font-weight="700">JTC Courts 2025:</tspan> Resiliencia en Cortes NCSC.</text>
+          <text x="0" y="96" class="text-item-desc"><tspan font-weight="700">Reglamento (UE) 2023/2841:</tspan> CERT-EU e IICB.</text>
+          <text x="0" y="118" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#154721">NORMAS ISO / IEC INTEGRADAS:</text>
+          <text x="0" y="132" class="text-item-desc">• <tspan font-weight="700">ISO/IEC 27001:</tspan> Sistema de Gestión SGSI.</text>
+          <text x="0" y="146" class="text-item-desc">• <tspan font-weight="700">ISO/IEC 27035:</tspan> Gestión de Incidentes.</text>
+          <text x="0" y="160" class="text-item-desc">• <tspan font-weight="700">ISO/IEC 27037:</tspan> Evidencia Digital Forense.</text>
+          <text x="0" y="174" class="text-item-desc">• <tspan font-weight="700">ISO/IEC 42001:</tspan> Gestión Ética de IA.</text>
+          <text x="0" y="188" class="text-item-desc">• <tspan font-weight="700">ISO 37001:</tspan> Sistemas Antisoborno.</text>
+          <text x="0" y="202" class="text-item-desc">• <tspan font-weight="700">ISO 22301:</tspan> Continuidad del Negocio (COOP).</text>
+          <text x="0" y="216" class="text-item-desc">• <tspan font-weight="700">RFC 3161:</tspan> Protocolo de Sellado de Tiempo.</text>
+          <text x="0" y="230" class="text-item-desc">• <tspan font-weight="700">SEC Rule 17a-4:</tspan> Almacenamiento Inmutable WORM.</text>
+        </g>
       </g>
     </g>
   </g>
 
-  <!-- Trunk connector from Triggers to Guards -->
-  <line x1="540" y1="524" x2="540" y2="542" class="tree-line-red" stroke-width="2.2" marker-end="url(#o-arrow-red)"/>
-
-  <!-- ======================================================== -->
-  <!-- 5. ESTRATO JERÁRQUICO 2: /guards/ (SEGURIDAD & FILTROS)  -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 546)">
-    <rect width="1000" height="152" rx="8" fill="#ffffff" stroke="#fca5a5" stroke-width="1.2" filter="url(#o-shadow)"/>
-    
-    <!-- Level Banner -->
-    <path d="M 0 8 Q 0 0 8 0 L 992 0 Q 1000 0 1000 8 L 1000 28 L 0 28 Z" fill="url(#oGuardsGrad)"/>
-    <circle cx="16" cy="14" r="9" fill="#fee2e2"/>
-    <text x="16" y="17.5" font-family="'Public Sans', sans-serif" font-weight="800" font-size="9.5px" fill="#8b0a03" text-anchor="middle">2</text>
-    <text x="32" y="18" class="text-header-box">CAPA DE CONTROL &amp; VALIDACIÓN: /guards/ (SEGREGACIÓN RBAC &amp; SUPERVISIÓN)</text>
-    <rect x="760" y="5" width="225" height="18" rx="3" fill="#450a0a" stroke="#f87171" stroke-width="0.8"/>
-    <text x="872" y="17" class="text-tag" fill="#fca5a5" text-anchor="middle">BARRERAS ANTICORRUPCIÓN</text>
-
-    <!-- 4 Distributed Nodes -->
-    <!-- Node 2.1 -->
-    <g transform="translate(16, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#fecaca" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#fef2f2"/>
-      <text x="8" y="15" class="text-folder-name" fill="#b91c1c">[GUARD] /guards/cuatro-ojos.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Segregación de Funciones</text>
-        <text x="0" y="24" class="text-item-desc">• Capturador !== Firmante !== Publicador</text>
-        <text x="0" y="36" class="text-item-desc">• Control estricto MFA FIDO2</text>
-        <text x="0" y="48" class="text-item-desc">• Validación estricta PDF/A-2u y MIME</text>
-        <text x="0" y="62" class="text-law-cite">Ref: Art. 22 Propuesta Ciberseg</text>
-      </g>
-    </g>
-
-    <!-- Node 2.2 -->
-    <g transform="translate(258, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#fecaca" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#fef2f2"/>
-      <text x="8" y="15" class="text-folder-name" fill="#b91c1c">[GUARD] /guards/sorteo-guard.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Validación de Imparcialidad</text>
-        <text x="0" y="24" class="text-item-desc">• Filtro automático de recusaciones</text>
-        <text x="0" y="36" class="text-item-desc">• Validación de quórum mínimo de jueces</text>
-        <text x="0" y="48" class="text-item-desc">• Prevención de inducción de ponente</text>
-        <text x="0" y="62" class="text-law-cite">Ref: Art. 23 Propuesta &amp; Art. 49 CRBV</text>
-      </g>
-    </g>
-
-    <!-- Node 2.3 -->
-    <g transform="translate(500, 36)">
-      <rect width="236" height="102" rx="6" fill="#f8fafc" stroke="#fecaca" stroke-width="1"/>
-      <rect x="0" y="0" width="236" height="22" rx="6" fill="#fef2f2"/>
-      <text x="8" y="15" class="text-folder-name" fill="#b91c1c">[GUARD] /guards/custody-guard.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Verificación de Evidencia</text>
-        <text x="0" y="24" class="text-item-desc">• Certificado de perito acreditado</text>
-        <text x="0" y="36" class="text-item-desc">• Verificación de orden judicial</text>
-        <text x="0" y="48" class="text-item-desc">• Análisis antimalware en sandbox aislado</text>
-        <text x="0" y="62" class="text-law-cite">Ref: ISO/IEC 27037 &amp; LPCDI 6, 7</text>
-      </g>
-    </g>
-
-    <!-- Node 2.4 -->
-    <g transform="translate(750, 36)">
-      <rect width="234" height="102" rx="6" fill="#f8fafc" stroke="#fcd34d" stroke-width="1"/>
-      <rect x="0" y="0" width="234" height="22" rx="6" fill="#fef3c7"/>
-      <text x="8" y="15" class="text-folder-name" fill="#b45309">[HITL] /guards/human-loop.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title" fill="#854d0e">Supervisión Humana (Art. 25)</text>
-        <text x="0" y="24" class="text-item-desc">• <tspan font-weight="700">assert(isDecision === false)</tspan></text>
-        <text x="0" y="36" class="text-item-desc">• Verificación de explicabilidad SHAP</text>
-        <text x="0" y="48" class="text-item-desc">• Filtro anti-sesgo y no-discriminación</text>
-        <text x="0" y="62" class="text-law-cite">Ref: EU AI Act Anexo III / ISO 42001</text>
-      </g>
-    </g>
-  </g>
-
-  <!-- Trunk connector from Guards to Workflows -->
-  <line x1="540" y1="698" x2="540" y2="716" class="tree-line-green" stroke-width="2.2" marker-end="url(#o-arrow-green)"/>
-
-  <!-- ======================================================== -->
-  <!-- 6. ESTRATO JERÁRQUICO 3: /workflows/ (ORQUESTACIÓN)      -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 720)">
-    <rect width="1000" height="152" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1.2" filter="url(#o-shadow)"/>
-    
-    <!-- Level Banner -->
-    <path d="M 0 8 Q 0 0 8 0 L 992 0 Q 1000 0 1000 8 L 1000 28 L 0 28 Z" fill="url(#oWorkflowsGrad)"/>
-    <circle cx="16" cy="14" r="9" fill="#dcfce7"/>
-    <text x="16" y="17.5" font-family="'Public Sans', sans-serif" font-weight="800" font-size="9.5px" fill="#154721" text-anchor="middle">3</text>
-    <text x="32" y="18" class="text-header-box">CAPA DE ORQUESTACIÓN PROGRAMÁTICA: /workflows/ (PIPELINES CODE-BASED)</text>
-    <rect x="760" y="5" width="225" height="18" rx="3" fill="#064e3b" stroke="#86efac" stroke-width="0.8"/>
-    <text x="872" y="17" class="text-tag" fill="#86efac" text-anchor="middle">PIPELINES DETERMINÍSTICOS</text>
-
-    <!-- 4 Distributed Nodes -->
-    <!-- Node 3.1 -->
-    <g transform="translate(16, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#bbf7d0" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#f0fdf4"/>
-      <text x="8" y="15" class="text-folder-name" fill="#15803d">[WF] /workflows/publicacion.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Pipeline 4 Fases Cuatro Ojos</text>
-        <text x="0" y="24" class="text-item-desc">• Paso 1: Captura &amp; Sanitización</text>
-        <text x="0" y="36" class="text-item-desc">• Paso 2: Revisión &amp; Voto Ponente</text>
-        <text x="0" y="48" class="text-item-desc">• Paso 3: Firma HSM • Paso 4: Portal</text>
-        <text x="0" y="62" class="text-tech-cite">engine: Temporal / BullMQ</text>
-      </g>
-    </g>
-
-    <!-- Node 3.2 -->
-    <g transform="translate(258, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#bbf7d0" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#f0fdf4"/>
-      <text x="8" y="15" class="text-folder-name" fill="#15803d">[WF] /workflows/sorteo.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Sorteo Criptográfico</text>
-        <text x="0" y="24" class="text-item-desc">• Generación semilla CSPRNG auditada</text>
-        <text x="0" y="36" class="text-item-desc">• Asignación determinística verificable</text>
-        <text x="0" y="48" class="text-item-desc">• Generación de prueba criptográfica</text>
-        <text x="0" y="62" class="text-tech-cite">output: { ponenteId, seedProof }</text>
-      </g>
-    </g>
-
-    <!-- Node 3.3 -->
-    <g transform="translate(500, 36)">
-      <rect width="236" height="102" rx="6" fill="#f8fafc" stroke="#bbf7d0" stroke-width="1"/>
-      <rect x="0" y="0" width="236" height="22" rx="6" fill="#f0fdf4"/>
-      <text x="8" y="15" class="text-folder-name" fill="#15803d">[WF] /workflows/custodia.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Preservación Bit-a-Bit</text>
-        <text x="0" y="24" class="text-item-desc">• Clonación forense inalterable</text>
-        <text x="0" y="36" class="text-item-desc">• Cálculo hash dual paralelo</text>
-        <text x="0" y="48" class="text-item-desc">• Bloqueo Object Lock WORM 10 años</text>
-        <text x="0" y="62" class="text-tech-cite">flow: duplicate() -&gt; hash() -&gt; lock()</text>
-      </g>
-    </g>
-
-    <!-- Node 3.4 -->
-    <g transform="translate(750, 36)">
-      <rect width="234" height="102" rx="6" fill="#f8fafc" stroke="#fcd34d" stroke-width="1"/>
-      <rect x="0" y="0" width="234" height="22" rx="6" fill="#fef3c7"/>
-      <text x="8" y="15" class="text-folder-name" fill="#b45309">[WF] /workflows/eval-alertas.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title" fill="#854d0e">Inferencia Preventiva IA</text>
-        <text x="0" y="24" class="text-item-desc">• Inferencia de modelo ML de retardo</text>
-        <text x="0" y="36" class="text-item-desc">• Clasificación de riesgo de dilación</text>
-        <text x="0" y="48" class="text-item-desc">• Generación de informe con valores SHAP</text>
-        <text x="0" y="62" class="text-tech-cite">model: evaluateRisk(docket)</text>
-      </g>
-    </g>
-  </g>
-
-  <!-- Trunk connector from Workflows to Actions -->
-  <line x1="540" y1="872" x2="540" y2="890" class="tree-line-violet" stroke-width="2.2" marker-end="url(#o-arrow-violet)"/>
-
-  <!-- ======================================================== -->
-  <!-- 7. ESTRATO JERÁRQUICO 4: /actions/ (EJECUCIÓN ATÓMICA)   -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 894)">
-    <rect width="1000" height="152" rx="8" fill="#ffffff" stroke="#d8b4fe" stroke-width="1.2" filter="url(#o-shadow)"/>
-    
-    <!-- Level Banner -->
-    <path d="M 0 8 Q 0 0 8 0 L 992 0 Q 1000 0 1000 8 L 1000 28 L 0 28 Z" fill="url(#oActionsGrad)"/>
-    <circle cx="16" cy="14" r="9" fill="#f3e8ff"/>
-    <text x="16" y="17.5" font-family="'Public Sans', sans-serif" font-weight="800" font-size="9.5px" fill="#4a156d" text-anchor="middle">4</text>
-    <text x="32" y="18" class="text-header-box">CAPA DE ACCIONES ATÓMICAS &amp; CRIPTOGRAFÍA: /actions/ (EXECUTION ENGINE)</text>
-    <rect x="760" y="5" width="225" height="18" rx="3" fill="#2e1065" stroke="#c084fc" stroke-width="0.8"/>
-    <text x="872" y="17" class="text-tag" fill="#d8b4fe" text-anchor="middle">OPERACIONES CRIPTOGRÁFICAS</text>
-
-    <!-- 4 Distributed Nodes -->
-    <!-- Node 4.1 -->
-    <g transform="translate(16, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#e9d5ff" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#faf5ff"/>
-      <text x="8" y="15" class="text-folder-name" fill="#7e22ce">[EVT] /actions/crypto-sign.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Firma HSM &amp; Hash Dual</text>
-        <text x="0" y="24" class="text-item-desc">• <tspan font-family="'Roboto Mono'">hsm-sign.ts</tspan>: PAdES PKCS#11 SUSCERTE</text>
-        <text x="0" y="36" class="text-item-desc">• <tspan font-family="'Roboto Mono'">hash-dual.ts</tspan>: SHA-256 + SHA3-512</text>
-        <text x="0" y="48" class="text-item-desc">• <tspan font-family="'Roboto Mono'">tsa-timestamp.ts</tspan>: Sello RFC 3161</text>
-        <text x="0" y="62" class="text-law-cite">Ref: LMDyFE Arts. 4, 6, 7, 8, 18</text>
-      </g>
-    </g>
-
-    <!-- Node 4.2 -->
-    <g transform="translate(258, 36)">
-      <rect width="228" height="102" rx="6" fill="#f8fafc" stroke="#e9d5ff" stroke-width="1"/>
-      <rect x="0" y="0" width="228" height="22" rx="6" fill="#faf5ff"/>
-      <text x="8" y="15" class="text-folder-name" fill="#7e22ce">[EVT] /actions/sorteo-act.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Actas &amp; Notificación</text>
-        <text x="0" y="24" class="text-item-desc">• <tspan font-family="'Roboto Mono'">csprng-seed.ts</tspan>: Entropía FIPS 140-2</text>
-        <text x="0" y="36" class="text-item-desc">• <tspan font-family="'Roboto Mono'">audit-log.ts</tspan>: Acta inmutable WORM</text>
-        <text x="0" y="48" class="text-item-desc">• <tspan font-family="'Roboto Mono'">email-notify.ts</tspan>: Boleta electrónica</text>
-        <text x="0" y="62" class="text-law-cite">Ref: Art. 23 Propuesta Ciberseg</text>
-      </g>
-    </g>
-
-    <!-- Node 4.3 -->
-    <g transform="translate(500, 36)">
-      <rect width="236" height="102" rx="6" fill="#f8fafc" stroke="#e9d5ff" stroke-width="1"/>
-      <rect x="0" y="0" width="236" height="22" rx="6" fill="#faf5ff"/>
-      <text x="8" y="15" class="text-folder-name" fill="#7e22ce">[EVT] /actions/worm-vault.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title">Bóveda Forense WORM</text>
-        <text x="0" y="24" class="text-item-desc">• <tspan font-family="'Roboto Mono'">calc-sha3.ts</tspan>: Hash SHA3-512 FIPS 202</text>
-        <text x="0" y="36" class="text-item-desc">• <tspan font-family="'Roboto Mono'">tsa-seal.ts</tspan>: Token RFC 3161 TSA</text>
-        <text x="0" y="48" class="text-item-desc">• <tspan font-family="'Roboto Mono'">worm-lock.ts</tspan>: MinIO S3 Object Lock</text>
-        <text x="0" y="62" class="text-law-cite">Ref: ISO 27037 • Infogobierno 11</text>
-      </g>
-    </g>
-
-    <!-- Node 4.4 -->
-    <g transform="translate(750, 36)">
-      <rect width="234" height="102" rx="6" fill="#f8fafc" stroke="#e9d5ff" stroke-width="1"/>
-      <rect x="0" y="0" width="234" height="22" rx="6" fill="#faf5ff"/>
-      <text x="8" y="15" class="text-folder-name" fill="#7e22ce">[EVT] /actions/alert-disp.ts</text>
-      <g transform="translate(8, 28)">
-        <text x="0" y="12" class="text-item-title" fill="#854d0e">Despacho de Alerta IA</text>
-        <text x="0" y="24" class="text-item-desc">• <tspan font-family="'Roboto Mono'">notify-judge.ts</tspan>: Aviso a juez ponente</text>
-        <text x="0" y="36" class="text-item-desc">• <tspan font-family="'Roboto Mono'">notify-inspect.ts</tspan>: Aviso Inspectoría</text>
-        <text x="0" y="48" class="text-item-desc">• <tspan font-family="'Roboto Mono'">log-ai-audit.ts</tspan>: Registro WORM alerta</text>
-        <text x="0" y="62" class="text-law-cite">Ref: Art. 49 CRBV Debido Proceso</text>
-      </g>
-    </g>
-  </g>
-
-  <!-- Trunk connector from Actions to Final Outputs -->
-  <line x1="540" y1="1046" x2="540" y2="1064" class="tree-line" stroke-width="2.2" marker-end="url(#o-arrow-blue)"/>
-
-  <!-- ======================================================== -->
-  <!-- 8. NIVEL 5: RESULTADOS & SERVICIOS TERMINALES TSJ        -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 1068)">
-    <rect width="1000" height="142" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#o-shadow)"/>
-    
-    <!-- Level Banner -->
-    <path d="M 0 8 Q 0 0 8 0 L 992 0 Q 1000 0 1000 8 L 1000 28 L 0 28 Z" fill="url(#oTopNodeGrad)"/>
-    <circle cx="16" cy="14" r="9" fill="#fde047"/>
-    <text x="16" y="17.5" font-family="'Public Sans', sans-serif" font-weight="800" font-size="9.5px" fill="#0b1b3d" text-anchor="middle">5</text>
-    <text x="32" y="18" class="text-header-box">NIVEL 5: SERVICIOS ENTREGADOS AL SISTEMA JUDICIAL &amp; CIUDADANÍA</text>
-    <rect x="760" y="5" width="225" height="18" rx="3" fill="#0b1b3d" stroke="#fde047" stroke-width="0.8"/>
-    <text x="872" y="17" class="text-tag" fill="#fde047" text-anchor="middle">IMPACTO DIRECTO INSTITUCIONAL</text>
-
-    <!-- 4 Output Result Nodes -->
-    <!-- Output 1 -->
-    <g transform="translate(16, 36)">
-      <rect width="228" height="94" rx="6" fill="#eff6fb" stroke="#0076d6" stroke-width="1"/>
-      <g transform="translate(10, 10)">
-        <text x="0" y="12" font-family="'Public Sans', sans-serif" font-weight="800" font-size="10px" fill="#004987">[TSJ] Portal de Sentencias TSJ</text>
-        <text x="0" y="26" class="text-item-desc">• Publicación PDF/A firmada con HSM</text>
-        <text x="0" y="39" class="text-item-desc">• Verificación ciudadana QR / CSV</text>
-        <text x="0" y="52" class="text-item-desc">• Transparencia total de Hash dual</text>
-        <text x="0" y="68" class="text-tag" fill="#0076d6">CERTEZA JURÍDICA ABSOLUTA</text>
-      </g>
-    </g>
-
-    <!-- Output 2 -->
-    <g transform="translate(258, 36)">
-      <rect width="228" height="94" rx="6" fill="#eff6fb" stroke="#2563eb" stroke-width="1"/>
-      <g transform="translate(10, 10)">
-        <text x="0" y="12" font-family="'Public Sans', sans-serif" font-weight="800" font-size="10px" fill="#1e3a8a">[CSPRNG] Sorteo Imparcial Auditable</text>
-        <text x="0" y="26" class="text-item-desc">• Asignación aleatoria verificable</text>
-        <text x="0" y="39" class="text-item-desc">• Cero manipulación de causas</text>
-        <text x="0" y="52" class="text-item-desc">• Notificación electrónica en segundos</text>
-        <text x="0" y="68" class="text-tag" fill="#2563eb">ANTICORRUPCIÓN EFECTIVA</text>
-      </g>
-    </g>
-
-    <!-- Output 3 -->
-    <g transform="translate(500, 36)">
-      <rect width="236" height="94" rx="6" fill="#f5f3ff" stroke="#7e22ce" stroke-width="1"/>
-      <g transform="translate(10, 10)">
-        <text x="0" y="12" font-family="'Public Sans', sans-serif" font-weight="800" font-size="10px" fill="#581c87">[WORM] Bóveda Forense Inmutable</text>
-        <text x="0" y="26" class="text-item-desc">• Almacenamiento WORM Object Lock</text>
-        <text x="0" y="39" class="text-item-desc">• Cadena de custodia ISO 27037</text>
-        <text x="0" y="52" class="text-item-desc">• Pruebas digitales con plena eficacia</text>
-        <text x="0" y="68" class="text-tag" fill="#7e22ce">VALIDEZ PROBATORIA PLENA</text>
-      </g>
-    </g>
-
-    <!-- Output 4 -->
-    <g transform="translate(750, 36)">
-      <rect width="234" height="94" rx="6" fill="#fefce8" stroke="#ca8a04" stroke-width="1"/>
-      <g transform="translate(10, 10)">
-        <text x="0" y="12" font-family="'Public Sans', sans-serif" font-weight="800" font-size="10px" fill="#854d0e">[ALERTA] Panel Inspectoría &amp; Alertas</text>
-        <text x="0" y="26" class="text-item-desc">• Detección temprana de dilaciones</text>
-        <text x="0" y="39" class="text-item-desc">• Alertas en tiempo real a jueces</text>
-        <text x="0" y="52" class="text-item-desc">• Supervisión humana garantizada</text>
-        <text x="0" y="68" class="text-tag" fill="#ca8a04">JUSTICIA SIN DILACIONES</text>
-      </g>
-    </g>
-  </g>
-
-  <!-- ======================================================== -->
-  <!-- 9. MATRIZ DE GOBERNANZA & MARCO LEGAL INTEGRADO          -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 1222)">
-    <rect width="1000" height="174" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#o-shadow)"/>
-    
-    <!-- Matrix Header -->
-    <path d="M 0 8 Q 0 0 8 0 L 992 0 Q 1000 0 1000 8 L 1000 30 L 0 30 Z" fill="#0f172a"/>
-    <text x="20" y="20" class="text-header-box" fill="#ffffff">MATRIZ DE FUNDAMENTACIÓN NORMATIVA Y ESTÁNDARES INTERNACIONALES</text>
-
-    <!-- 3 Columns -->
-    <!-- Col 1: Bloque Constitucional y Leyes Nacionales -->
-    <g transform="translate(16, 40)">
-      <rect width="310" height="122" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-      <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="10px" fill="#0050a0">1. BLOQUE CONSTITUCIONAL Y LEGAL</text>
-      <text x="10" y="32" class="text-item-desc">• <tspan font-weight="700">CRBV 1999:</tspan> Arts. 26 (Celeridad), 49 (Debido Proceso), 110 (TICs), 203 (Orgánica), 257 (Justicia).</text>
-      <text x="10" y="50" class="text-item-desc">• <tspan font-weight="700">LMDyFE (G.O. 37.148):</tspan> Arts. 4 (Valor probatorio), 6 (Firma), 7 (Integridad), 8 (Fecha cierta), 18 (SUSCERTE).</text>
-      <text x="10" y="68" class="text-item-desc">• <tspan font-weight="700">Ley Infogobierno (G.O. 40.274):</tspan> Arts. 11 (Bóvedas), 13 (Software Libre), 22 (Seguridad), 23 (Firma).</text>
-      <text x="10" y="86" class="text-item-desc">• <tspan font-weight="700">LOCOTA 2026:</tspan> Art. 11 (Ventanilla única y celeridad procesal).</text>
-      <text x="10" y="104" class="text-item-desc">• <tspan font-weight="700">LPCDI (G.O. 37.313):</tspan> Arts. 6 (Acceso indebido), 7 (Sabotaje), 12 (Falsificación).</text>
-    </g>
-
-    <!-- Col 2: Propuesta de Ley Orgánica de Ciberseguridad -->
-    <g transform="translate(344, 40)">
-      <rect width="310" height="122" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-      <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="10px" fill="#d97706">2. PROPUESTA LEY ORGÁNICA CIBERSEGURIDAD</text>
-      <text x="10" y="32" class="text-item-desc">• <tspan font-weight="700">Art. 22 (Cuatro Ojos):</tspan> Segregación obligatoria de funciones en publicación de sentencias.</text>
-      <text x="10" y="50" class="text-item-desc">• <tspan font-weight="700">Art. 23 (Sorteo Criptográfico):</tspan> Asignación determinística con semilla CSPRNG auditada.</text>
-      <text x="10" y="68" class="text-item-desc">• <tspan font-weight="700">Art. 24 (Sellado de Tiempo):</tspan> TSA RFC 3161 obligatorio en cada transición de estado.</text>
-      <text x="10" y="86" class="text-item-desc">• <tspan font-weight="700">Art. 25 (Supervisión IA):</tspan> IA limitada a alertas tempranas; prohibida la decisión autónoma.</text>
-      <text x="10" y="104" class="text-item-desc">• <tspan font-weight="700">Art. 28 (Cadena de Custodia):</tspan> Registro inmutable WORM de toda evidencia.</text>
-    </g>
-
-    <!-- Col 3: Estándares Internacionales ISO / NIST / EU -->
-    <g transform="translate(672, 40)">
-      <rect width="312" height="122" rx="5" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-      <text x="10" y="16" font-family="'Public Sans', sans-serif" font-weight="700" font-size="10px" fill="#059669">3. ESTÁNDARES INTERNACIONALES</text>
-      <text x="10" y="32" class="text-item-desc">• <tspan font-weight="700">ISO/IEC 42001:2023:</tspan> Sistema de Gestión de Inteligencia Artificial Confiable.</text>
-      <text x="10" y="50" class="text-item-desc">• <tspan font-weight="700">EU AI Act (2024/1689):</tspan> Clasificación de sistemas judiciales en Alto Riesgo.</text>
-      <text x="10" y="68" class="text-item-desc">• <tspan font-weight="700">ISO 23894 / BPMN 2.0:</tspan> Gestión de riesgos en automatización de procesos.</text>
-      <text x="10" y="86" class="text-item-desc">• <tspan font-weight="700">NIST SP 800-53 Rev. 5 &amp; CSF 2.0:</tspan> Catálogo de controles de ciberdefensa.</text>
-      <text x="10" y="104" class="text-item-desc">• <tspan font-weight="700">ISO/IEC 27037 &amp; 27042:</tspan> Informática forense y cadena de custodia digital.</text>
-    </g>
-  </g>
-
-  <!-- ======================================================== -->
-  <!-- 10. PIE DE PÁGINA Y MARGEN DE FOLIADO JUDICIAL           -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 1606)">
-    <line x1="0" y1="0" x2="1000" y2="0" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="0" y="18" font-family="'Roboto Mono', monospace" font-size="9px" fill="#64748b">
-      DIRECCIÓN DE CIBERSEGURIDAD PROCESAL &amp; COMPLIANCE • INICIATIVA ULPIANO CCO • FOLIO TSJ-ORG-2026-002
+  <!-- ================= 7. FOOTER ================= -->
+  <g transform="translate(40, 1535)">
+    <rect width="1000" height="75" rx="8" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1"/>
+    <text x="20" y="32" font-family="'Public Sans', sans-serif" font-size="10.5px" fill="#5c6b7e">
+      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#004987">Organigrama Funcional CCO TSJ</tspan> • Autor: <tspan font-weight="700" fill="#004987">Jull Ortiz (sha256.us ↗)</tspan>
     </text>
-    <text x="1000" y="18" font-family="'Roboto Mono', monospace" font-size="9px" fill="#64748b" text-anchor="end">
-      ESPECIFICACIÓN: USWDS 3.0 • WCAG 2.1 AAA • MATERIAL SYMBOLS • FORMATO FOLIO 1080x1650
+    <text x="980" y="32" font-family="'Roboto Mono', monospace" font-size="9.8px" fill="#5c6b7e" text-anchor="end">
+      Nivel 1 al 5 • Workflows Code-Based vs IA Alertas
+    </text>
+    <text x="20" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#8190a4">
+      Design System USWDS 3.0 • Section 508 / WCAG 2.1 AAA • Tokens Semánticos Light • Hoja Folio Oficial (8.5" × 13")
+    </text>
+    <text x="980" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#004987" text-anchor="end" font-weight="700">
+      JERARQUÍA DESCENDENTE • 47 ARTÍCULOS • TSJ 0406/2026
     </text>
   </g>
-
 </svg>

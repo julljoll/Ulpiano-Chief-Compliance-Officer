@@ -1,375 +1,371 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1650" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <!-- Design System Traceability: USWDS 3.0 Light-Only Palette (src/styles/tokens.css) • Section 508 / WCAG 2.1 AAA • Ulpiano CCO V-1.2 -->
   <defs>
     <style><![CDATA[
       .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
       .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
 
       .text-title { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 15px; fill: #ffffff; letter-spacing: -0.01em; }
-      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.5px; fill: #f1f5f9; }
-      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.5px; fill: #fde047; }
+      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.5px; fill: #fef6e7; }
+      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.5px; fill: #fac76f; }
       .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 11.5px; fill: #ffffff; letter-spacing: 0.02em; }
       .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 9.2px; }
 
-      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.8px; fill: #162e51; }
-      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.8px; fill: #2d3748; line-height: 1.35; }
-      .text-item-sub { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.2px; fill: #5c6b7e; }
+      .text-item-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.8px; fill: #5d2700; }
+      .text-item-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.8px; fill: #21272d; line-height: 1.35; }
 
       .text-flow-num { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 10.5px; fill: #ffffff; }
-      .flow-arrow-down { stroke: #df7e00; stroke-width: 2.2; fill: none; }
+      .flow-arrow-down { stroke: #c05600; stroke-width: 2.2; fill: none; }
     ]]></style>
 
     <filter id="val-shadow-1" x="-4%" y="-4%" width="108%" height="108%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.08"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#13171b" flood-opacity="0.08"/>
     </filter>
     <filter id="val-shadow-2" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#5d2700" flood-opacity="0.12"/>
     </filter>
 
     <linearGradient id="valHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2a1400"/>
-      <stop offset="50%" stop-color="#4a2400"/>
-      <stop offset="100%" stop-color="#733b00"/>
+      <stop offset="0%" stop-color="#5d2700"/>
+      <stop offset="50%" stop-color="#8c3b00"/>
+      <stop offset="100%" stop-color="#c05600"/>
     </linearGradient>
 
     <linearGradient id="sec1ValGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#8c3b00"/>
+      <stop offset="0%" stop-color="#5d2700"/>
       <stop offset="100%" stop-color="#df7e00"/>
     </linearGradient>
+
     <linearGradient id="sec2ValGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0050a0"/>
-      <stop offset="100%" stop-color="#0076d6"/>
-    </linearGradient>
-    <linearGradient id="sec3ValGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#154721"/>
+      <stop offset="0%" stop-color="#0d2b14"/>
       <stop offset="100%" stop-color="#2e8540"/>
     </linearGradient>
-    <linearGradient id="sec4ValGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#4a156d"/>
-      <stop offset="100%" stop-color="#7832a8"/>
+
+    <linearGradient id="sec3ValGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#162e51"/>
+      <stop offset="100%" stop-color="#1a5b8c"/>
     </linearGradient>
 
-    <marker id="arrow-down-gold" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#df7e00"/>
+    <linearGradient id="sec4ValGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5c1111"/>
+      <stop offset="100%" stop-color="#b50909"/>
+    </linearGradient>
+
+    <marker id="val-arrow-down-gold" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#c05600"/>
     </marker>
-    <marker id="arrow-down-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#0050a0"/>
-    </marker>
-    <marker id="arrow-down-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+    <marker id="val-arrow-down-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M 1 0 L 5 10 L 9 0 z" fill="#2e8540"/>
     </marker>
+    <marker id="val-arrow-down-blue" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#1a5b8c"/>
+    </marker>
 
-    <pattern id="uswds-val-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e2e8f0" stroke-width="0.75"/>
+    <pattern id="val-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e7e9ed" stroke-width="0.75"/>
     </pattern>
   </defs>
 
-  <!-- CANVAS BACKGROUND (HOJA FOLIO VERTICAL 1080 x 1650) -->
+  <!-- CANVAS BACKGROUND -->
   <rect width="1080" height="1650" fill="#ffffff"/>
-  <rect width="1080" height="1650" fill="url(#uswds-val-grid)" opacity="0.65"/>
+  <rect width="1080" height="1650" fill="url(#val-grid)" opacity="0.65"/>
 
-  <!-- ================= 1. HEADER HERO (OPTIMIZADO) ================= -->
+  <!-- ================= 1. HEADER HERO ================= -->
   <g transform="translate(40, 16)">
     <rect x="0" y="0" width="1000" height="96" rx="8" fill="url(#valHeaderGrad)" stroke="#df7e00" stroke-width="1.2" filter="url(#val-shadow-2)"/>
-    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#facc15"/>
+    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#fac76f"/>
 
-    <!-- Left Icon -->
-    <!-- Title & Subtitle (No icon in top header, full width layout from x=24) -->
     <g transform="translate(24, 0)">
       <text x="0" y="32" class="text-title">TÍTULO VII V-1.2: RÉGIMEN DE INTEGRIDAD PROCESAL Y ADMINISTRATIVA</text>
       <text x="0" y="53" class="text-subtitle">
-        Idea de Valor Original (Jull Ortiz) • Ley Orgánica (Art. 203 CRBV / TSJ 0406/2026) • LOCOTA &amp; FISMA
+        Idea de Valor Original (Jull Ortiz) • Ley Orgánica (Art. 203 CRBV / TSJ 0406/2026) • 47 Arts • LOCOTA
       </text>
       <text x="0" y="74" class="text-subcite">
         La Tesis del Doble Frente: Ciberseguridad Defensiva Externa + Escudo Activo Anticorrupción Interno
       </text>
     </g>
 
-    <!-- Right Badges (Bounded from x=755 to x=985 - Width 230px, HIGH CONTRAST) -->
     <g transform="translate(755, 16)">
-      <rect x="0" y="0" width="230" height="28" rx="5" fill="#8c3b00" stroke="#fde047" stroke-width="1"/>
+      <rect x="0" y="0" width="230" height="28" rx="5" fill="#8c3b00" stroke="#fac76f" stroke-width="1"/>
       <text x="115" y="18" class="text-tag" fill="#ffffff" text-anchor="middle">IDEA DE VALOR V-1.2</text>
 
-      <rect x="0" y="36" width="230" height="28" rx="5" fill="#0f172a" stroke="#475569" stroke-width="1"/>
-      <text x="115" y="54" class="text-tag" fill="#38bdf8" text-anchor="middle">HOJA FOLIO VERTICAL</text>
+      <rect x="0" y="36" width="230" height="28" rx="5" fill="#0b1b3d" stroke="#5c6b7e" stroke-width="1"/>
+      <text x="115" y="54" class="text-tag" fill="#fac76f" text-anchor="middle">DOBLE FRENTE ANTICORRUPCIÓN</text>
     </g>
   </g>
 
   <!-- ================= 2. SECCIÓN 1: LA TESIS DEL DOBLE FRENTE ================= -->
   <g transform="translate(40, 124)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#fac76f" stroke-width="1.5" filter="url(#val-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#fac76f" stroke-width="1.5" filter="url(#val-shadow-1)"/>
     <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#sec1ValGrad)"/>
     <rect y="24" width="1000" height="10" fill="url(#sec1ValGrad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#8c3b00" text-anchor="middle">1</text>
+    <text x="22" y="21" class="text-flow-num" fill="#5d2700" text-anchor="middle">1</text>
     <text x="40" y="21" class="text-header-box">NÚCLEO CONCEPTUAL: LA TESIS DEL DOBLE FRENTE PROCESAL</text>
     <text x="980" y="21" class="text-tag" fill="#fef6e7" text-anchor="end">Innovación Doctrinal</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 1.1 -->
       <g transform="translate(0, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
         <rect x="0" y="0" width="4" height="128" rx="2" fill="#5c6b7e"/>
         <text x="14" y="22" class="text-item-title" fill="#323a45">Enfoque Internacional Convencional</text>
-        <text x="14" y="42" class="text-item-desc">• Mira exclusivamente hacia afuera (Perímetro Externo).</text>
-        <text x="14" y="60" class="text-item-desc">• Protege contra hackers, ransomware y ataques DDoS.</text>
-        <text x="14" y="78" class="text-item-desc">[ALERTA] Deja desprotegida a la corte frente a la corrupción interna.</text>
+        <text x="14" y="42" class="text-item-desc">• Mira exclusivamente hacia afuera (Perímetro Externo contra hackers y DDoS).</text>
+        <text x="14" y="60" class="text-item-desc">• Asume la benevolencia ingenua de los operadores internos de justicia.</text>
+        <text x="14" y="78" class="text-item-desc">• Deja desprotegida a la corte frente al soborno, extravío o alteración de causas.</text>
         <rect x="14" y="96" width="448" height="22" rx="3" fill="#f5f6f8"/>
-        <text x="238" y="111" class="text-tag" fill="#5c6b7e" text-anchor="middle">CERT-EU / JTC Courts Convencional</text>
+        <text x="238" y="111" class="text-tag" fill="#45505f" text-anchor="middle">CERT-EU / JTC Courts Tradicional (Solo Perímetro)</text>
       </g>
 
       <!-- Box 1.2 -->
       <g transform="translate(496, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#fac76f" stroke-width="1.2"/>
         <rect x="0" y="0" width="4" height="128" rx="2" fill="#df7e00"/>
-        <text x="14" y="22" class="text-item-title" fill="#8c3b00">Innovación Ulpiano V-1.2 (Doble Frente)</text>
-        <text x="14" y="42" class="text-item-desc">• Ciberseguridad Defensiva Externa + Escudo Anticorrupción Interno.</text>
-        <text x="14" y="60" class="text-item-desc">• Elimina la discrecionalidad opaca en la asignación de causas.</text>
-        <text x="14" y="78" class="text-item-desc">• Erradica el extravío de expedientes y la alteración de folios.</text>
+        <text x="14" y="22" class="text-item-title" fill="#5d2700">Innovación Ulpiano V-1.2 (Doble Frente)</text>
+        <text x="14" y="42" class="text-item-desc">• Ciberseguridad Defensiva Externa + Escudo Activo Anticorrupción Interno.</text>
+        <text x="14" y="60" class="text-item-desc">• Elimina la discrecionalidad opaca en la asignación manual de causas y compras.</text>
+        <text x="14" y="78" class="text-item-desc">• Erradica el extravío de expedientes físicos y la alteración retroactiva de folios.</text>
         <rect x="14" y="96" width="448" height="22" rx="3" fill="#fef6e7"/>
-        <text x="238" y="111" class="text-tag" fill="#8c3b00" text-anchor="middle">Aporte Original: Jull Ortiz (sha256.us)</text>
+        <text x="238" y="111" class="text-tag" fill="#8c3b00" text-anchor="middle">Aporte Original: Jull Ortiz (sha256.us ↗)</text>
       </g>
 
       <!-- Box 1.3 -->
       <g transform="translate(0, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
         <rect x="0" y="0" width="4" height="128" rx="2" fill="#df7e00"/>
-        <text x="14" y="22" class="text-item-title" fill="#8c3b00">Suum Cuique Tribuere (Dar a cada quien lo suyo)</text>
-        <text x="14" y="42" class="text-item-desc">• Principio romano de justicia material aplicado al software.</text>
-        <text x="14" y="60" class="text-item-desc">• Algoritmos públicos y transparentes que garantizan equidad.</text>
-        <text x="14" y="78" class="text-item-desc">• Asignación aleatoria criptográfica sin sesgos humanos.</text>
+        <text x="14" y="22" class="text-item-title" fill="#5d2700">Suum Cuique Tribuere (Dar a cada quien lo suyo)</text>
+        <text x="14" y="42" class="text-item-desc">• Principio de Ulpiano codificado en algoritmos de asignación matemática imparcial.</text>
+        <text x="14" y="60" class="text-item-desc">• Sorteo determinístico inalterable auditado por la ciudadanía en tiempo real.</text>
+        <text x="14" y="78" class="text-item-desc">• Igualdad procesal efectiva sin privilegios ni favoritismos de despacho.</text>
         <rect x="14" y="96" width="448" height="22" rx="3" fill="#fef6e7"/>
-        <text x="238" y="111" class="text-tag" fill="#8c3b00" text-anchor="middle">Doctrina Clásica de Ulpiano en Código Abierto</text>
+        <text x="238" y="111" class="text-tag" fill="#8c3b00" text-anchor="middle">Fundamento Iusfilosófico Romano • Justicia Material</text>
       </g>
 
       <!-- Box 1.4 -->
       <g transform="translate(496, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
         <rect x="0" y="0" width="4" height="128" rx="2" fill="#df7e00"/>
-        <text x="14" y="22" class="text-item-title" fill="#8c3b00">Honeste Vivere (Vivir Honestamente)</text>
-        <text x="14" y="42" class="text-item-desc">• Trazabilidad forense inalterable en cada trámite del Estado.</text>
-        <text x="14" y="60" class="text-item-desc">• Segregación funcional de roles y prohibición de firmas solitarias.</text>
-        <text x="14" y="78" class="text-item-desc">• Responsabilidad legal y administrativa por cada clic judicial.</text>
+        <text x="14" y="22" class="text-item-title" fill="#5d2700">Cobertura Transversal del Estado (LOCOTA 2026)</text>
+        <text x="14" y="42" class="text-item-desc">• Aplicación obligatoria en tribunales, registros, notarías y ministerios.</text>
+        <text x="14" y="60" class="text-item-desc">• Interoperabilidad directa con Unidades de Celeridad (Art. 11 LOCOTA).</text>
+        <text x="14" y="78" class="text-item-desc">• Blindaje de licitaciones públicas y compras electrónicas contra manipulación.</text>
         <rect x="14" y="96" width="448" height="22" rx="3" fill="#fef6e7"/>
-        <text x="238" y="111" class="text-tag" fill="#8c3b00" text-anchor="middle">Ética Algorítmica y Control Disciplinario</text>
+        <text x="238" y="111" class="text-tag" fill="#8c3b00" text-anchor="middle">Interoperabilidad LOCOTA 2026 • Estado Digital</text>
       </g>
     </g>
   </g>
 
   <!-- Flow Arrow 1 to 2 -->
-  <path d="M 540 454 L 540 476" class="flow-arrow-down" marker-end="url(#arrow-down-gold)"/>
+  <path d="M 540 454 L 540 476" class="flow-arrow-down" stroke="#2e8540" marker-end="url(#val-arrow-down-green)"/>
 
-  <!-- ================= 3. SECCIÓN 2: LOS 4 MECANISMOS ANTICORRUPCIÓN ================= -->
+  <!-- ================= 3. SECCIÓN 2: SORTEO ALEATORIO ================= -->
   <g transform="translate(40, 478)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#0050a0" stroke-width="1.5" filter="url(#val-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#98cca3" stroke-width="1.5" filter="url(#val-shadow-1)"/>
     <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#sec2ValGrad)"/>
     <rect y="24" width="1000" height="10" fill="url(#sec2ValGrad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#0050a0" text-anchor="middle">2</text>
-    <text x="40" y="21" class="text-header-box">LOS 4 MECANISMOS TÉCNICOS ANTICORRUPCIÓN (TÍTULO VII ARTS. 25-31)</text>
-    <text x="980" y="21" class="text-tag" fill="#dbeafe" text-anchor="end">Mecanismos Nucleares</text>
+    <text x="22" y="21" class="text-flow-num" fill="#0d2b14" text-anchor="middle">2</text>
+    <text x="40" y="21" class="text-header-box">SUUM CUIQUE TRIBUERE: SORTEO CRIPTOSEGURO ALGORÍTMICO (ART. 26)</text>
+    <text x="980" y="21" class="text-tag" fill="#eaf4ec" text-anchor="end">CSPRNG • Merkle Tree • Imparcialidad</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 2.1 -->
       <g transform="translate(0, 0)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0050a0"/>
-        <text x="14" y="22" class="text-item-title" fill="#003366">1. Sorteo Criptográfico de Causas (Art. 26)</text>
-        <text x="14" y="42" class="text-item-desc">• Algoritmo determinístico público y auditable.</text>
-        <text x="14" y="60" class="text-item-desc">• Asignación aleatoria de expedientes sin intervención humana.</text>
-        <text x="14" y="78" class="text-item-desc">• Registro inmutable en base de datos PostgreSQL/WORM.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0edfb"/>
-        <text x="238" y="111" class="text-tag" fill="#003366" text-anchor="middle">Eliminación de la Asignación Dirigida de Causas</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">Asignación Determinística de Ponencias</text>
+        <text x="14" y="42" class="text-item-desc">• Algoritmo público auditable basado en CSPRNG (secrets.SystemRandom).</text>
+        <text x="14" y="60" class="text-item-desc">• Prohibición absoluta de la intervención manual o designación "a dedo".</text>
+        <text x="14" y="78" class="text-item-desc">• Criterios de balanceo equitativo de carga procesal entre salas de juicio.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Título VII Art. 26 • Algoritmo Público</text>
       </g>
 
       <!-- Box 2.2 -->
       <g transform="translate(496, 0)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0050a0"/>
-        <text x="14" y="22" class="text-item-title" fill="#003366">2. Segregación "Cuatro Ojos Digital" (Art. 27)</text>
-        <text x="14" y="42" class="text-item-desc">• Control dual en la expedición de autos y providencias.</text>
-        <text x="14" y="60" class="text-item-desc">• Firma conjunta obligatoria de Juez y Secretario.</text>
-        <text x="14" y="78" class="text-item-desc">• Bloqueo técnico de decisiones unilaterales sin refrendo.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0edfb"/>
-        <text x="238" y="111" class="text-tag" fill="#003366" text-anchor="middle">Control Dual de Fe Pública Judicial</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">Semilla de Entropía Inmutable (Árbol de Merkle)</text>
+        <text x="14" y="42" class="text-item-desc">• Registro criptográfico instantáneo de cada sorteo con sellado RFC 3161.</text>
+        <text x="14" y="60" class="text-item-desc">• La semilla se indexa en una estructura Merkle inalterable e inspeccionable.</text>
+        <text x="14" y="78" class="text-item-desc">• Verificación matemática independiente de que la causa no fue direccionada.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Prueba de Inclusión Criptográfica Merkle</text>
       </g>
 
       <!-- Box 2.3 -->
       <g transform="translate(0, 140)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0050a0"/>
-        <text x="14" y="22" class="text-item-title" fill="#003366">3. Supervisión Humana en IA (Art. 25)</text>
-        <text x="14" y="42" class="text-item-desc">• Prohibición de sentencias 100% automatizadas.</text>
-        <text x="14" y="60" class="text-item-desc">• Asistencia algorítmica subordinada al criterio del juzgador.</text>
-        <text x="14" y="78" class="text-item-desc">• Explicabilidad técnica y derecho a la contradicción procesal.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0edfb"/>
-        <text x="238" y="111" class="text-tag" fill="#003366" text-anchor="middle">ISO/IEC 42001 &amp; AI Act UE: IA Ética y Confiable</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">Transparencia Pública &amp; Notificación Ciudadana</text>
+        <text x="14" y="42" class="text-item-desc">• Generación de acta de sorteo firmada electrónicamente por el sistema.</text>
+        <text x="14" y="60" class="text-item-desc">• Notificación telemática inmediata a las partes procesales con código CSV.</text>
+        <text x="14" y="78" class="text-item-desc">• Publicación en el portal web institucional del TSJ en menos de 60 segundos.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Transparencia Activa • Acceso a la Justicia</text>
       </g>
 
       <!-- Box 2.4 -->
       <g transform="translate(496, 140)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#a3caf5" stroke-width="1.2"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#0050a0"/>
-        <text x="14" y="22" class="text-item-title" fill="#003366">4. Alertas API Contra Retardo (Arts. 29-31)</text>
-        <text x="14" y="42" class="text-item-desc">• Monitoreo automatizado de plazos procesales legales.</text>
-        <text x="14" y="60" class="text-item-desc">• Conexión segura en tiempo real con Contraloría y DINCIP.</text>
-        <text x="14" y="78" class="text-item-desc">• Interoperabilidad obligatoria con LOCOTA 2026 (Art. 11).</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#e0edfb"/>
-        <text x="238" y="111" class="text-tag" fill="#003366" text-anchor="middle">Erradicación del Retardo Procesal (CRBV Art. 26)</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
+        <text x="14" y="22" class="text-item-title" fill="#0d2b14">Blindaje Constitucional (Sentencia TSJ 0406/2026)</text>
+        <text x="14" y="42" class="text-item-desc">• La Sala Constitucional valida el sorteo algorítmico como expresión del Art. 49.</text>
+        <text x="14" y="60" class="text-item-desc">• Blindaje contra alegatos de nulidad o recusaciones infundadas de ponente.</text>
+        <text x="14" y="78" class="text-item-desc">• Garantía procesal irrefutable de juez natural imparcial y predeterminado.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
+        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Sentencia TSJ/SC N° 0406/2026 Vinculante</text>
       </g>
     </g>
   </g>
 
   <!-- Flow Arrow 2 to 3 -->
-  <path d="M 540 808 L 540 830" class="flow-arrow-down" stroke="#0050a0" marker-end="url(#arrow-down-blue)"/>
+  <path d="M 540 808 L 540 830" class="flow-arrow-down" stroke="#1a5b8c" marker-end="url(#val-arrow-down-blue)"/>
 
-  <!-- ================= 4. SECCIÓN 3: JERARQUÍA ORGÁNICA ART. 203 CRBV ================= -->
+  <!-- ================= 4. SECCIÓN 3: SEGREGACIÓN 4 OJOS Y WORM ================= -->
   <g transform="translate(40, 832)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#98cca3" stroke-width="1.5" filter="url(#val-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#aacdec" stroke-width="1.5" filter="url(#val-shadow-1)"/>
     <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#sec3ValGrad)"/>
     <rect y="24" width="1000" height="10" fill="url(#sec3ValGrad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#154721" text-anchor="middle">3</text>
-    <text x="40" y="21" class="text-header-box">BLINDAJE JERÁRQUICO: RANGO DE LEY ORGÁNICA TRANSVERSAL</text>
-    <text x="980" y="21" class="text-tag" fill="#eaf4ec" text-anchor="end">Doctrina TSJ 0406/2026</text>
+    <text x="22" y="21" class="text-flow-num" fill="#162e51" text-anchor="middle">3</text>
+    <text x="40" y="21" class="text-header-box">ALTERUM NON LAEDERE: SEGREGACIÓN 4 OJOS (ART. 27) Y BÓVEDA WORM (ART. 28)</text>
+    <text x="980" y="21" class="text-tag" fill="#d9e8f6" text-anchor="end">Doble Firma • Inalterabilidad Criptográfica</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 3.1 -->
       <g transform="translate(0, 0)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
-        <text x="14" y="22" class="text-item-title" fill="#154721">Rango Orgánico Constitucional (Art. 203)</text>
-        <text x="14" y="42" class="text-item-desc">• Fundamentado en la Sentencia TSJ/SC N° 0406/2026.</text>
-        <text x="14" y="60" class="text-item-desc">• Sobre esta ley solo rige la Constitución de la República.</text>
-        <text x="14" y="78" class="text-item-desc">• Prevalece sobre cualquier ley especial u ordinaria contraria.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Sentencia TSJ/SC N° 0406/2026 Vinculante</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Segregación "4 Ojos" Digital (Art. 27)</text>
+        <text x="14" y="42" class="text-item-desc">• Doble firma electrónica obligatoria e indivisible (Juez + Secretario de Sala).</text>
+        <text x="14" y="60" class="text-item-desc">• Ningún funcionario judicial puede publicar o modificar autos en solitario.</text>
+        <text x="14" y="78" class="text-item-desc">• Bloqueo de base de datos e invalidez absoluta ante intentos de firma única.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">Título VII Art. 27 • Principio Cuatro Ojos</text>
       </g>
 
       <!-- Box 3.2 -->
       <g transform="translate(496, 0)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
-        <text x="14" y="22" class="text-item-title" fill="#154721">Ámbito Pleno: Judicial + Administración</text>
-        <text x="14" y="42" class="text-item-desc">• Supera la limitación de leyes sectoriales restringidas.</text>
-        <text x="14" y="60" class="text-item-desc">• Aplica a tribunales, ministerios, alcaldías y notarías.</text>
-        <text x="14" y="78" class="text-item-desc">• Ciberseguridad uniforme en todo el ecosistema público.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Cobertura 100% Transversal del Estado</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Sellado Dual SHA-256 + SHA3-512 (Art. 28)</text>
+        <text x="14" y="42" class="text-item-desc">• Generación de huella hash dual irreversible en el instante de suscripción.</text>
+        <text x="14" y="60" class="text-item-desc">• Sellado de tiempo oficial RFC 3161 provisto por la Autoridad Raíz SUSCERTE.</text>
+        <text x="14" y="78" class="text-item-desc">• Detección instantánea de alteración de un solo bit en sentencias o anexos.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">FIPS 180-4 • FIPS 202 • RFC 3161 TSA</text>
       </g>
 
       <!-- Box 3.3 -->
       <g transform="translate(0, 140)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
-        <text x="14" y="22" class="text-item-title" fill="#154721">Interoperabilidad con LOCOTA 2026</text>
-        <text x="14" y="42" class="text-item-desc">• Articulación expresa con Unidades de Celeridad (Art. 11).</text>
-        <text x="14" y="60" class="text-item-desc">• Ventanilla única interoperable de trámites y sentencias.</text>
-        <text x="14" y="78" class="text-item-desc">• Preservación de la inmutabilidad documental en tránsito.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Ley Orgánica para la Celeridad de Trámites</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Bóveda WORM MinIO S3 Object Lock (Art. 28)</text>
+        <text x="14" y="42" class="text-item-desc">• Almacenamiento Write-Once-Read-Many con retención legal estricta.</text>
+        <text x="14" y="60" class="text-item-desc">• Inalterabilidad garantizada: ni DBAs ni atacantes pueden modificar fallos.</text>
+        <text x="14" y="78" class="text-item-desc">• Preservación a largo plazo de providencias judiciales bajo ISO 19005-2.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">S3 Object Lock (Compliance Mode) • SEC Rule 17a-4</text>
       </g>
 
       <!-- Box 3.4 -->
       <g transform="translate(496, 140)">
-        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cde5d2" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#2e8540"/>
-        <text x="14" y="22" class="text-item-title" fill="#154721">DINCIP: Autoridad Rectora Nacional</text>
-        <text x="14" y="42" class="text-item-desc">• Dirección Nacional de Ciberseguridad de la Información.</text>
-        <text x="14" y="60" class="text-item-desc">• Emisión de Directivas Operativas Vinculantes (DOV 72h).</text>
-        <text x="14" y="78" class="text-item-desc">• Aprobación preceptiva de Planes de Seguridad (PSS).</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eaf4ec"/>
-        <text x="238" y="111" class="text-tag" fill="#154721" text-anchor="middle">Gobernanza Institucional Centralizada</text>
+        <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#1a5b8c"/>
+        <text x="14" y="22" class="text-item-title" fill="#162e51">Cotejo Público Universal CSV &amp; QR Oficial</text>
+        <text x="14" y="42" class="text-item-desc">• Código Seguro de Verificación (CSV) impreso en cada foja electrónica.</text>
+        <text x="14" y="60" class="text-item-desc">• Código QR que enlaza a la bóveda oficial de sentencias del TSJ.</text>
+        <text x="14" y="78" class="text-item-desc">• Cotejo libre y gratuito para ciudadanos y abogados (Art. 27 Infogobierno).</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#eff6fb"/>
+        <text x="238" y="111" class="text-tag" fill="#004987" text-anchor="middle">Ley de Infogobierno Art. 27 • Fe Pública Digital</text>
       </g>
     </g>
   </g>
 
   <!-- Flow Arrow 3 to 4 -->
-  <path d="M 540 1162 L 540 1184" class="flow-arrow-down" stroke="#2e8540" marker-end="url(#arrow-down-green)"/>
+  <path d="M 540 1162 L 540 1184" class="flow-arrow-down" stroke="#8b0a03" marker-end="url(#val-arrow-down-gold)"/>
 
-  <!-- ================= 5. SECCIÓN 4: GOBERNANZA FISMA & RÉGIMEN SANCIONATORIO ================= -->
+  <!-- ================= 5. SECCIÓN 4: IA ÉTICA & FISMA ================= -->
   <g transform="translate(40, 1186)">
-    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f8fafc" stroke="#cfb5e6" stroke-width="1.5" filter="url(#val-shadow-1)"/>
+    <rect x="0" y="0" width="1000" height="330" rx="8" fill="#f5f6f8" stroke="#e79c9c" stroke-width="1.5" filter="url(#val-shadow-1)"/>
     <rect x="0" y="0" width="1000" height="34" rx="8" fill="url(#sec4ValGrad)"/>
     <rect y="24" width="1000" height="10" fill="url(#sec4ValGrad)"/>
 
     <circle cx="22" cy="17" r="10" fill="#ffffff"/>
-    <text x="22" y="21" class="text-flow-num" fill="#4a156d" text-anchor="middle">4</text>
+    <text x="22" y="21" class="text-flow-num" fill="#5c1111" text-anchor="middle">4</text>
     <text x="40" y="21" class="text-header-box">GOBERNANZA FISMA 2014 &amp; RÉGIMEN SANCIONATORIO GARANTISTA</text>
-    <text x="980" y="21" class="text-tag" fill="#f3ebf9" text-anchor="end">Compliance &amp; Responsabilidad</text>
+    <text x="980" y="21" class="text-tag" fill="#f9eded" text-anchor="end">Alertas IA • Auditoría Anual • Sanciones</text>
 
-    <!-- 4 Sub-boxes in 2x2 Grid -->
     <g transform="translate(14, 46)">
       <!-- Box 4.1 -->
       <g transform="translate(0, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
-        <text x="14" y="22" class="text-item-title" fill="#4a156d">Auditoría Independiente Anual (Art. 10-bis)</text>
-        <text x="14" y="42" class="text-item-desc">• Evaluación fiscal externa anual de ciberseguridad.</text>
-        <text x="14" y="60" class="text-item-desc">• Auditorías de código fuente y pentesting obligatorio.</text>
-        <text x="14" y="78" class="text-item-desc">• Informe presentado a la Asamblea Nacional y CGR.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">FISMA 2014 § 3555 / Art. 10-bis Ley Orgánica</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#b50909"/>
+        <text x="14" y="22" class="text-item-title" fill="#5c1111">IA de Alertas Tempranas Anticorrupción (Arts. 25, 29-31)</text>
+        <text x="14" y="42" class="text-item-desc">• Detección automática en tiempo real de paralización injustificada de causas.</text>
+        <text x="14" y="60" class="text-item-desc">• Canal telemático directo hacia Contraloría General (CGR) y SUNAI.</text>
+        <text x="14" y="78" class="text-item-desc">• Prohibición expresa de sentencias automáticas sin juez humano responsable.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f9eded"/>
+        <text x="238" y="111" class="text-tag" fill="#8b0a03" text-anchor="middle">ISO/IEC 42001:2023 • Alertas CGR / SUNAI</text>
       </g>
 
       <!-- Box 4.2 -->
       <g transform="translate(496, 0)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
-        <text x="14" y="22" class="text-item-title" fill="#4a156d">Plan de Seguridad del Sistema (Art. 13-bis)</text>
-        <text x="14" y="42" class="text-item-desc">• Requisito habilitante para el funcionamiento de activos.</text>
-        <text x="14" y="60" class="text-item-desc">• Documentación técnica de controles según criticidad.</text>
-        <text x="14" y="78" class="text-item-desc">• Homologado y supervisado permanentemente por DINCIP.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">FISMA 2014 § 3554(b)(1) / Art. 13-bis PSS</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#b50909"/>
+        <text x="14" y="22" class="text-item-title" fill="#5c1111">Auditoría Independiente Anual (Art. 10-bis FISMA)</text>
+        <text x="14" y="42" class="text-item-desc">• Evaluación de seguridad y cumplimiento contratada por el Poder Ciudadano.</text>
+        <text x="14" y="60" class="text-item-desc">• Pruebas de penetración externas y verificación de planes PSS (Art. 13-bis).</text>
+        <text x="14" y="78" class="text-item-desc">• Entrega preceptiva del informe en 90 días a la Asamblea Nacional y TSJ.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f9eded"/>
+        <text x="238" y="111" class="text-tag" fill="#8b0a03" text-anchor="middle">FISMA 2014 § 3555 • Evaluación Independiente</text>
       </g>
 
       <!-- Box 4.3 -->
       <g transform="translate(0, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
-        <text x="14" y="22" class="text-item-title" fill="#4a156d">Directivas Operativas DOV (Art. 19-bis)</text>
-        <text x="14" y="42" class="text-item-desc">• Órdenes técnicas vinculantes ante vulnerabilidades críticas.</text>
-        <text x="14" y="60" class="text-item-desc">• Plazo perentorio de 72 horas para neutralizar riesgos.</text>
-        <text x="14" y="78" class="text-item-desc">• Sanción administrativa y penal en caso de desacato.</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">FISMA 2014 § 3553(b) / Art. 19-bis DOV</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#b50909"/>
+        <text x="14" y="22" class="text-item-title" fill="#5c1111">Directivas Vinculantes en 72h (DOV - Art. 19-bis)</text>
+        <text x="14" y="42" class="text-item-desc">• Potestad coercitiva de la DINCIP para ordenar contención inmediata de brechas.</text>
+        <text x="14" y="60" class="text-item-desc">• Plazo improrrogable de 72 horas para mitigar vulnerabilidades críticas.</text>
+        <text x="14" y="78" class="text-item-desc">• Sanción de destitución inmediata por desobediencia técnica dolosa.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f9eded"/>
+        <text x="238" y="111" class="text-tag" fill="#8b0a03" text-anchor="middle">FISMA 2014 § 3553(b) • Binding Operational Directives</text>
       </g>
 
       <!-- Box 4.4 -->
       <g transform="translate(496, 140)">
         <rect x="0" y="0" width="476" height="128" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1"/>
-        <rect x="0" y="0" width="4" height="128" rx="2" fill="#7832a8"/>
-        <text x="14" y="22" class="text-item-title" fill="#4a156d">Sanciones Escalonadas (Arts. 33-37)</text>
-        <text x="14" y="42" class="text-item-desc">• Infracciones Leves, Graves y Muy Graves tipificadas.</text>
-        <text x="14" y="60" class="text-item-desc">• Multas proporcionales e inhabilitación para cargos públicos.</text>
-        <text x="14" y="78" class="text-item-desc">• Plenas garantías de debido proceso y doble instancia (Art. 49).</text>
-        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f3ebf9"/>
-        <text x="238" y="111" class="text-tag" fill="#4a156d" text-anchor="middle">Título VIII (Régimen Sancionatorio Garantista)</text>
+        <rect x="0" y="0" width="4" height="128" rx="2" fill="#b50909"/>
+        <text x="14" y="22" class="text-item-title" fill="#5c1111">Régimen Sancionatorio Escalonado (Título VIII)</text>
+        <text x="14" y="42" class="text-item-desc">• Tipificación graduada de faltas (Leves, Graves, Muy Graves) en los Arts. 32-37.</text>
+        <text x="14" y="60" class="text-item-desc">• Garantías plenas de debido proceso, contradicción de pruebas y doble instancia.</text>
+        <text x="14" y="78" class="text-item-desc">• Inhabilitación penal y civil para servidores cómplices de corrupción digital.</text>
+        <rect x="14" y="96" width="448" height="22" rx="3" fill="#f9eded"/>
+        <text x="238" y="111" class="text-tag" fill="#8b0a03" text-anchor="middle">Título VIII Arts. 32-37 • Pleno Debido Proceso Art. 49</text>
       </g>
     </g>
   </g>
 
   <!-- ================= 6. WATERMARK FOOTER ================= -->
   <g transform="translate(40, 1535)">
-    <rect width="1000" height="75" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <rect width="1000" height="75" rx="8" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1"/>
     <text x="20" y="32" font-family="'Public Sans', sans-serif" font-size="10.5px" fill="#5c6b7e">
-      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#0050a0">Título VII V-1.2 Idea de Valor</tspan> • Autor: <tspan font-weight="700" fill="#0050a0">Jull Ortiz (sha256.us ↗)</tspan> • Formato Hoja Folio Vertical
+      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#5d2700">Título VII V-1.2 Idea de Valor</tspan> • Autor: <tspan font-weight="700" fill="#5d2700">Jull Ortiz (sha256.us ↗)</tspan>
     </text>
     <text x="980" y="32" font-family="'Roboto Mono', monospace" font-size="9.8px" fill="#5c6b7e" text-anchor="end">
-      FISMA 2014 S.2521 • LOCOTA 2026 • TSJ 0406/2026 • ISO 37001/42001
+      Honeste Vivere • Suum Cuique Tribuere • Alterum Non Laedere
     </text>
-    <text x="20" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#94a3b8">
+    <text x="20" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#8190a4">
       Design System USWDS 3.0 • Section 508 / WCAG 2.1 AAA • Tokens Semánticos Light • Hoja Folio Oficial (8.5" × 13")
     </text>
-    <text x="980" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#df7e00" text-anchor="end" font-weight="700">
-      TESIS DEL DOBLE FRENTE ANTICORRUPCIÓN
+    <text x="980" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#5d2700" text-anchor="end" font-weight="700">
+      INTEGRIDAD PROCESAL Y ADMINISTRATIVA • 47 ARTÍCULOS
     </text>
   </g>
 </svg>

@@ -1,690 +1,543 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1680" width="100%" height="100%" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <!-- Design System Traceability: USWDS 3.0 Light-Only Palette (src/styles/tokens.css) • Section 508 / WCAG 2.1 AAA • Ulpiano CCO V-1.2 -->
   <defs>
     <style><![CDATA[
-      .font-sans { font-family: 'Inter', 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-      .font-mono { font-family: 'Fira Code', 'Roboto Mono', Consolas, Monaco, monospace; }
+      .font-sans { font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+      .font-mono { font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, Monaco, monospace; }
 
-      /* Eraser.io Architecture Styles — Light Theme */
-      .text-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 14.5px; fill: #ffffff; letter-spacing: -0.01em; }
-      .text-subtitle { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 10.2px; fill: #f1f5f9; }
-      .text-subcite { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 9.2px; fill: #fde047; }
+      .text-title { font-family: 'Public Sans', sans-serif; font-weight: 800; font-size: 14.5px; fill: #ffffff; letter-spacing: -0.01em; }
+      .text-subtitle { font-family: 'Public Sans', sans-serif; font-weight: 500; font-size: 10.2px; fill: #eff6fb; }
+      .text-subcite { font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 9.2px; fill: #fac76f; }
       
-      .text-header-box { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 11.2px; fill: #ffffff; letter-spacing: 0.02em; }
-      .text-tag { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 8.8px; }
+      .text-header-box { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 11.2px; fill: #ffffff; letter-spacing: 0.02em; }
+      .text-tag { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 8.8px; }
       
-      .text-node-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 10.5px; fill: #0f172a; }
-      .text-node-desc { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 9.2px; fill: #334155; line-height: 1.35; }
-      .text-law-cite { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 8.5px; fill: #9a3412; }
-      .text-tech-cite { font-family: 'Fira Code', monospace; font-weight: 600; font-size: 8.2px; fill: #0369a1; }
+      .text-node-title { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 10.5px; fill: #0b1b3d; }
+      .text-node-desc { font-family: 'Public Sans', sans-serif; font-weight: 400; font-size: 9.2px; fill: #21272d; line-height: 1.35; }
+      .text-law-cite { font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 8.5px; fill: #8c3b00; }
+      .text-tech-cite { font-family: 'Roboto Mono', monospace; font-weight: 600; font-size: 8.2px; fill: #004987; }
 
-      .eraser-port { fill: #0284c7; stroke: #ffffff; stroke-width: 1.5; }
-      .eraser-port-gold { fill: #d97706; stroke: #ffffff; stroke-width: 1.5; }
-      .eraser-port-green { fill: #059669; stroke: #ffffff; stroke-width: 1.5; }
-      .eraser-port-purple { fill: #7c3aed; stroke: #ffffff; stroke-width: 1.5; }
+      .port-dot { fill: #004987; stroke: #ffffff; stroke-width: 1.5; }
+      .port-dot-gold { fill: #c05600; stroke: #ffffff; stroke-width: 1.5; }
+      .port-dot-green { fill: #1b622b; stroke: #ffffff; stroke-width: 1.5; }
+      .port-dot-violet { fill: #7832a8; stroke: #ffffff; stroke-width: 1.5; }
 
-      .flow-line { stroke: #0284c7; stroke-width: 1.8; stroke-dasharray: 4,3; fill: none; }
-      .flow-line-solid { stroke: #0284c7; stroke-width: 2; fill: none; }
-      .flow-line-green { stroke: #059669; stroke-width: 2; fill: none; }
-      .flow-line-gold { stroke: #d97706; stroke-width: 2; fill: none; }
-      .flow-line-purple { stroke: #7c3aed; stroke-width: 2; fill: none; }
+      .flow-line { stroke: #004987; stroke-width: 1.8; stroke-dasharray: 4,3; fill: none; }
+      .flow-line-solid { stroke: #004987; stroke-width: 2; fill: none; }
+      .flow-line-green { stroke: #1b622b; stroke-width: 2; fill: none; }
+      .flow-line-gold { stroke: #c05600; stroke-width: 2; fill: none; }
+      .flow-line-violet { stroke: #7832a8; stroke-width: 2; fill: none; }
     ]]></style>
 
-    <!-- Drop Shadow Filters for Light Background -->
-    <filter id="e-shadow" x="-3%" y="-3%" width="106%" height="106%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.08"/>
+    <filter id="py-shadow" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#13171b" flood-opacity="0.08"/>
     </filter>
-    <filter id="e-card-shadow" x="-2%" y="-2%" width="104%" height="104%">
-      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f2647" flood-opacity="0.10"/>
+    <filter id="py-card-shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0b1b3d" flood-opacity="0.10"/>
     </filter>
 
-    <!-- Gradients (Light Mode Professional Palette) -->
-    <linearGradient id="eHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#071426"/>
-      <stop offset="50%" stop-color="#0f2647"/>
-      <stop offset="100%" stop-color="#163866"/>
+    <linearGradient id="pyHeaderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0b1b3d"/>
+      <stop offset="50%" stop-color="#162e51"/>
+      <stop offset="100%" stop-color="#004987"/>
     </linearGradient>
 
-    <linearGradient id="eSec1Header" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0284c7"/>
-      <stop offset="100%" stop-color="#0369a1"/>
+    <linearGradient id="pySec1Header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#004987"/>
+      <stop offset="100%" stop-color="#1a5b8c"/>
     </linearGradient>
 
-    <linearGradient id="eSec2Header" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#6d28d9"/>
+    <linearGradient id="pySec2Header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a156d"/>
+      <stop offset="100%" stop-color="#7832a8"/>
     </linearGradient>
 
-    <linearGradient id="eSec3Header" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#059669"/>
-      <stop offset="100%" stop-color="#047857"/>
+    <linearGradient id="pySec3Header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d2b14"/>
+      <stop offset="100%" stop-color="#1b622b"/>
     </linearGradient>
 
-    <linearGradient id="eSec4Header" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#b45309"/>
+    <linearGradient id="pySec4Header" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5d2700"/>
+      <stop offset="100%" stop-color="#c05600"/>
     </linearGradient>
 
-    <!-- Markers -->
-    <marker id="e-arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#0284c7"/>
+    <marker id="py-arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#004987"/>
     </marker>
-    <marker id="e-arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669"/>
+    <marker id="py-arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#1b622b"/>
     </marker>
-    <marker id="e-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#d97706"/>
+    <marker id="py-arrow-gold" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#c05600"/>
     </marker>
-    <marker id="e-arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#7c3aed"/>
+    <marker id="py-arrow-violet" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#7832a8"/>
     </marker>
 
-    <!-- Eraser.io Light Grid Background Pattern -->
-    <pattern id="eraser-light-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e2e8f0" stroke-width="0.75"/>
+    <pattern id="py-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#e7e9ed" stroke-width="0.75"/>
     </pattern>
 
-    <!-- ======================================================== -->
-    <!-- EMBEDDED OFFICIAL TECH VECTOR SYMBOLS                    -->
-    <!-- ======================================================== -->
-
-    <!-- Python Vector -->
-    <g id="icon-python">
-      <path d="M14.77 0C6.62 0 7.13 3.53 7.13 3.53l.01 3.65h7.74v1.1H4.46S0 7.76 0 15.91c0 8.14 3.89 7.86 3.89 7.86h2.32v-3.26s-.13-3.89 3.83-3.89h7.68c3.7 0 3.83-3.76 3.83-3.76V1.88S22.23 0 14.77 0zm-4 2.41c.77 0 1.39.62 1.39 1.39s-.62 1.39-1.39 1.39-1.39-.62-1.39-1.39.62-1.39 1.39-1.39z" fill="#0284c7"/>
-      <path d="M15.23 30c8.14 0 7.64-3.53 7.64-3.53l-.01-3.65h-7.74v-1.1h10.42s4.46.52 4.46-7.63c0-8.14-3.89-7.86-3.89-7.86h-2.32v3.26s.13 3.89-3.83 3.89h-7.68c-3.7 0-3.83 3.76-3.83 3.76v8.23s-.69 1.88 6.77 1.88zm4-2.41c-.77 0-1.39-.62-1.39-1.39s.62-1.39 1.39-1.39 1.39.62 1.39 1.39-.62 1.39-1.39 1.39z" fill="#d97706"/>
+    <!-- Clean Vector Tech Icons -->
+    <g id="py-icon-python">
+      <path d="M14.77 0C6.62 0 7.13 3.53 7.13 3.53l.01 3.65h7.74v1.1H4.46S0 7.76 0 15.91c0 8.14 3.89 7.86 3.89 7.86h2.32v-3.26s-.13-3.89 3.83-3.89h7.68c3.7 0 3.83-3.76 3.83-3.76V1.88S22.23 0 14.77 0zm-4 2.41c.77 0 1.39.62 1.39 1.39s-.62 1.39-1.39 1.39-1.39-.62-1.39-1.39.62-1.39 1.39-1.39z" fill="#004987"/>
+      <path d="M15.23 30c8.14 0 7.64-3.53 7.64-3.53l-.01-3.65h-7.74v-1.1h10.42s4.46.52 4.46-7.63c0-8.14-3.89-7.86-3.89-7.86h-2.32v3.26s.13 3.89-3.83 3.89h-7.68c-3.7 0-3.83 3.76-3.83 3.76v8.23s-.69 1.88 6.77 1.88zm4-2.41c-.77 0-1.39-.62-1.39-1.39s.62-1.39 1.39-1.39 1.39.62 1.39 1.39-.62 1.39-1.39 1.39z" fill="#df7e00"/>
     </g>
 
-    <!-- FastAPI Vector -->
-    <g id="icon-fastapi">
-      <circle cx="15" cy="15" r="15" fill="#009688"/>
+    <g id="py-icon-fastapi">
+      <circle cx="15" cy="15" r="15" fill="#1b622b"/>
       <path d="M16.1 4.3L8.1 15.1h6L11.2 25.7l10.6-13.1h-5.7l4.3-8.3z" fill="#ffffff"/>
     </g>
 
-    <!-- Nginx Vector -->
-    <g id="icon-nginx">
-      <path d="M15 0L1.5 7.8v14.4L15 30l13.5-7.8V7.8L15 0zm7.3 21.3L9.9 8.1v13.2H7.6V8.7l12.3 13.2V8.7h2.4v12.6z" fill="#009639"/>
+    <g id="py-icon-postgres">
+      <circle cx="15" cy="15" r="15" fill="#162e51"/>
+      <path d="M15 6 C10 6 7 9 7 14 C7 20 11 23 15 24 C19 23 23 20 23 14 C23 9 20 6 15 6 Z" fill="#73b3e7"/>
     </g>
 
-    <!-- PostgreSQL Vector -->
-    <g id="icon-postgresql">
-      <path d="M14.9.4C9.5.4 5.9 3.7 4.8 6.4c-1.6 4-1.1 10.6.9 14.3 1.7 3.2 5.2 6.1 9.3 6.4 3.6.3 7.6-1.5 9.7-4.5 2-2.9 2.6-7.4 1.8-10.8-1.1-4.4-5-8.6-10.1-9-.2 0-.5 0-.7 0-.3 0-.6 0-.8.1z" fill="#336791"/>
-      <path d="M15.1 3.4c3.8 0 7.4 3.1 8.1 6.9.7 3.6-.9 7.9-3.9 10-2.4 1.8-5.9 2.1-8.6.7-2.5-1.2-4.1-3.8-4.5-6.5-.5-3.5 1.3-7.2 4.4-8.8 1.4-.8 3-1.2 4.5-1.3z" fill="#ffffff" opacity=".3"/>
-    </g>
-
-    <!-- Redis Vector -->
-    <g id="icon-redis">
-      <path d="M27.6 18.1L16 12.6a2.6 2.6 0 00-2.3 0L2.2 18.1a2.6 2.6 0 00-1.4 2.3v5a2.6 2.6 0 001.4 2.3l11.5 5.5a2.6 2.6 0 002.3 0l11.5-5.5a2.6 2.6 0 001.4-2.3v-5a2.6 2.6 0 00-1.3-2.3z" fill="#d82c20"/>
-      <path d="M27.6 9.8L16 4.3a2.6 2.6 0 00-2.3 0L2.2 9.8A2.6 2.6 0 00.8 12.1v3.6l13 6.2a2.6 2.6 0 002.3 0l13-6.2v-3.6a2.6 2.6 0 00-1.5-2.3z" fill="#a41e11"/>
-    </g>
-
-    <!-- Celery Vector -->
-    <g id="icon-celery">
-      <circle cx="15" cy="15" r="14" fill="#37814a"/>
-      <path d="M15 5.7c-5.2 0-9.4 4.2-9.4 9.4 0 3.4 1.8 6.4 4.5 8.1l1.1-1.9c-2.1-1.3-3.4-3.6-3.4-6.2 0-3.9 3.2-7.1 7.1-7.1s7.1 3.2 7.1 7.1c0 2.5-1.3 4.8-3.3 6.2l1.1 1.9c2.7-1.7 4.5-4.7 4.5-8.1 0-5.2-4.2-9.4-9.4-9.4z" fill="#a4e786"/>
-      <circle cx="15" cy="15.1" r="3.3" fill="#a4e786"/>
-    </g>
-
-    <!-- PKI Lock Vector -->
-    <g id="icon-pki-lock">
-      <rect x="5" y="12" width="20" height="15" rx="3" fill="#6366f1"/>
-      <path d="M8.5 12V8.5C8.5 4.9 11.4 2 15 2s6.5 2.9 6.5 6.5V12" fill="none" stroke="#6366f1" stroke-width="2.8" stroke-linecap="round"/>
-      <circle cx="15" cy="18" r="2" fill="#ffffff"/>
-      <path d="M14 18L13 23H17L16 18" fill="#ffffff"/>
-    </g>
-
-    <!-- S3 WORM Vector -->
-    <g id="icon-s3-worm">
-      <rect x="3" y="3" width="24" height="24" rx="5" fill="#c72c48"/>
-      <path d="M8 9h14v3H8zm0 5h14v3H8zm0 5h14v3H8z" fill="#ffffff"/>
-    </g>
-
-    <!-- RAG AI Vector -->
-    <g id="icon-rag-ai">
-      <circle cx="15" cy="15" r="14" fill="#f0fdf4" stroke="#059669" stroke-width="1.2"/>
-      <circle cx="15" cy="8.5" r="2.8" fill="#0284c7"/>
-      <circle cx="8.5" cy="19.5" r="2.8" fill="#7c3aed"/>
-      <circle cx="21.5" cy="19.5" r="2.8" fill="#059669"/>
-      <line x1="15" y1="8.5" x2="8.5" y2="19.5" stroke="#64748b" stroke-width="1"/>
-      <line x1="15" y1="8.5" x2="21.5" y2="19.5" stroke="#64748b" stroke-width="1"/>
-      <line x1="8.5" y1="19.5" x2="21.5" y2="19.5" stroke="#64748b" stroke-width="1"/>
-    </g>
-
-    <!-- Zero Trust Shield Vector -->
-    <g id="icon-shield-auth">
-      <path d="M15 2L4 6v8c0 6.6 4.7 12.8 11 14 6.3-1.2 11-7.4 11-14V6L15 2z" fill="#0284c7"/>
-      <path d="M13 18l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#ffffff"/>
-    </g>
-
-    <!-- PAdES PDF Forensics Vector -->
-    <g id="icon-pades-pdf">
-      <rect x="4" y="3" width="22" height="24" rx="3" fill="#e11d48"/>
-      <text x="15" y="16" font-family="'Fira Code', monospace" font-size="7" font-weight="700" fill="#ffffff" text-anchor="middle">PDF</text>
-      <circle cx="21" cy="22" r="4.5" fill="#facc15" stroke="#0f172a" stroke-width="1"/>
-      <path d="M19.5 22l1 1 2.5-2.5" fill="none" stroke="#0f172a" stroke-width="1" stroke-linecap="round"/>
-    </g>
-
-    <!-- Dual Hash Vector -->
-    <g id="icon-hash-dual">
-      <circle cx="15" cy="15" r="14" fill="#6b21a8" stroke="#a855f7" stroke-width="1"/>
-      <path d="M9 12h12M9 18h12M12 9v12M18 9v12" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
-    </g>
-
-    <!-- CSIRT Forensics SIEM Vector -->
-    <g id="icon-csirt-siem">
-      <circle cx="15" cy="15" r="14" fill="#b45309" stroke="#f59e0b" stroke-width="1"/>
-      <circle cx="15" cy="15" r="5" fill="none" stroke="#fef3c7" stroke-width="1.5"/>
-      <line x1="15" y1="4" x2="15" y2="26" stroke="#fef3c7" stroke-width="1.2"/>
-      <line x1="4" y1="15" x2="26" y2="15" stroke="#fef3c7" stroke-width="1.2"/>
+    <g id="py-icon-redis">
+      <circle cx="15" cy="15" r="15" fill="#8b0a03"/>
+      <rect x="7" y="10" width="16" height="10" rx="2" fill="#ffffff"/>
     </g>
   </defs>
 
-  <!-- LIENZO BASE (HOJA FOLIO VERTICAL 1080 x 1680 - Light Theme) -->
-  <rect width="1080" height="1680" fill="#f8fafc"/>
-  <rect width="1080" height="1680" fill="url(#eraser-light-grid)" opacity="0.75"/>
+  <!-- CANVAS BACKGROUND -->
+  <rect width="1080" height="1680" fill="#ffffff"/>
+  <rect width="1080" height="1680" fill="url(#py-grid)" opacity="0.65"/>
 
-  <!-- ======================================================== -->
-  <!-- 1. CABECERA INSTITUCIONAL: PYTHON BACKEND API SERVER     -->
-  <!-- ======================================================== -->
+  <!-- ================= 1. CABECERA INSTITUCIONAL ================= -->
   <g transform="translate(40, 16)">
-    <rect width="1000" height="96" rx="8" fill="url(#eHeaderGrad)" stroke="#1e3a8a" stroke-width="1.2" filter="url(#e-card-shadow)"/>
-    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#38bdf8"/>
+    <rect width="1000" height="96" rx="8" fill="url(#pyHeaderGrad)" stroke="#1a5b8c" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+    <rect x="0" y="0" width="7" height="96" rx="3.5" fill="#f3a534"/>
 
-    <!-- Brand Icon -->
-    <g transform="translate(22, 18)">
-      <rect width="60" height="60" rx="8" fill="#ffffff" stroke="#38bdf8" stroke-width="1.2"/>
-      <use href="#icon-python" x="15" y="15" width="30" height="30"/>
-    </g>
-
-    <!-- Title & Subtitle -->
-    <g transform="translate(96, 0)">
+    <g transform="translate(24, 0)">
       <text x="0" y="30" class="text-title">ARQUITECTURA BACKEND TSJ: SERVIDOR API EN PYTHON 3.12 (FASTAPI)</text>
-      <text x="0" y="52" class="text-subtitle">
-        FastAPI AsyncIO • Motor Criptográfico SUSCERTE PKI • Celery &amp; Redis • Bóveda WORM • pgvector RAG
+      <text x="0" y="51" class="text-subtitle">
+        FastAPI AsyncIO • Motor Criptográfico SUSCERTE PKI • Celery &amp; Redis • Bóveda WORM • pgvector RAG (115 Fuentes)
       </text>
-      <text x="0" y="74" class="text-subcite">
-        Fundamentación Legal: Ley Infogobierno Art. 13 (Software Libre) • LMDyFE Arts. 4, 7, 8, 18 • LPCDI Arts. 6, 7, 12
+      <text x="0" y="72" class="text-subcite">
+        Fundamentación: Ley Infogobierno Art. 13 (Software Libre) • LMDyFE Arts. 4-18 • LPCDI • Art. 203 CRBV / TSJ 0406/2026
       </text>
     </g>
 
-    <!-- Right Tech Badges -->
     <g transform="translate(755, 16)">
-      <rect x="0" y="0" width="230" height="28" rx="5" fill="#0f2647" stroke="#38bdf8" stroke-width="1"/>
-      <use href="#icon-fastapi" x="8" y="2" width="24" height="24"/>
-      <text x="125" y="18" class="text-tag" fill="#38bdf8" text-anchor="middle">PYTHON 3.12 + FASTAPI CORE</text>
-
-      <rect x="0" y="36" width="230" height="28" rx="5" fill="#071426" stroke="#475569" stroke-width="1"/>
-      <text x="115" y="54" class="text-tag" fill="#f1f5f9" text-anchor="middle">MODO LIGHT INSTITUCIONAL</text>
-    </g>
-  </g>
-
-  <!-- ======================================================== -->
-  <!-- 2. CAPA 1: INGRESS, API GATEWAY & ASGI APPLICATION       -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 128)">
-    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.2" filter="url(#e-card-shadow)"/>
-    
-    <rect width="1000" height="34" rx="8" fill="url(#eSec1Header)"/>
-    <rect y="26" width="1000" height="8" fill="url(#eSec1Header)"/>
-    
-    <g transform="translate(16, 8)">
-      <circle cx="9" cy="9" r="8" fill="#0369a1"/>
-      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">1</text>
-      <text x="26" y="14" class="text-header-box">CAPA 1: INGRESS, SEGURIDAD PERIMETRAL &amp; ASGI GATEWAY (FASTAPI / UVICORN)</text>
-    </g>
-    <rect x="760" y="6" width="225" height="22" rx="4" fill="#0369a1" stroke="#ffffff" stroke-width="0.8"/>
-    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">TLS 1.3 • OAUTH2 FIDO2 • ZERO TRUST</text>
-
-    <!-- Sub-Cards in Layer 1 with Light Theme -->
-    <g transform="translate(16, 46)">
+      <rect x="0" y="0" width="230" height="28" rx="5" fill="#004987" stroke="#73b3e7" stroke-width="1"/>
+      <text x="115" y="18" class="text-tag" fill="#ffffff" text-anchor="middle">PYTHON 3.12 + FASTAPI CORE</text>
       
-      <!-- Node 1.1: Nginx Ingress -->
-      <g transform="translate(0, 0)">
-        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
-        
-        <g transform="translate(8, 3)">
-          <rect width="24" height="24" rx="4" fill="#ffffff" stroke="#10b981" stroke-width="0.8"/>
-          <use href="#icon-nginx" x="3" y="3" width="18" height="18"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Nginx / Envoy SSL Reverse Proxy</text>
-        
-        <circle cx="155" cy="0" r="4" class="eraser-port"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Terminación TLS 1.3 (RFC 8446)</text>
-          <text x="0" y="32" class="text-node-desc">• HSTS max-age=63072000; preload</text>
-          <text x="0" y="50" class="text-node-desc">• Rate Limiting distribuido (Token Bucket)</text>
-          <text x="0" y="68" class="text-node-desc">• Web Application Firewall (OWASP CRS)</text>
-          <text x="0" y="86" class="text-node-desc">• Mitigación DDoS &amp; Bloqueo de botnets</text>
-          <text x="0" y="104" class="text-tech-cite">• Conexión upstream HTTP/2 hacia Uvicorn</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 110: Soberanía e Interés Público</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 6: Blindaje ante Acceso Indebido</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] NIST SP 800-52 Rev. 2 TLS</text>
-        </g>
-      </g>
-
-      <!-- Node 1.2: ASGI Application Core -->
-      <g transform="translate(328, 0)">
-        <rect width="310" height="252" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.2"/>
-        <rect width="310" height="30" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#e0f2fe"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-fastapi" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">FastAPI App &amp; Pydantic v2 Core</text>
-        
-        <circle cx="155" cy="0" r="4" class="eraser-port"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• ASGI AsyncIO Engine (Uvicorn / uvloop)</text>
-          <text x="0" y="32" class="text-node-desc">• Validación estricta con Pydantic v2</text>
-          <text x="0" y="50" class="text-node-desc">• OpenAPI 3.1 &amp; Documentación Swagger</text>
-          <text x="0" y="68" class="text-node-desc">• Endpoints REST para Next.js Frontend</text>
-          <text x="0" y="86" class="text-node-desc">• WebSockets para alertas en tiempo real</text>
-          <text x="0" y="104" class="text-tech-cite">• Middleware de Logging Forense JSON</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#bae6fd" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 13: Software Libre</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LOCOTA Art. 11: Interoperabilidad Digital</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 25010 Calidad Software</text>
-        </g>
-      </g>
-
-      <!-- Node 1.3: Auth & Zero Trust Guard -->
-      <g transform="translate(656, 0)">
-        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
-        
-        <g transform="translate(8, 3)">
-          <rect width="24" height="24" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.8"/>
-          <use href="#icon-shield-auth" x="2" y="2" width="20" height="20"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Auth &amp; Zero Trust Guard (PyJWT)</text>
-        
-        <circle cx="156" cy="0" r="4" class="eraser-port"/>
-        <circle cx="156" cy="252" r="4" class="eraser-port"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• OAuth2 con Password Flow &amp; PKCE</text>
-          <text x="0" y="32" class="text-node-desc">• Autenticación Multifactor MFA (FIDO2 / WebAuthn)</text>
-          <text x="0" y="50" class="text-node-desc">• Tokens JWT firmados asimétricamente (RS256)</text>
-          <text x="0" y="68" class="text-node-desc">• Control de Acceso RBAC / ABAC granular</text>
-          <text x="0" y="86" class="text-node-desc">• Segregación "4 Ojos Digital" (Art. 27)</text>
-          <text x="0" y="104" class="text-tech-cite">• Detección de sesiones anómalas concurrentes</text>
-          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Art. 27: Segregación de Funciones</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 9: Acceso Indebido a Sistemas</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] NIST SP 800-207 Zero Trust</text>
-        </g>
-      </g>
+      <rect x="0" y="36" width="230" height="28" rx="5" fill="#0b1b3d" stroke="#5c6b7e" stroke-width="1"/>
+      <text x="115" y="54" class="text-tag" fill="#fac76f" text-anchor="middle">SUSCERTE PKI + WORM S3</text>
     </g>
   </g>
 
-  <!-- Flow Connector 1 to 2 -->
-  <path d="M 540 443 L 540 478" class="flow-line-purple" marker-end="url(#e-arrow-purple)"/>
-  <rect x="440" y="450" width="200" height="18" rx="4" fill="#ffffff" stroke="#7c3aed" stroke-width="1"/>
-  <text x="540" y="462" class="text-tag" fill="#7c3aed" text-anchor="middle">PYKCS11 &amp; CRYPTOGRAPHY PIPELINE</text>
+  <!-- ================= 2. CAPA 1: INGRESS & FASTAPI ================= -->
+  <g transform="translate(40, 124)">
+    <rect width="1000" height="340" rx="8" fill="#f5f6f8" stroke="#aacdec" stroke-width="1.5" filter="url(#py-shadow)"/>
+    <rect width="1000" height="28" rx="8" fill="url(#pySec1Header)"/>
+    <rect y="20" width="1000" height="8" fill="url(#pySec1Header)"/>
+    <text x="20" y="18" class="text-header-box">CAPA 1: INGRESS, REVERSE PROXY &amp; ASGI GATEWAY (FASTAPI / TLS 1.3)</text>
+    <text x="980" y="18" class="text-tag" fill="#d9e8f6" text-anchor="end">OpenAPI 3.1 • Pydantic v2 • OAuth2 / FIDO2</text>
 
-  <!-- ======================================================== -->
-  <!-- 3. CAPA 2: MOTOR CRIPTOGRÁFICO JUDICIAL & PKI SUSCERTE    -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 485)">
-    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.2" filter="url(#e-card-shadow)"/>
-    
-    <rect width="1000" height="34" rx="8" fill="url(#eSec2Header)"/>
-    <rect y="26" width="1000" height="8" fill="url(#eSec2Header)"/>
-    
-    <g transform="translate(16, 8)">
-      <circle cx="9" cy="9" r="8" fill="#5b21b6"/>
-      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">2</text>
-      <text x="26" y="14" class="text-header-box">CAPA 2: MOTOR CRIPTOGRÁFICO, FIRMA DIGITAL PAdES &amp; PKI SUSCERTE</text>
+    <!-- Grid de Nodos Capa 1 -->
+    <g transform="translate(20, 42)">
+      <!-- Nodo 1.1: Reverse Proxy -->
+      <g transform="translate(0, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#004987"/>
+        <g transform="translate(14, 18)">
+          <use href="#py-icon-python" x="0" y="0" width="24" height="24"/>
+          <text x="32" y="16" class="text-node-title">Reverse Proxy Hardened</text>
+          <text x="0" y="40" class="text-node-desc">• Terminación TLS 1.3 (RFC 8446)</text>
+          <text x="0" y="56" class="text-node-desc">• Rate Limiting (Token Bucket)</text>
+          <text x="0" y="72" class="text-node-desc">• Cabeceras HSTS + CSP Estricta</text>
+          <text x="0" y="88" class="text-node-desc">• Mitigación DoS/DDoS en borde</text>
+          <text x="0" y="108" class="text-tech-cite">Nginx / Envoy Gateway</text>
+          <text x="0" y="126" class="text-law-cite">[STD] NIST SP 800-52 Rev. 2</text>
+        </g>
+        <circle cx="220" cy="90" r="5" class="port-dot"/>
+      </g>
+
+      <!-- Nodo 1.2: ASGI Uvicorn -->
+      <g transform="translate(250, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#004987"/>
+        <g transform="translate(14, 18)">
+          <use href="#py-icon-fastapi" x="0" y="0" width="24" height="24"/>
+          <text x="32" y="16" class="text-node-title">Uvicorn ASGI (uvloop)</text>
+          <text x="0" y="40" class="text-node-desc">• Event loop asíncrono en C</text>
+          <text x="0" y="56" class="text-node-desc">• Workers concurrentes multiplex</text>
+          <text x="0" y="72" class="text-node-desc">• Zero-copy buffer de red</text>
+          <text x="0" y="88" class="text-node-desc">• Telemetría OpenTelemetry</text>
+          <text x="0" y="108" class="text-tech-cite">Python 3.12 + AsyncIO</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] Infogobierno Art. 13</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot"/>
+        <circle cx="220" cy="90" r="5" class="port-dot"/>
+      </g>
+
+      <!-- Nodo 1.3: FastAPI Framework Core -->
+      <g transform="translate(500, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#aacdec" stroke-width="1.5" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#1b622b"/>
+        <g transform="translate(14, 18)">
+          <use href="#py-icon-fastapi" x="0" y="0" width="24" height="24"/>
+          <text x="32" y="16" class="text-node-title">FastAPI Application Core</text>
+          <text x="0" y="40" class="text-node-desc">• Validación estricta Pydantic v2</text>
+          <text x="0" y="56" class="text-node-desc">• Documentación OpenAPI 3.1</text>
+          <text x="0" y="72" class="text-node-desc">• Inyección de dependencias</text>
+          <text x="0" y="88" class="text-node-desc">• Endpoints REST &amp; WebSockets</text>
+          <text x="0" y="108" class="text-tech-cite">fastapi[all] &gt;= 0.115</text>
+          <text x="0" y="126" class="text-law-cite">[STD] RFC 8259 (JSON Schema)</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot"/>
+        <circle cx="220" cy="90" r="5" class="port-dot"/>
+        <circle cx="110" cy="180" r="5" class="port-dot"/>
+      </g>
+
+      <!-- Nodo 1.4: Auth & Guards Gateway -->
+      <g transform="translate(750, 0)">
+        <rect width="210" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="210" height="5" rx="2.5" fill="#b50909"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Auth &amp; RBAC Gateway</text>
+          <text x="0" y="40" class="text-node-desc">• Tokens JWT firmados Ed25519</text>
+          <text x="0" y="56" class="text-node-desc">• FIDO2 / WebAuthn Hardware</text>
+          <text x="0" y="72" class="text-node-desc">• Segregación 4 Ojos (Art. 27)</text>
+          <text x="0" y="88" class="text-node-desc">• Control de rol de magistrado</text>
+          <text x="0" y="108" class="text-tech-cite">python-jose • pywarp</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] Anteproyecto Art. 12</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot"/>
+      </g>
     </g>
-    <rect x="760" y="6" width="225" height="22" rx="4" fill="#5b21b6" stroke="#ffffff" stroke-width="0.8"/>
-    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">LMDyFE • RFC 3161 TSA • HSM FIPS 140-2</text>
 
-    <!-- Sub-Cards in Layer 2 with Light Theme -->
-    <g transform="translate(16, 46)">
+    <!-- Barra Inferior de Endpoints OpenAPI -->
+    <g transform="translate(20, 240)">
+      <rect width="960" height="82" rx="6" fill="#ffffff" stroke="#aacdec" stroke-width="1"/>
+      <rect width="960" height="22" rx="6" fill="#eff6fb"/>
+      <text x="14" y="15" font-family="'Roboto Mono', monospace" font-weight="700" font-size="9px" fill="#162e51">ENDPOINTS ACTIVOS DE COMPLIANCE TSJ (OPENAPI 3.1 REST &amp; WSS):</text>
       
-      <!-- Node 2.1: Python Cryptography & PyKCS11 HSM -->
-      <g transform="translate(0, 0)">
-        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
+      <g transform="translate(14, 30)">
+        <text x="0" y="14" font-family="'Roboto Mono', monospace" font-size="8.8px" fill="#004987">POST /api/v1/sentencias/firmar-pades</text>
+        <text x="320" y="14" class="text-node-desc">Firma PAdES-B-LTA mancomunada con token HSM (Art. 27)</text>
         
-        <g transform="translate(8, 3)">
-          <rect width="24" height="24" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="0.8"/>
-          <use href="#icon-pki-lock" x="2" y="2" width="20" height="20"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Hardware Security Module (PyKCS11)</text>
+        <text x="0" y="30" font-family="'Roboto Mono', monospace" font-size="8.8px" fill="#004987">GET  /api/v1/sentencias/cotejar/{csv}</text>
+        <text x="320" y="30" class="text-node-desc">Verificación pública instantánea con Código Seguro (Art. 27 Infogobierno)</text>
         
-        <circle cx="155" cy="0" r="4" class="eraser-port-purple"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port-purple"/>
+        <text x="0" y="46" font-family="'Roboto Mono', monospace" font-size="8.8px" fill="#154721">POST /api/v1/causas/sorteo-aleatorio</text>
+        <text x="320" y="46" class="text-node-desc">Asignación determinística inmutable con CSPRNG + Merkle Tree (Art. 26)</text>
 
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Interfaz PKCS#11 nativa en Python</text>
-          <text x="0" y="32" class="text-node-desc">• Tokens HSM FIPS 140-2 Nivel 3 dedicados</text>
-          <text x="0" y="50" class="text-node-desc">• Custodia inexpugnable de llaves RSA 4096</text>
-          <text x="0" y="68" class="text-node-desc">• Curvas elípticas ECC secp256r1 / Ed25519</text>
-          <text x="0" y="86" class="text-node-desc">• Certificados de Jueces y Secretarios TSJ</text>
-          <text x="0" y="104" class="text-tech-cite">• Zero Private Key Leakage garantizado</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Art. 16: Prohibición de Falsificación</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LMDyFE Art. 18: Presunción Legal de Firma</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] FIPS 140-2 Level 3 HSM</text>
-        </g>
-      </g>
-
-      <!-- Node 2.2: PAdES Generator & TSA Client -->
-      <g transform="translate(328, 0)">
-        <rect width="310" height="252" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.2"/>
-        <rect width="310" height="30" rx="6" fill="#f3e8ff" stroke="#7c3aed" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#f3e8ff"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-pades-pdf" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">pyHanko PAdES-B-LTA &amp; TSA Client</text>
-        
-        <circle cx="155" cy="0" r="4" class="eraser-port-purple"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port-purple"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Motor de firma digital avanzada (pyHanko)</text>
-          <text x="0" y="32" class="text-node-desc">• Formato estándar PDF/A-2u (ISO 19005-2)</text>
-          <text x="0" y="50" class="text-node-desc">• Sellado de Tiempo TSA RFC 3161 (Fecha Cierta)</text>
-          <text x="0" y="68" class="text-node-desc">• Validación CRL / OCSP en tiempo real</text>
-          <text x="0" y="86" class="text-node-desc">• Firma Long-Term Validation (LTV integrada)</text>
-          <text x="0" y="104" class="text-tech-cite">• Certificación jerárquica con Raíz SUSCERTE</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#e9d5ff" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Arts. 4 y 6: Eficacia Probatoria Plena</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LMDyFE Art. 8: Conservación y Fecha Cierta</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] ETSI EN 319 142 PAdES</text>
-        </g>
-      </g>
-
-      <!-- Node 2.3: Dual Hash Engine & CSV QR -->
-      <g transform="translate(656, 0)">
-        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-hash-dual" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Motor Hash Dual &amp; Código CSV / QR</text>
-        
-        <circle cx="156" cy="0" r="4" class="eraser-port-purple"/>
-        <circle cx="156" cy="252" r="4" class="eraser-port-purple"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Hash Dual SHA-256 + SHA3-512 (Keccak)</text>
-          <text x="0" y="32" class="text-node-desc">• Inalterabilidad garantizada de resoluciones</text>
-          <text x="0" y="50" class="text-node-desc">• Generación de Código Seguro Verificación (CSV)</text>
-          <text x="0" y="68" class="text-node-desc">• Estampado de QR de alta corrección (Level H)</text>
-          <text x="0" y="86" class="text-node-desc">• Cotejo público universal en portal TSJ</text>
-          <text x="0" y="104" class="text-tech-cite">• Integración con visor React-PDF frontend</text>
-          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] LMDyFE Art. 7: Integridad e Inalterabilidad</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] Ley Infogobierno Art. 27: Mecanismo de Cotejo</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] NIST FIPS 180-4 &amp; FIPS 202</text>
-        </g>
+        <text x="680" y="14" font-family="'Roboto Mono', monospace" font-size="8.8px" fill="#8c3b00">WSS  /api/v1/compliance/stream</text>
+        <text x="680" y="30" font-family="'Roboto Mono', monospace" font-size="8.8px" fill="#004987">POST /api/v1/rag/consulta</text>
+        <text x="680" y="46" font-family="'Roboto Mono', monospace" font-size="8.8px" fill="#8b0a03">POST /api/v1/auditorias/fisma</text>
       </g>
     </g>
   </g>
 
-  <!-- Flow Connector 2 to 3 -->
-  <path d="M 540 800 L 540 835" class="flow-line-green" marker-end="url(#e-arrow-green)"/>
-  <rect x="430" y="807" width="220" height="18" rx="4" fill="#ffffff" stroke="#059669" stroke-width="1"/>
-  <text x="540" y="819" class="text-tag" fill="#059669" text-anchor="middle">ASYNC CELERY &amp; RAG PIPELINE</text>
+  <!-- Flechas Conectoras Capa 1 a Capa 2 -->
+  <path d="M 650 464 L 650 488" class="flow-line-solid" marker-end="url(#py-arrow-violet)"/>
+  <path d="M 170 464 L 170 488" class="flow-line-solid" marker-end="url(#py-arrow-blue)"/>
 
-  <!-- ======================================================== -->
-  <!-- 4. CAPA 3: SERVICIOS ASÍNCRONOS, IA ÉTICA & RAG          -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 842)">
-    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.2" filter="url(#e-card-shadow)"/>
-    
-    <rect width="1000" height="34" rx="8" fill="url(#eSec3Header)"/>
-    <rect y="26" width="1000" height="8" fill="url(#eSec3Header)"/>
-    
-    <g transform="translate(16, 8)">
-      <circle cx="9" cy="9" r="8" fill="#065f46"/>
-      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">3</text>
-      <text x="26" y="14" class="text-header-box">CAPA 3: WORKERS ASÍNCRONOS (CELERY/REDIS), IA CCO &amp; RAG JUDICIAL</text>
+  <!-- ================= 3. CAPA 2: MOTOR CRIPTOGRÁFICO PKI ================= -->
+  <g transform="translate(40, 490)">
+    <rect width="1000" height="340" rx="8" fill="#f5f6f8" stroke="#cfb5e6" stroke-width="1.5" filter="url(#py-shadow)"/>
+    <rect width="1000" height="28" rx="8" fill="url(#pySec2Header)"/>
+    <rect y="20" width="1000" height="8" fill="url(#pySec2Header)"/>
+    <text x="20" y="18" class="text-header-box">CAPA 2: MOTOR CRIPTOGRÁFICO JUDICIAL &amp; PKI SUSCERTE (LMDyFE ARTS. 4-18)</text>
+    <text x="980" y="18" class="text-tag" fill="#f3ebf9" text-anchor="end">PyKCS11 HSM • pyHanko PAdES • TSA RFC 3161</text>
+
+    <!-- Grid de Nodos Capa 2 -->
+    <g transform="translate(20, 42)">
+      <!-- Nodo 2.1: HSM Interface -->
+      <g transform="translate(0, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#7832a8"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Tokens HSM Hardware</text>
+          <text x="0" y="40" class="text-node-desc">• Tokens FIPS 140-2 Nivel 3</text>
+          <text x="0" y="56" class="text-node-desc">• Llaves privadas RSA 4096 / ECC</text>
+          <text x="0" y="72" class="text-node-desc">• Sin extracción de clave</text>
+          <text x="0" y="88" class="text-node-desc">• Certificados acreditados</text>
+          <text x="0" y="108" class="text-tech-cite">PyKCS11 (PKCS#11 Native)</text>
+          <text x="0" y="126" class="text-law-cite">[STD] FIPS 140-2 Level 3</text>
+        </g>
+        <circle cx="220" cy="90" r="5" class="port-dot-violet"/>
+      </g>
+
+      <!-- Nodo 2.2: pyHanko PAdES -->
+      <g transform="translate(250, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfb5e6" stroke-width="1.5" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#7832a8"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">pyHanko PAdES-B-LTA</text>
+          <text x="0" y="40" class="text-node-desc">• Firma longeva ETSI EN 319 142</text>
+          <text x="0" y="56" class="text-node-desc">• Inclusión de OCSP y CRL</text>
+          <text x="0" y="72" class="text-node-desc">• Formato PDF/A-2u conforme</text>
+          <text x="0" y="88" class="text-node-desc">• Doble firma mancomunada</text>
+          <text x="0" y="108" class="text-tech-cite">pyHanko &gt;= 0.25 (Python)</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] LMDyFE Arts. 4, 7, 16</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-violet"/>
+        <circle cx="220" cy="90" r="5" class="port-dot-violet"/>
+        <circle cx="110" cy="180" r="5" class="port-dot-violet"/>
+      </g>
+
+      <!-- Nodo 2.3: TSA Client RFC 3161 -->
+      <g transform="translate(500, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#c05600"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Sellado de Tiempo TSA</text>
+          <text x="0" y="40" class="text-node-desc">• Protocolo RFC 3161 con TSA</text>
+          <text x="0" y="56" class="text-node-desc">• Sellado emitido por SUSCERTE</text>
+          <text x="0" y="72" class="text-node-desc">• Trazabilidad temporal exacta</text>
+          <text x="0" y="88" class="text-node-desc">• No repudio procesal legal</text>
+          <text x="0" y="108" class="text-tech-cite">asn1crypto • RFC 3161</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] LMDyFE Art. 18</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-violet"/>
+        <circle cx="220" cy="90" r="5" class="port-dot-gold"/>
+      </g>
+
+      <!-- Nodo 2.4: Hash Dual Engine -->
+      <g transform="translate(750, 0)">
+        <rect width="210" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="210" height="5" rx="2.5" fill="#1b622b"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Motor de Hash Dual</text>
+          <text x="0" y="40" class="text-node-desc">• SHA-256 (NIST FIPS 180-4)</text>
+          <text x="0" y="56" class="text-node-desc">• SHA3-512 (NIST FIPS 202)</text>
+          <text x="0" y="72" class="text-node-desc">• Huella dual irreversible</text>
+          <text x="0" y="88" class="text-node-desc">• Generación de código CSV</text>
+          <text x="0" y="108" class="text-tech-cite">hashlib nativo (OpenSSL)</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] Anteproyecto Art. 28</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-gold"/>
+      </g>
     </g>
-    <rect x="760" y="6" width="225" height="22" rx="4" fill="#047857" stroke="#ffffff" stroke-width="0.8"/>
-    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">ISO 42001 • HUMAN-IN-THE-LOOP • CGR</text>
 
-    <!-- Sub-Cards in Layer 3 with Light Theme -->
-    <g transform="translate(16, 46)">
+    <!-- Resumen de Cumplimiento SUSCERTE -->
+    <g transform="translate(20, 240)">
+      <rect width="960" height="82" rx="6" fill="#ffffff" stroke="#cfb5e6" stroke-width="1"/>
+      <rect width="960" height="22" rx="6" fill="#f3ebf9"/>
+      <text x="14" y="15" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#4a156d">ACREDITACIÓN Y GARANTÍAS DE FE PÚBLICA DIGITAL (V-1.2):</text>
       
-      <!-- Node 3.1: Celery Distributed Task Queue -->
-      <g transform="translate(0, 0)">
-        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-celery" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Celery Workers &amp; Redis 7 Broker</text>
-        
-        <circle cx="155" cy="0" r="4" class="eraser-port-green"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port-green"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Broker de mensajería Redis 7 en memoria</text>
-          <text x="0" y="32" class="text-node-desc">• Workers Celery distribuidos y concurrentes</text>
-          <text x="0" y="50" class="text-node-desc">• Tareas de sellado masivo en segundo plano</text>
-          <text x="0" y="68" class="text-node-desc">• Procesamiento de adquisiciones forenses</text>
-          <text x="0" y="86" class="text-node-desc">• Generación de reportes PSS periódicos</text>
-          <text x="0" y="104" class="text-tech-cite">• Tolerancia a fallos con reintentos exponenciales</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 26: Tutela Judicial Eficaz y Continua</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] FISMA § 3554: Mantenimiento de PSS</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] ISO 22301 Continuidad Operativa</text>
-        </g>
-      </g>
-
-      <!-- Node 3.2: Compliance AI Engine & Early Warnings -->
-      <g transform="translate(328, 0)">
-        <rect width="310" height="252" rx="6" fill="#f0fdf4" stroke="#059669" stroke-width="1.2"/>
-        <rect width="310" height="30" rx="6" fill="#dcfce7" stroke="#059669" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#dcfce7"/>
-        
-        <g transform="translate(8, 3)">
-          <rect width="24" height="24" rx="4" fill="#059669"/>
-          <text x="12" y="16" font-family="'Fira Code', monospace" font-size="8.5" font-weight="700" fill="#ffffff" text-anchor="middle">AI</text>
-        </g>
-        <text x="38" y="19" class="text-node-title">IA Ética CCO &amp; Alertas Tempranas</text>
-        
-        <circle cx="155" cy="0" r="4" class="eraser-port-green"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port-green"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Detección estadística de anomalías procesales</text>
-          <text x="0" y="32" class="text-node-desc">• Alertas de retardo procesal hacia CGR/SUNAI</text>
-          <text x="0" y="50" class="text-node-desc">• Prohibición de sentencias 100% automatizadas</text>
-          <text x="0" y="68" class="text-node-desc">• Supervisión Humana Significativa obligatoria</text>
-          <text x="0" y="86" class="text-node-desc">• Sorteo Criptográfico de Causas (Art. 26)</text>
-          <text x="0" y="104" class="text-tech-cite">• Generador criptoseguro secrets.SystemRandom</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#bbf7d0" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Arts. 15, 25, 26 y 31 Ley V-1.2</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] Sentencia TSJ 0406/2026: Sorteo Inmutable</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 42001 &amp; ISO 37001</text>
-        </g>
-      </g>
-
-      <!-- Node 3.3: LlamaIndex / LangChain RAG -->
-      <g transform="translate(656, 0)">
-        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-rag-ai" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Pipeline RAG Normativo Soberano</text>
-        
-        <circle cx="156" cy="0" r="4" class="eraser-port-green"/>
-        <circle cx="156" cy="252" r="4" class="eraser-port-green"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• LlamaIndex &amp; LangChain Core en Python</text>
-          <text x="0" y="32" class="text-node-desc">• Embeddings vectoriales locales on-premise</text>
-          <text x="0" y="50" class="text-node-desc">• Corpus del RAG: CRBV, LMDyFE, Infogobierno</text>
-          <text x="0" y="68" class="text-node-desc">• Búsqueda semántica híbrida (BM25 + Vector)</text>
-          <text x="0" y="86" class="text-node-desc">• Citas exactas artículo por artículo sin sesgos</text>
-          <text x="0" y="104" class="text-tech-cite">• Zero Data Exfiltration a servicios de terceros</text>
-          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] CRBV Art. 28: Habeas Data y Privacidad</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] Título VII Art. 30: Auditoría Algorítmica</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] NIST AI Risk Management Framework</text>
-        </g>
+      <g transform="translate(14, 30)">
+        <text x="0" y="14" class="text-node-desc">• <tspan font-weight="700">Validez Plena:</tspan> Conforme al Art. 4 de la LMDyFE, la firma PAdES-B-LTA equivale a la firma autógrafa con plena eficacia jurídica.</text>
+        <text x="0" y="28" class="text-node-desc">• <tspan font-weight="700">Segregación Cuatro Ojos:</tspan> Requiere la firma sucesiva e indivisible de Juez y Secretario; el motor bloquea cualquier intento unilateral (Art. 27).</text>
+        <text x="0" y="42" class="text-node-desc">• <tspan font-weight="700">Preservación LTA:</tspan> Los sellos TSA y validaciones OCSP quedan embebidos en el PDF/A-2u, garantizando verificación autónoma por 30+ años.</text>
       </g>
     </g>
   </g>
 
-  <!-- Flow Connector 3 to 4 -->
-  <path d="M 540 1157 L 540 1192" class="flow-line-gold" marker-end="url(#e-arrow-gold)"/>
-  <rect x="430" y="1164" width="220" height="18" rx="4" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
-  <text x="540" y="1176" class="text-tag" fill="#d97706" text-anchor="middle">ASYNCPG &amp; WORM STORAGE API</text>
+  <!-- Flechas Conectoras Capa 2 a Capa 3 -->
+  <path d="M 360 830 L 360 854" class="flow-line-solid" stroke="#1b622b" marker-end="url(#py-arrow-green)"/>
+  <path d="M 610 830 L 610 854" class="flow-line-solid" stroke="#1b622b" marker-end="url(#py-arrow-green)"/>
 
-  <!-- ======================================================== -->
-  <!-- 5. CAPA 4: PERSISTENCIA, BÓVEDA WORM & AUDITORÍA         -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 1199)">
-    <rect width="1000" height="315" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="1.2" filter="url(#e-card-shadow)"/>
-    
-    <rect width="1000" height="34" rx="8" fill="url(#eSec4Header)"/>
-    <rect y="26" width="1000" height="8" fill="url(#eSec4Header)"/>
-    
-    <g transform="translate(16, 8)">
-      <circle cx="9" cy="9" r="8" fill="#92400e"/>
-      <text x="9" y="13" class="text-flow-num" text-anchor="middle" font-size="10">4</text>
-      <text x="26" y="14" class="text-header-box">CAPA 4: PERSISTENCIA SQL (POSTGRESQL 16), BÓVEDA WORM &amp; BITÁCORA FORENSE</text>
+  <!-- ================= 4. CAPA 3: WORKERS & IA ================= -->
+  <g transform="translate(40, 856)">
+    <rect width="1000" height="340" rx="8" fill="#f5f6f8" stroke="#98cca3" stroke-width="1.5" filter="url(#py-shadow)"/>
+    <rect width="1000" height="28" rx="8" fill="url(#pySec3Header)"/>
+    <rect y="20" width="1000" height="8" fill="url(#pySec3Header)"/>
+    <text x="20" y="18" class="text-header-box">CAPA 3: WORKERS ASÍNCRONOS, IA ÉTICA &amp; RAG NORMATIVO (115 FUENTES)</text>
+    <text x="980" y="18" class="text-tag" fill="#eaf4ec" text-anchor="end">Celery • Redis • pgvector • ISO 42001</text>
+
+    <!-- Grid de Nodos Capa 3 -->
+    <g transform="translate(20, 42)">
+      <!-- Nodo 3.1: Celery Workers -->
+      <g transform="translate(0, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#1b622b"/>
+        <g transform="translate(14, 18)">
+          <use href="#py-icon-redis" x="0" y="0" width="24" height="24"/>
+          <text x="32" y="16" class="text-node-title">Celery Distributed</text>
+          <text x="0" y="40" class="text-node-desc">• Colas separadas por prioridad</text>
+          <text x="0" y="56" class="text-node-desc">• Sellado masivo de sentencias</text>
+          <text x="0" y="72" class="text-node-desc">• Notificaciones telemáticas</text>
+          <text x="0" y="88" class="text-node-desc">• Tareas de auditoría FISMA</text>
+          <text x="0" y="108" class="text-tech-cite">Celery 5.4 + Redis 7</text>
+          <text x="0" y="126" class="text-law-cite">[STD] High Availability Queues</text>
+        </g>
+        <circle cx="220" cy="90" r="5" class="port-dot-green"/>
+      </g>
+
+      <!-- Nodo 3.2: IA Alertas Tempranas -->
+      <g transform="translate(250, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#98cca3" stroke-width="1.5" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#1b622b"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">IA Alertas CGR / SUNAI</text>
+          <text x="0" y="40" class="text-node-desc">• Detección de retardo procesal</text>
+          <text x="0" y="56" class="text-node-desc">• Detección de patrones anómalos</text>
+          <text x="0" y="72" class="text-node-desc">• Supervisión humana estricta</text>
+          <text x="0" y="88" class="text-node-desc">• Prohibición de fallos por IA</text>
+          <text x="0" y="108" class="text-tech-cite">scikit-learn • ONNX Runtime</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] Anteproyecto Arts. 25, 29</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-green"/>
+        <circle cx="220" cy="90" r="5" class="port-dot-green"/>
+        <circle cx="110" cy="180" r="5" class="port-dot-green"/>
+      </g>
+
+      <!-- Nodo 3.3: Sorteo Criptoseguro -->
+      <g transform="translate(500, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#1b622b"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Sorteo Criptoseguro (Art. 26)</text>
+          <text x="0" y="40" class="text-node-desc">• CSPRNG secrets.SystemRandom</text>
+          <text x="0" y="56" class="text-node-desc">• Semilla en Árbol de Merkle</text>
+          <text x="0" y="72" class="text-node-desc">• Cero manipulación de causas</text>
+          <text x="0" y="88" class="text-node-desc">• Asignación determinística</text>
+          <text x="0" y="108" class="text-tech-cite">secrets • pymerkle</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] Título VII Art. 26</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-green"/>
+        <circle cx="220" cy="90" r="5" class="port-dot-green"/>
+      </g>
+
+      <!-- Nodo 3.4: RAG pgvector 115 Fuentes -->
+      <g transform="translate(750, 0)">
+        <rect width="210" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="210" height="5" rx="2.5" fill="#004987"/>
+        <g transform="translate(14, 18)">
+          <use href="#py-icon-postgres" x="0" y="0" width="24" height="24"/>
+          <text x="32" y="16" class="text-node-title">RAG pgvector (115 F)</text>
+          <text x="0" y="40" class="text-node-desc">• Embeddings normativos 1536d</text>
+          <text x="0" y="56" class="text-node-desc">• 4 niveles de pertinencia</text>
+          <text x="0" y="72" class="text-node-desc">• Búsqueda semántica HNSW</text>
+          <text x="0" y="88" class="text-node-desc">• Cotejo legal instantáneo</text>
+          <text x="0" y="108" class="text-tech-cite">pgvector • langchain-community</text>
+          <text x="0" y="126" class="text-law-cite">[CAT] Catálogo RAG Ulpiano</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-green"/>
+      </g>
     </g>
-    <rect x="760" y="6" width="225" height="22" rx="4" fill="#b45309" stroke="#ffffff" stroke-width="0.8"/>
-    <text x="872" y="20" class="text-tag" fill="#ffffff" text-anchor="middle">POSTGRESQL 16 • S3 OBJECT LOCK</text>
 
-    <!-- Sub-Cards in Layer 4 with Light Theme -->
-    <g transform="translate(16, 46)">
+    <!-- Barra de Transparencia de IA -->
+    <g transform="translate(20, 240)">
+      <rect width="960" height="82" rx="6" fill="#ffffff" stroke="#98cca3" stroke-width="1"/>
+      <rect width="960" height="22" rx="6" fill="#eaf4ec"/>
+      <text x="14" y="15" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#0d2b14">PRINCIPIO CONSTITUCIONAL DE IA ÉTICA JUDICIAL (ARTS. 25, 29-31):</text>
       
-      <!-- Node 4.1: PostgreSQL 16 & AsyncPG -->
-      <g transform="translate(0, 0)">
-        <rect width="310" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="310" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#f1f5f9"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-postgresql" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">PostgreSQL 16 + AsyncPG &amp; pgvector</text>
-        
-        <circle cx="155" cy="0" r="4" class="eraser-port-gold"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port-gold"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Driver asíncrono de alto rendimiento AsyncPG</text>
-          <text x="0" y="32" class="text-node-desc">• SQLAlchemy 2.0 con Modelos Pydantic v2</text>
-          <text x="0" y="50" class="text-node-desc">• Extensión pgvector (HNSW Indexing para RAG)</text>
-          <text x="0" y="68" class="text-node-desc">• Cifrado nativo de bases de datos TDE</text>
-          <text x="0" y="86" class="text-node-desc">• Replicación síncrona Streaming Replication</text>
-          <text x="0" y="104" class="text-tech-cite">• Pool de conexiones pgbouncer optimizado</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 13: BD Software Libre</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 7: Protección contra Sabotaje</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 27001 Control A.8.24</text>
-        </g>
-      </g>
-
-      <!-- Node 4.2: MinIO / S3 WORM Storage -->
-      <g transform="translate(328, 0)">
-        <rect width="310" height="252" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.2"/>
-        <rect width="310" height="30" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="0.8"/>
-        <rect y="22" width="310" height="8" fill="#fef3c7"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-s3-worm" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Bóveda WORM Inmutable (MinIO S3)</text>
-        
-        <circle cx="155" cy="0" r="4" class="eraser-port-gold"/>
-        <circle cx="155" cy="252" r="4" class="eraser-port-gold"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• MinIO S3 Object Lock en modo Compliance</text>
-          <text x="0" y="32" class="text-node-desc">• Almacenamiento Write-Once-Read-Many (WORM)</text>
-          <text x="0" y="50" class="text-node-desc">• Imposibilidad técnica de borrado o alteración</text>
-          <text x="0" y="68" class="text-node-desc">• Custodia perenne de sentencias y expedientes</text>
-          <text x="0" y="86" class="text-node-desc">• Retención legal forzosa e inviolable</text>
-          <text x="0" y="104" class="text-tech-cite">• Cifrado del lado del servidor SSE-KMS</text>
-          <line x1="0" y1="118" x2="286" y2="118" stroke="#fde68a" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] Ley Infogobierno Art. 11: Repositorios Digitales</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LMDyFE Art. 7: Inalterabilidad Absoluta</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] SEC Rule 17a-4 / Cohasset Certified</text>
-        </g>
-      </g>
-
-      <!-- Node 4.3: Forensics Log Chaining & CSIRT -->
-      <g transform="translate(656, 0)">
-        <rect width="312" height="252" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
-        <rect width="312" height="30" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8"/>
-        <rect y="22" width="312" height="8" fill="#f1f5f9"/>
-        
-        <g transform="translate(8, 3)">
-          <use href="#icon-csirt-siem" x="0" y="0" width="24" height="24"/>
-        </g>
-        <text x="38" y="19" class="text-node-title">Bitácora Criptográfica &amp; CSIRT SIEM</text>
-        
-        <circle cx="156" cy="0" r="4" class="eraser-port-gold"/>
-        <circle cx="156" cy="252" r="4" class="eraser-port-gold"/>
-
-        <g transform="translate(12, 40)">
-          <text x="0" y="14" class="text-tech-cite">• Log Hash Chaining (Árbol de Merkle inmutable)</text>
-          <text x="0" y="32" class="text-node-desc">• Registro forense de cada petición y firma</text>
-          <text x="0" y="50" class="text-node-desc">• Ingesta continua en SIEM del CSIRT-Ulpiano</text>
-          <text x="0" y="68" class="text-node-desc">• Alertas de intrusión o corrupción interna en 24h</text>
-          <text x="0" y="86" class="text-node-desc">• Cadena de custodia digital ISO/IEC 27037</text>
-          <text x="0" y="104" class="text-tech-cite">• Exportación forense según Manual MP 2017</text>
-          <line x1="0" y1="118" x2="288" y2="118" stroke="#cbd5e1" stroke-width="0.8"/>
-          <text x="0" y="136" class="text-law-cite">[LEY] Título VII Art. 28: Registro Inmutable</text>
-          <text x="0" y="152" class="text-law-cite">[LEY] LPCDI Art. 12: Falsificación de Documentos</text>
-          <text x="0" y="168" class="text-tech-cite">[STD] ISO/IEC 27037 &amp; RFC 3227</text>
-        </g>
+      <g transform="translate(14, 30)">
+        <text x="0" y="14" class="text-node-desc">• <tspan font-weight="700">Cero Fallos Automáticos:</tspan> La IA tiene prohibido por mandato constitucional dictar autos, sentencias o resoluciones (Sentencia TSJ 0406/2026).</text>
+        <text x="0" y="28" class="text-node-desc">• <tspan font-weight="700">Radar Anticorrupción:</tspan> Monitorea pasivamente el cumplimiento de lapsos procesales y emite alertas telemáticas a órganos de control fiscal.</text>
+        <text x="0" y="42" class="text-node-desc">• <tspan font-weight="700">Corpus RAG Indexado:</tspan> 115 fuentes auditadas en 4 estratos normativos alimentan el motor para verificación jurídica automatizada.</text>
       </g>
     </g>
   </g>
 
-  <!-- ======================================================== -->
-  <!-- 6. PIE DE PÁGINA: MATRIZ DE INTEGRACIÓN PYTHON & STANDARDS -->
-  <!-- ======================================================== -->
-  <g transform="translate(40, 1545)">
-    <rect width="1000" height="105" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" filter="url(#e-shadow)"/>
-    
-    <g transform="translate(20, 16)">
-      <text x="0" y="18" class="text-header-box" fill="#0369a1">CONTRATO DE INTEGRACIÓN API (PYTHON FASTAPI ⇄ FRONTEND NEXT.JS)</text>
-      <text x="0" y="40" class="text-node-desc" fill="#334155">
-        El servidor en <strong style="fill:#0284c7;">Python 3.12 (FastAPI)</strong> expone una arquitectura de microservicios asíncronos desacoplada del cliente web.
-      </text>
-      <text x="0" y="58" class="text-node-desc" fill="#334155">
-        La comunicación con el Frontend en <strong style="fill:#0f172a;">Next.js</strong> se realiza mediante <strong style="fill:#0284c7;">REST / OpenAPI 3.1 + WebSockets seguros (WSS)</strong> con autenticación JWT FIDO2.
-      </text>
-      <text x="0" y="76" class="text-law-cite">
-        Cumplimiento Pleno: CRBV Arts. 26, 49, 110, 203 • Sentencia TSJ 0406/2026 • LMDyFE G.O. 37.148 • Infogobierno G.O. 40.274 • ISO 27001 / 27037 / 42001
-      </text>
+  <!-- Flechas Conectoras Capa 3 a Capa 4 -->
+  <path d="M 360 1196 L 360 1220" class="flow-line-solid" stroke="#c05600" marker-end="url(#py-arrow-gold)"/>
+  <path d="M 860 1196 L 860 1220" class="flow-line-solid" stroke="#004987" marker-end="url(#py-arrow-blue)"/>
+
+  <!-- ================= 5. CAPA 4: PERSISTENCIA & WORM ================= -->
+  <g transform="translate(40, 1222)">
+    <rect width="1000" height="340" rx="8" fill="#f5f6f8" stroke="#fac76f" stroke-width="1.5" filter="url(#py-shadow)"/>
+    <rect width="1000" height="28" rx="8" fill="url(#pySec4Header)"/>
+    <rect y="20" width="1000" height="8" fill="url(#pySec4Header)"/>
+    <text x="20" y="18" class="text-header-box">CAPA 4: PERSISTENCIA POSTGRESQL 16 &amp; BÓVEDA WORM MINIO S3 (ART. 28)</text>
+    <text x="980" y="18" class="text-tag" fill="#fef6e7" text-anchor="end">AsyncPG • S3 Object Lock • SEC Rule 17a-4</text>
+
+    <!-- Grid de Nodos Capa 4 -->
+    <g transform="translate(20, 42)">
+      <!-- Nodo 4.1: PostgreSQL 16 Primary -->
+      <g transform="translate(0, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#004987"/>
+        <g transform="translate(14, 18)">
+          <use href="#py-icon-postgres" x="0" y="0" width="24" height="24"/>
+          <text x="32" y="16" class="text-node-title">PostgreSQL 16 Engine</text>
+          <text x="0" y="40" class="text-node-desc">• Esquema relacional de causas</text>
+          <text x="0" y="56" class="text-node-desc">• Extensión pgvector activa</text>
+          <text x="0" y="72" class="text-node-desc">• Row-Level Security (RLS)</text>
+          <text x="0" y="88" class="text-node-desc">• Replicación síncrona streaming</text>
+          <text x="0" y="108" class="text-tech-cite">AsyncPG • SQLAlchemy 2.0</text>
+          <text x="0" y="126" class="text-law-cite">[STD] ACID Enterprise Compliance</text>
+        </g>
+        <circle cx="220" cy="90" r="5" class="port-dot"/>
+      </g>
+
+      <!-- Nodo 4.2: MinIO S3 WORM Vault -->
+      <g transform="translate(250, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#fac76f" stroke-width="1.5" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#c05600"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Bóveda WORM MinIO S3</text>
+          <text x="0" y="40" class="text-node-desc">• Object Lock en modo Compliance</text>
+          <text x="0" y="56" class="text-node-desc">• Inalterable incluso para root/DBA</text>
+          <text x="0" y="72" class="text-node-desc">• Retención legal por 30+ años</text>
+          <text x="0" y="88" class="text-node-desc">• Resguardo de PDF/A-2u firmados</text>
+          <text x="0" y="108" class="text-tech-cite">minio-py (S3 Protocol)</text>
+          <text x="0" y="126" class="text-law-cite">[LEY] Anteproyecto Art. 28</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot"/>
+        <circle cx="220" cy="90" r="5" class="port-dot-gold"/>
+      </g>
+
+      <!-- Nodo 4.3: Merkle Audit Log -->
+      <g transform="translate(500, 0)">
+        <rect width="220" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="220" height="5" rx="2.5" fill="#1b622b"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Bitácora Merkle Forense</text>
+          <text x="0" y="40" class="text-node-desc">• Encadenamiento criptográfico</text>
+          <text x="0" y="56" class="text-node-desc">• Prueba de consistencia temporal</text>
+          <text x="0" y="72" class="text-node-desc">• Detección instantánea de borrado</text>
+          <text x="0" y="88" class="text-node-desc">• Inalterabilidad probatoria ISO</text>
+          <text x="0" y="108" class="text-tech-cite">Certificate Transparency Log</text>
+          <text x="0" y="126" class="text-law-cite">[STD] RFC 6962 • ISO 27037</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-gold"/>
+        <circle cx="220" cy="90" r="5" class="port-dot-green"/>
+      </g>
+
+      <!-- Nodo 4.4: Air-Gapped Replica -->
+      <g transform="translate(750, 0)">
+        <rect width="210" height="180" rx="6" fill="#ffffff" stroke="#cfd4dc" stroke-width="1.2" filter="url(#py-card-shadow)"/>
+        <rect width="210" height="5" rx="2.5" fill="#b50909"/>
+        <g transform="translate(14, 18)">
+          <text x="0" y="16" class="text-node-title">Réplica Aislada Air-Gap</text>
+          <text x="0" y="40" class="text-node-desc">• Copia desconectada unidireccional</text>
+          <text x="0" y="56" class="text-node-desc">• Protección total anti-ransomware</text>
+          <text x="0" y="72" class="text-node-desc">• Continuidad COOP en 4 horas</text>
+          <text x="0" y="88" class="text-node-desc">• Respaldo físico en cinta WORM</text>
+          <text x="0" y="108" class="text-tech-cite">Data Diode Hardware</text>
+          <text x="0" y="126" class="text-law-cite">[STD] JTC Courts 2025 COOP</text>
+        </g>
+        <circle cx="0" cy="90" r="5" class="port-dot-green"/>
+      </g>
     </g>
 
-    <!-- Right Badge -->
-    <g transform="translate(780, 26)">
-      <rect width="200" height="52" rx="6" fill="#f0f9ff" stroke="#0284c7" stroke-width="1"/>
-      <use href="#icon-python" x="12" y="13" width="26" height="26"/>
-      <text x="115" y="22" class="text-tag" fill="#0369a1" text-anchor="middle">API CONTRACT READY</text>
-      <text x="115" y="40" class="text-tech-cite" fill="#0f172a" text-anchor="middle">Next.js ⇄ FastAPI</text>
+    <!-- Garantías de Inmutabilidad WORM -->
+    <g transform="translate(20, 240)">
+      <rect width="960" height="82" rx="6" fill="#ffffff" stroke="#fac76f" stroke-width="1"/>
+      <rect width="960" height="22" rx="6" fill="#fef6e7"/>
+      <text x="14" y="15" font-family="'Public Sans', sans-serif" font-weight="700" font-size="9px" fill="#5d2700">BLINDAJE DE INTEGRIDAD FORENSE CONTRA CORRUPCIÓN INTERNA (ART. 28):</text>
+      
+      <g transform="translate(14, 30)">
+        <text x="0" y="14" class="text-node-desc">• <tspan font-weight="700">Inmunidad ante DBAs:</tspan> El modo Object Lock Compliance bloquea cualquier comando de eliminación o modificación, incluso con privilegios de superusuario.</text>
+        <text x="0" y="28" class="text-node-desc">• <tspan font-weight="700">Cadena de Custodia Digital:</tspan> Cada archivo PDF/A-2u y su acta de sorteo poseen huella SHA-256 inmutable verificable bajo el estándar ISO/IEC 27037.</text>
+        <text x="0" y="42" class="text-node-desc">• <tspan font-weight="700">Interoperabilidad Celeridad:</tspan> Conexión directa mediante API segura hacia las Unidades de Celeridad (Art. 11 LOCOTA) para cero dilaciones indebidas.</text>
+      </g>
     </g>
+  </g>
+
+  <!-- ================= 6. FOOTER ================= -->
+  <g transform="translate(40, 1572)">
+    <rect width="1000" height="75" rx="8" fill="#f5f6f8" stroke="#cfd4dc" stroke-width="1"/>
+    <text x="20" y="32" font-family="'Public Sans', sans-serif" font-size="10.5px" fill="#5c6b7e">
+      Ulpiano Chief Compliance Officer • <tspan font-weight="700" fill="#004987">Backend Python 3.12 FastAPI V-1.2</tspan> • Autor: <tspan font-weight="700" fill="#004987">Jull Ortiz (sha256.us ↗)</tspan>
+    </text>
+    <text x="980" y="32" font-family="'Roboto Mono', monospace" font-size="9.8px" fill="#5c6b7e" text-anchor="end">
+      FastAPI • PyKCS11 HSM • pyHanko • Celery • pgvector • MinIO S3
+    </text>
+    <text x="20" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#8190a4">
+      Design System USWDS 3.0 • Section 508 / WCAG 2.1 AAA • Tokens Semánticos Light • Hoja Folio Oficial (8.5" × 13")
+    </text>
+    <text x="980" y="54" font-family="'Public Sans', sans-serif" font-size="9.5px" fill="#004987" text-anchor="end" font-weight="700">
+      CRBV ART. 203 • SENTENCIA TSJ 0406/2026 • 47 ARTÍCULOS
+    </text>
   </g>
 </svg>
