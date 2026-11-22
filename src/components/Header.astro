@@ -1,81 +1,190 @@
 ---
 /**
- * USWDS Component: Header (Basic) — Native Astro Multi-Page Navigation
- * Active state (`usa-current` + `aria-current="page"`) computed 100% at build time.
- * Lightweight ~18-line mobile drawer script replaces 78 KB uswds.min.js.
+ * ULPIANO CCO — Institutional Extended Header (USWDS 3.0 Light-Only)
+ * Zero wrapped nav items on desktop, 1-line emblem brand, Command Bar trigger,
+ * build-time aria-current="page", and lightweight accessible mobile drawer.
  */
+import Icon, { type IconName } from './Icon.astro';
+
 interface Props {
-  activeSection?: 'dashboard' | 'diagrams' | 'api' | 'reader' | 'compare' | 'matrix' | 'backend' | 'frontend';
+  activeSection?:
+    | 'dashboard'
+    | 'diagrams'
+    | 'api'
+    | 'reader'
+    | 'compare'
+    | 'matrix'
+    | 'backend'
+    | 'frontend';
 }
 
 const { activeSection = 'dashboard' } = Astro.props;
 
-const navItems = [
-  { id: 'dashboard', label: 'Dashboard', href: '/' },
-  { id: 'diagrams', label: 'Diagramas', href: '/diagramas/master/' },
-  { id: 'api', label: 'Consola API', href: '/consola-api/' },
-  { id: 'reader', label: 'Lector Normativo', href: '/lector/v1.2/' },
-  { id: 'compare', label: 'Comparador', href: '/comparador/v1.0-vs-v1.2/' },
-  { id: 'matrix', label: 'Trazabilidad ISO', href: '/matriz/' },
-  { id: 'backend', label: 'Backend Python', href: '/backend/' },
-  { id: 'frontend', label: 'Frontend Next.js', href: '/frontend/' },
-] as const;
+interface NavItem {
+  id: string;
+  label: string;
+  href: string;
+  icon: IconName;
+  matches: string[];
+}
+
+const navItems: NavItem[] = [
+  { id: 'dashboard', label: 'Inicio', href: '/', icon: 'balance', matches: ['dashboard'] },
+  {
+    id: 'reader',
+    label: 'Lector Normativo',
+    href: '/lector/v1.2/',
+    icon: 'menu_book',
+    matches: ['reader'],
+  },
+  {
+    id: 'compare',
+    label: 'Comparador',
+    href: '/comparador/v1.0-vs-v1.2/',
+    icon: 'compare_arrows',
+    matches: ['compare'],
+  },
+  {
+    id: 'diagrams',
+    label: 'Diagramas',
+    href: '/diagramas/master/',
+    icon: 'account_tree',
+    matches: ['diagrams'],
+  },
+  {
+    id: 'matrix',
+    label: 'Matriz ISO',
+    href: '/matriz/',
+    icon: 'table_chart',
+    matches: ['matrix'],
+  },
+  {
+    id: 'api',
+    label: 'Consola API',
+    href: '/consola-api/',
+    icon: 'terminal',
+    matches: ['api'],
+  },
+  {
+    id: 'architecture',
+    label: 'Arquitectura',
+    href: '/backend/',
+    icon: 'architecture',
+    matches: ['backend', 'frontend'],
+  },
+];
 ---
 
-<header class="usa-header usa-header--basic">
-  <div class="usa-nav-container">
-    <div class="usa-navbar">
-      <div class="usa-logo" id="basic-logo">
-        <em class="usa-logo__text">
-          <a href="/" title="Inicio — Ulpiano CCO">
-            Ulpiano — Chief Compliance Officer
-          </a>
-        </em>
-      </div>
-      <button type="button" class="usa-menu-btn" data-nav-open aria-expanded="false">
-        Menú
-      </button>
+<div class="ulp-top-strip ulp-no-print" role="region" aria-label="Información institucional">
+  <div class="grid-container">
+    <div class="ulp-top-strip__inner">
+      <span class="ulp-top-strip__label">
+        <Icon name="verified_user" size={14} />
+        <span>Portal Técnico-Jurídico de Ciberseguridad Procesal e Integridad Digital</span>
+      </span>
+      <span class="ulp-top-strip__meta">
+        Ley Orgánica Art. 203 CRBV · TSJ/SC 0406/2026 · V-1.2
+      </span>
     </div>
-    <nav aria-label="Navegación principal" class="usa-nav" data-nav-drawer>
-      <button
-        type="button"
-        class="usa-nav__close"
-        data-nav-close
-        aria-label="Cerrar menú de navegación"
-      >
-        <svg class="usa-icon" aria-hidden="true" focusable="false" role="img">
-          <use href="/assets/uswds/img/sprite.svg#close"></use>
-        </svg>
-      </button>
-      <ul class="usa-nav__primary usa-accordion">
+  </div>
+</div>
+
+<header class="ulp-header">
+  <div class="ulp-header__top">
+    <div class="grid-container">
+      <div class="ulp-header__bar">
+        <a href="/" class="ulp-brand" title="Inicio — Ulpiano Chief Compliance Officer">
+          <span class="ulp-brand__emblem" aria-hidden="true">
+            <Icon name="balance" size={20} />
+          </span>
+          <span class="ulp-brand__text">
+            <span class="ulp-brand__title">Ulpiano CCO</span>
+            <span class="ulp-brand__subtitle">
+              Dirección de Ciberseguridad Procesal &amp; Compliance
+            </span>
+          </span>
+        </a>
+
+        <div class="ulp-header__utilities">
+          <button
+            type="button"
+            id="btn-open-global-search"
+            class="ulp-search-trigger"
+            data-open-search
+            title="Abrir búsqueda global (Ctrl+K)"
+          >
+            <span class="ulp-search-trigger__left">
+              <Icon name="search" size={16} />
+              <span class="ulp-search-trigger__label">Buscar artículos, normas...</span>
+            </span>
+            <kbd class="ulp-kbd">Ctrl K</kbd>
+          </button>
+
+          <button
+            type="button"
+            class="ulp-header__menu-btn"
+            data-nav-open
+            aria-expanded="false"
+            aria-controls="primary-nav-drawer"
+          >
+            <Icon name="menu" size={18} />
+            <span>Menú</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav
+    id="primary-nav-drawer"
+    aria-label="Navegación principal"
+    class="ulp-nav-bar"
+    data-nav-drawer
+  >
+    <div class="grid-container">
+      <div class="ulp-nav-drawer__header">
+        <span class="font-sans-sm text-bold text-primary-darker">Navegación</span>
+        <button
+          type="button"
+          class="usa-button usa-button--outline usa-button--small ulp-btn-icon"
+          data-nav-close
+          aria-label="Cerrar menú de navegación"
+        >
+          <Icon name="close" size={16} />
+          <span>Cerrar</span>
+        </button>
+      </div>
+
+      <div class="ulp-nav-drawer__search">
+        <button
+          type="button"
+          class="usa-button usa-button--outline width-full ulp-btn-icon"
+          data-open-search
+        >
+          <Icon name="search" size={16} />
+          <span>Búsqueda Global (Ctrl+K)</span>
+        </button>
+      </div>
+
+      <ul class="ulp-nav-list">
         {navItems.map((item) => {
-          const isCurrent = activeSection === item.id;
+          const isCurrent = item.matches.includes(activeSection);
           return (
-            <li class="usa-nav__primary-item">
+            <li class="ulp-nav-item">
               <a
                 href={item.href}
-                class={`usa-nav__link ${isCurrent ? 'usa-current' : ''}`}
+                class={`ulp-nav-link ${isCurrent ? 'usa-current' : ''}`}
                 aria-current={isCurrent ? 'page' : undefined}
               >
+                <Icon name={item.icon} size={16} />
                 <span>{item.label}</span>
               </a>
             </li>
           );
         })}
-        <li class="usa-nav__primary-item display-flex flex-align-center padding-left-1">
-          <button
-            type="button"
-            id="btn-open-global-search"
-            class="usa-button usa-button--outline usa-button--small"
-            data-open-search
-            title="Abrir búsqueda global (Ctrl+K)"
-          >
-            Buscar (Ctrl+K)
-          </button>
-        </li>
       </ul>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <script>

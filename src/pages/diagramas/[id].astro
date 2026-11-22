@@ -1,10 +1,12 @@
 ---
 /**
  * ULPIANO CCO — Static Vector Diagrams Suite (/diagramas/[id]/ — 12 Dedicated SEO Pages)
- * Every SVG is inlined at build-time via SvgZoomViewer.astro (0 client fetch, 100% visible without JS).
+ * Redesigned UX: Compact Page Header + Master-Detail 3/9 layout so the SVG diagram is
+ * immediately visible above the fold on desktop and cleanly stacked on mobile.
  */
 import { getCollection } from 'astro:content';
 import LegalLayout from '../../layouts/LegalLayout.astro';
+import Icon from '../../components/Icon.astro';
 import SvgZoomViewer from '../../components/SvgZoomViewer.astro';
 import { variantTagClass } from '../../lib/format.ts';
 
@@ -24,120 +26,161 @@ const { diag, allDiagrams } = Astro.props;
   description={diag.sub}
   activeSection="diagrams"
 >
-  <section class="usa-section">
+  <!-- 1. COMPACT PAGE HEADER (ABOVE-THE-FOLD FIRST) -->
+  <section class="ulp-page-header" aria-label="Encabezado del diagrama">
     <div class="grid-container">
-      <!-- 1. HERO -->
-      <div class="usa-hero ulp-hero margin-bottom-4" aria-label="Suite de 12 Diagramas">
-        <div class="grid-container">
-          <div class="usa-hero__callout">
-            <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
-              <ol class="usa-breadcrumb__list">
-                <li class="usa-breadcrumb__list-item">
-                  <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
-                </li>
-                <li class="usa-breadcrumb__list-item">
-                  <span class="usa-breadcrumb__link">Modelado Arquitectónico</span>
-                </li>
-                <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-                  <span>{diag.shortName}</span>
-                </li>
-              </ol>
-            </nav>
-
-            <span class="usa-tag ulp-tag-v12 margin-bottom-1">{diag.badge}</span>
-            <h1 class="usa-hero__heading">{diag.name}</h1>
-            <p>{diag.sub}</p>
-
-            <div class="margin-top-3 display-flex flex-wrap ulp-gap-2">
-              <a
-                href={diag.file}
-                download={diag.file.split('/').pop()}
-                class="usa-button"
-              >
-                Descargar SVG
-              </a>
-              <a href="/" class="usa-button usa-button--outline">
-                Volver al Dashboard
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. FILTRO POR CATEGORÍA + SELECTOR DE 12 PERSPECTIVAS (Enlaces reales) -->
-      <div class="margin-bottom-3">
-        <p class="font-sans-xs text-bold text-uppercase text-base-darker margin-bottom-1">
-          Filtrar por Categoría:
-        </p>
-        <div class="display-flex flex-wrap ulp-gap-1" role="group" aria-label="Categorías de diagramas">
-          <button type="button" class="usa-button usa-button--small" data-diag-cat="all" aria-pressed="true">
-            Todas ({allDiagrams.length})
-          </button>
-          <button type="button" class="usa-button usa-button--small usa-button--outline" data-diag-cat="gobernanza" aria-pressed="false">
-            Gobernanza &amp; Compliance (4)
-          </button>
-          <button type="button" class="usa-button usa-button--small usa-button--outline" data-diag-cat="normativa" aria-pressed="false">
-            Marco Legal &amp; Comparado (3)
-          </button>
-          <button type="button" class="usa-button usa-button--small usa-button--outline" data-diag-cat="arquitectura" aria-pressed="false">
-            Arquitectura de Software (5)
-          </button>
-        </div>
-      </div>
-
-      <nav class="margin-bottom-4" aria-label="Selector de los 12 diagramas vectoriales" id="diagram-nav-tabs">
-        <p class="font-sans-xs text-bold text-uppercase text-base-darker margin-bottom-1">
-          Perspectivas Vectoriales ({allDiagrams.length}):
-        </p>
-        <ul class="usa-list usa-list--unstyled display-flex flex-wrap ulp-gap-1">
-          {allDiagrams.map((item) => {
-            const isCurrent = item.id === diag.id;
-            return (
-              <li data-tab-category={item.category}>
-                <a
-                  href={`/diagramas/${item.id}/`}
-                  class={`usa-button usa-button--small ${isCurrent ? '' : 'usa-button--outline'}`}
-                  aria-current={isCurrent ? 'page' : undefined}
-                >
-                  {item.shortName}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+      <nav class="usa-breadcrumb" aria-label="Migas de pan">
+        <ol class="usa-breadcrumb__list">
+          <li class="usa-breadcrumb__list-item">
+            <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+          </li>
+          <li class="usa-breadcrumb__list-item">
+            <a href="/diagramas/master/" class="usa-breadcrumb__link">Suite de 12 Diagramas</a>
+          </li>
+          <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+            <span>{diag.shortName}</span>
+          </li>
+        </ol>
       </nav>
 
-      <!-- 3. VISOR VECTORIAL COMPARTIDO (SVG incrustado en build) -->
-      <SvgZoomViewer
-        title={diag.name}
-        subtitle={diag.sub}
-        svgFile={diag.file}
-        ariaLabel={diag.name}
-      />
-
-      <!-- 4. DESGLOSE DE CAPAS ESTÁTICO -->
-      <div class="margin-bottom-5">
-        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
-          <h2 class="font-sans-lg margin-0">Desglose por Capas y Especificación Técnica</h2>
+      <div class="ulp-page-header__row">
+        <div>
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1 margin-bottom-05">
+            <span class="usa-tag ulp-tag-v12">{diag.badge}</span>
+            <span class="font-sans-2xs text-base-dark">12 perspectivas vectoriales SVG</span>
+          </div>
+          <h1 class="ulp-page-header__title">{diag.name}</h1>
+          <p class="ulp-page-header__sub">{diag.sub}</p>
         </div>
 
-        <ul class="usa-card-group">
-          {diag.breakdown.map((item) => (
-            <li class="usa-card desktop:grid-col-3 tablet:grid-col-6">
-              <div class="usa-card__container">
-                <header class="usa-card__header">
-                  <span class={`${variantTagClass(item.variant)} margin-bottom-1`}>
-                    {item.badge}
-                  </span>
-                  <h3 class="usa-card__heading font-sans-sm">{item.title}</h3>
-                </header>
-                <div class="usa-card__body">
-                  <p class="font-sans-2xs text-base-dark margin-0">{item.desc}</p>
-                </div>
+        <div class="display-flex flex-wrap ulp-gap-1">
+          <a
+            href={diag.file}
+            download={diag.file.split('/').pop()}
+            class="usa-button usa-button--small ulp-btn-icon"
+          >
+            <Icon name="download" size={15} />
+            <span>Descargar SVG</span>
+          </a>
+          <a href="/" class="usa-button usa-button--outline usa-button--small ulp-btn-icon">
+            <Icon name="arrow_back" size={15} />
+            <span>Inicio</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. MASTER-DETAIL LAYOUT: CATÁLOGO 12 VISTAS + VISOR VECTORIAL INMEDIATO -->
+  <section class="ulp-band ulp-band--subtle ulp-band--compact">
+    <div class="grid-container">
+      <div class="grid-row grid-gap-3">
+        <!-- Left Master Catalog Sidebar -->
+        <aside class="desktop:grid-col-3 margin-bottom-3 desktop:margin-bottom-0" aria-label="Catálogo de diagramas">
+          <div class="ulp-diagram-sidebar">
+            <div class="ulp-diagram-sidebar__head">
+              <div class="display-flex flex-justify flex-align-center margin-bottom-105">
+                <h2 class="font-sans-2xs text-uppercase text-bold margin-0">Perspectivas</h2>
+                <span class="usa-tag ulp-tag-v12 ulp-tabular">{allDiagrams.length}</span>
               </div>
-            </li>
-          ))}
-        </ul>
+
+              <div class="ulp-segmented width-full" role="group" aria-label="Categorías de diagramas">
+                <button
+                  type="button"
+                  class="ulp-segmented__item is-active flex-fill flex-justify-center"
+                  data-diag-cat="all"
+                  aria-pressed="true"
+                >
+                  Todas
+                </button>
+                <button
+                  type="button"
+                  class="ulp-segmented__item flex-fill flex-justify-center"
+                  data-diag-cat="gobernanza"
+                  aria-pressed="false"
+                >
+                  Gob.
+                </button>
+                <button
+                  type="button"
+                  class="ulp-segmented__item flex-fill flex-justify-center"
+                  data-diag-cat="normativa"
+                  aria-pressed="false"
+                >
+                  Legal
+                </button>
+                <button
+                  type="button"
+                  class="ulp-segmented__item flex-fill flex-justify-center"
+                  data-diag-cat="arquitectura"
+                  aria-pressed="false"
+                >
+                  Tech
+                </button>
+              </div>
+            </div>
+
+            <nav aria-label="Selector de los 12 diagramas vectoriales" id="diagram-nav-tabs">
+              <ul class="ulp-diagram-list">
+                {allDiagrams.map((item) => {
+                  const isCurrent = item.id === diag.id;
+                  return (
+                    <li data-tab-category={item.category}>
+                      <a
+                        href={`/diagramas/${item.id}/`}
+                        class={`ulp-diagram-nav-link ${isCurrent ? 'is-active' : ''}`}
+                        aria-current={isCurrent ? 'page' : undefined}
+                      >
+                        <span>{item.shortName}</span>
+                        <Icon name="arrow_forward" size={14} />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </div>
+        </aside>
+
+        <!-- Right Interactive Canvas & Layer Breakdown -->
+        <div class="desktop:grid-col-9">
+          <SvgZoomViewer
+            title={diag.name}
+            subtitle={diag.sub}
+            tag={diag.badge}
+            svgFile={diag.file}
+            ariaLabel={diag.name}
+          />
+
+          <div>
+            <div class="ulp-section-head">
+              <div>
+                <span class="ulp-section-head__eyebrow">Especificación de Componentes</span>
+                <h2 class="ulp-section-head__title font-sans-lg">
+                  Desglose por Capas Técnicas y Normativas
+                </h2>
+              </div>
+            </div>
+
+            <ul class="usa-card-group">
+              {diag.breakdown.map((item) => (
+                <li class="usa-card tablet:grid-col-6">
+                  <div class="usa-card__container">
+                    <header class="usa-card__header">
+                      <span class={`${variantTagClass(item.variant)} margin-bottom-1`}>
+                        {item.badge}
+                      </span>
+                      <h3 class="usa-card__heading font-sans-sm">{item.title}</h3>
+                    </header>
+                    <div class="usa-card__body">
+                      <p class="font-sans-xs text-base-dark margin-0">{item.desc}</p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -151,7 +194,7 @@ const { diag, allDiagrams } = Astro.props;
         const cat = btn.getAttribute('data-diag-cat') || 'all';
         catBtns.forEach((b) => {
           const active = b === btn;
-          b.classList.toggle('usa-button--outline', !active);
+          b.classList.toggle('is-active', active);
           b.setAttribute('aria-pressed', String(active));
         });
         tabItems.forEach((li) => {

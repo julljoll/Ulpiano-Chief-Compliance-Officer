@@ -1,7 +1,9 @@
 ---
 /**
- * USWDS Component: Footer (Big) — Zero-JS Multi-Page Navigation
+ * USWDS Component: Footer (Big) — Light-Only Institutional Multi-Page Footer
  */
+import Icon from './Icon.astro';
+
 interface Props {
   activeSection?: string;
 }
@@ -11,26 +13,35 @@ const { activeSection = 'dashboard' } = Astro.props;
 
 <footer class="usa-footer usa-footer--big">
   <div class="grid-container usa-footer__return-to-top">
-    <a href="#main-content">Volver arriba</a>
+    <a href="#main-content" class="ulp-btn-icon text-no-underline font-sans-xs text-bold">
+      <Icon name="keyboard_arrow_up" size={16} />
+      <span>Volver arriba</span>
+    </a>
   </div>
   <div class="usa-footer__primary-section">
     <div class="grid-container">
       <div class="grid-row grid-gap">
         <div class="tablet:grid-col-8">
           <nav class="usa-footer__nav" aria-label="Navegación del pie de página">
-            <div class="grid-row grid-gap-4">
+            <div class="grid-row grid-gap">
               <div class="mobile-lg:grid-col-6 desktop:grid-col-4">
                 <section class="usa-footer__primary-content">
                   <h2 class="usa-footer__primary-link">Fundamento Dogmático</h2>
                   <ul class="usa-list usa-list--unstyled">
                     <li class="usa-footer__secondary-link">
-                      <em>Honeste Vivere</em> (Integridad &amp; 4 Ojos)
+                      <a href="/lector/v1.2/#articulo-27">
+                        <em>Honeste Vivere</em> (Integridad &amp; 4 Ojos)
+                      </a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <em>Alterum Non Laedere</em> (Inmutabilidad WORM)
+                      <a href="/lector/v1.2/#articulo-28">
+                        <em>Alterum Non Laedere</em> (Inmutabilidad WORM)
+                      </a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <em>Suum Cuique Tribuere</em> (Sorteo CSPRNG)
+                      <a href="/lector/v1.2/#articulo-26">
+                        <em>Suum Cuique Tribuere</em> (Sorteo CSPRNG)
+                      </a>
                     </li>
                   </ul>
                 </section>
@@ -43,19 +54,19 @@ const { activeSection = 'dashboard' } = Astro.props;
                       <a href="/">Dashboard de Control V-1.2</a>
                     </li>
                     <li class="usa-footer__secondary-link">
-                      <a href="/diagramas/master/">Suite de Diagramas (12 Vistas)</a>
-                    </li>
-                    <li class="usa-footer__secondary-link">
-                      <a href="/consola-api/">Consola API &amp; WSS</a>
-                    </li>
-                    <li class="usa-footer__secondary-link">
                       <a href="/lector/v1.2/">Lector Normativo &amp; RAG</a>
                     </li>
                     <li class="usa-footer__secondary-link">
                       <a href="/comparador/v1.0-vs-v1.2/">Comparador Diferencial</a>
                     </li>
                     <li class="usa-footer__secondary-link">
+                      <a href="/diagramas/master/">Suite de Diagramas (12 Vistas)</a>
+                    </li>
+                    <li class="usa-footer__secondary-link">
                       <a href="/matriz/">Matriz de Trazabilidad</a>
+                    </li>
+                    <li class="usa-footer__secondary-link">
+                      <a href="/consola-api/">Consola API &amp; WSS</a>
                     </li>
                   </ul>
                 </section>
@@ -109,17 +120,22 @@ const { activeSection = 'dashboard' } = Astro.props;
   </div>
   <div class="usa-footer__secondary-section">
     <div class="grid-container">
-      <div class="grid-row grid-gap">
-        <div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
-          <div class="mobile-lg:grid-col-auto">
-            <p class="usa-footer__logo-heading">Ulpiano — Chief Compliance Officer</p>
-            <p class="font-sans-2xs text-base-darker margin-top-05">
+      <div class="grid-row grid-gap flex-align-center">
+        <div class="usa-footer__logo grid-row mobile-lg:grid-col-7 mobile-lg:grid-gap-2 flex-align-center">
+          <div class="grid-col-auto">
+            <span class="ulp-brand__emblem" aria-hidden="true">
+              <Icon name="balance" size={20} />
+            </span>
+          </div>
+          <div class="grid-col-fill">
+            <p class="usa-footer__logo-heading margin-0">Ulpiano — Chief Compliance Officer</p>
+            <p class="font-sans-2xs text-base-darker margin-top-05 margin-bottom-0">
               Dirección de Ciberseguridad Procesal, Informática Forense e Integridad Digital. Autor:
               Jull Ortiz (sha256.us). Licencia Apache 2.0.
             </p>
           </div>
         </div>
-        <div class="usa-footer__contact-links mobile-lg:grid-col-6">
+        <div class="usa-footer__contact-links mobile-lg:grid-col-5">
           <p class="usa-footer__contact-heading">Contacto Institucional</p>
           <address class="usa-footer__address">
             <div class="usa-footer__contact-info grid-row grid-gap">

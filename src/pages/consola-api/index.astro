@@ -5,6 +5,7 @@
  * Zero bytes of this bundle ever ship to Dashboard, Reader, Compare, Diagrams, Matrix, Backend, or Frontend.
  */
 import LegalLayout from '../../layouts/LegalLayout.astro';
+import Icon from '../../components/Icon.astro';
 import { CANONICAL_SENTENCE_RECORD } from '../../lib/crypto.ts';
 ---
 
@@ -13,89 +14,112 @@ import { CANONICAL_SENTENCE_RECORD } from '../../lib/crypto.ts';
   description="Simulador criptográfico interactivo con SHA-256 real (Web Crypto API), generador QR SVG, Bóveda WORM de sesión, sorteo CSPRNG y OpenAPI 3.1."
   activeSection="api"
 >
-  <section class="usa-section">
+  <!-- 1. COMPACT TECHNICAL PAGE HEADER -->
+  <section class="ulp-page-header" aria-label="Consola de API Python 3.12">
     <div class="grid-container">
-      <!-- 1. HERO -->
-      <div class="usa-hero ulp-hero margin-bottom-4" aria-label="Consola de API Python 3.12">
-        <div class="grid-container">
-          <div class="usa-hero__callout">
-            <nav class="usa-breadcrumb margin-bottom-2" aria-label="Migas de pan">
-              <ol class="usa-breadcrumb__list">
-                <li class="usa-breadcrumb__list-item">
-                  <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
-                </li>
-                <li class="usa-breadcrumb__list-item">
-                  <span class="usa-breadcrumb__link">Arquitectura Desacoplada</span>
-                </li>
-                <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-                  <span>Servidor API Python 3.12 (FastAPI)</span>
-                </li>
-              </ol>
-            </nav>
+      <nav class="usa-breadcrumb" aria-label="Migas de pan">
+        <ol class="usa-breadcrumb__list">
+          <li class="usa-breadcrumb__list-item">
+            <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+          </li>
+          <li class="usa-breadcrumb__list-item">
+            <a href="/backend/" class="usa-breadcrumb__link">Arquitectura Backend</a>
+          </li>
+          <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+            <span>Consola API Python (FastAPI)</span>
+          </li>
+        </ol>
+      </nav>
 
-            <span class="usa-tag ulp-tag-v12 margin-bottom-1">
-              FASTAPI ASGI + PYKCS11 HSM FIPS 140-2 L3 + WEB CRYPTO SHA-256
-            </span>
-            <h1 class="usa-hero__heading">Consola Interactiva del Backend Judicial en Python</h1>
-            <p>
-              Simulador conectado con criptografía real en el navegador (<code>Web Crypto SHA-256</code>
-              y generación de QR SVG verificable). Al firmar un expediente en el Simulador 1, se
-              registra en la Bóveda WORM de sesión para cotejarlo al instante en el Simulador 2.
+      <div class="ulp-page-header__row">
+        <div>
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1 margin-bottom-05">
+            <span class="usa-tag ulp-tag-v12">FastAPI ASGI · PyKCS11 HSM L3</span>
+            <span class="usa-tag ulp-tag-forensic">Web Crypto SHA-256 Real</span>
+          </div>
+          <h1 class="ulp-page-header__title">Consola Interactiva del Backend Judicial en Python</h1>
+          <p class="ulp-page-header__sub">
+            Simulador conectado con criptografía real en el navegador (<code>Web Crypto SHA-256</code>{' '}
+            y QR SVG verificable). Los expedientes firmados se registran en la Bóveda WORM de sesión
+            para cotejarlos al instante.
+          </p>
+        </div>
+
+        <div class="display-flex flex-wrap ulp-gap-1">
+          <a
+            href="/openapi.json"
+            download="ulpiano-openapi-3.1.json"
+            class="usa-button usa-button--small ulp-btn-icon"
+          >
+            <Icon name="download" size={15} />
+            <span>OpenAPI 3.1</span>
+          </a>
+          <a
+            href="/diagramas/backend_python/"
+            class="usa-button usa-button--outline usa-button--small ulp-btn-icon"
+          >
+            <Icon name="account_tree" size={15} />
+            <span>Diagrama</span>
+          </a>
+          <a
+            href="/backend/"
+            class="usa-button usa-button--outline usa-button--small ulp-btn-icon"
+          >
+            <Icon name="architecture" size={15} />
+            <span>Arquitectura</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CALCULADORA SHA-256 LOCAL + 4 SIMULADORES FORENSES -->
+  <section class="ulp-band ulp-band--subtle ulp-band--compact">
+    <div class="grid-container">
+      <div class="ulp-surface ulp-surface--padded margin-bottom-3">
+        <div class="grid-row grid-gap-3 flex-align-center">
+          <div class="desktop:grid-col-6">
+            <div class="display-flex flex-align-center ulp-gap-1 margin-bottom-1">
+              <span class="ulp-icon-badge ulp-icon-badge--forensic" aria-hidden="true">
+                <Icon name="upload_file" size={20} />
+              </span>
+              <h2 class="font-sans-md margin-0">
+                Calculadora Forense SHA-256 Local
+              </h2>
+            </div>
+            <p class="font-sans-xs text-base-dark margin-0">
+              Seleccione o arrastre cualquier archivo local (PDF, texto o evidencia digital) para
+              calcular su digest SHA-256 real con <code>crypto.subtle.digest</code> sin subir datos
+              al servidor.
             </p>
-
-            <div class="margin-top-3 display-flex flex-wrap ulp-gap-2">
-              <a href="/diagramas/backend_python/" class="usa-button">
-                Ver Diagrama Backend Python
-              </a>
-              <a href="/backend/" class="usa-button usa-button--outline">
-                Página de Arquitectura Backend
-              </a>
-              <a
-                href="/openapi.json"
-                download="ulpiano-openapi-3.1.json"
-                class="usa-button usa-button--outline"
+          </div>
+          <div class="desktop:grid-col-6 margin-top-2 desktop:margin-top-0">
+            <div id="sim-file-dropzone" class="ulp-dropzone">
+              <label class="usa-label margin-top-0 font-sans-xs text-bold" for="sim-file-input">
+                Seleccionar archivo local para cálculo SHA-256
+              </label>
+              <input id="sim-file-input" class="usa-file-input margin-top-1" type="file" />
+              <p
+                id="sim-file-hash-status"
+                class="font-mono-2xs text-base-darker margin-top-1 margin-bottom-0"
+                aria-live="polite"
               >
-                Descargar OpenAPI 3.1 (JSON)
-              </a>
+                Ningún archivo seleccionado (se utilizarán los metadatos del expediente).
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 2. CALCULADORA SHA-256 LOCAL -->
-      <div class="usa-card margin-bottom-4">
-        <div class="usa-card__container padding-3">
-          <h2 class="font-sans-md margin-top-0 margin-bottom-1">
-            Calculadora Forense SHA-256 Local (Sin Subir Archivos al Servidor)
-          </h2>
-          <p class="font-sans-xs text-base-dark margin-top-0 margin-bottom-2">
-            Seleccione o arrastre cualquier documento local (PDF, texto o evidencia digital) para
-            calcular su huella criptográfica SHA-256 real mediante <code>crypto.subtle.digest</code> y
-            usarla en la firma o cotejo.
-          </p>
-          <div id="sim-file-dropzone" class="ulp-dropzone">
-            <label class="usa-label margin-top-0" for="sim-file-input">
-              Seleccionar archivo local para cálculo SHA-256:
-            </label>
-            <input id="sim-file-input" class="usa-file-input margin-top-1" type="file" />
-            <p
-              id="sim-file-hash-status"
-              class="font-mono-2xs text-base-darker margin-top-1 margin-bottom-0"
-              aria-live="polite"
-            >
-              Ningún archivo seleccionado (se utilizarán los metadatos del expediente).
-            </p>
+      <div class="margin-bottom-2">
+        <div class="ulp-section-head">
+          <div>
+            <span class="ulp-section-head__eyebrow">Endpoints Certificados</span>
+            <h2 class="ulp-section-head__title font-sans-lg">Simuladores Criptográficos Forenses</h2>
           </div>
-        </div>
-      </div>
-
-      <!-- 3. REJILLA DE 4 SIMULADORES FORENSES -->
-      <div class="margin-bottom-5">
-        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3">
-          <h2 class="font-sans-lg margin-0">Simuladores Criptográficos Forenses</h2>
-          <p class="font-sans-sm text-base-dark margin-top-05">
-            Ejecución interactiva de endpoints certificados con registro de hash real, QR y Bóveda WORM
-          </p>
+          <span class="font-sans-2xs text-base-dark">
+            Ejecución aislada en navegador · Cero envío de archivos externos
+          </span>
         </div>
 
         <ul class="usa-card-group">

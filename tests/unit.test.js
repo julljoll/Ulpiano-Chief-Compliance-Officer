@@ -35,6 +35,7 @@ test('Astro 7 Sätteri HAST plugin converts red spans, wraps USWDS tables, and a
   ].join('\n');
 
   const { code } = await proc.render(md);
+  assert.ok(code.includes('<h2') && !code.includes('<h1'), 'Must demote Markdown h1 to h2 for single-h1 SEO/a11y');
   assert.ok(code.includes('id="articulo-10-bis"'), 'Must emit deterministic article ID');
   assert.ok(code.includes('class="reforma-rojo"'), 'Must convert style="color:red" to .reforma-rojo');
   assert.ok(code.includes('class="reforma-v12"'), 'Must preserve .reforma-v12');

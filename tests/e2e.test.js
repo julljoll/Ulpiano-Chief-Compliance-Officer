@@ -107,7 +107,7 @@ test(
       // 2. Reader: pre-rendered prose, static TOC, V1.1 & V1.2 reforms, RAG table
       await page.goto(`${baseUrl}/lector/v1.2/`, { waitUntil: 'load' });
       assert.ok((await page.textContent('#paper-sheet')).includes('EXPOSICIÓN DE MOTIVOS'));
-      assert.ok((await page.locator('#floating-toc-list li.usa-sidenav__item a').count()) > 10);
+      assert.ok((await page.locator('#floating-toc-list li a').count()) > 10);
       assert.ok((await page.locator('#paper-sheet .reforma-rojo').count()) > 5);
       assert.ok((await page.locator('#paper-sheet .reforma-v12').count()) > 3);
 
@@ -160,7 +160,54 @@ test(
         if (msg.type() === 'error') consoleErrors.push(msg.text());
       });
 
+      const assertUxInvariants = async (label) => {
+        const ux = await page.evaluate(() => {
+          const h1s = document.querySelectorAll('h1');
+          const h1 = h1s[0];
+          const h1Top = h1 ? Math.round(h1.getBoundingClientRect().top) : 9999;
+          const navLinks = [...document.querySelectorAll('.ulp-nav-item')];
+          const wrappedNav = navLinks.some(
+            (el, i, arr) =>
+              i > 0 &&
+              Math.abs(el.getBoundingClientRect().top - arr[0].getBoundingClientRect().top) > 10
+          );
+          const overflowX = document.documentElement.scrollWidth > window.innerWidth + 1;
+
+          const bgLuminance = (selector) => {
+            const el = document.querySelector(selector);
+            if (!el) return 1;
+            const bg = getComputedStyle(el).backgroundColor;
+            const m = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            if (!m) return 1;
+            const [r, g, b] = [Number(m[1]), Number(m[2]), Number(m[3])];
+            return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+          };
+
+          return {
+            h1Count: h1s.length,
+            h1Top,
+            wrappedNav,
+            overflowX,
+            lumBody: bgLuminance('body'),
+            lumHeader: bgLuminance('header'),
+            lumIdentifier: bgLuminance('.usa-identifier'),
+          };
+        });
+
+        assert.equal(ux.h1Count, 1, `Expected strictly 1 <h1> on ${label}, got ${ux.h1Count}`);
+        assert.ok(ux.h1Top < 280, `Expected <h1> above the fold (<280px) on ${label}, got ${ux.h1Top}px`);
+        assert.equal(ux.wrappedNav, false, `Header nav wrapped onto 2 lines on ${label}`);
+        assert.equal(ux.overflowX, false, `Horizontal overflow detected on desktop ${label}`);
+        assert.ok(ux.lumBody > 0.85, `Expected light body surface on ${label}, got ${ux.lumBody}`);
+        assert.ok(ux.lumHeader > 0.85, `Expected light header surface on ${label}, got ${ux.lumHeader}`);
+        assert.ok(
+          ux.lumIdentifier > 0.85,
+          `Expected Light-Only .usa-identifier surface on ${label}, got ${ux.lumIdentifier}`
+        );
+      };
+
       const runAxe = async (label) => {
+        await assertUxInvariants(label);
         await page.addScriptTag({ url: `${baseUrl}/__axe.js` });
         const res = await page.evaluate(async () =>
           window.axe.run(document, {
@@ -182,8 +229,10 @@ test(
         );
       };
 
-      // 1. Dashboard + Global Search (Ctrl+K lazy fetch /search-index.json) + Delta Filter + axe
+      // 1. Dashboard (V-1.2 verified!) + Global Search (Ctrl+K lazy fetch /search-index.json) + Delta Filter + axe
       await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+      const homeH1 = await page.textContent('h1');
+      assert.ok(homeH1 && homeH1.includes('V-1.2'), `Expected V-1.2 on Home H1, got ${homeH1}`);
       await page.fill('#delta-search-input', '19-bis');
       assert.equal(await page.locator('#delta-explorer-tbody tr:not([hidden])').count(), 1);
       await page.fill('#delta-search-input', '');
@@ -247,7 +296,7 @@ test(
       assert.ok((await page.textContent('#sim-sorteo-result')).includes('SORTEO_COMPLETADO_EXITOSO'));
       await runAxe('/consola-api/');
 
-      // 8. Standalone Backend & Frontend architecture pages + legacy .html redirects + axe
+      // 8. Standalone Backend & Frontend architecture pages + axe
       for (const route of ['/backend/', '/frontend/']) {
         await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
         assert.equal(await page.locator('[data-svg-viewport] svg').count(), 1);
@@ -255,6 +304,18 @@ test(
         assert.equal(await page.textContent('[data-zoom-label]'), '115%');
         await runAxe(route);
       }
+
+      // 9. Mobile 390px zero-overflow & accessibility audit across primary routes
+      const mobileCtx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      const mobilePage = await mobileCtx.newPage();
+      for (const route of ['/', '/lector/v1.2/', '/diagramas/master/', '/matriz/', '/consola-api/']) {
+        await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
+        const hasOverflow = await mobilePage.evaluate(
+          () => document.documentElement.scrollWidth > window.innerWidth + 1
+        );
+        assert.equal(hasOverflow, false, `Mobile 390px horizontal overflow detected on ${route}`);
+      }
+      await mobileCtx.close();
 
       assert.deepEqual(pageErrors, [], `Uncaught page errors: ${pageErrors.join('; ')}`);
       assert.deepEqual(consoleErrors, [], `Console/CSP errors: ${consoleErrors.join('; ')}`);

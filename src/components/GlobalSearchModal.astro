@@ -2,7 +2,9 @@
 /**
  * ULPIANO CCO — Lazy Global Command Palette Search Dialog (Ctrl+K)
  * Fetches static build-time `/search-index.json` ONLY on first open (0 bytes on initial page load).
+ * Full keyboard navigation (ArrowUp/ArrowDown/Enter/Escape).
  */
+import Icon from './Icon.astro';
 ---
 
 <dialog
@@ -10,53 +12,52 @@
   class="ulp-search-dialog"
   aria-labelledby="global-search-heading"
 >
-  <div class="padding-3">
-    <div class="display-flex flex-justify flex-align-center border-bottom-1px border-base-lighter padding-bottom-2 margin-bottom-2">
-      <div>
-        <h2 id="global-search-heading" class="font-sans-md margin-0">
-          Búsqueda Global Ulpiano CCO
-        </h2>
-        <p class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0">
-          Busque artículos, reformas V-1.2, matriz ISO/FISMA, Catálogo RAG o los 12 diagramas.
-        </p>
-      </div>
-      <button
-        type="button"
-        class="usa-button usa-button--outline usa-button--small"
-        data-close-search
-        aria-label="Cerrar búsqueda global"
-      >
-        Cerrar (Esc)
-      </button>
-    </div>
+  <h2 id="global-search-heading" class="usa-sr-only">
+    Búsqueda Global Ulpiano CCO
+  </h2>
 
-    <div class="margin-bottom-2">
-      <label class="usa-sr-only" for="global-search-input">
-        Término de búsqueda global
-      </label>
-      <input
-        id="global-search-input"
-        class="usa-input width-full maxw-full"
-        type="search"
-        placeholder="Ej: Artículo 10-bis, FISMA, WORM, LOCOTA, FastAPI, RAG..."
-        autocomplete="off"
-      />
-    </div>
+  <div class="ulp-search-dialog__head">
+    <Icon name="search" size={20} class="text-primary" />
+    <label class="usa-sr-only" for="global-search-input">
+      Buscar artículos, reformas V-1.2, matriz ISO/FISMA, Catálogo RAG o los 12 diagramas
+    </label>
+    <input
+      id="global-search-input"
+      class="ulp-search-dialog__input"
+      type="search"
+      placeholder="Buscar artículos (ej. 10-bis, 19-bis), FISMA, WORM, LOCOTA, FastAPI..."
+      autocomplete="off"
+    />
+    <button
+      type="button"
+      class="usa-button usa-button--outline usa-button--small ulp-btn-icon"
+      data-close-search
+      aria-label="Cerrar búsqueda global (Esc)"
+    >
+      <Icon name="close" size={14} />
+      <span>Cerrar</span>
+    </button>
+  </div>
 
-    <div class="display-flex flex-justify flex-align-center margin-bottom-1">
-      <span id="global-search-count" class="font-sans-2xs text-base-dark" aria-live="polite">
-        0 resultados
-      </span>
-      <span class="font-sans-2xs text-base-dark">Atajo: Ctrl+K / Cmd+K</span>
-    </div>
+  <div
+    id="global-search-results"
+    class="ulp-search-results"
+    role="region"
+    aria-label="Resultados de búsqueda"
+    tabindex="0"
+  ></div>
 
-    <div
-      id="global-search-results"
-      class="ulp-search-results"
-      role="region"
-      aria-label="Resultados de búsqueda"
-      tabindex="0"
-    ></div>
+  <div class="ulp-search-dialog__foot">
+    <span id="global-search-count" aria-live="polite">0 resultados</span>
+    <span class="display-flex flex-align-center ulp-gap-1">
+      <kbd class="ulp-kbd">↑</kbd>
+      <kbd class="ulp-kbd">↓</kbd>
+      <span>navegar</span>
+      <kbd class="ulp-kbd">Enter</kbd>
+      <span>abrir</span>
+      <kbd class="ulp-kbd">Ctrl K</kbd>
+      <span>buscar</span>
+    </span>
   </div>
 </dialog>
 
@@ -76,12 +77,21 @@
   const countEl = document.getElementById('global-search-count');
 
   let indexCache: SearchEntry[] | null = null;
+  let activeIndex = -1;
 
   const normalize = (s: string) =>
     s
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
+
+  const kindTagClass = (kind: string): string => {
+    const k = kind.toLowerCase();
+    if (k.includes('reforma') || k.includes('artículo')) return 'usa-tag ulp-tag-v12';
+    if (k.includes('diagrama')) return 'usa-tag ulp-tag-forensic';
+    if (k.includes('matriz')) return 'usa-tag ulp-tag-success';
+    return 'usa-tag';
+  };
 
   async function ensureIndex(): Promise<SearchEntry[]> {
     if (indexCache) return indexCache;
@@ -92,73 +102,114 @@
         return indexCache;
       }
     } catch {
-      // Fallback empty
+      // Offline / network fallback
     }
     return [];
   }
 
-  function renderResults(entries: SearchEntry[], rawQuery: string): void {
+  function updateSelection(newIdx: number): void {
     if (!resultsEl) return;
-    const q = normalize(rawQuery.trim());
-    const matches = q
-      ? entries
-          .filter((e) => normalize(`${e.title} ${e.subtitle} ${e.kind}`).includes(q))
-          .slice(0, 14)
-      : entries.slice(0, 8);
-
-    if (countEl) {
-      countEl.textContent = `${matches.length} resultado${matches.length === 1 ? '' : 's'}`;
+    const buttons = resultsEl.querySelectorAll<HTMLAnchorElement>('.ulp-search-result-btn');
+    if (buttons.length === 0) {
+      activeIndex = -1;
+      return;
     }
+    activeIndex = (newIdx + buttons.length) % buttons.length;
+    buttons.forEach((b, i) => b.classList.toggle('is-selected', i === activeIndex));
+    buttons[activeIndex]?.scrollIntoView({ block: 'nearest' });
+  }
+
+  function renderResults(entries: SearchEntry[], rawQuery: string): void {
+    if (!resultsEl || !countEl) return;
+    const q = normalize(rawQuery.trim());
+    const matches = !q
+      ? entries.slice(0, 10)
+      : entries
+          .filter((e) => normalize(`${e.kind} ${e.title} ${e.subtitle}`).includes(q))
+          .slice(0, 24);
+
+    activeIndex = matches.length > 0 ? 0 : -1;
+    countEl.textContent =
+      matches.length === 1
+        ? '1 resultado encontrado'
+        : `${matches.length} resultados mostrados`;
 
     if (matches.length === 0) {
       resultsEl.innerHTML =
-        '<p class="font-sans-sm text-base-dark padding-2 margin-0">No se encontraron coincidencias en normas, reformas, matriz ni diagramas.</p>';
+        '<p class="font-sans-xs text-base-dark margin-y-2 text-center">Sin coincidencias. Intente con «10-bis», «19-bis», «FISMA», «WORM», «LOCOTA» o «FastAPI».</p>';
       return;
     }
 
     resultsEl.innerHTML = matches
       .map(
-        (m) => `
-          <a href="${escapeHtml(m.href)}" class="ulp-search-result-btn text-no-underline">
-            <div class="display-flex flex-justify flex-align-center ulp-gap-1 margin-bottom-05">
-              <strong class="font-sans-sm">${escapeHtml(m.title)}</strong>
-              <span class="usa-tag ulp-tag-v12">${escapeHtml(m.kind)}</span>
-            </div>
-            <p class="font-sans-2xs text-base-dark margin-0">${escapeHtml(m.subtitle)}</p>
-          </a>
-        `
+        (m, idx) => `
+      <a class="ulp-search-result-btn text-no-underline ${idx === 0 ? 'is-selected' : ''}" href="${escapeHtml(m.href)}">
+        <div>
+          <div class="font-sans-sm text-bold text-ink">${escapeHtml(m.title)}</div>
+          <div class="font-sans-2xs text-base-dark margin-top-05">${escapeHtml(m.subtitle)}</div>
+        </div>
+        <span class="${kindTagClass(m.kind)} flex-align-self-center">${escapeHtml(m.kind)}</span>
+      </a>`
       )
       .join('');
   }
 
-  async function openSearch(): Promise<void> {
+  async function openDialog(): Promise<void> {
     if (!dialog) return;
-    if (!dialog.open && typeof dialog.showModal === 'function') dialog.showModal();
-    if (resultsEl && !indexCache) {
-      resultsEl.innerHTML = '<p class="font-sans-xs text-base-dark padding-2 margin-0">Cargando índice...</p>';
-    }
+    if (!dialog.open) dialog.showModal();
+    if (countEl) countEl.textContent = 'Cargando índice normativo...';
     const entries = await ensureIndex();
     renderResults(entries, input?.value || '');
     input?.focus();
     input?.select();
   }
 
+  function closeDialog(): void {
+    if (dialog?.open) dialog.close();
+  }
+
   document.querySelectorAll('[data-open-search]').forEach((btn) => {
-    btn.addEventListener('click', () => void openSearch());
+    btn.addEventListener('click', () => {
+      void openDialog();
+    });
   });
+
   document.querySelectorAll('[data-close-search]').forEach((btn) => {
-    btn.addEventListener('click', () => dialog?.close());
+    btn.addEventListener('click', closeDialog);
   });
+
   dialog?.addEventListener('click', (e) => {
-    if (e.target === dialog) dialog.close();
+    if (e.target === dialog) closeDialog();
   });
-  input?.addEventListener('input', () => {
-    if (indexCache) renderResults(indexCache, input.value);
+
+  input?.addEventListener('input', async () => {
+    const entries = await ensureIndex();
+    renderResults(entries, input.value);
   });
+
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      updateSelection(activeIndex + 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      updateSelection(activeIndex - 1);
+    } else if (e.key === 'Enter' && activeIndex >= 0 && resultsEl) {
+      const selected = resultsEl.querySelectorAll<HTMLAnchorElement>('.ulp-search-result-btn')[
+        activeIndex
+      ];
+      if (selected) {
+        e.preventDefault();
+        window.location.href = selected.href;
+      }
+    }
+  });
+
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      void openSearch();
+      if (dialog?.open) closeDialog();
+      else void openDialog();
     }
   });
 </script>

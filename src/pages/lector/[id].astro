@@ -1,10 +1,12 @@
 ---
 /**
- * ULPIANO CCO — Static Legislative Reader & RAG Catalog (/lector/[id]/)
- * 100% Build-Time Astro 7 Sätteri Markdown Rendering, Static TOC from `headings`, Zero-JS readable!
+ * ULPIANO CCO — Editorial Legislative Reader & RAG Catalog (/lector/[id]/)
+ * Single <h1>, 68ch legal reading column, reading progress bar, active sticky TOC,
+ * native mobile <details> TOC, and 100% Zero-JS readable HTML from Astro 7 Sätteri.
  */
 import { getCollection, render } from 'astro:content';
 import LegalLayout from '../../layouts/LegalLayout.astro';
+import Icon from '../../components/Icon.astro';
 import { sourceFileToCollectionId } from '../../lib/format.ts';
 
 export async function getStaticPaths() {
@@ -13,9 +15,14 @@ export async function getStaticPaths() {
     getCollection('normativa'),
   ]);
 
-  return versions.map((v) => {
-    const targetFile = v.data.sourceFile.toLowerCase();
-    const targetNormId = sourceFileToCollectionId(v.data.sourceFile).replace(/\./g, '');
+  const docOrder: Record<string, number> = { 'v1.2': 4, 'v1.1': 3, 'v1.0': 2, 'rag-catalog': 1 };
+  const sortedDocs = versions
+    .map((entry) => entry.data)
+    .sort((a, b) => (docOrder[b.id] ?? 0) - (docOrder[a.id] ?? 0));
+
+  return sortedDocs.map((doc) => {
+    const targetFile = doc.sourceFile.toLowerCase();
+    const targetNormId = sourceFileToCollectionId(doc.sourceFile).replace(/\./g, '');
     const mdEntry = normativa.find(
       (n) =>
         (n.filePath && n.filePath.toLowerCase() === targetFile) ||
@@ -23,14 +30,14 @@ export async function getStaticPaths() {
     );
     if (!mdEntry) {
       throw new Error(
-        `No Markdown entry found in docs/ for ${v.data.sourceFile} (available: ${normativa.map((n) => `${n.id}|${n.filePath}`).join(', ')})`
+        `No Markdown entry found in docs/ for ${doc.sourceFile} (available: ${normativa.map((n) => `${n.id}|${n.filePath}`).join(', ')})`
       );
     }
     return {
-      params: { id: v.data.id },
+      params: { id: doc.id },
       props: {
-        doc: v.data,
-        allDocs: versions.map((entry) => entry.data),
+        doc,
+        allDocs: sortedDocs,
         mdEntry,
       },
     };
@@ -40,6 +47,15 @@ export async function getStaticPaths() {
 const { doc, allDocs, mdEntry } = Astro.props;
 const { Content, headings } = await render(mdEntry);
 const tocHeadings = headings.filter((h) => h.depth >= 1 && h.depth <= 4);
+
+const formatTocLabel = (raw: string): string => {
+  const clean = raw.replace(/\s+/g, ' ').trim();
+  // Soften ALL-CAPS headings into readable sentence/title rhythm while preserving acronyms
+  if (clean.length > 24 && clean === clean.toUpperCase()) {
+    return clean.charAt(0) + clean.slice(1).toLowerCase();
+  }
+  return clean;
+};
 
 const rawBody = mdEntry.body || '';
 const v11Count = (rawBody.match(/color:\s*red/gi) || []).length;
@@ -52,85 +68,65 @@ const totalReforms = v11Count + v12Count;
   description={doc.description}
   activeSection="reader"
 >
-  <section class="usa-section">
+  <div class="ulp-read-progress ulp-no-print" aria-hidden="true">
+    <div class="ulp-read-progress__bar" id="reader-progress-bar"></div>
+  </div>
+
+  <!-- 1. COMPACT INSTITUTIONAL PAGE HEADER -->
+  <section class="ulp-page-header ulp-no-print" aria-label="Encabezado del documento">
     <div class="grid-container">
-      <!-- 1. TOOLBAR SUPERIOR DEL LECTOR -->
-      <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-3 ulp-no-print">
-        <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2 margin-bottom-2">
-          <div>
-            <nav class="usa-breadcrumb margin-bottom-05" aria-label="Migas de pan">
-              <ol class="usa-breadcrumb__list">
-                <li class="usa-breadcrumb__list-item">
-                  <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
-                </li>
-                <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-                  <span>{doc.shortLabel}</span>
-                </li>
-              </ol>
-            </nav>
-            <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
-              <span class="usa-tag ulp-tag-v12">{doc.shortLabel}</span>
-              <h1 class="font-sans-md margin-0">{doc.label}</h1>
-            </div>
+      <nav class="usa-breadcrumb" aria-label="Migas de pan">
+        <ol class="usa-breadcrumb__list">
+          <li class="usa-breadcrumb__list-item">
+            <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+          </li>
+          <li class="usa-breadcrumb__list-item">
+            <a href="/lector/v1.2/" class="usa-breadcrumb__link">Lector Normativo</a>
+          </li>
+          <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+            <span>{doc.shortLabel}</span>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="ulp-page-header__row">
+        <div>
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1 margin-bottom-05">
+            <span class="usa-tag ulp-tag-v12">{doc.shortLabel}</span>
+            <span class="font-mono-2xs text-base-dark">{doc.date}</span>
+            <span class="font-sans-2xs text-base-dark">· {doc.articlesCount} artículos</span>
           </div>
-
-          <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
-            <!-- Native HTML version links (work with 0 JS!) -->
-            <nav aria-label="Cambiar versión del documento" class="display-flex flex-wrap ulp-gap-1">
-              {allDocs.map((item) => {
-                const isCurrent = item.id === doc.id;
-                return (
-                  <a
-                    href={`/lector/${item.id}/`}
-                    class={`usa-button usa-button--small ${isCurrent ? '' : 'usa-button--outline'}`}
-                    aria-current={isCurrent ? 'page' : undefined}
-                  >
-                    {item.shortLabel}
-                  </a>
-                );
-              })}
-            </nav>
-
-            <button
-              type="button"
-              class="usa-button usa-button--small usa-button--outline"
-              id="btn-toggle-floating-toc"
-              aria-expanded="true"
-            >
-              Índice Lateral
-            </button>
-
-            {totalReforms > 0 && (
-              <button
-                type="button"
-                class="usa-button usa-button--small usa-button--secondary"
-                id="btn-jump-highlight"
-                title="Saltar a la siguiente modificación resaltada (V1.1 rojo / V1.2 azul)"
-              >
-                <span id="highlight-counter">
-                  Siguiente reforma ({v11Count} V1.1 / {v12Count} V1.2)
-                </span>
-              </button>
-            )}
-
-            <button
-              type="button"
-              class="usa-button usa-button--small usa-button--outline"
-              id="btn-print-reader"
-            >
-              Imprimir
-            </button>
-          </div>
+          <h1 class="ulp-page-header__title">{doc.label}</h1>
         </div>
 
-        <!-- Barra de tipografía accesible + leyenda -->
-        <div class="display-flex flex-wrap flex-justify flex-align-center border-top-1px border-base-lighter padding-top-1 ulp-gap-2">
-          <div class="display-flex flex-wrap flex-align-center ulp-gap-1" role="group" aria-label="Controles de tipografía">
-            <span class="font-sans-2xs text-bold text-base-darker">Tipografía:</span>
+        <nav aria-label="Cambiar versión del documento" class="ulp-segmented">
+          {allDocs.map((item) => {
+            const isCurrent = item.id === doc.id;
+            return (
+              <a
+                href={`/lector/${item.id}/`}
+                class={`ulp-segmented__item ${isCurrent ? 'is-active' : ''}`}
+                aria-current={isCurrent ? 'page' : undefined}
+              >
+                {item.shortLabel}
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. BARRA EDITORIAL UNIFICADA + LECTURA 68CH + TOC STICKY -->
+  <section class="ulp-band ulp-band--subtle ulp-band--compact">
+    <div class="grid-container">
+      <div class="ulp-toolbar margin-bottom-3 ulp-no-print">
+        <div class="display-flex flex-wrap flex-align-center ulp-gap-1" role="group" aria-label="Controles de tipografía">
+          <div class="ulp-segmented">
             <button
               type="button"
               id="btn-font-serif"
-              class="usa-button usa-button--small"
+              class="ulp-segmented__item is-active"
               aria-pressed="true"
             >
               Serif Jurídica
@@ -138,52 +134,104 @@ const totalReforms = v11Count + v12Count;
             <button
               type="button"
               id="btn-font-sans"
-              class="usa-button usa-button--small usa-button--outline"
+              class="ulp-segmented__item"
               aria-pressed="false"
             >
               Sans UI
             </button>
+          </div>
+
+          <div class="ulp-segmented">
             <button
               type="button"
               id="btn-font-dec"
-              class="usa-button usa-button--small usa-button--outline"
+              class="ulp-segmented__item"
               aria-label="A- Reducir tamaño de fuente"
             >
               A-
             </button>
-            <span id="reader-font-size-val" class="font-mono-2xs text-bold">17px</span>
+            <span id="reader-font-size-val" class="font-mono-2xs text-bold padding-x-1 ulp-tabular">
+              17px
+            </span>
             <button
               type="button"
               id="btn-font-inc"
-              class="usa-button usa-button--small usa-button--outline"
+              class="ulp-segmented__item"
               aria-label="A+ Aumentar tamaño de fuente"
             >
               A+
             </button>
           </div>
 
-          <div class="display-flex flex-wrap flex-align-center ulp-gap-1 font-sans-2xs">
-            <span class="reforma-rojo">Reforma V-1.1 (Ley Orgánica)</span>
-            <span class="reforma-v12">Reforma V-1.2 (FISMA &amp; LOCOTA)</span>
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1 font-sans-2xs margin-left-1">
+            <span class="reforma-rojo">V-1.1</span>
+            <span class="reforma-v12">V-1.2</span>
           </div>
+        </div>
+
+        <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
+          {totalReforms > 0 && (
+            <button
+              type="button"
+              class="usa-button usa-button--small ulp-btn-icon"
+              id="btn-jump-highlight"
+              title="Saltar a la siguiente modificación resaltada (V1.1 rojo / V1.2 azul)"
+            >
+              <Icon name="bolt" size={15} />
+              <span id="highlight-counter">
+                Siguiente reforma ({v11Count} V1.1 / {v12Count} V1.2)
+              </span>
+            </button>
+          )}
+
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline ulp-btn-icon"
+            id="btn-toggle-floating-toc"
+            aria-expanded="true"
+          >
+            <Icon name="list_alt" size={15} />
+            <span>Índice</span>
+          </button>
+
+          <button
+            type="button"
+            class="usa-button usa-button--small usa-button--outline ulp-btn-icon"
+            id="btn-print-reader"
+          >
+            <Icon name="print" size={15} />
+            <span>Imprimir</span>
+          </button>
         </div>
       </div>
 
-      <!-- 2. CONTENEDOR PRINCIPAL: ÍNDICE SIDENAV ESTÁTICO + PROSA COMPILADA POR ASTRO -->
+      <!-- Mobile zero-JS collapsible TOC -->
+      <details class="ulp-mobile-toc ulp-surface ulp-surface--padded ulp-no-print">
+        <summary class="font-sans-sm text-bold text-primary-darker cursor-pointer">
+          Índice Normativo ({tocHeadings.length} secciones)
+        </summary>
+        <nav aria-label="Índice móvil del documento" class="margin-top-105">
+          <ul class="ulp-toc-card__list">
+            {tocHeadings.map((h) => (
+              <li class={`ulp-toc-item--d${h.depth}`}>
+                <a href={`#${h.slug}`} class="ulp-toc-link">
+                  <span class="ulp-toc-link__text">{formatTocLabel(h.text)}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </details>
+
       <div class="grid-row grid-gap-4">
-        <div class="tablet:grid-col-4 desktop:grid-col-3" id="floating-toc-col">
-          <div
-            class="padding-2 border-1px border-base-lighter bg-white ulp-toc-sticky"
-            tabindex="0"
-            role="region"
-            aria-label="Panel del índice normativo"
-          >
-            <div class="display-flex flex-justify flex-align-center margin-bottom-2">
-              <h2 class="font-sans-xs text-uppercase text-bold margin-0">Índice Normativo</h2>
-              <span class="usa-tag ulp-tag-v12">{tocHeadings.length}</span>
+        <aside class="desktop:grid-col-3 ulp-toc-desktop-col" id="floating-toc-col" aria-label="Índice normativo lateral">
+          <div class="ulp-toc-card">
+            <div class="ulp-toc-card__head display-flex flex-justify flex-align-center">
+              <h2 class="font-sans-2xs text-uppercase text-bold margin-0">Índice Normativo</h2>
+              <span class="usa-tag ulp-tag-v12 ulp-tabular">{tocHeadings.length}</span>
             </div>
 
-            <div class="margin-bottom-2 ulp-no-print">
+            <div class="ulp-toc-card__search ulp-no-print">
               <label class="usa-sr-only" for="floating-toc-filter">
                 Filtrar artículos en el índice
               </label>
@@ -191,34 +239,35 @@ const totalReforms = v11Count + v12Count;
                 class="usa-input"
                 id="floating-toc-filter"
                 type="search"
-                placeholder="Filtrar sección o artículo..."
+                placeholder="Filtrar sección o título..."
               />
             </div>
 
-            <nav aria-label="Índice del documento normativo">
-              <ul class="usa-sidenav" id="floating-toc-list">
+            <nav aria-label="Índice del documento normativo" class="ulp-toc-card__list" id="floating-toc-nav" tabindex="0">
+              <ul class="usa-list usa-list--unstyled margin-0" id="floating-toc-list">
                 {tocHeadings.map((h) => (
-                  <li class="usa-sidenav__item floating-toc-li">
+                  <li class={`floating-toc-li ulp-toc-item--d${h.depth}`}>
                     <a
                       href={`#${h.slug}`}
-                      class={`floating-toc-item toc-level-${h.depth}`}
+                      class="ulp-toc-link"
+                      data-toc-slug={h.slug}
+                      title={h.text}
                     >
-                      {h.text}
+                      <span class="ulp-toc-link__text">{formatTocLabel(h.text)}</span>
                     </a>
                   </li>
                 ))}
               </ul>
             </nav>
           </div>
-        </div>
+        </aside>
 
-        <div class="tablet:grid-col-8 desktop:grid-col-9" id="reader-paper-col">
-          <article
-            class="usa-prose ulp-reader-paper padding-4 bg-white border-1px border-base-lighter shadow-1"
-            id="paper-sheet"
-          >
-            <Content />
-          </article>
+        <div class="desktop:grid-col-9" id="reader-paper-col">
+          <div class="ulp-reader-sheet">
+            <article class="usa-prose ulp-reader-paper" id="paper-sheet">
+              <Content />
+            </article>
+          </div>
         </div>
       </div>
     </div>
@@ -230,6 +279,7 @@ const totalReforms = v11Count + v12Count;
     const sizeVal = document.getElementById('reader-font-size-val');
     const btnSerif = document.getElementById('btn-font-serif');
     const btnSans = document.getElementById('btn-font-sans');
+    const progressBar = document.getElementById('reader-progress-bar');
 
     let fontFamily: 'serif' | 'sans' = 'serif';
     let fontSize = 17;
@@ -252,9 +302,9 @@ const totalReforms = v11Count + v12Count;
       paper.classList.toggle('ulp-font-sans', fontFamily === 'sans');
       paper.style.setProperty('--ulp-reader-font-size', `${fontSize}px`);
       if (sizeVal) sizeVal.textContent = `${fontSize}px`;
-      btnSerif?.classList.toggle('usa-button--outline', fontFamily !== 'serif');
+      btnSerif?.classList.toggle('is-active', fontFamily === 'serif');
       btnSerif?.setAttribute('aria-pressed', String(fontFamily === 'serif'));
-      btnSans?.classList.toggle('usa-button--outline', fontFamily !== 'sans');
+      btnSans?.classList.toggle('is-active', fontFamily === 'sans');
       btnSans?.setAttribute('aria-pressed', String(fontFamily === 'sans'));
       try {
         localStorage.setItem(PREFS_KEY, JSON.stringify({ fontFamily, fontSize }));
@@ -283,7 +333,17 @@ const totalReforms = v11Count + v12Count;
     });
     document.getElementById('btn-print-reader')?.addEventListener('click', () => window.print());
 
-    // Toggle TOC column
+    // Reading progress indicator
+    const updateProgress = () => {
+      if (!progressBar) return;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      progressBar.style.width = `${pct.toFixed(1)}%`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    // Toggle desktop TOC column
     const tocBtn = document.getElementById('btn-toggle-floating-toc');
     const tocCol = document.getElementById('floating-toc-col');
     const paperCol = document.getElementById('reader-paper-col');
@@ -292,13 +352,11 @@ const totalReforms = v11Count + v12Count;
       const hidden = tocCol.hasAttribute('hidden');
       if (hidden) {
         tocCol.removeAttribute('hidden');
-        paperCol.className = 'tablet:grid-col-8 desktop:grid-col-9';
-        tocBtn.classList.add('usa-button--outline');
+        paperCol.className = 'desktop:grid-col-9';
         tocBtn.setAttribute('aria-expanded', 'true');
       } else {
         tocCol.setAttribute('hidden', '');
         paperCol.className = 'grid-col-12';
-        tocBtn.classList.remove('usa-button--outline');
         tocBtn.setAttribute('aria-expanded', 'false');
       }
     });
@@ -311,6 +369,29 @@ const totalReforms = v11Count + v12Count;
         li.hidden = Boolean(q) && !(li.textContent || '').toLowerCase().includes(q);
       });
     });
+
+    // Active section highlight in sticky TOC
+    const tocLinks = document.querySelectorAll<HTMLAnchorElement>('[data-toc-slug]');
+    if (tocLinks.length > 0 && 'IntersectionObserver' in window) {
+      const linkMap = new Map<string, HTMLAnchorElement>();
+      tocLinks.forEach((a) => {
+        const slug = a.getAttribute('data-toc-slug');
+        if (slug) linkMap.set(slug, a);
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries.find((e) => e.isIntersecting);
+          if (!visible?.target.id) return;
+          tocLinks.forEach((a) => a.classList.remove('is-active'));
+          linkMap.get(visible.target.id)?.classList.add('is-active');
+        },
+        { rootMargin: '-12% 0px -75% 0px' }
+      );
+      linkMap.forEach((_, slug) => {
+        const heading = document.getElementById(slug);
+        if (heading) observer.observe(heading);
+      });
+    }
 
     // Sequential jump across V1.1 & V1.2 highlights
     const jumpBtn = document.getElementById('btn-jump-highlight');

@@ -1,6 +1,7 @@
 /* ==========================================================================
-   ULPIANO CCO — USWDS 3.0 Light-Only Institutional Extensions
-   Design System Traceability: src/styles/tokens.css (WCAG 2.1 AAA Light Only)
+   ULPIANO CCO — USWDS 3.0 Light-Only Institutional Design System Layer
+   Canonical Tokens: src/styles/tokens.css (WCAG 2.1 AAA Light-Only)
+   Zero dark surfaces, zero dark-mode queries, 100% token traceability.
    ========================================================================== */
 
 @import './tokens.css';
@@ -9,64 +10,806 @@
   --ulp-reader-font-size: 1.0625rem;
 }
 
-/* Ensure crisp light surface baseline */
+/* --------------------------------------------------------------------------
+   1. BASELINE TYPOGRAPHY & LIGHT SURFACES
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
 body {
   background-color: var(--theme-color-base-lightest);
   color: var(--theme-color-ink);
+  font-family: var(--font-sans);
+  line-height: var(--line-height-body);
+  overflow-x: clip;
 }
 
-.ulp-svg-chart {
-  display: block;
-  width: 100%;
-  height: auto;
+h1,
+h2,
+h3,
+h4,
+.usa-hero__heading {
+  font-family: var(--font-sans);
+  color: var(--usa-color-blue-90);
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-heading);
 }
 
-.ulp-svg-donut {
-  display: inline-block;
-  width: 180px;
-  max-width: 100%;
-  height: auto;
+button,
+input,
+select,
+textarea,
+.usa-button,
+.usa-input,
+.usa-select,
+.usa-table,
+.usa-nav,
+.usa-footer {
+  font-family: var(--font-sans);
 }
 
-.text-no-underline {
-  text-decoration: none;
-}
-
-/* Override default USWDS hero photo background with institutional light-blue legal banner */
-.usa-hero.ulp-hero {
-  background-image: none;
-  background-color: var(--usa-color-blue-5);
-  border-bottom: 4px solid var(--usa-color-blue-70);
-  padding-top: var(--space-4);
-  padding-bottom: var(--space-4);
-}
-
-.usa-hero.ulp-hero .usa-hero__callout {
-  background-color: var(--theme-color-base-lightest);
-  color: var(--theme-color-ink);
-  border: 1px solid var(--usa-color-gray-cool-20);
-  border-left: 6px solid var(--usa-color-blue-70);
+.usa-input[type='search'] {
+  border: 1px solid var(--usa-color-gray-cool-40);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-1);
-  max-width: 100%;
-  padding: var(--space-4);
+  box-sizing: border-box;
 }
 
-.usa-hero.ulp-hero .usa-hero__heading {
+.usa-search .usa-input[type='search'] {
+  border-right: 0;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+:not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-90);
+  border: 1px solid var(--usa-color-blue-10);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.38em;
+}
+
+kbd.ulp-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--size-font-3xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  color: var(--usa-color-gray-cool-70);
+  background-color: var(--usa-color-gray-cool-5);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  padding: 0.22rem 0.42rem;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* --------------------------------------------------------------------------
+   2. MATERIAL DESIGN VECTOR ICONS & ICON BADGES
+   -------------------------------------------------------------------------- */
+.ulp-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.ulp-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.ulp-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-md);
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-70);
+  border: 1px solid var(--usa-color-blue-10);
+  flex-shrink: 0;
+}
+
+.ulp-icon-badge--success {
+  background-color: var(--usa-color-green-5);
+  color: var(--usa-color-green-60);
+  border-color: var(--usa-color-green-10);
+}
+
+.ulp-icon-badge--warning {
+  background-color: var(--usa-color-gold-5);
+  color: var(--usa-color-gold-60);
+  border-color: var(--usa-color-gold-10);
+}
+
+.ulp-icon-badge--error {
+  background-color: var(--usa-color-red-5);
+  color: var(--usa-color-red-60);
+  border-color: var(--usa-color-red-10);
+}
+
+.ulp-icon-badge--forensic {
+  background-color: var(--usa-color-violet-5);
+  color: var(--usa-color-violet-60);
+  border-color: var(--usa-color-violet-10);
+}
+
+/* --------------------------------------------------------------------------
+   3. INSTITUTIONAL TOP STRIP & EXTENDED HEADER (ZERO WRAPPED LINKS)
+   -------------------------------------------------------------------------- */
+.ulp-top-strip {
+  background-color: var(--usa-color-blue-5);
+  border-bottom: 1px solid var(--usa-color-blue-10);
+  color: var(--usa-color-blue-90);
+  font-size: var(--size-font-2xs);
+  padding: var(--space-05) 0;
+}
+
+.ulp-top-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+}
+
+.ulp-top-strip__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: var(--font-weight-medium);
+}
+
+.ulp-top-strip__meta {
+  color: var(--usa-color-blue-80);
+  font-weight: var(--font-weight-semibold);
+}
+
+.ulp-header {
+  background-color: var(--theme-color-base-lightest);
+  border-bottom: 1px solid var(--usa-color-gray-cool-20);
+  position: relative;
+  z-index: var(--z-index-sticky);
+}
+
+.ulp-header__top {
+  padding: var(--space-15) 0;
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+}
+
+.ulp-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.ulp-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-15);
+  text-decoration: none;
   color: var(--usa-color-blue-90);
 }
 
-.usa-hero.ulp-hero .usa-breadcrumb,
-.usa-hero.ulp-hero .usa-breadcrumb__list,
-.usa-hero.ulp-hero .usa-breadcrumb__list-item {
-  background-color: transparent;
-}
-
-.usa-hero.ulp-hero .usa-breadcrumb__link {
+.ulp-brand:hover {
   color: var(--usa-color-blue-70);
 }
 
-/* Utility helpers aligned strictly to USWDS tokens */
+.ulp-brand__emblem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: var(--radius-md);
+  background-color: var(--usa-color-blue-70);
+  color: var(--theme-color-ink-inverse);
+  flex-shrink: 0;
+}
+
+.ulp-brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.ulp-brand__title {
+  font-size: var(--size-font-lg);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
+  color: var(--usa-color-blue-90);
+  white-space: nowrap;
+}
+
+.ulp-brand__subtitle {
+  font-size: var(--size-font-2xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--usa-color-gray-cool-60);
+  white-space: nowrap;
+}
+
+.ulp-header__utilities {
+  display: flex;
+  align-items: center;
+  gap: var(--space-15);
+}
+
+.ulp-search-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-width: 15.5rem;
+  padding: 0.45rem 0.75rem;
+  background-color: var(--usa-color-gray-cool-1);
+  color: var(--usa-color-gray-cool-60);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-md);
+  font-size: var(--size-font-xs);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-duration-fast) var(--transition-easing),
+    background-color var(--transition-duration-fast) var(--transition-easing),
+    box-shadow var(--transition-duration-fast) var(--transition-easing);
+}
+
+.ulp-search-trigger:hover {
+  background-color: var(--theme-color-base-lightest);
+  border-color: var(--usa-color-blue-50);
+  color: var(--usa-color-blue-80);
+  box-shadow: var(--shadow-1);
+}
+
+.ulp-search-trigger__left {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.ulp-header__menu-btn {
+  display: none;
+  align-items: center;
+  gap: var(--space-05);
+  background-color: var(--usa-color-blue-70);
+  color: var(--theme-color-ink-inverse);
+  border: 0;
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0.85rem;
+  font-size: var(--size-font-xs);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+.ulp-header__menu-btn:hover {
+  background-color: var(--usa-color-blue-80);
+}
+
+.ulp-nav-bar {
+  background-color: var(--theme-color-base-lightest);
+}
+
+.ulp-nav-list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-05);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ulp-nav-item {
+  display: flex;
+  margin: 0;
+}
+
+.ulp-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.72rem 0.9rem;
+  font-size: var(--size-font-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--usa-color-gray-cool-70);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition:
+    color var(--transition-duration-fast) var(--transition-easing),
+    background-color var(--transition-duration-fast) var(--transition-easing),
+    border-color var(--transition-duration-fast) var(--transition-easing);
+}
+
+.ulp-nav-link:hover {
+  color: var(--usa-color-blue-70);
+  background-color: var(--usa-color-blue-5);
+}
+
+.ulp-nav-link.usa-current,
+.ulp-nav-link[aria-current='page'] {
+  color: var(--usa-color-blue-80);
+  border-bottom-color: var(--usa-color-blue-70);
+  background-color: var(--usa-color-blue-5);
+}
+
+.ulp-nav-drawer__header {
+  display: none;
+}
+
+.ulp-nav-drawer__search {
+  display: none;
+}
+
+@media (max-width: 63.99em) {
+  .ulp-top-strip__meta {
+    display: none;
+  }
+
+  .ulp-brand__subtitle {
+    display: none;
+  }
+
+  .ulp-header__utilities {
+    gap: var(--space-1);
+  }
+
+  .ulp-search-trigger {
+    min-width: auto;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .ulp-search-trigger .ulp-kbd {
+    display: none;
+  }
+
+  .ulp-search-trigger__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .ulp-header__menu-btn {
+    display: inline-flex;
+  }
+
+  .ulp-nav-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(20rem, 86vw);
+    background-color: var(--theme-color-base-lightest);
+    border-left: 1px solid var(--usa-color-gray-cool-20);
+    box-shadow: var(--shadow-5);
+    z-index: var(--z-index-modal);
+    overflow-y: auto;
+    padding: var(--space-2);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform var(--transition-duration-normal) var(--transition-easing),
+      visibility var(--transition-duration-normal) var(--transition-easing);
+  }
+
+  .ulp-nav-bar.is-visible {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .ulp-nav-bar .grid-container {
+    padding: 0;
+  }
+
+  .ulp-nav-drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-15);
+    margin-bottom: var(--space-15);
+    border-bottom: 1px solid var(--usa-color-gray-cool-10);
+  }
+
+  .ulp-nav-drawer__search {
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .ulp-nav-list {
+    flex-direction: column;
+    gap: var(--space-05);
+  }
+
+  .ulp-nav-link {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 0.9rem;
+    border-bottom: 0;
+    border-left: 3px solid transparent;
+    border-radius: var(--radius-md);
+  }
+
+  .ulp-nav-link.usa-current,
+  .ulp-nav-link[aria-current='page'] {
+    border-left-color: var(--usa-color-blue-70);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. FULL-BLEED HERO & COMPACT PAGE HEADERS (ABOVE-THE-FOLD FIRST)
+   -------------------------------------------------------------------------- */
+.ulp-hero-band {
+  background-color: var(--usa-color-blue-5);
+  border-bottom: 3px solid var(--usa-color-blue-70);
+  padding: var(--space-4) 0;
+}
+
+.ulp-hero-band__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--size-font-2xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--usa-color-blue-80);
+  margin-bottom: var(--space-1);
+}
+
+.ulp-hero-band__title {
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--usa-color-blue-90);
+  margin: 0 0 var(--space-15) 0;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+}
+
+.ulp-hero-band__lead {
+  font-size: var(--size-font-md);
+  color: var(--usa-color-gray-cool-80);
+  margin: 0 0 var(--space-25) 0;
+  max-width: 58ch;
+  line-height: 1.55;
+}
+
+.ulp-hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-15);
+}
+
+.ulp-kpi-tile {
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-blue-10);
+  border-top: 3px solid var(--usa-color-blue-70);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-05);
+}
+
+.ulp-kpi-tile--red {
+  border-top-color: var(--usa-color-red-50);
+}
+
+.ulp-kpi-tile--green {
+  border-top-color: var(--usa-color-green-40);
+}
+
+.ulp-kpi-tile--gold {
+  border-top-color: var(--usa-color-gold-40);
+}
+
+.ulp-kpi-tile__label {
+  font-size: var(--size-font-3xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--usa-color-gray-cool-60);
+  margin: 0;
+}
+
+.ulp-kpi-tile__value {
+  font-size: var(--size-font-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--usa-color-blue-90);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  margin: var(--space-05) 0;
+}
+
+.ulp-kpi-tile__sub {
+  font-size: var(--size-font-3xs);
+  color: var(--usa-color-gray-cool-60);
+  margin: 0;
+}
+
+.ulp-page-header {
+  background-color: var(--usa-color-gray-cool-1);
+  border-bottom: 1px solid var(--usa-color-gray-cool-20);
+  padding: var(--space-25) 0;
+}
+
+.ulp-page-header__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.ulp-page-header__title {
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--usa-color-blue-90);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.ulp-page-header__sub {
+  font-size: var(--size-font-sm);
+  color: var(--usa-color-gray-cool-70);
+  margin: var(--space-05) 0 0 0;
+  max-width: 68ch;
+}
+
+/* Transparent breadcrumbs inside any header band */
+.ulp-hero-band .usa-breadcrumb,
+.ulp-hero-band .usa-breadcrumb__list,
+.ulp-hero-band .usa-breadcrumb__list-item,
+.ulp-page-header .usa-breadcrumb,
+.ulp-page-header .usa-breadcrumb__list,
+.ulp-page-header .usa-breadcrumb__list-item {
+  background-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.ulp-hero-band .usa-breadcrumb,
+.ulp-page-header .usa-breadcrumb {
+  margin-bottom: var(--space-1);
+  font-size: var(--size-font-2xs);
+}
+
+.ulp-hero-band .usa-breadcrumb__link,
+.ulp-page-header .usa-breadcrumb__link {
+  color: var(--usa-color-blue-70);
+}
+
+/* --------------------------------------------------------------------------
+   5. ALTERNATING BANDS, SECTION HEADERS & ELEVATED SURFACES
+   -------------------------------------------------------------------------- */
+.ulp-band {
+  padding: var(--space-5) 0;
+  background-color: var(--theme-color-base-lightest);
+}
+
+.ulp-band--compact {
+  padding: var(--space-3) 0;
+}
+
+.ulp-band--subtle {
+  background-color: var(--usa-color-gray-cool-1);
+  border-top: 1px solid var(--usa-color-gray-cool-10);
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+}
+
+.ulp-band--tint {
+  background-color: var(--usa-color-blue-5);
+  border-top: 1px solid var(--usa-color-blue-10);
+  border-bottom: 1px solid var(--usa-color-blue-10);
+}
+
+.ulp-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-bottom: var(--space-15);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--usa-color-gray-cool-20);
+}
+
+.ulp-section-head__eyebrow {
+  display: block;
+  font-size: var(--size-font-3xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--usa-color-blue-70);
+  margin-bottom: var(--space-05);
+}
+
+.ulp-section-head__title {
+  font-size: var(--size-font-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--usa-color-blue-90);
+  margin: 0;
+}
+
+.ulp-section-head__sub {
+  font-size: var(--size-font-sm);
+  color: var(--usa-color-gray-cool-60);
+  margin: var(--space-05) 0 0 0;
+}
+
+.ulp-surface {
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+
+.ulp-surface--padded {
+  padding: var(--space-3);
+}
+
+/* Refine USWDS cards into crisp institutional surfaces */
+.usa-card__container {
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  transition:
+    box-shadow var(--transition-duration-fast) var(--transition-easing),
+    border-color var(--transition-duration-fast) var(--transition-easing);
+}
+
+.usa-card__container:hover {
+  border-color: var(--usa-color-blue-20);
+  box-shadow: var(--shadow-2);
+}
+
+.ulp-latin-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--usa-color-gray-cool-60);
+  font-size: var(--size-font-xs);
+}
+
+.ulp-before-after {
+  background-color: var(--usa-color-gray-cool-1);
+  border: 1px solid var(--usa-color-gray-cool-10);
+  border-radius: var(--radius-md);
+  padding: var(--space-15);
+  font-size: var(--size-font-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* --------------------------------------------------------------------------
+   6. SEMANTIC LIGHT-ONLY TAGS & SEGMENTED CONTROLS
+   -------------------------------------------------------------------------- */
+.usa-tag {
+  background-color: var(--usa-color-gray-cool-5);
+  color: var(--usa-color-gray-cool-80);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-sm);
+  font-size: var(--size-font-3xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-05);
+}
+
+.ulp-tag-v11 {
+  background-color: var(--usa-color-red-5);
+  color: var(--usa-color-red-60);
+  border-color: var(--usa-color-red-20);
+}
+
+.ulp-tag-v12 {
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-80);
+  border-color: var(--usa-color-blue-20);
+}
+
+.ulp-tag-success {
+  background-color: var(--usa-color-green-5);
+  color: var(--usa-color-green-60);
+  border-color: var(--usa-color-green-20);
+}
+
+.ulp-tag-warning {
+  background-color: var(--usa-color-gold-5);
+  color: var(--usa-color-gold-70);
+  border-color: var(--usa-color-gold-20);
+}
+
+.ulp-tag-forensic {
+  background-color: var(--usa-color-violet-5);
+  color: var(--usa-color-violet-70);
+  border-color: var(--usa-color-violet-20);
+}
+
+.ulp-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: var(--usa-color-gray-cool-5);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-md);
+  padding: 0.2rem;
+  gap: 0.2rem;
+}
+
+.ulp-segmented__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-05);
+  padding: 0.42rem 0.78rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--usa-color-gray-cool-70);
+  font-size: var(--size-font-xs);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.25;
+  transition: box-shadow var(--transition-duration-fast) var(--transition-easing);
+}
+
+.ulp-segmented__item:hover {
+  color: var(--usa-color-blue-80);
+  background-color: var(--usa-color-blue-5);
+}
+
+.ulp-segmented__item.is-active,
+.ulp-segmented__item[aria-current='page'],
+.ulp-segmented__item[aria-pressed='true'] {
+  background-color: var(--usa-color-blue-70);
+  color: var(--theme-color-ink-inverse);
+  box-shadow: var(--shadow-1);
+}
+
+.ulp-segmented__item.is-active:hover,
+.ulp-segmented__item[aria-current='page']:hover,
+.ulp-segmented__item[aria-pressed='true']:hover {
+  background-color: var(--usa-color-blue-80);
+  color: var(--theme-color-ink-inverse);
+}
+
+.ulp-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-15);
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-lg);
+  padding: var(--space-15) var(--space-2);
+  box-shadow: var(--shadow-1);
+}
+
+/* Spacing helpers strictly on tokens */
 .ulp-gap-1 {
   gap: var(--space-1);
 }
@@ -75,53 +818,286 @@ body {
   gap: var(--space-2);
 }
 
-/* Semantic badges (high-contrast WCAG AAA light surfaces) */
-.ulp-tag-v11 {
-  background-color: var(--usa-color-red-5);
-  color: var(--usa-color-red-60);
-  border: 1px solid var(--usa-color-red-20);
+.text-no-underline {
+  text-decoration: none;
 }
 
-.ulp-tag-v12 {
-  background-color: var(--usa-color-blue-5);
-  color: var(--usa-color-blue-80);
-  border: 1px solid var(--usa-color-blue-20);
-}
-
-.ulp-tag-success {
-  background-color: var(--usa-color-green-5);
-  color: var(--usa-color-green-60);
-  border: 1px solid var(--usa-color-green-20);
-}
-
-.ulp-tag-warning {
-  background-color: var(--usa-color-gold-5);
-  color: var(--usa-color-gold-70);
-  border: 1px solid var(--usa-color-gold-20);
-}
-
-.ulp-tag-forensic {
-  background-color: var(--usa-color-violet-5);
-  color: var(--usa-color-violet-70);
-  border: 1px solid var(--usa-color-violet-20);
-}
-
-.ulp-row-star {
-  background-color: var(--usa-color-gold-5);
-}
-
-/* Charts responsive wrapper (required for Chart.js maintainAspectRatio: false) */
-.ulp-chart-wrap {
-  position: relative;
-  height: 300px;
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE TABLES (ZERO HORIZONTAL OVERFLOW ON 390px & 1440px)
+   -------------------------------------------------------------------------- */
+.ulp-table-wrap {
   width: 100%;
+  overflow-x: auto;
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
 }
 
-/* Legislative Reform Highlights (WCAG 2.1 AAA >= 7:1 contrast) */
+.ulp-table-wrap .usa-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.ulp-table-wrap .usa-table th,
+.ulp-table-wrap .usa-table td {
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
+  vertical-align: top;
+  padding: var(--space-15) var(--space-15);
+  border-color: var(--usa-color-gray-cool-10);
+}
+
+.ulp-table-wrap .usa-tag {
+  white-space: nowrap;
+}
+
+.ulp-table-wrap .usa-table thead th {
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-90);
+  font-size: var(--size-font-2xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--usa-color-blue-20);
+}
+
+.ulp-table-wrap .usa-table tbody tr:hover td,
+.ulp-table-wrap .usa-table tbody tr:hover th {
+  background-color: var(--usa-color-blue-5);
+}
+
+.ulp-row-star td,
+.ulp-row-star th {
+  background-color: var(--usa-color-gold-5);
+}
+
+.ulp-col-art {
+  width: 24%;
+}
+
+.ulp-col-summary {
+  width: 60%;
+}
+
+.ulp-col-action {
+  width: 16%;
+  text-align: right;
+}
+
+.ulp-col-num {
+  width: 4%;
+}
+
+.ulp-col-title {
+  width: 16%;
+}
+
+.ulp-col-scope {
+  width: 26%;
+}
+
+.ulp-col-comp {
+  width: 22%;
+}
+
+.ulp-col-const {
+  width: 22%;
+}
+
+.ulp-col-hier {
+  width: 10%;
+}
+
+@media (max-width: 48em) {
+  .ulp-table-wrap .usa-table--stacked colgroup,
+  .ulp-table-wrap .usa-table--stacked thead {
+    display: none;
+  }
+
+  .ulp-table-wrap .usa-table--stacked tr {
+    display: block;
+    border-bottom: 2px solid var(--usa-color-gray-cool-20);
+    padding: var(--space-1) 0;
+  }
+
+  .ulp-table-wrap .usa-table--stacked th,
+  .ulp-table-wrap .usa-table--stacked td {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    padding: var(--space-05) var(--space-2);
+  }
+
+  .ulp-table-wrap .usa-table--stacked td[data-label]::before,
+  .ulp-table-wrap .usa-table--stacked th[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--size-font-3xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--usa-color-gray-cool-60);
+    margin-bottom: 0.15rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. BUILD-TIME SVG CHARTS
+   -------------------------------------------------------------------------- */
+.ulp-svg-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ulp-svg-donut {
+  display: block;
+  margin: 0 auto;
+  width: 184px;
+  max-width: 100%;
+  height: auto;
+}
+
+.ulp-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   9. LEGISLATIVE READER EDITORIAL TYPOGRAPHY & STICKY TOC
+   -------------------------------------------------------------------------- */
+.ulp-read-progress {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-dropdown);
+  height: 3px;
+  width: 100%;
+  background-color: var(--usa-color-gray-cool-10);
+}
+
+.ulp-read-progress__bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--usa-color-blue-70);
+  transition: width 120ms linear;
+}
+
+.ulp-reader-sheet {
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+}
+
+.ulp-reader-paper {
+  font-family: var(--font-serif);
+  font-size: var(--ulp-reader-font-size);
+  line-height: var(--line-height-loose);
+  color: var(--theme-color-ink);
+  max-width: 68ch;
+  margin: 0 auto;
+}
+
+.ulp-reader-paper.ulp-font-sans {
+  font-family: var(--font-sans);
+}
+
+.ulp-reader-paper h2 {
+  font-family: var(--font-sans);
+  font-size: var(--size-font-2xl);
+  color: var(--usa-color-blue-90);
+  border-bottom: 2px solid var(--usa-color-blue-10);
+  padding-bottom: var(--space-1);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+  line-height: 1.25;
+}
+
+.ulp-reader-paper h2:first-child {
+  margin-top: 0;
+}
+
+.ulp-reader-paper h3 {
+  font-family: var(--font-sans);
+  font-size: var(--size-font-xl);
+  color: var(--usa-color-blue-80);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-15);
+}
+
+.ulp-reader-paper h4 {
+  font-family: var(--font-sans);
+  font-size: var(--size-font-md);
+  color: var(--usa-color-gray-cool-80);
+  margin-top: var(--space-25);
+  margin-bottom: var(--space-1);
+}
+
+/* Subdue reform marks inside headings so titles stay authoritative & readable */
+.ulp-reader-paper h2 .reforma-rojo,
+.ulp-reader-paper h3 .reforma-rojo,
+.ulp-reader-paper h2 .reforma-v12,
+.ulp-reader-paper h3 .reforma-v12 {
+  background-color: transparent;
+  border-bottom: 2px solid var(--usa-color-red-30);
+  color: inherit;
+  padding: 0;
+}
+
+.ulp-reader-paper h2 .reforma-v12,
+.ulp-reader-paper h3 .reforma-v12 {
+  border-bottom-color: var(--usa-color-blue-40);
+}
+
+.ulp-reader-paper p[id^='articulo-'] {
+  scroll-margin-top: var(--space-6);
+  padding-left: var(--space-2);
+  border-left: 3px solid var(--usa-color-blue-10);
+  margin-top: var(--space-25);
+}
+
+.ulp-reader-paper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--size-font-xs);
+}
+
+.ulp-reader-paper th,
+.ulp-reader-paper td {
+  border: 1px solid var(--usa-color-gray-cool-20);
+  padding: var(--space-1) var(--space-15);
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+}
+
+.ulp-reader-paper thead th {
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-90);
+  font-weight: var(--font-weight-bold);
+}
+
+.ulp-reader-paper blockquote {
+  border-left: 4px solid var(--usa-color-blue-70);
+  background-color: var(--usa-color-blue-5);
+  margin: var(--space-2) 0;
+  padding: var(--space-15) var(--space-2);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* Reform highlights (WCAG 2.1 AAA >= 7:1 contrast) */
 .reforma-rojo {
   color: var(--usa-color-red-60);
   background-color: var(--usa-color-red-5);
-  border-bottom: 2px solid var(--usa-color-red-30);
+  border-bottom: 2px solid var(--usa-color-red-20);
   padding: 0 0.18em;
   border-radius: var(--radius-sm);
 }
@@ -129,7 +1105,7 @@ body {
 .reforma-v12 {
   color: var(--usa-color-blue-80);
   background-color: var(--usa-color-blue-5);
-  border-bottom: 2px solid var(--usa-color-blue-30);
+  border-bottom: 2px solid var(--usa-color-blue-20);
   padding: 0 0.18em;
   border-radius: var(--radius-sm);
 }
@@ -143,7 +1119,134 @@ body {
     background-color var(--transition-duration-normal) var(--transition-easing);
 }
 
-/* Semantic Diff Highlights (Compare View) */
+/* Sticky TOC Sidebar */
+.ulp-toc-card {
+  position: sticky;
+  top: var(--space-2);
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+
+.ulp-toc-card__head {
+  padding: var(--space-15) var(--space-2);
+  background-color: var(--usa-color-gray-cool-1);
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+}
+
+.ulp-toc-card__search {
+  padding: var(--space-15) var(--space-2);
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+}
+
+.ulp-toc-card__search .usa-input {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  height: 2.2rem;
+  font-size: var(--size-font-xs);
+  padding: 0.35rem 0.65rem;
+}
+
+.ulp-toc-card__list {
+  overflow-y: auto;
+  padding: var(--space-1);
+  list-style: none;
+  margin: 0;
+}
+
+.ulp-toc-link {
+  display: block;
+  padding: 0.42rem 0.65rem;
+  border-left: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--size-font-xs);
+  line-height: 1.38;
+  color: var(--usa-color-gray-cool-70);
+  text-decoration: none;
+}
+
+.ulp-toc-link__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ulp-toc-link:hover {
+  background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-80);
+}
+
+.ulp-toc-link.is-active {
+  background-color: var(--usa-color-blue-5);
+  border-left-color: var(--usa-color-blue-70);
+  color: var(--usa-color-blue-90);
+  font-weight: var(--font-weight-bold);
+}
+
+.ulp-toc-item--d2 .ulp-toc-link {
+  padding-left: var(--space-15);
+  font-weight: var(--font-weight-semibold);
+}
+
+.ulp-toc-item--d3 .ulp-toc-link {
+  padding-left: var(--space-25);
+  font-size: var(--size-font-2xs);
+}
+
+.ulp-toc-item--d4 .ulp-toc-link {
+  padding-left: var(--space-3);
+  font-size: var(--size-font-2xs);
+}
+
+.ulp-mobile-toc {
+  display: none;
+  margin-bottom: var(--space-2);
+}
+
+@media (max-width: 63.99em) {
+  .ulp-toc-desktop-col {
+    display: none;
+  }
+
+  .ulp-mobile-toc {
+    display: block;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. COMPARATOR & SEMANTIC DIFF
+   -------------------------------------------------------------------------- */
+.ulp-compare-paper {
+  max-height: 68vh;
+  overflow-y: auto;
+  font-family: var(--font-serif);
+  font-size: var(--size-font-sm);
+  line-height: 1.65;
+  padding: var(--space-3);
+}
+
+.ulp-compare-paper h2,
+.ulp-compare-paper h3 {
+  font-family: var(--font-sans);
+  font-size: var(--size-font-lg);
+  color: var(--usa-color-blue-90);
+  margin-top: var(--space-25);
+}
+
+.ulp-compare-paper h2 .reforma-rojo,
+.ulp-compare-paper h3 .reforma-rojo {
+  background-color: transparent;
+  color: inherit;
+  border-bottom: 2px solid var(--usa-color-red-30);
+}
+
 .ulp-diff-ins {
   background-color: var(--usa-color-green-5);
   color: var(--usa-color-green-70);
@@ -163,110 +1266,144 @@ body {
 
 .ulp-diff-article {
   border: 1px solid var(--usa-color-gray-cool-20);
+  border-left: 4px solid var(--usa-color-gray-cool-30);
   border-radius: var(--radius-md);
   background-color: var(--theme-color-base-lightest);
   margin-bottom: var(--space-2);
-  padding: var(--space-2);
+  padding: var(--space-2) var(--space-25);
+  box-shadow: var(--shadow-1);
 }
 
 .ulp-diff-article--added {
-  border-left: 5px solid var(--usa-color-green-50);
+  border-left-color: var(--usa-color-green-50);
 }
 
 .ulp-diff-article--modified {
-  border-left: 5px solid var(--usa-color-blue-70);
+  border-left-color: var(--usa-color-blue-70);
 }
 
 .ulp-diff-article--removed {
-  border-left: 5px solid var(--usa-color-red-50);
+  border-left-color: var(--usa-color-red-50);
 }
 
-/* Reader Typography & Sticky TOC */
-.ulp-reader-paper {
+.ulp-diff-body {
   font-family: var(--font-serif);
-  font-size: var(--ulp-reader-font-size);
-  line-height: var(--line-height-loose);
-  max-width: none;
-}
-
-.ulp-reader-paper.ulp-font-sans {
-  font-family: var(--font-sans);
-}
-
-.ulp-reader-paper table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: var(--space-2);
-  margin-bottom: var(--space-3);
-  font-family: var(--font-sans);
   font-size: var(--size-font-sm);
+  line-height: 1.65;
 }
 
-.ulp-reader-paper th,
-.ulp-reader-paper td {
+/* --------------------------------------------------------------------------
+   11. DIAGRAMS MASTER-DETAIL & SVG VIEWPORT
+   -------------------------------------------------------------------------- */
+.ulp-diagram-sidebar {
+  background-color: var(--theme-color-base-lightest);
   border: 1px solid var(--usa-color-gray-cool-20);
-  padding: var(--space-1) var(--space-15);
-  text-align: left;
-  vertical-align: top;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
 }
 
-.ulp-reader-paper thead th {
+.ulp-diagram-sidebar__head {
+  padding: var(--space-15) var(--space-2);
+  background-color: var(--usa-color-gray-cool-1);
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+}
+
+.ulp-diagram-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ulp-diagram-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-md);
+  border-left: 3px solid transparent;
+  text-decoration: none;
+  color: var(--usa-color-gray-cool-80);
+  font-size: var(--size-font-xs);
+  font-weight: var(--font-weight-medium);
+  transition:
+    background-color var(--transition-duration-fast) var(--transition-easing),
+    color var(--transition-duration-fast) var(--transition-easing);
+}
+
+.ulp-diagram-nav-link:hover {
   background-color: var(--usa-color-blue-5);
+  color: var(--usa-color-blue-80);
+}
+
+.ulp-diagram-nav-link.is-active,
+.ulp-diagram-nav-link[aria-current='page'] {
+  background-color: var(--usa-color-blue-5);
+  border-left-color: var(--usa-color-blue-70);
   color: var(--usa-color-blue-90);
   font-weight: var(--font-weight-bold);
 }
 
-.ulp-reader-paper blockquote {
-  border-left: 4px solid var(--usa-color-blue-60);
-  background-color: var(--usa-color-gray-cool-1);
-  margin: var(--space-2) 0;
-  padding: var(--space-15) var(--space-2);
+.ulp-svg-viewport {
+  background-color: var(--theme-color-base-lightest);
+  border: 1px solid var(--usa-color-gray-cool-20);
+  border-radius: var(--radius-md);
+  max-height: 70vh;
+  overflow: auto;
+  padding: var(--space-2);
+  text-align: center;
 }
 
-.ulp-toc-sticky {
-  position: sticky;
-  top: var(--space-2);
-  max-height: calc(100vh - 2rem);
-  overflow-y: auto;
+.ulp-svg-viewport.is-zoomed {
+  cursor: grab;
+  text-align: left;
 }
 
-.floating-toc-item {
-  font-size: var(--size-font-xs);
-  line-height: 1.35;
+.ulp-svg-viewport.is-dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
-.floating-toc-item.toc-level-2 {
-  padding-left: var(--space-2);
+.ulp-svg-viewport svg,
+.ulp-svg-viewport object,
+.ulp-svg-viewport img {
+  display: block;
+  margin: 0 auto;
+  height: auto;
+  max-width: 100%;
 }
 
-.floating-toc-item.toc-level-3 {
-  padding-left: var(--space-3);
-  font-size: var(--size-font-2xs);
+.ulp-fullscreen-active {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-modal);
+  background-color: var(--theme-color-base-lightest);
+  overflow: auto;
+  padding: var(--space-3);
+  margin: 0;
+  border-radius: 0;
 }
 
-.floating-toc-item.toc-level-4 {
-  padding-left: var(--space-4);
-  font-size: var(--size-font-2xs);
+.ulp-fullscreen-active .ulp-svg-viewport {
+  max-height: calc(100vh - 10rem);
 }
 
-/* Compare Parallel Scroll Panels */
-.ulp-compare-paper {
-  max-height: 72vh;
-  overflow-y: auto;
-  font-size: var(--size-font-sm);
-  line-height: 1.6;
-}
-
-/* Light-Only Code / API Output Panels (WCAG AAA >= 14:1 contrast) */
+/* --------------------------------------------------------------------------
+   12. API CONSOLE, DROPZONE, QR & LIGHT-ONLY TERMINAL OUTPUT
+   -------------------------------------------------------------------------- */
 .ulp-code-output {
-  background-color: var(--usa-color-gray-cool-5);
+  background-color: var(--usa-color-gray-cool-1);
   color: var(--usa-color-gray-cool-90);
   border: 1px solid var(--usa-color-gray-cool-20);
   border-left: 4px solid var(--usa-color-blue-70);
   border-radius: var(--radius-md);
   font-family: var(--font-mono);
   font-size: var(--size-font-2xs);
-  line-height: 1.5;
+  line-height: 1.55;
   padding: var(--space-2);
   max-height: 22rem;
   overflow: auto;
@@ -302,7 +1439,6 @@ body {
   font-weight: var(--font-weight-semibold);
 }
 
-/* QR Code Container */
 .ulp-qr-box {
   display: inline-flex;
   flex-direction: column;
@@ -320,73 +1456,75 @@ body {
   display: block;
 }
 
-/* SVG Diagram Viewport & Fullscreen */
-.ulp-svg-viewport {
-  background-color: var(--theme-color-base-lightest);
-  border: 1px solid var(--usa-color-gray-cool-20);
-  border-radius: var(--radius-md);
-  max-height: 75vh;
-  overflow: auto;
-  padding: var(--space-2);
+.ulp-dropzone {
+  border: 2px dashed var(--usa-color-blue-30);
+  background-color: var(--usa-color-blue-5);
+  border-radius: var(--radius-lg);
+  padding: var(--space-25);
   text-align: center;
+  transition:
+    border-color var(--transition-duration-fast) var(--transition-easing),
+    background-color var(--transition-duration-fast) var(--transition-easing);
 }
 
-.ulp-svg-viewport.is-zoomed {
-  cursor: grab;
-  text-align: left;
+.ulp-dropzone.is-dragover {
+  border-color: var(--usa-color-blue-70);
+  background-color: var(--usa-color-blue-10);
 }
 
-.ulp-svg-viewport.is-dragging {
-  cursor: grabbing;
-  user-select: none;
-}
-
-.ulp-svg-viewport svg,
-.ulp-svg-viewport object,
-.ulp-svg-viewport img {
-  display: block;
-  margin: 0 auto;
-  height: auto;
-  max-width: 100%;
-}
-
-.ulp-fullscreen-active {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-index-modal);
-  background-color: var(--theme-color-base-lightest);
-  overflow: auto;
-  padding: var(--space-3);
-  margin: 0;
-}
-
-.ulp-fullscreen-active .ulp-svg-viewport {
-  max-height: calc(100vh - 10rem);
-}
-
-/* Global Search Dialog (Ctrl+K) */
+/* --------------------------------------------------------------------------
+   13. COMMAND PALETTE SEARCH DIALOG (Ctrl+K)
+   -------------------------------------------------------------------------- */
 .ulp-search-dialog {
-  width: min(760px, calc(100vw - 2rem));
+  width: min(720px, calc(100vw - 2rem));
   max-height: 82vh;
-  border: 2px solid var(--usa-color-blue-70);
+  border: 1px solid var(--usa-color-blue-20);
+  border-top: 4px solid var(--usa-color-blue-70);
   border-radius: var(--radius-lg);
   background-color: var(--theme-color-base-lightest);
   color: var(--theme-color-ink);
   box-shadow: var(--shadow-5);
   padding: 0;
+  overflow: hidden;
 }
 
 .ulp-search-dialog::backdrop {
   background-color: rgba(11, 27, 61, 0.35);
 }
 
+.ulp-search-dialog__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-15);
+  padding: var(--space-2) var(--space-25);
+  border-bottom: 1px solid var(--usa-color-gray-cool-10);
+  background-color: var(--usa-color-gray-cool-1);
+}
+
+.ulp-search-dialog__input {
+  flex: 1;
+  border: 0;
+  background-color: transparent;
+  font-size: var(--size-font-md);
+  color: var(--theme-color-ink);
+  padding: var(--space-05) 0;
+}
+
+.ulp-search-dialog__input:focus {
+  outline: none;
+}
+
 .ulp-search-results {
-  max-height: 55vh;
+  max-height: 52vh;
   overflow-y: auto;
+  padding: var(--space-15) var(--space-2);
 }
 
 .ulp-search-result-btn {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
   width: 100%;
   text-align: left;
   background-color: var(--theme-color-base-lightest);
@@ -396,43 +1534,91 @@ body {
   padding: var(--space-15);
   margin-bottom: var(--space-1);
   cursor: pointer;
+  transition:
+    background-color var(--transition-duration-fast) var(--transition-easing),
+    border-color var(--transition-duration-fast) var(--transition-easing);
 }
 
 .ulp-search-result-btn:hover,
-.ulp-search-result-btn:focus-visible {
+.ulp-search-result-btn:focus-visible,
+.ulp-search-result-btn.is-selected {
   background-color: var(--usa-color-blue-5);
-  border-color: var(--usa-color-blue-60);
-  outline: var(--focus-ring);
+  border-color: var(--usa-color-blue-50);
 }
 
-/* Skip & focus visibility */
-:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-ring-offset);
+.ulp-search-dialog__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  padding: var(--space-15) var(--space-25);
+  background-color: var(--usa-color-gray-cool-1);
+  border-top: 1px solid var(--usa-color-gray-cool-10);
+  font-size: var(--size-font-2xs);
+  color: var(--usa-color-gray-cool-60);
 }
 
-/* File dropzone for real SHA-256 client verification */
-.ulp-dropzone {
-  border: 2px dashed var(--usa-color-blue-40);
+/* --------------------------------------------------------------------------
+   14. LIGHT-ONLY FOOTER & INSTITUTIONAL IDENTIFIER (ZERO BLACK BACKGROUNDS)
+   -------------------------------------------------------------------------- */
+.usa-footer--big .usa-footer__primary-section {
+  background-color: var(--usa-color-gray-cool-1);
+  border-top: 1px solid var(--usa-color-gray-cool-20);
+}
+
+.usa-footer--big .usa-footer__secondary-section {
   background-color: var(--usa-color-blue-5);
-  border-radius: var(--radius-md);
-  padding: var(--space-2);
-  text-align: center;
+  border-top: 1px solid var(--usa-color-blue-10);
 }
 
-.ulp-dropzone.is-dragover {
-  border-color: var(--usa-color-blue-70);
-  background-color: var(--usa-color-blue-10);
+.usa-footer__return-to-top {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
 }
 
-/* Print Stylesheet (Official Gazette / Legislative Output) */
+.usa-identifier {
+  background-color: var(--usa-color-gray-cool-5);
+  color: var(--usa-color-gray-cool-90);
+  border-top: 4px solid var(--usa-color-blue-70);
+  padding-bottom: var(--space-2);
+}
+
+.usa-identifier .usa-identifier__identity-domain {
+  color: var(--usa-color-blue-90);
+  font-weight: var(--font-weight-bold);
+}
+
+.usa-identifier .usa-identifier__identity-disclaimer {
+  color: var(--usa-color-gray-cool-80);
+}
+
+.usa-identifier .usa-identifier__required-link,
+.usa-identifier .usa-identifier__required-link.usa-link,
+.usa-identifier .usa-identifier__required-link:visited,
+.usa-identifier .usa-identifier__required-link.usa-link:visited {
+  color: var(--usa-color-blue-70);
+  font-weight: var(--font-weight-semibold);
+}
+
+.usa-identifier .usa-identifier__required-link:hover,
+.usa-identifier .usa-identifier__required-link.usa-link:hover {
+  color: var(--usa-color-blue-90);
+}
+
+/* --------------------------------------------------------------------------
+   15. PRINT & REDUCED MOTION
+   -------------------------------------------------------------------------- */
 @media print {
-  .usa-header,
+  .ulp-top-strip,
+  .ulp-header,
+  .ulp-read-progress,
   .usa-footer,
   .usa-identifier,
   .usa-skipnav,
   .ulp-no-print,
-  #floating-toc-col {
+  .ulp-toc-desktop-col,
+  .ulp-mobile-toc {
     display: none !important;
   }
 
@@ -442,10 +1628,14 @@ body {
     flex: 0 0 100% !important;
   }
 
-  .ulp-reader-paper {
+  .ulp-reader-sheet {
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
+  }
+
+  .ulp-reader-paper {
+    max-width: 100% !important;
   }
 }
 

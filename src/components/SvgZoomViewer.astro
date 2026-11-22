@@ -2,8 +2,9 @@
 /**
  * ULPIANO CCO — Shared Build-Time Inline SVG Diagram Viewer
  * Renders full vector diagram in static HTML (100% visible with JS disabled).
- * Adds ~1 KB progressive enhancement for layout-aware zoom, drag-to-pan, keyboard shortcuts, and fullscreen.
+ * Material SVG icons, segmented zoom controls, drag-to-pan, keyboard shortcuts, and fullscreen.
  */
+import Icon from './Icon.astro';
 import { readPublicSvgInline } from '../lib/svg.ts';
 
 interface Props {
@@ -26,29 +27,33 @@ const inlineSvg = readPublicSvgInline(svgFile, ariaLabel);
 const downloadName = svgFile.split('/').pop() || 'diagrama.svg';
 ---
 
-<div class="usa-card margin-bottom-5" data-svg-viewer>
-  <div class="usa-card__container">
-    <header class="usa-card__header border-bottom-1px border-base-lighter padding-bottom-2">
-      <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2">
-        <div>
-          {tag && <span class="usa-tag ulp-tag-v12 margin-bottom-05">{tag}</span>}
+<div class="ulp-surface margin-bottom-4 overflow-hidden" data-svg-viewer>
+  <header class="padding-y-105 padding-x-2 bg-base-lightest border-bottom-1px border-base-lighter">
+    <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2">
+      <div>
+        <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
+          {tag && <span class="usa-tag ulp-tag-v12">{tag}</span>}
           <h2 class="font-sans-md margin-0">{title}</h2>
-          {subtitle && (
-            <p class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0">{subtitle}</p>
-          )}
         </div>
-        <div class="display-flex flex-wrap ulp-gap-1">
+        {subtitle && (
+          <p class="font-sans-2xs text-base-dark margin-top-05 margin-bottom-0">{subtitle}</p>
+        )}
+      </div>
+
+      <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
+        <div class="ulp-segmented" role="group" aria-label="Controles de zoom">
           <button
             type="button"
-            class="usa-button usa-button--small usa-button--outline"
+            class="ulp-segmented__item"
             data-zoom="-0.15"
             title="Reducir zoom (tecla -)"
+            aria-label="Reducir zoom"
           >
-            Zoom -
+            <Icon name="zoom_out" size={15} />
           </button>
           <button
             type="button"
-            class="usa-button usa-button--small usa-button--outline"
+            class="ulp-segmented__item ulp-tabular"
             data-zoom="reset"
             title="Restablecer zoom al 100% (tecla 0)"
           >
@@ -56,54 +61,62 @@ const downloadName = svgFile.split('/').pop() || 'diagrama.svg';
           </button>
           <button
             type="button"
-            class="usa-button usa-button--small usa-button--outline"
+            class="ulp-segmented__item"
             data-zoom="0.15"
             title="Aumentar zoom (tecla +)"
+            aria-label="Aumentar zoom"
           >
-            Zoom +
+            <Icon name="zoom_in" size={15} />
           </button>
-          <button
-            type="button"
-            class="usa-button usa-button--small usa-button--outline"
-            data-fullscreen
-            aria-pressed="false"
-            title="Pantalla completa (Esc para salir)"
-          >
-            Pantalla Completa
-          </button>
-          <a
-            href={svgFile}
-            download={downloadName}
-            class="usa-button usa-button--small usa-button--outline"
-          >
-            Descargar SVG
-          </a>
-          <a
-            href={svgFile}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="usa-button usa-button--small"
-          >
-            Abrir SVG
-          </a>
         </div>
-      </div>
-    </header>
 
-    <div class="usa-card__body padding-2">
-      <div
-        class="ulp-svg-viewport"
-        data-svg-viewport
-        tabindex="0"
-        role="region"
-        aria-label={ariaLabel}
-        set:html={inlineSvg}
-      />
-      <p class="font-sans-2xs text-base-dark margin-top-1 margin-bottom-0">
-        Atajos: <code>+</code> / <code>-</code> / <code>0</code> para zoom; arrastre con el ratón al
-        ampliar; <code>Esc</code> para salir de pantalla completa.
-      </p>
+        <button
+          type="button"
+          class="usa-button usa-button--small usa-button--outline ulp-btn-icon"
+          data-fullscreen
+          aria-pressed="false"
+          title="Pantalla completa (Esc para salir)"
+        >
+          <Icon name="fullscreen" size={15} />
+          <span data-fullscreen-label>Pantalla Completa</span>
+        </button>
+
+        <a
+          href={svgFile}
+          download={downloadName}
+          class="usa-button usa-button--small usa-button--outline ulp-btn-icon"
+        >
+          <Icon name="download" size={15} />
+          <span>SVG</span>
+        </a>
+
+        <a
+          href={svgFile}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="usa-button usa-button--small ulp-btn-icon"
+        >
+          <Icon name="open_in_new" size={15} />
+          <span>Abrir</span>
+        </a>
+      </div>
     </div>
+  </header>
+
+  <div class="padding-2">
+    <div
+      class="ulp-svg-viewport"
+      data-svg-viewport
+      tabindex="0"
+      role="region"
+      aria-label={ariaLabel}
+      set:html={inlineSvg}
+    />
+    <p class="font-sans-2xs text-base-dark margin-top-1 margin-bottom-0">
+      Atajos: <kbd class="ulp-kbd">+</kbd> <kbd class="ulp-kbd">-</kbd> <kbd class="ulp-kbd">0</kbd>
+      para zoom; arrastre con el ratón al ampliar; <kbd class="ulp-kbd">Esc</kbd> para salir de
+      pantalla completa.
+    </p>
   </div>
 </div>
 
@@ -112,6 +125,7 @@ const downloadName = svgFile.split('/').pop() || 'diagrama.svg';
     const viewport = card.querySelector<HTMLElement>('[data-svg-viewport]');
     const zoomLabel = card.querySelector<HTMLElement>('[data-zoom-label]');
     const fsBtn = card.querySelector<HTMLButtonElement>('[data-fullscreen]');
+    const fsLabel = card.querySelector<HTMLElement>('[data-fullscreen-label]');
     if (!viewport) return;
 
     let zoom = 1.0;
@@ -129,8 +143,10 @@ const downloadName = svgFile.split('/').pop() || 'diagrama.svg';
 
     const toggleFs = () => {
       const isFull = card.classList.toggle('ulp-fullscreen-active');
+      if (fsLabel) {
+        fsLabel.textContent = isFull ? 'Salir' : 'Pantalla Completa';
+      }
       if (fsBtn) {
-        fsBtn.textContent = isFull ? 'Salir de Pantalla Completa' : 'Pantalla Completa';
         fsBtn.setAttribute('aria-pressed', String(isFull));
       }
     };
@@ -140,7 +156,10 @@ const downloadName = svgFile.split('/').pop() || 'diagrama.svg';
       const zBtn = target?.closest<HTMLElement>('[data-zoom]');
       if (zBtn) {
         const val = zBtn.getAttribute('data-zoom');
-        zoom = val === 'reset' ? 1.0 : Number(Math.max(0.5, Math.min(2.5, zoom + Number(val))).toFixed(2));
+        zoom =
+          val === 'reset'
+            ? 1.0
+            : Number(Math.max(0.5, Math.min(2.5, zoom + Number(val))).toFixed(2));
         applyZoom();
         return;
       }
@@ -149,7 +168,6 @@ const downloadName = svgFile.split('/').pop() || 'diagrama.svg';
       }
     });
 
-    // Drag-to-pan when zoomed
     let dragging = false;
     let startX = 0;
     let startY = 0;

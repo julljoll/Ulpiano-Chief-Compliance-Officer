@@ -1,7 +1,7 @@
 ---
 /**
  * ULPIANO CCO — Pure Build-Time SVG Donut Chart (0 KB Client JS, WCAG 2.1 AAA Light-Only)
- * Replaces 200 KB Chart.js dependency completely.
+ * Geometrically centered center label, tabular percentages, strict USWDS palette.
  */
 interface Slice {
   label: string;
@@ -28,7 +28,7 @@ const {
 } = Astro.props;
 
 const total = slices.reduce((acc, s) => acc + s.value, 0) || 100;
-const radius = 64;
+const radius = 62;
 const circumference = 2 * Math.PI * radius;
 
 let cumulative = 0;
@@ -40,22 +40,22 @@ const renderedSlices = slices.map((s) => {
   return {
     ...s,
     pct: Math.round(fraction * 100),
-    dashArray: `${Math.max(0, dash - 1.5)} ${circumference}`,
+    dashArray: `${Math.max(0, dash - 2)} ${circumference}`,
     dashOffset: offset,
   };
 });
 ---
 
-<div class="usa-card__container padding-3 border-1px border-base-lighter">
-  <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-1">
-    <h2 class="font-sans-sm text-uppercase margin-0">{title}</h2>
+<div class="ulp-surface ulp-surface--padded height-full display-flex flex-column flex-justify">
+  <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-105">
+    <h3 class="font-sans-sm text-uppercase margin-0">{title}</h3>
     <span class="usa-tag ulp-tag-success">{badge}</span>
   </div>
 
   <div class="grid-row grid-gap-2 flex-align-center">
-    <div class="tablet:grid-col-5 text-center">
+    <div class="tablet:grid-col-5">
       <svg
-        viewBox="0 0 180 180"
+        viewBox="0 0 184 184"
         class="ulp-svg-donut"
         role="img"
         aria-labelledby="donut-chart-title donut-chart-desc"
@@ -65,15 +65,17 @@ const renderedSlices = slices.map((s) => {
           Distribución porcentual del ámbito de aplicación: {renderedSlices.map((s) => `${s.label}: ${s.pct}%`).join(', ')}.
         </desc>
 
-        <g transform="rotate(-90 90 90)">
+        <circle cx="92" cy="92" r={radius} fill="none" stroke="#e7e9ed" stroke-width="22" />
+
+        <g transform="rotate(-90 92 92)">
           {renderedSlices.map((s) => (
             <circle
-              cx="90"
-              cy="90"
+              cx="92"
+              cy="92"
               r={radius}
               fill="none"
               stroke={s.color}
-              stroke-width="26"
+              stroke-width="22"
               stroke-dasharray={s.dashArray}
               stroke-dashoffset={s.dashOffset}
             />
@@ -81,23 +83,26 @@ const renderedSlices = slices.map((s) => {
         </g>
 
         <text
-          x="90"
+          x="92"
           y="86"
           text-anchor="middle"
+          dominant-baseline="central"
           fill="#0b1b3d"
-          font-size="20"
+          font-size="22"
           font-weight="700"
           font-family="Public Sans Web, -apple-system, sans-serif"
         >
           100%
         </text>
         <text
-          x="90"
-          y="104"
+          x="92"
+          y="108"
           text-anchor="middle"
+          dominant-baseline="central"
           fill="#45505f"
           font-size="10"
-          font-weight="600"
+          font-weight="700"
+          letter-spacing="0.06em"
           font-family="Public Sans Web, -apple-system, sans-serif"
         >
           PLENO
@@ -108,14 +113,14 @@ const renderedSlices = slices.map((s) => {
     <div class="tablet:grid-col-7">
       <ul class="usa-list usa-list--unstyled margin-0 font-sans-xs">
         {renderedSlices.map((s) => (
-          <li class="display-flex flex-justify flex-align-center padding-y-05 border-bottom-1px border-base-lightest">
+          <li class="display-flex flex-justify flex-align-center padding-y-1 border-bottom-1px border-base-lighter">
             <span class="display-flex flex-align-center ulp-gap-1">
-              <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                <rect width="12" height="12" rx="2" fill={s.color} />
+              <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true">
+                <rect width="12" height="12" rx="3" fill={s.color} />
               </svg>
               <span>{s.label}</span>
             </span>
-            <strong class="font-mono-2xs">{s.pct}%</strong>
+            <strong class="font-mono-2xs ulp-tabular">{s.pct}%</strong>
           </li>
         ))}
       </ul>

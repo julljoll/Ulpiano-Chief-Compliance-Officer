@@ -1,10 +1,11 @@
 ---
 /**
  * ULPIANO CCO — Build-Time Legislative Comparator & Pre-Computed Semantic Article Diff (/comparador/[pair]/)
- * Pre-renders BOTH Parallel texts AND Word-Level LCS Diff in static HTML (0 ms client CPU, works without JS!).
+ * Compact header with 4 diff KPI pills, segmented toolbar, synchronized parallel view & word-level LCS diff.
  */
 import { getCollection, render } from 'astro:content';
 import LegalLayout from '../../layouts/LegalLayout.astro';
+import Icon from '../../components/Icon.astro';
 import { compareLegislativeMarkdown } from '../../lib/diff.ts';
 import { sourceFileToCollectionId } from '../../lib/format.ts';
 
@@ -14,7 +15,12 @@ export async function getStaticPaths() {
     getCollection('normativa'),
   ]);
 
-  const legislative = versions.map((v) => v.data).filter((d) => d.kind !== 'catalog');
+  const docOrder: Record<string, number> = { 'v1.2': 3, 'v1.1': 2, 'v1.0': 1 };
+  const legislative = versions
+    .map((v) => v.data)
+    .filter((d) => d.kind !== 'catalog')
+    .sort((a, b) => (docOrder[b.id] ?? 0) - (docOrder[a.id] ?? 0));
+
   const paths = [];
 
   const findMd = (sourceFile: string) => {
@@ -70,41 +76,48 @@ const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
   description={`Comparativa paralela y diff semántico artículo por artículo entre ${leftDoc.label} y ${rightDoc.label}.`}
   activeSection="compare"
 >
-  <section class="usa-section">
+  <!-- 1. COMPACT PAGE HEADER + DIFF SUMMARY BADGES -->
+  <section class="ulp-page-header">
     <div class="grid-container">
-      <!-- 1. ENCABEZADO -->
-      <div class="display-flex flex-wrap flex-justify flex-align-center ulp-gap-2 margin-bottom-4">
+      <nav class="usa-breadcrumb" aria-label="Migas de pan">
+        <ol class="usa-breadcrumb__list">
+          <li class="usa-breadcrumb__list-item">
+            <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
+          </li>
+          <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+            <span>Comparador · {leftDoc.shortLabel} vs {rightDoc.shortLabel}</span>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="ulp-page-header__row">
         <div>
-          <nav class="usa-breadcrumb margin-bottom-1" aria-label="Migas de pan">
-            <ol class="usa-breadcrumb__list">
-              <li class="usa-breadcrumb__list-item">
-                <a href="/" class="usa-breadcrumb__link">Portal CCO</a>
-              </li>
-              <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-                <span>{leftDoc.shortLabel} vs {rightDoc.shortLabel}</span>
-              </li>
-            </ol>
-          </nav>
-          <h1 class="font-sans-xl margin-0">
-            Comparador de Versiones &amp; Diff Semántico ({leftDoc.shortLabel} vs {rightDoc.shortLabel})
+          <h1 class="ulp-page-header__title">
+            Comparador de Versiones ({leftDoc.shortLabel} vs {rightDoc.shortLabel})
           </h1>
-          <p class="font-sans-sm text-base-dark margin-top-05 margin-bottom-0">
-            Pre-calculado en tiempo de compilación: <strong>{addedCount}</strong> añadidos,{' '}
-            <strong>{modifiedCount}</strong> modificados, <strong>{removedCount}</strong> eliminados y{' '}
-            <strong>{unchangedCount}</strong> sin cambios.
+          <p class="ulp-page-header__sub">
+            Análisis paralelo y diff semántico pre-calculado en tiempo de compilación.
           </p>
         </div>
-        <a href="/" class="usa-button usa-button--outline usa-button--small">
-          Volver al Dashboard
-        </a>
-      </div>
 
-      <!-- 2. SELECTORES DE PAREJA DE VERSIONES Y CONTROLES -->
-      <div class="padding-3 bg-base-lightest border-1px border-base-lighter margin-bottom-4">
-        <div class="grid-row grid-gap-3 flex-align-end">
+        <div class="display-flex flex-wrap ulp-gap-1" aria-label="Resumen de diferencias">
+          <span class="usa-tag ulp-tag-success ulp-tabular">+{addedCount} Añadidos</span>
+          <span class="usa-tag ulp-tag-v12 ulp-tabular">~{modifiedCount} Modificados</span>
+          <span class="usa-tag ulp-tag-v11 ulp-tabular">-{removedCount} Eliminados</span>
+          <span class="usa-tag ulp-tabular">={unchangedCount} Sin cambios</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CONTROLES COMPACTOS + VISTA PARALELA Y DIFF -->
+  <section class="ulp-band ulp-band--subtle ulp-band--compact">
+    <div class="grid-container">
+      <div class="ulp-surface ulp-surface--padded margin-bottom-3">
+        <div class="grid-row grid-gap-2 flex-align-end">
           <div class="tablet:grid-col-5">
-            <label for="compare-select-left" class="usa-label text-bold font-sans-xs text-uppercase">
-              Panel Izquierdo (Base):
+            <label for="compare-select-left" class="usa-label margin-top-0 text-bold font-sans-2xs text-uppercase">
+              Panel Izquierdo (Base)
             </label>
             <select id="compare-select-left" class="usa-select margin-0">
               {legislative.map((doc) => (
@@ -115,20 +128,21 @@ const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
             </select>
           </div>
 
-          <div class="tablet:grid-col-2 text-center">
+          <div class="tablet:grid-col-2 text-center margin-y-1 tablet:margin-y-0">
             <a
               href={swapHref}
               id="btn-compare-swap"
-              class="usa-button usa-button--outline width-full"
+              class="usa-button usa-button--outline width-full ulp-btn-icon"
               title="Intercambiar paneles (funciona sin JS)"
             >
-              Invertir
+              <Icon name="swap_horiz" size={16} />
+              <span>Invertir</span>
             </a>
           </div>
 
           <div class="tablet:grid-col-5">
-            <label for="compare-select-right" class="usa-label text-bold font-sans-xs text-uppercase">
-              Panel Derecho (Contraste):
+            <label for="compare-select-right" class="usa-label margin-top-0 text-bold font-sans-2xs text-uppercase">
+              Panel Derecho (Contraste)
             </label>
             <select id="compare-select-right" class="usa-select margin-0">
               {legislative.map((doc) => (
@@ -140,33 +154,25 @@ const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
           </div>
         </div>
 
-        <!-- Enlaces directos de pares (accesibles sin JS) -->
-        <div class="margin-top-2 display-flex flex-wrap ulp-gap-1 font-sans-2xs">
-          <span class="text-bold text-base-darker padding-y-05">Accesos directos:</span>
-          <a href="/comparador/v1.0-vs-v1.2/" class="usa-link padding-y-05">V-1.0 vs V-1.2</a>
-          <span>•</span>
-          <a href="/comparador/v1.1-vs-v1.2/" class="usa-link padding-y-05">V-1.1 vs V-1.2</a>
-          <span>•</span>
-          <a href="/comparador/v1.0-vs-v1.1/" class="usa-link padding-y-05">V-1.0 vs V-1.1</a>
-        </div>
-
         <div class="margin-top-2 border-top-1px border-base-lighter padding-top-2 display-flex flex-wrap flex-justify flex-align-center ulp-gap-2">
-          <div class="display-flex flex-wrap flex-align-center ulp-gap-1">
+          <div class="ulp-segmented" role="group" aria-label="Modo de visualización">
             <button
               type="button"
               id="btn-compare-mode-parallel"
-              class="usa-button usa-button--small"
+              class="ulp-segmented__item is-active"
               aria-pressed="true"
             >
-              Vista Paralela
+              <Icon name="layers" size={15} />
+              <span>Vista Paralela</span>
             </button>
             <button
               type="button"
               id="btn-compare-mode-diff"
-              class="usa-button usa-button--small usa-button--outline"
+              class="ulp-segmented__item"
               aria-pressed="false"
             >
-              Diff Semántico por Artículo ({diffs.length})
+              <Icon name="compare_arrows" size={15} />
+              <span>Diff Semántico ({diffs.length})</span>
             </button>
           </div>
 
@@ -184,56 +190,59 @@ const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
               </label>
             </div>
           </div>
+
+          <div class="display-flex flex-wrap flex-align-center ulp-gap-1 font-sans-2xs">
+            <span class="text-bold text-base-dark">Pares:</span>
+            <a href="/comparador/v1.0-vs-v1.2/" class="usa-link">V-1.0 vs V-1.2</a>
+            <span aria-hidden="true">·</span>
+            <a href="/comparador/v1.1-vs-v1.2/" class="usa-link">V-1.1 vs V-1.2</a>
+            <span aria-hidden="true">·</span>
+            <a href="/comparador/v1.0-vs-v1.1/" class="usa-link">V-1.0 vs V-1.1</a>
+          </div>
         </div>
       </div>
 
       <!-- 3A. VISTA PARALELA PRE-RENDERIZADA -->
-      <div id="compare-parallel-container" class="grid-row grid-gap-4 margin-bottom-5">
-        <div class="tablet:grid-col-6">
-          <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2 display-flex flex-justify flex-align-center">
-            <strong class="font-sans-xs">{leftDoc.label}</strong>
-            <span class="usa-tag ulp-tag-v11">{leftDoc.shortLabel}</span>
-          </div>
-          <div
-            class="usa-prose ulp-compare-paper padding-3 bg-white border-1px border-base-lighter shadow-1"
-            id="compare-left-paper"
-            tabindex="0"
-            role="region"
-            aria-label={`Texto normativo base: ${leftDoc.label}`}
-          >
-            <LeftContent />
+      <div id="compare-parallel-container" class="grid-row grid-gap-3">
+        <div class="tablet:grid-col-6 margin-bottom-3 tablet:margin-bottom-0">
+          <div class="ulp-surface overflow-hidden">
+            <div class="padding-y-105 padding-x-2 bg-base-lightest border-bottom-1px border-base-lighter display-flex flex-justify flex-align-center ulp-gap-1">
+              <strong class="font-sans-xs text-ink">{leftDoc.label}</strong>
+              <span class="usa-tag ulp-tag-v11">{leftDoc.shortLabel}</span>
+            </div>
+            <div
+              class="usa-prose ulp-compare-paper"
+              id="compare-left-paper"
+              tabindex="0"
+              role="region"
+              aria-label={`Texto normativo base: ${leftDoc.label}`}
+            >
+              <LeftContent />
+            </div>
           </div>
         </div>
 
         <div class="tablet:grid-col-6">
-          <div class="padding-2 bg-base-lightest border-1px border-base-lighter margin-bottom-2 display-flex flex-justify flex-align-center">
-            <strong class="font-sans-xs">{rightDoc.label}</strong>
-            <span class="usa-tag ulp-tag-v12">{rightDoc.shortLabel}</span>
-          </div>
-          <div
-            class="usa-prose ulp-compare-paper padding-3 bg-white border-1px border-base-lighter shadow-1"
-            id="compare-right-paper"
-            tabindex="0"
-            role="region"
-            aria-label={`Texto normativo de contraste: ${rightDoc.label}`}
-          >
-            <RightContent />
+          <div class="ulp-surface overflow-hidden">
+            <div class="padding-y-105 padding-x-2 bg-base-lightest border-bottom-1px border-base-lighter display-flex flex-justify flex-align-center ulp-gap-1">
+              <strong class="font-sans-xs text-ink">{rightDoc.label}</strong>
+              <span class="usa-tag ulp-tag-v12">{rightDoc.shortLabel}</span>
+            </div>
+            <div
+              class="usa-prose ulp-compare-paper"
+              id="compare-right-paper"
+              tabindex="0"
+              role="region"
+              aria-label={`Texto normativo de contraste: ${rightDoc.label}`}
+            >
+              <RightContent />
+            </div>
           </div>
         </div>
       </div>
 
       <!-- 3B. DIFF SEMÁNTICO POR ARTÍCULO PRE-CALCULADO EN BUILD -->
-      <div id="compare-diff-container" class="margin-bottom-5">
-        <div class="border-bottom-1px border-base-lighter padding-bottom-1 margin-bottom-3 display-flex flex-wrap flex-justify flex-align-center ulp-gap-1">
-          <h2 class="font-sans-lg margin-0">Diff Semántico por Artículo</h2>
-          <div class="display-flex flex-wrap ulp-gap-1">
-            <span class="usa-tag ulp-tag-success">{addedCount} Añadidos</span>
-            <span class="usa-tag ulp-tag-v12">{modifiedCount} Modificados</span>
-            <span class="usa-tag ulp-tag-v11">{removedCount} Eliminados</span>
-            <span class="usa-tag">{unchangedCount} Sin cambios</span>
-          </div>
-        </div>
-
+      <div id="compare-diff-container" class="margin-top-3">
         <div id="compare-diff-list">
           {diffs.map((item) => (
             <article
@@ -241,13 +250,13 @@ const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
               data-diff-status={item.status}
             >
               <header class="display-flex flex-wrap flex-justify flex-align-center margin-bottom-1 ulp-gap-1">
-                <h3 class="font-sans-sm margin-0">{item.heading}</h3>
+                <h2 class="font-sans-sm margin-0">{item.heading}</h2>
                 {item.status === 'added' && <span class="usa-tag ulp-tag-success">Añadido</span>}
                 {item.status === 'modified' && <span class="usa-tag ulp-tag-v12">Modificado</span>}
                 {item.status === 'removed' && <span class="usa-tag ulp-tag-v11">Eliminado</span>}
                 {item.status === 'unchanged' && <span class="usa-tag">Sin cambios</span>}
               </header>
-              <p class="font-serif-xs line-height-serif-4 margin-0">
+              <p class="ulp-diff-body margin-0">
                 {item.tokens.map((tok) =>
                   tok.type === 'add' ? (
                     <>{' '}<ins class="ulp-diff-ins">{tok.value}</ins></>
@@ -277,22 +286,19 @@ const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
     const leftPaper = document.getElementById('compare-left-paper');
     const rightPaper = document.getElementById('compare-right-paper');
 
-    // Navigate to pre-rendered pair route when selects change
     const goToPair = () => {
-      if (!selLeft || !selRight) return;
-      if (selLeft.value === selRight.value) return;
+      if (!selLeft || !selRight || selLeft.value === selRight.value) return;
       window.location.href = `/comparador/${selLeft.value}-vs-${selRight.value}/`;
     };
     selLeft?.addEventListener('change', goToPair);
     selRight?.addEventListener('change', goToPair);
 
-    // Toggle mode progressively (both are visible if JS is disabled!)
     const setMode = (mode: 'parallel' | 'diff') => {
       if (parallelBox) parallelBox.hidden = mode !== 'parallel';
       if (diffBox) diffBox.hidden = mode !== 'diff';
-      btnParallel?.classList.toggle('usa-button--outline', mode !== 'parallel');
+      btnParallel?.classList.toggle('is-active', mode === 'parallel');
       btnParallel?.setAttribute('aria-pressed', String(mode === 'parallel'));
-      btnDiff?.classList.toggle('usa-button--outline', mode !== 'diff');
+      btnDiff?.classList.toggle('is-active', mode === 'diff');
       btnDiff?.setAttribute('aria-pressed', String(mode === 'diff'));
     };
     setMode('parallel');
@@ -309,7 +315,6 @@ const swapHref = `/comparador/${rightDoc.id}-vs-${leftDoc.id}/`;
         });
     });
 
-    // Synchronized scroll
     let syncing = false;
     const syncScroll = (src: HTMLElement, dst: HTMLElement) => {
       if (!syncScrollCb?.checked || syncing) return;

@@ -2,8 +2,9 @@
  * ULPIANO CCO — Astro 7 Sätteri HAST Build-Time Plugin
  * Runs exclusively during `astro build` (0 KB sent to browser):
  *  1. Normalizes `<span style="color:red">` to semantic `.reforma-rojo`
- *  2. Wraps every Markdown `<table>` in an accessible focusable USWDS container
- *  3. Assigns deterministic fragment IDs (`#articulo-10-bis`) to legislative articles for zero-JS deep links
+ *  2. Demotes Markdown headings (`h1`->`h2`..`h5`->`h6`) so every page keeps strictly one `<h1>`
+ *  3. Wraps every Markdown `<table>` in an accessible focusable USWDS container without nowrap overflow
+ *  4. Assigns deterministic fragment IDs (`#articulo-10-bis`) to legislative articles for zero-JS deep links
  */
 
 interface HastNode {
@@ -18,6 +19,14 @@ interface HastContext {
   setProperty(node: HastNode, name: string, value: unknown): void;
   textContent(node: HastNode): string;
 }
+
+const HEADING_DEMOTION: Record<string, string> = {
+  h1: 'h2',
+  h2: 'h3',
+  h3: 'h4',
+  h4: 'h5',
+  h5: 'h6',
+};
 
 export function createUlpianoHastPlugin() {
   return () => {
@@ -51,15 +60,22 @@ export function createUlpianoHastPlugin() {
         return undefined;
       },
       element: {
-        filter: ['table', 'p'],
+        filter: ['table', 'p', 'h1', 'h2', 'h3', 'h4', 'h5'],
         visit(node: HastNode, ctx: HastContext): HastNode | undefined {
+          if (node.tagName && HEADING_DEMOTION[node.tagName]) {
+            return {
+              ...node,
+              tagName: HEADING_DEMOTION[node.tagName],
+            };
+          }
+
           if (node.tagName === 'table') {
             ctx.setProperty(node, 'className', ['usa-table', 'usa-table--striped']);
             return {
               type: 'element',
               tagName: 'div',
               properties: {
-                className: ['usa-table-container--scrollable'],
+                className: ['usa-table-container--scrollable', 'ulp-table-wrap'],
                 tabIndex: 0,
               },
               children: [node],

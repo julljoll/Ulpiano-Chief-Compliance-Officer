@@ -1,7 +1,7 @@
 ---
 /**
  * ULPIANO CCO — Pure Build-Time SVG Bar Chart (0 KB Client JS, WCAG 2.1 AAA Light-Only)
- * Replaces 200 KB Chart.js dependency completely.
+ * Strictly adheres to USWDS tokens.css palette.
  */
 interface Props {
   title: string;
@@ -13,38 +13,39 @@ interface Props {
 const { title, versionTag, labels, data } = Astro.props;
 
 const maxVal = Math.max(1, ...data);
+const niceMax = Math.max(4, Math.ceil(maxVal / 2) * 2);
 const ySteps = 4;
 const chartW = 560;
-const chartH = 260;
-const padLeft = 40;
-const padRight = 16;
-const padTop = 26;
-const padBottom = 64;
+const chartH = 264;
+const padLeft = 38;
+const padRight = 18;
+const padTop = 28;
+const padBottom = 60;
 const plotW = chartW - padLeft - padRight;
 const plotH = chartH - padTop - padBottom;
 const slotW = data.length > 0 ? plotW / data.length : plotW;
-const barW = Math.min(44, Math.max(18, slotW * 0.56));
+const barW = Math.min(44, Math.max(20, slotW * 0.52));
 
 const bars = labels.map((label, i) => {
   const val = data[i] ?? 0;
-  const h = (val / maxVal) * plotH;
+  const h = (val / niceMax) * plotH;
   const x = padLeft + i * slotW + (slotW - barW) / 2;
   const y = padTop + plotH - h;
-  const shortLabel = label.replace(/\s*\(.*?\)/g, '');
+  const shortLabel = label.replace(/\s*\(.*?\)/g, '').trim();
   const subLabel = (label.match(/\((.*?)\)/)?.[1] ?? '').slice(0, 14);
   return { label, shortLabel, subLabel, val, x, y, h, cx: x + barW / 2 };
 });
 
 const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
-  const val = Math.round((maxVal / ySteps) * idx);
-  const y = padTop + plotH - (val / maxVal) * plotH;
+  const val = Math.round((niceMax / ySteps) * idx);
+  const y = padTop + plotH - (val / niceMax) * plotH;
   return { val, y };
 });
 ---
 
-<div class="usa-card__container padding-3 border-1px border-base-lighter">
-  <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-1">
-    <h2 class="font-sans-sm text-uppercase margin-0">{title}</h2>
+<div class="ulp-surface ulp-surface--padded height-full display-flex flex-column flex-justify">
+  <div class="display-flex flex-justify flex-align-center margin-bottom-2 border-bottom-1px border-base-lighter padding-bottom-105">
+    <h3 class="font-sans-sm text-uppercase margin-0">{title}</h3>
     <span class="usa-tag ulp-tag-v12">{versionTag}</span>
   </div>
 
@@ -59,7 +60,7 @@ const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
       Gráfico de barras de modificaciones normativas por título: {bars.map((b) => `${b.label}: ${b.val}`).join(', ')}.
     </desc>
 
-    <!-- Horizontal gridlines & Y ticks -->
+    <!-- Horizontal gridlines & Y ticks (tokens: gray-cool-10 / gray-cool-60) -->
     {gridLines.map((g) => (
       <g>
         <line
@@ -69,12 +70,13 @@ const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
           y2={g.y}
           stroke="#e7e9ed"
           stroke-width="1"
+          stroke-dasharray={g.val === 0 ? undefined : '3 3'}
         />
         <text
-          x={padLeft - 8}
+          x={padLeft - 10}
           y={g.y + 4}
           text-anchor="end"
-          fill="#323a45"
+          fill="#45505f"
           font-size="11"
           font-family="Public Sans Web, -apple-system, sans-serif"
         >
@@ -83,17 +85,17 @@ const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
       </g>
     ))}
 
-    <!-- Baseline axis -->
+    <!-- Baseline axis (token: gray-cool-30) -->
     <line
       x1={padLeft}
       y1={padTop + plotH}
       x2={chartW - padRight}
       y2={padTop + plotH}
-      stroke="#8190a4"
+      stroke="#a9b4c4"
       stroke-width="1.5"
     />
 
-    <!-- Bars + Data Labels -->
+    <!-- Bars + Data Labels (tokens: blue-70 / blue-90) -->
     {bars.map((b) => (
       <g>
         <rect
@@ -101,14 +103,12 @@ const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
           y={b.y}
           width={barW}
           height={Math.max(2, b.h)}
-          rx="3"
+          rx="4"
           fill="#004987"
-          stroke="#0b1b3d"
-          stroke-width="1"
         />
         <text
           x={b.cx}
-          y={b.y - 6}
+          y={b.y - 7}
           text-anchor="middle"
           fill="#0b1b3d"
           font-size="12"
@@ -119,10 +119,10 @@ const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
         </text>
         <text
           x={b.cx}
-          y={padTop + plotH + 16}
+          y={padTop + plotH + 18}
           text-anchor="middle"
           fill="#13171b"
-          font-size="10"
+          font-size="10.5"
           font-weight="600"
           font-family="Public Sans Web, -apple-system, sans-serif"
         >
@@ -131,10 +131,10 @@ const gridLines = Array.from({ length: ySteps + 1 }, (_, idx) => {
         {b.subLabel && (
           <text
             x={b.cx}
-            y={padTop + plotH + 30}
+            y={padTop + plotH + 33}
             text-anchor="middle"
-            fill="#45505f"
-            font-size="9"
+            fill="#5c6b7e"
+            font-size="9.5"
             font-family="Public Sans Web, -apple-system, sans-serif"
           >
             {b.subLabel}
